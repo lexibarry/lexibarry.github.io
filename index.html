@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Data Leader & Innovation Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0a2463 0%, #1e3a8a 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a2463 0%, #1e3a8a 50%, #2563eb 100%);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: #0a2463;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: #0a2463;
+            border-color: #d4af37;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #0a2463;
+            font-weight: 600;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h4 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            color: #666;
+        }
+
+        .skill-category li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+        }
+
+        .projects {
+            background: white;
+        }
+
+        .project-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background: #1e3a8a;
+            color: white;
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-left: 4px solid #d4af37;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            color: #0a2463;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #e8f0fe;
+            color: #0a2463;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #0a2463 0%, #1e3a8a 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        footer {
+            background: #050d1f;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .project-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h1>Data Leader & Innovation Architect</h1>
+            <p>Transforming insights into impact through analytics, AI, and purposeful innovation</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Where Data Meets Purpose</h3>
+                <p>I'm a multifaceted professional operating at the intersection of data science, product leadership, AI innovation, and social entrepreneurship. By day, I lead analytics initiatives in the consumer packaged goods and grocery sector, specializing in natural products.</p>
+                <p>My expertise spans from creating compelling data visualizations and managing cross-functional teams to building AI-powered solutions and founding a startup nonprofit. I'm passionate about leveraging technology and data for both business impact and social good.</p>
+                <p>Whether it's delivering actionable insights to clients, developing new products, pursuing patents, or contributing to cybersecurity through ethical hacking, I bring a builder's mindset and analytical rigor to every challenge.</p>
+            </div>
+            <div class="about-image">
+                <div class="skill-category">
+                    <h4>Core Competencies</h4>
+                    <ul>
+                        <li>Data Visualization & Analytics</li>
+                        <li>Product Management</li>
+                        <li>AI/ML Applications</li>
+                        <li>Client Relations & Leadership</li>
+                        <li>Software Development</li>
+                        <li>Social Innovation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects & Impact</h2>
+            
+            <div class="project-tabs">
+                <button class="tab-btn active" onclick="showTab('professional')">Professional Work</button>
+                <button class="tab-btn" onclick="showTab('ai-tech')">AI & Technical</button>
+                <button class="tab-btn" onclick="showTab('innovation')">Innovation & IP</button>
+                <button class="tab-btn" onclick="showTab('social')">Social Impact</button>
+            </div>
+
+            <div id="professional" class="tab-content active">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Natural Products Market Dashboard</h3>
+                        <p>Interactive dashboard analyzing sales trends, market share, and consumer preferences in the natural products sector using public datasets.</p>
+                        <div class="project-tags">
+                            <span class="tag">Excel</span>
+                            <span class="tag">PowerBI</span>
+                            <span class="tag">Data Visualization</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Client Analytics Platform Deployment</h3>
+                        <p>Led cross-functional team to deploy analytics tools and training programs, improving client reporting efficiency by 40%.</p>
+                        <div class="project-tags">
+                            <span class="tag">Product Management</span>
+                            <span class="tag">Training</span>
+                            <span class="tag">Operations</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Grocery Category Performance Analysis</h3>
+                        <p>Comprehensive PowerPoint deck presenting category insights and strategic recommendations for CPG stakeholders.</p>
+                        <div class="project-tags">
+                            <span class="tag">PowerPoint</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">CPG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ai-tech" class="tab-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>AI-Powered Data Insights Tool</h3>
+                        <p>Developed an AI application that automates data analysis and generates natural language insights from complex datasets.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">NLP</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Bug Bounty Contributions</h3>
+                        <p>Active participant in ethical hacking programs, identifying and reporting security vulnerabilities in web applications.</p>
+                        <div class="project-tags">
+                            <span class="tag">Cybersecurity</span>
+                            <span class="tag">Ethical Hacking</span>
+                            <span class="tag">Web Security</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Open Source Contributions</h3>
+                        <p>Regular contributions to open-source projects on GitHub, focusing on data visualization and analytics tools.</p>
+                        <div class="project-tags">
+                            <span class="tag">GitHub</span>
+                            <span class="tag">Open Source</span>
+                            <span class="tag">Collaboration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="innovation" class="tab-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Patent Applications in Development</h3>
+                        <p>Currently working on multiple patent applications in the areas of data analytics automation and AI-assisted decision making.</p>
+                        <div class="project-tags">
+                            <span class="tag">Patents</span>
+                            <span class="tag">Innovation</span>
+                            <span class="tag">IP</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Consumer Product Development</h3>
+                        <p>Building market-ready products that solve real-world problems using data-driven approaches and modern technology.</p>
+                        <div class="project-tags">
+                            <span class="tag">Product Development</span>
+                            <span class="tag">Entrepreneurship</span>
+                            <span class="tag">Market Research</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Innovation Pipeline</h3>
+                        <p>Maintaining an active pipeline of ideas and prototypes, from initial concept to market validation.</p>
+                        <div class="project-tags">
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">Testing</span>
+                            <span class="tag">Iteration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="social" class="tab-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>Nonprofit Startup Foundation</h3>
+                        <p>Founded and leading a startup nonprofit focused on leveraging technology and data for social good and community impact.</p>
+                        <div class="project-tags">
+                            <span class="tag">Nonprofit</span>
+                            <span class="tag">Founder</span>
+                            <span class="tag">Leadership</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Mission-Driven Analytics</h3>
+                        <p>Applying data science and analytics expertise to measure and amplify social impact initiatives.</p>
+                        <div class="project-tags">
+                            <span class="tag">Impact Measurement</span>
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Social Good</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>Technology for Good</h3>
+                        <p>Developing AI and technology solutions that address community challenges and create positive social change.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI for Good</span>
+                            <span class="tag">Innovation</span>
+                            <span class="tag">Community</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h4>Analytics & Visualization</h4>
+                <ul>
+                    <li>Dashboard Development</li>
+                    <li>Excel & PowerPoint</li>
+                    <li>Data Storytelling</li>
+                    <li>Statistical Analysis</li>
+                    <li>Business Intelligence</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Product & Operations</h4>
+                <ul>
+                    <li>Product Management</li>
+                    <li>Client Relations</li>
+                    <li>Team Leadership</li>
+                    <li>Tool Deployment</li>
+                    <li>Training Programs</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Technology & AI</h4>
+                <ul>
+                    <li>AI/ML Applications</li>
+                    <li>Software Development</li>
+                    <li>Python, R, SQL</li>
+                    <li>Cybersecurity</li>
+                    <li>Ethical Hacking</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Innovation & Leadership</h4>
+                <ul>
+                    <li>Patent Development</li>
+                    <li>Product Creation</li>
+                    <li>Entrepreneurship</li>
+                    <li>Nonprofit Founding</li>
+                    <li>Cross-functional Teams</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h4>Industry Focus</h4>
+                <ul>
+                    <li>Consumer Packaged Goods</li>
+                    <li>Grocery & Retail</li>
+                    <li>Natural Products</li>
+                    <li>Market Analysis</li>
+                    <li>Category Management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <span>💻</span>
+                    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Your message here..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="handleSubmit()">Send Message</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function handleSubmit() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                alert('Thank you for your message! I will get back to you soon.');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
