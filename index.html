@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lexi Barry | Data Product Manager & Analytics Leader</title>
   <link rel="icon" href="/favicon.ico" />
-  <meta name="description" content="Portfolio of Lexi Barry — Data Product Manager, Analytics Leader, and AI Innovator. Explore dashboards, projects, and analytics insights." />
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Google Analytics -->
@@ -21,191 +18,81 @@
 
   <style>
     :root {
-      --primary: #1e3a8a;
-      --accent: #2563eb;
-      --bg: #f8fafc;
-      --text: #0f172a;
-      --muted: #334155;
+      --bg:#f8fafc;
+      --text:#0f172a;
+      --muted:#334155;
+      --primary:#1e3a8a;
+      --accent:#2563eb;
     }
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Inter',system-ui,sans-serif;
     }
     header {
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      color: #fff;
-      text-align: center;
-      padding: 70px 20px 60px;
+      text-align:center;
+      padding:90px 20px 60px;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      color:#fff;
     }
-    header h1 { font-size: 2.4rem; margin: 0; font-weight: 700; }
-    header p { font-size: 1.1rem; margin: 12px 0 0; opacity: .9; }
-
-    main { max-width: 1100px; margin: 0 auto; padding: 50px 20px; }
-
-    h2 {
-      color: var(--primary);
-      font-size: 1.8rem;
-      margin-top: 0;
+    h1 { margin:0 0 12px; font-size:2.8rem; }
+    p.lead { max-width:720px; margin:0 auto; font-size:1.2rem; line-height:1.7; }
+    section { max-width:900px; margin:60px auto; padding:0 20px; }
+    h2 { font-size:1.6rem; margin-bottom:14px; color:var(--primary); }
+    ul { line-height:1.7; color:var(--muted); }
+    a.button {
+      display:inline-block;
+      margin-top:24px;
+      padding:12px 18px;
+      background:var(--accent);
+      color:#fff;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
     }
-
-    section { margin-bottom: 80px; }
-
-    .about p { font-size: 1rem; max-width: 850px; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 8px 24px rgba(2,6,23,0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(2,6,23,0.12); }
-    .thumb { height: 160px; background: #e2e8f0; object-fit: cover; }
-    .content { padding: 16px 18px; flex-grow: 1; }
-    .title { font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 6px; }
-    .desc { color: var(--muted); font-size: 0.9rem; }
-    .link {
-      display: inline-block;
-      margin: 14px 18px 18px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      background: var(--accent);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      align-self: flex-start;
-    }
-    .link:hover { filter: brightness(.95); }
-
-    .contact a {
-      display: inline-block;
-      color: var(--accent);
-      font-weight: 600;
-      text-decoration: none;
-      margin-right: 16px;
-    }
-    .contact a:hover { text-decoration: underline; }
-
+    a.button:hover { filter:brightness(.95); }
     footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: #f1f5f9;
-      color: var(--muted);
-      font-size: 0.9rem;
+      text-align:center;
+      padding:50px 20px;
+      background:#f1f5f9;
+      color:var(--muted);
+      font-size:.9rem;
     }
   </style>
 </head>
-
 <body>
+  <header>
+    <h1>Lexi Barry</h1>
+    <p class="lead">
+      Data Product Manager & Analytics Leader — turning complex data into intuitive products that drive decisions.  
+      Explore dashboards, projects, and insights across analytics, user adoption, and CPG strategy.
+    </p>
+    <a class="button" href="/dashboards/">📊 View Dashboard Gallery</a>
+  </header>
 
-<header>
-  <h1>Lexi Barry</h1>
-  <p>Data Product Manager • Analytics Leader • AI Innovator</p>
-</header>
-
-<main>
-
-  <section class="about">
-    <h2>🚀 About Me</h2>
+  <section>
+    <h2>About Me</h2>
     <p>
-      I'm a multifaceted professional passionate about the intersection of <strong>data analytics, product management, and AI innovation</strong>.
-      Currently an Associate Client Manager at NielsenIQ, I specialize in transforming complex data into clear, actionable insights that drive business growth and user adoption.
-      <br><br>
-      My work blends technical depth with strategic thinking—bridging the gap between data, decisions, and user experience. I’m also an ethical bug bounty contributor and a recipient of the <strong>Oklahoma NextGen Under 30 Award</strong>.
+      I bridge the gap between business strategy, analytics, and technology.  
+      With experience at NielsenIQ, I specialize in data storytelling, user adoption strategy, and insight automation for product and CPG organizations.
     </p>
   </section>
 
-  <section class="dashboards">
-    <h2>📊 Featured Dashboards</h2>
-    <p>Explore interactive dashboards that demonstrate analytical storytelling, product intuition, and usability focus.  
-    Each project uses <strong>public, non-confidential datasets</strong> and can be explored directly below.</p>
-
-    <div class="grid">
-      <!-- Repeat for all 6 dashboards -->
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/adoption.png" alt="">
-        <div class="content">
-          <div class="title">User Adoption & Engagement Tracker</div>
-          <div class="desc">Feature usage, DAU/WAU/MAU, and retention analysis post-launch.</div>
-        </div>
-        <a class="link" href="/dashboards/user-adoption-engagement.html">View Dashboard →</a>
-      </div>
-
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/vou.png" alt="">
-        <div class="content">
-          <div class="title">Voice of the User Dashboard</div>
-          <div class="desc">Sentiment, NPS, and top feedback themes from user reviews.</div>
-        </div>
-        <a class="link" href="/dashboards/voice-of-user.html">View Dashboard →</a>
-      </div>
-
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/gtm.png" alt="">
-        <div class="content">
-          <div class="title">Go-To-Market Readiness Tracker</div>
-          <div class="desc">Cross-functional launch milestones, readiness, and risk visibility.</div>
-        </div>
-        <a class="link" href="/dashboards/gtm-readiness.html">View Dashboard →</a>
-      </div>
-
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/ab.png" alt="">
-        <div class="content">
-          <div class="title">A/B Test Results</div>
-          <div class="desc">Conversion lift, confidence intervals, and variant performance.</div>
-        </div>
-        <a class="link" href="/dashboards/ab-test-results.html">View Dashboard →</a>
-      </div>
-
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/convo.png" alt="">
-        <div class="content">
-          <div class="title">Product Conversation Analysis</div>
-          <div class="desc">Simulated team discussions analyzed for sentiment and alignment.</div>
-        </div>
-        <a class="link" href="/dashboards/product-conversation.html">View Dashboard →</a>
-      </div>
-
-      <div class="card">
-        <img class="thumb" src="/assets/thumbs/category.png" alt="">
-        <div class="content">
-          <div class="title">Category Performance Tracker (CPG)</div>
-          <div class="desc">Sales, share, price, and promo performance trends for CPG brands.</div>
-        </div>
-        <a class="link" href="/dashboards/category-performance.html">View Dashboard →</a>
-      </div>
-    </div>
+  <section>
+    <h2>Technical Strengths</h2>
+    <ul>
+      <li>Python, SQL, R, Power BI, Tableau, Excel, Jira, GitHub</li>
+      <li>Product management, lifecycle strategy, and data visualization</li>
+      <li>AI & automation (LLMs, prompt engineering, APIs)</li>
+      <li>User adoption & change management</li>
+      <li>CPG & market analytics</li>
+    </ul>
   </section>
 
-  <section class="contact">
-    <h2>📫 Let’s Connect</h2>
+  <section>
+    <h2>Connect</h2>
     <p>
-      I’m always open to collaboration around data, AI, and product innovation that turns insights into impact.
-      <br><br>
-      <a href="mailto:lexi.barry@outlook.com">lexi.barry@outlook.com</a>
-      <a href="https://linkedin.com/in/lexi-barry" target="_blank">LinkedIn</a>
-      <a href="https://github.com/lexibarry" target="_blank">GitHub</a>
-    </p>
-  </section>
-
-</main>
-
-<footer>
-  © 2025 Lexi Barry — Built with ❤️ and curiosity.  
-  <br>
-  <small>Google Analytics tracking enabled (G-BTL6GP30YH).</small>
-</footer>
-
-</body>
-</html>
+      📧 <a href="mailto:lexi.barry@outlook.com">lexi.barry@outlook.com</a><br>
+      💼 <a href="https://linkedin.com/in/lexi-barry" target="_blank">linkedin.com/in/lexi-barry</a><br>
+      🌐 <a href="https://
