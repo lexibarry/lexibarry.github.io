@@ -1,95 +1,85 @@
 # lexibarry.github.io
-# Hi, I'm Lexi Barry 👋
 
-**Data Leader | Product Manager | AI Enthusiast | Social Entrepreneur**
+A modern, single-page HTML portfolio for **Lexi Barry** — Data Product Manager, Analytics Leader, and AI Innovator.  
+🌐 Live site: [https://lexibarry.github.io](https://lexibarry.github.io)
 
-📍 Oklahoma City, OK | 📧 lexi.barry@outlook.com | 💼 [LinkedIn](https://www.linkedin.com/in/lexi-barry) | 🌐 [Portfolio](https://lexibarry.github.io)
-
----
-
-## 🚀 About Me
-
-I'm a multifaceted professional at the intersection of data analytics, product management, AI innovation, and social impact. Currently serving as an Associate Client Manager at NielsenIQ, I specialize in transforming complex data into actionable insights for CPG and natural products companies.
-
-- 🔭 Currently working on: AI-powered analytics tools and patent development
-- 🌱 Learning: Advanced ML applications and cybersecurity
-- 💡 Passionate about: Leveraging data and technology for business impact and social good
-- 🎯 Fun fact: I'm a CPR/AED/First Aid Instructor and ethical bug bounty contributor
-- 🏆 Recognition: Oklahoma NextGen Under 30 Award recipient
+![Deploy](https://img.shields.io/badge/GitHub%20Pages-Auto%20Deploy-2ea44f)
+![Analytics](https://img.shields.io/badge/GA4-Enabled-blue)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=lexibarry.lexibarry)
 
 ---
 
-## 💼 Professional Highlights
-
-- **Client Success**: Led cross-functional teams with 95% client satisfaction rate
-- **Data Visualization**: Built executive dashboards that drive strategic decision-making
-- **Product Leadership**: Deployed analytics tools and training programs across organizations
-- **Social Impact**: Founded a startup nonprofit focused on tech for good
-
----
-
-## 🛠️ Technical Skills
-
-**Languages & Tools:**
-```
-Python | SQL | R | Tableau | Power BI | Excel
-AWS | Azure | Google Cloud | Salesforce | Microsoft Dynamics
-```
-
-**Specialties:**
-- Data Analytics & Visualization
-- AI/ML Applications
-- Dashboard Development
-- CPG & Market Analytics
-- Ethical Hacking & Security
-- Product Management
+## ✨ Overview
+This repository hosts my public professional portfolio website.  
+It highlights my experience at the intersection of **data analytics, product management, and AI**, featuring:
+- Responsive single-page HTML design with scroll animations  
+- Integrated **Google Analytics 4 (G-BTL6GP30YH)**  
+- Click-event tracking for **LinkedIn**, **Email**, and **Portfolio** links  
+- A visible visitor counter  
+- Sections: *About*, *Technical Strengths*, *Portfolio*, *Education*, *Awards*, and *Contact*
 
 ---
 
-## 📊 Featured Projects
+## 🗂 Repo Structure
+/
+├── index.html # Main portfolio webpage (HTML + styling + analytics)
+├── favicon.ico # Optional browser tab icon
+└── assets/
+└── header.png # Optional banner or headshot image
 
-### Data Visualization & Analytics
-- **Natural Products Market Analysis**: Interactive dashboards analyzing CPG trends using public datasets
-- **Consumer Insights Dashboards**: KPI visualization tools for executive decision-making
-- **Market Research Studies**: Data-driven analyses for natural products sector
 
-### AI & Innovation
-- **AI-Powered Analytics Tools**: Automated insight generation from complex datasets
-- **Patent Development**: Working on data analytics automation innovations
-- **Product Prototypes**: Building market-ready solutions with data-driven approaches
-
-### Social Impact
-- **Nonprofit Founding**: Leading tech-for-good initiatives
-- **Community Engagement**: Active volunteer with Habitat for Humanity and YP of OKC
+All content is static — no frameworks or build steps required.
 
 ---
 
-## 🎓 Education
+## 🚀 How to Update
 
-**MBA** - Oklahoma City University (GPA: 3.9)
-- Concentration: Leadership
-
-**BS Marketing & BS Management** - Oklahoma State University (GPA: 3.7)
-- Honors College | Professional Sales Certificate
-
----
-
-## 📫 Let's Connect
-
-I'm always open to collaborating on data projects, discussing AI applications, or exploring opportunities to create positive impact through technology.
-
-- 📧 Email: lexi.barry@outlook.com
-- 💼 LinkedIn: [linkedin.com/in/lexi-barry](https://www.linkedin.com/in/lexi-barry)
-- 🌐 Portfolio: [lexibarry.github.io](https://lexibarry.github.io)
+1. Open the repo **lexibarry.github.io**
+2. Edit `index.html`  
+   - Text content appears under clear headings (e.g., *About Me*, *Technical Strengths*)
+   - Update contact links (`mailto:`, LinkedIn, GitHub) as needed
+3. Commit changes  
+   → GitHub Pages will redeploy automatically within 1–2 minutes.
 
 ---
 
-## 🏅 Recognition
-
-- Oklahoma NextGen Under 30 Award
-- NextGen Under 30 Ambassadors Program
-- Career Essentials in Data Analysis (Microsoft & LinkedIn)
+## 📊 Analytics
+- **Platform:** Google Analytics 4  
+- **Measurement ID:** `G-BTL6GP30YH`  
+- **Tracked events:**
+  - `click_linkedin`
+  - `click_email`
+  - `click_portfolio`
+- View metrics anytime at [analytics.google.com](https://analytics.google.com) → *Realtime* and *Reports*.
 
 ---
 
-*"Transforming insights into impact through analytics, AI, and purposeful innovation"*
+## 🧠 Data Ethics & Transparency
+All datasets featured in portfolio visualizations are **publicly available and non-confidential**.  
+They are used exclusively for demonstration and educational purposes.  
+No proprietary data, client information, or internal tools from previous employers are included.
+
+---
+
+## 💡 Optional Enhancements
+**Add a Resume Button**
+```html
+<a href="/resume.pdf" target="_blank" style="display:inline-block;padding:10px 16px;border-radius:8px;background:#2563eb;color:#fff;font-weight:600;text-decoration:none;">
+⬇️ Download Resume (PDF)
+</a>
+
+<img src="assets/header.png" alt="Lexi Barry" style="max-width:160px;border-radius:9999px;margin-top:16px;">
+
+:root {
+  --primary: #1e3a8a;
+  --accent: #2563eb;
+  --bg: #f8fafc;
+  --text: #1e293b;
+}
+
+
+📫 Contact
+
+Email: lexi.barry@outlook.com
+LinkedIn: linkedin.com/in/lexi-barry
+Portfolio: lexibarry.github.io
