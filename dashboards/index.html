@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard Gallery | Lexi Barry</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTL6GP30YH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BTL6GP30YH');
+  </script>
+
+  <style>
+    :root {
+      --bg:#f8fafc;
+      --text:#0f172a;
+      --muted:#334155;
+      --primary:#1e3a8a;
+      --accent:#2563eb;
+    }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; }
+    header { text-align:center; padding:70px 20px 50px; background:linear-gradient(90deg,var(--primary),var(--accent)); color:#fff; }
+    h1 { margin:0 0 12px; font-size:2.4rem; }
+    p.sub { max-width:740px; margin:0 auto; font-size:1.1rem; line-height:1.6; }
+    main { max-width:1200px; margin:50px auto; padding:0 20px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px; }
+    .card { background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(2,6,23,.08); overflow:hidden; display:flex; flex-direction:column; transition:.2s; }
+    .card:hover { transform:translateY(-5px); box-shadow:0 14px 30px rgba(2,6,23,.12); }
+    .thumb { width:100%; height:160px; object-fit:cover; background:#e2e8f0; }
+    .content { padding:18px 16px; flex:1; }
+    .title { font-weight:700; margin:0 0 8px; font-size:1.1rem; }
+    .desc { margin:0 0 16px; color:var(--muted); font-size:0.92rem; line-height:1.5; }
+    .link { align-self:flex-start; margin:0 16px 18px; padding:10px 16px; background:var(--accent); color:#fff; border-radius:10px; text-decoration:none; font-weight:600; }
+    .link:hover { filter:brightness(.95); }
+    a.back { display:inline-block; margin:10px 16px 36px; color:var(--accent); text-decoration:none; font-weight:600; }
+    footer { text-align:center; padding:50px 20px; background:#f1f5f9; color:var(--muted); font-size:0.9rem; margin-top:60px; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Interactive Dashboard Gallery</h1>
+    <p class="sub">
+      Explore how I bring data to life through intuitive design, actionable insights, and storytelling that drives impact.  
+      Each dashboard highlights a different aspect of product and category strategy — from user adoption to go-to-market execution.
+    </p>
+  </header>
+
+  <main>
+    <a class="back" href="/">← Back to Home</a>
+
+    <div class="grid">
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/adoption.png">
+        <div class="content"><h2 class="title">User Adoption & Engagement</h2>
+          <p class="desc">Feature usage, DAU/WAU/MAU tracking, and retention analysis post-launch.</p></div>
+        <a class="link" href="/dashboards/user-adoption-engagement.html">View Dashboard →</a>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/vou.png">
+        <div class="content"><h2 class="title">Voice of the User (VoU)</h2>
+          <p class="desc">Customer sentiment, NPS trends, and top feature requests.</p></div>
+        <a class="link" href="/dashboards/voice-of-user.html">View Dashboard →</a>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/gtm.png">
+        <div class="content"><h2 class="title">GTM Readiness Tracker</h2>
+          <p class="desc">Cross-functional launch milestones and readiness tracking.</p></div>
+        <a class="link" href="/dashboards/gtm-readiness.html">View Dashboard →</a>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/ab.png">
+        <div class="content"><h2 class="title">A/B Test Results</h2>
+          <p class="desc">Variant performance, conversion lift, and sample size monitoring.</p></div>
+        <a class="link" href="/dashboards/ab-test-results.html">View Dashboard →</a>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/convo.png">
+        <div class="content"><h2 class="title">Product Conversation Analysis</h2>
+          <p class="desc">Team sentiment and keyword analysis across communications.</p></div>
+        <a class="link" href="/dashboards/product-conversation.html">View Dashboard →</a>
+      </div>
+
+      <div class="card">
+        <img class="thumb" src="/assets/thumbs/category.png">
+        <div class="content"><h2 class="title">Category Performance (CPG)</h2>
+          <p class="desc">Sales, share, price-volume trends, and distribution (ACV).</p></div>
+        <a class="link" href="/dashboards/category-performance.html">View Dashboard →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Lexi Barry — Data Storytelling & Analytics Portfolio | Google Analytics Tracking Active (G-BTL6GP30YH)
+  </footer>
+</body>
+</html>
