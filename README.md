@@ -1,85 +1,64 @@
-# lexibarry.github.io
+# 🌟 Lexi Barry — Portfolio Website
 
-A modern, single-page HTML portfolio for **Lexi Barry** — Data Product Manager, Analytics Leader, and AI Innovator.  
-🌐 Live site: [https://lexibarry.github.io](https://lexibarry.github.io)
+**Data Product Manager | Analytics Leader | AI Innovator**  
+Live site: **https://lexibarry.github.io**
 
-![Deploy](https://img.shields.io/badge/GitHub%20Pages-Auto%20Deploy-2ea44f)
-![Analytics](https://img.shields.io/badge/GA4-Enabled-blue)
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=lexibarry.lexibarry)
+![Deploy](https://img.shields.io/badge/GitHub%20Pages-Auto%20Deploy-2ea44f) ![Analytics](https://img.shields.io/badge/GA4-Active-blue) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=lexibarry.lexibarry)
 
 ---
 
-## ✨ Overview
-This repository hosts my public professional portfolio website.  
-It highlights my experience at the intersection of **data analytics, product management, and AI**, featuring:
-- Responsive single-page HTML design with scroll animations  
-- Integrated **Google Analytics 4 (G-BTL6GP30YH)**  
-- Click-event tracking for **LinkedIn**, **Email**, and **Portfolio** links  
-- A visible visitor counter  
-- Sections: *About*, *Technical Strengths*, *Portfolio*, *Education*, *Awards*, and *Contact*
+## ✨ About
+
+I build analytics products that people love to use—turning complex data into clear, actionable decisions.  
+This site showcases my work across **user adoption**, **voice of customer**, **GTM readiness**, **experimentation**, and **CPG category strategy**.
+
+All datasets in public demos are **non-confidential, publicly available** and used solely for **educational and demonstration** purposes.  
+**No proprietary data, client information, or internal tools from past employers are included.**
 
 ---
 
-## 🗂 Repo Structure
+## 📊 Featured Dashboards & Projects
+
+These live dashboards demonstrate product thinking, UX empathy, and commercial acumen:
+
+| # | Dashboard | What it Shows | Live Link |
+|---|---|---|---|
+| 1 | **User Adoption & Engagement Tracker** | DAU/WAU/MAU, feature adoption, retention cohorts, churn indicators | https://lexibarry.github.io/dashboards/user-adoption-engagement.html |
+| 2 | **Voice of the User (VoU) Dashboard** | Review themes, sentiment, NPS trends, top feature requests | https://lexibarry.github.io/dashboards/voice-of-user.html |
+| 3 | **Go-To-Market (GTM) Readiness Tracker** | Cross-functional launch checklist, risks, % complete, timeline | https://lexibarry.github.io/dashboards/gtm-readiness.html |
+| 4 | **A/B Test Results** | Variant performance, significance, lift, sample size tracking | https://lexibarry.github.io/dashboards/ab-test-results.html |
+| 5 | **Product Conversation Analysis** | Simulated team convo topics, sentiment by function, keyword trends | https://lexibarry.github.io/dashboards/product-conversation.html |
+| 6 | **Category Performance Tracker (CPG)** | Sales, share, price vs. volume, promo mix, distribution/ACV | https://lexibarry.github.io/dashboards/category-performance.html |
+
+**Browse all in one place:** https://lexibarry.github.io/dashboards/ (dynamic grid index)
+
+---
+
+## 🗂 Repository Structure
 /
-├── index.html # Main portfolio webpage (HTML + styling + analytics)
-├── favicon.ico # Optional browser tab icon
-└── assets/
-└── header.png # Optional banner or headshot image
-
-
-All content is static — no frameworks or build steps required.
-
----
-
-## 🚀 How to Update
-
-1. Open the repo **lexibarry.github.io**
-2. Edit `index.html`  
-   - Text content appears under clear headings (e.g., *About Me*, *Technical Strengths*)
-   - Update contact links (`mailto:`, LinkedIn, GitHub) as needed
-3. Commit changes  
-   → GitHub Pages will redeploy automatically within 1–2 minutes.
-
----
-
-## 📊 Analytics
-- **Platform:** Google Analytics 4  
-- **Measurement ID:** `G-BTL6GP30YH`  
-- **Tracked events:**
-  - `click_linkedin`
-  - `click_email`
-  - `click_portfolio`
-- View metrics anytime at [analytics.google.com](https://analytics.google.com) → *Realtime* and *Reports*.
+├─ index.html # Main landing page (HTML + styling + GA4)  
+├─ dashboards/ # Individual dashboard pages (embed/iframes)  
+│ ├─ index.html # Dynamic grid index (previews of all dashboards)  
+│ ├─ user-adoption-engagement.html  
+│ ├─ voice-of-user.html  
+│ ├─ gtm-readiness.html  
+│ ├─ ab-test-results.html  
+│ ├─ product-conversation.html  
+│ └─ category-performance.html  
+├─ assets/ # Images and optional thumbnails  
+│ ├─ thumbs/  
+│ │ ├─ adoption.png  
+│ │ ├─ vou.png  
+│ │ ├─ gtm.png  
+│ │ ├─ ab.png  
+│ │ ├─ convo.png  
+│ │ └─ category.png  
+└─ README.md
 
 ---
 
-## 🧠 Data Ethics & Transparency
-All datasets featured in portfolio visualizations are **publicly available and non-confidential**.  
-They are used exclusively for demonstration and educational purposes.  
-No proprietary data, client information, or internal tools from previous employers are included.
+## 📫 Contact
 
----
-
-## 💡 Optional Enhancements
-**Add a Resume Button**
-```html
-<a href="/resume.pdf" target="_blank" style="display:inline-block;padding:10px 16px;border-radius:8px;background:#2563eb;color:#fff;font-weight:600;text-decoration:none;">
-⬇️ Download Resume (PDF)
-</a>
-
-<img src="assets/header.png" alt="Lexi Barry" style="max-width:160px;border-radius:9999px;margin-top:16px;">
-
-:root {
-  --primary: #1e3a8a;
-  --accent: #2563eb;
-  --bg: #f8fafc;
-  --text: #1e293b;
-}
-
-
-📫 Contact
-
-Email: lexi.barry@outlook.com
-LinkedIn: linkedin.com/in/lexi-barry
-Portfolio: lexibarry.github.io
+**Email:** lexi.barry@outlook.com  
+**LinkedIn:** [linkedin.com/in/lexi-barry](https://linkedin.com/in/lexi-barry)  
+**Portfolio:** [lexibarry.github.io](https://lexibarry.github.io)
