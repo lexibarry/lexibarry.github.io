@@ -115,6 +115,7 @@ Access is restricted for confidentiality and shared only with hiring teams.
 
 **Private URL:** [lexibarry.github.io/private/](https://lexibarry.github.io/private/)  
 *(Password required)*
+*Will be provided in application*
 
 Each one-pager (e.g. `/onepager-meta.html`) includes role-specific materials showcasing strategy alignment and fit.
 
