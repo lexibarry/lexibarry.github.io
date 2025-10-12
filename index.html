@@ -2,106 +2,162 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lexi Barry | Data Product Manager & Analytics Leader</title>
-  <link rel="icon" href="/favicon.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTL6GP30YH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BTL6GP30YH');
-  </script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lexi Barry | Product-Minded Data Leader Portfolio</title>
+  <meta name="description" content="Portfolio showcasing data storytelling, product strategy, and analytics projects by Lexi Barry." />
+  <link rel="icon" href="assets/images/dashboard-previews/saas-user-adoption.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <style>
-    :root {
-      --bg:#f8fafc;
-      --text:#0f172a;
-      --muted:#334155;
-      --primary:#1e3a8a;
-      --accent:#2563eb;
-    }
     body {
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:'Inter',system-ui,sans-serif;
+      font-family: 'Inter', sans-serif;
+      color: #222;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
     header {
-      text-align:center;
-      padding:90px 20px 60px;
-      background:linear-gradient(90deg,var(--primary),var(--accent));
-      color:#fff;
+      text-align: center;
+      background: linear-gradient(135deg, #007acc, #0099cc);
+      color: white;
+      padding: 2rem 1rem;
     }
-    h1 { margin:0 0 12px; font-size:2.8rem; }
-    p.lead { max-width:720px; margin:0 auto; font-size:1.2rem; line-height:1.7; }
-    section { max-width:900px; margin:60px auto; padding:0 20px; }
-    h2 { font-size:1.6rem; margin-bottom:14px; color:var(--primary); }
-    ul { line-height:1.7; color:var(--muted); }
-    a.button {
-      display:inline-block;
-      margin-top:24px;
-      padding:12px 18px;
-      background:var(--accent);
-      color:#fff;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
+    header h1 {
+      margin-bottom: 0.3rem;
+      font-size: 2rem;
     }
-    a.button:hover { filter:brightness(.95); }
+    header p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    h2 {
+      color: #007acc;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 0.4rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table th, table td {
+      border-bottom: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    table th {
+      background-color: #f2f6fa;
+      color: #007acc;
+    }
+    table tr:hover {
+      background-color: #f9f9f9;
+    }
+    table img {
+      border-radius: 8px;
+    }
     footer {
-      text-align:center;
-      padding:50px 20px;
-      background:#f1f5f9;
-      color:var(--muted);
-      font-size:.9rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Lexi Barry</h1>
-    <p class="lead">
-      Data Product Manager & Analytics Leader — turning complex data into intuitive products that drive decisions.  
-      Explore dashboards, projects, and insights across analytics, user adoption, and CPG strategy.
-    </p>
-    <a class="button" href="/dashboards/">📊 View Dashboard Gallery</a>
+    <p><strong>Product-Minded Data Leader • Data Storytelling • Product Strategy • Growth Insights</strong></p>
+    <p><em>"I have no special talent. I am only passionately curious." – Albert Einstein</em></p>
   </header>
 
   <section>
-    <h2>About Me</h2>
-    <p>
-      I bridge the gap between business strategy, analytics, and technology.  
-      With experience at NielsenIQ, I specialize in data storytelling, user adoption strategy, and insight automation for product and CPG organizations.
-    </p>
+    <h2>🚀 Live Dashboards</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Dashboard</th>
+          <th>Description</th>
+          <th>Preview</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>SaaS User Adoption Dashboard</strong></td>
+          <td>Tracks user growth, retention metrics, and feature adoption with actionable insights.</td>
+          <td><a href="dashboards/saas-user-adoption.html"><img src="assets/images/dashboard-previews/saas-user-adoption.png" width="120" alt="SaaS User Adoption Dashboard"></a></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Voice of User Dashboard</strong></td>
+          <td>Analyzes NPS, customer sentiment, and keyword feedback trends.</td>
+          <td><a href="dashboards/voice-of-user.html"><img src="assets/images/dashboard-previews/voice-of-user.png" width="120" alt="Voice of User Dashboard"></a></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>GTM Readiness Dashboard</strong></td>
+          <td>Monitors cross-functional launch readiness, timelines, and risk management.</td>
+          <td><a href="dashboards/gtm-readiness.html"><img src="assets/images/dashboard-previews/gtm-readiness.png" width="120" alt="GTM Readiness Dashboard"></a></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>A/B Test Results Dashboard</strong></td>
+          <td>Summarizes experiment outcomes, lift percentages, and statistical significance.</td>
+          <td><a href="dashboards/ab-test-results.html"><img src="assets/images/dashboard-previews/ab-test-results.png" width="120" alt="A/B Test Results Dashboard"></a></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Product Conversations Dashboard</strong></td>
+          <td>Highlights internal collaboration topics and key sentiment shifts across teams.</td>
+          <td><a href="dashboards/product-conversations.html"><img src="assets/images/dashboard-previews/product-conversations.png" width="120" alt="Product Conversations Dashboard"></a></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Category Performance Dashboard</strong></td>
+          <td>Evaluates category growth, market share, and product velocity across key KPIs.</td>
+          <td><a href="dashboards/category-performance.html"><img src="assets/images/dashboard-previews/category-performance.png" width="120" alt="Category Performance Dashboard"></a></td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
-    <h2>Technical Strengths</h2>
+    <h2>🐍 Python Code Samples</h2>
     <ul>
-      <li>Python, SQL, R, Power BI, Tableau, Excel, Jira, GitHub</li>
-      <li>Product management, lifecycle strategy, and data visualization</li>
-      <li>AI & automation (LLMs, prompt engineering, APIs)</li>
-      <li>User adoption & change management</li>
-      <li>CPG & market analytics</li>
+      <li><strong>Cohort Analysis Engine</strong> — User retention tracking, LTV, and churn risk analysis. <a href="code/cohort_analysis.py">View Code</a></li>
+      <li><strong>A/B Test Framework</strong> — Statistical testing and decision automation. <a href="code/ab_test_framework.py">View Code</a></li>
+      <li><strong>Metrics Pipeline</strong> — End-to-end ETL and dashboard data automation. <a href="code/metrics_pipeline.py">View Code</a></li>
     </ul>
   </section>
 
   <section>
-    <h2>Connect</h2>
-    <p>
-      📧 <a href="mailto:lexi.barry@outlook.com">lexi.barry@outlook.com</a><br>
-      💼 <a href="https://linkedin.com/in/lexi-barry" target="_blank">linkedin.com/in/lexi-barry</a><br>
-      🌐 <a href="https://lexibarry.github.io" target="_blank">lexibarry.github.io</a>
-    </p>
+    <h2>💼 Contact</h2>
+    <p><strong>Email:</strong> <a href="mailto:lexi.barry@outlook.com">lexi.barry@outlook.com</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lexi-barry" target="_blank">linkedin.com/in/lexi-barry</a></p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/lexibarry" target="_blank">github.com/lexibarry</a></p>
+    <p><strong>Portfolio:</strong> <a href="https://lexibarry.github.io/" target="_blank">lexibarry.github.io</a></p>
   </section>
 
   <footer>
-    © 2025 Lexi Barry | Analytics · AI · Product Strategy Portfolio  
-    <br><small>Google Analytics tracking active (G-BTL6GP30YH)</small>
+    <p>© 2025 Lexi Barry — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio</p>
+    <p>MIT License — you are free to use and adapt this portfolio structure with attribution.</p>
+    <p>Google Analytics Tracking Active (G-BTL6GP30YH)</p>
   </footer>
 </body>
 </html>
