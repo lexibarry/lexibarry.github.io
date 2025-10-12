@@ -23,31 +23,33 @@ lexibarry.github.io/
 ├── index.html
 ├── README.md
 ├── assets/
-│   ├── css/style.css
-│   ├── js/main.js
-│   └── images/
-│       └── dashboard-previews/
-│           ├── saas-adoption.png
-│           ├── voice-of-user.png
-│           ├── gtm-readiness.png
-│           ├── ab-test-results.png
-│           ├── product-conversations.png
-│           └── category-performance.png
+│ ├── css/
+│ │ └── style.css
+│ ├── js/
+│ │ └── main.js
+│ └── images/
+│ └── dashboard-previews/
+│ ├── saas-user-adoption.png
+│ ├── voice-of-user.png
+│ ├── gtm-readiness.png
+│ ├── ab-test-results.png
+│ ├── product-conversations.png
+│ └── category-performance.png
 ├── dashboards/
-│   ├── saas-adoption.html
-│   ├── voice-of-user.html
-│   ├── gtm-readiness.html
-│   ├── ab-test-results.html
-│   ├── product-conversations.html
-│   └── category-performance.html
+│ ├── saas-user-adoption.html
+│ ├── voice-of-user.html
+│ ├── gtm-readiness.html
+│ ├── ab-test-results.html
+│ ├── product-conversations.html
+│ └── category-performance.html
 ├── presentations/
-│   └── saas-retention-strategy.html
+│ └── saas-retention-strategy.html
 └── code/
-    ├── ab_test_framework.py
-    ├── metrics_pipeline.py
-    ├── cohort_analysis.py
-    ├── requirements.txt
-    └── README.md
+├── ab_test_framework.py
+├── metrics_pipeline.py
+├── cohort_analysis.py
+├── requirements.txt
+└── README.md
 ---
 
 ## 🚀 Live Dashboards
