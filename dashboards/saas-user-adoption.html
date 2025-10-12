@@ -3,93 +3,86 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SaaS User Adoption | Lexi Barry</title>
-<!-- React + Recharts + Tailwind -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50">
-<div id="root"></div>
+<body class="bg-gray-50"><div id="root"></div>
 
-<script type="text/babel">
-const {useState,useMemo} = React;
-const {ResponsiveContainer,LineChart,Line,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend} = Recharts;
+<script type="module">
+  import React from 'https://esm.sh/react@18';
+  import { createRoot } from 'https://esm.sh/react-dom@18/client';
+  import * as Recharts from 'https://esm.sh/recharts@2.12.5';
+  import htm from 'https://unpkg.com/htm?module';
+  const html = htm.bind(React.createElement);
+  const { ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
-function makeData(){
-  const months=['2024-01','2024-02','2024-03','2024-04','2024-05','2024-06','2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
-  return months.map((m,i)=>({
-    month:m,
-    active: Math.round(12000*(1+i*0.08)),
-    signups: Math.round(2200*(1+i*0.05)),
-    churn: +(6.5 - i*0.2).toFixed(1),
-    retention: Math.min(92, 70 + i*2)
-  }));
-}
+  function makeData(){
+    const months=['2024-01','2024-02','2024-03','2024-04','2024-05','2024-06','2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
+    return months.map((m,i)=>({ month:m, active: Math.round(12000*(1+i*0.08)), signups: Math.round(2000*(1+i*0.07)), churn: +(6+Math.random()).toFixed(1), retention: Math.min(90,60+i*2) }));
+  }
 
-const InfoCard=({label,value,sub})=>(
-  <div className="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
-    <p className="text-sm text-gray-600">{label}</p>
-    <p className="text-2xl font-bold">{value}</p>
-    {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
-  </div>
-);
-
-function App(){
-  const data = useMemo(()=>makeData(),[]);
-  const totals = {
-    users: data[data.length-1].active.toLocaleString(),
-    signups: data.reduce((a,b)=>a+b.signups,0).toLocaleString(),
-    churn: (data.reduce((a,b)=>a+b.churn,0)/data.length).toFixed(1)+'%',
-    retention: (data.reduce((a,b)=>a+b.retention,0)/data.length).toFixed(0)+'%'
-  };
-  return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-indigo-700 mb-1">📊 SaaS User Adoption & Engagement</h1>
-      <p className="text-gray-600 mb-6">Synthetic data for portfolio demonstration.</p>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <InfoCard label="Active Users" value={totals.users}/>
-        <InfoCard label="New Signups (YTD)" value={totals.signups}/>
-        <InfoCard label="Avg Churn" value={totals.churn}/>
-        <InfoCard label="Avg Wk4 Retention" value={totals.retention}/>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow p-5">
-          <h3 className="font-semibold mb-3">User Growth Trend</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="month"/><YAxis/><Tooltip/><Legend/>
-              <Line type="monotone" dataKey="active" name="Active Users" stroke="#6366f1" strokeWidth={2}/>
-              <Line type="monotone" dataKey="signups" name="New Signups" stroke="#10b981" strokeWidth={2}/>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-
-        <div className="bg-white rounded-xl shadow p-5">
-          <h3 className="font-semibold mb-3">Churn vs Retention</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={data}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="month"/><YAxis/><Tooltip/><Legend/>
-              <Bar dataKey="churn" name="Churn %" fill="#ef4444"/>
-              <Bar dataKey="retention" name="Wk4 Retention %" fill="#8b5cf6"/>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-900">
-        ⚠️ All data is synthetic and created by Lexi Barry for demonstration purposes.
-      </div>
+  const InfoCard = ({label,value}) => html`
+    <div class="bg-white rounded-xl shadow p-4 border-l-4 border-indigo-600">
+      <p class="text-sm text-gray-600">${label}</p>
+      <p class="text-2xl font-bold">${value}</p>
     </div>
-  );
-}
+  `;
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  function App(){
+    const data = makeData();
+    const totals = {
+      users: data[data.length-1].active.toLocaleString(),
+      signups: data.reduce((a,b)=>a+b.signups,0).toLocaleString(),
+      churn: (data.reduce((a,b)=>a+b.churn,0)/data.length).toFixed(1)+'%',
+      retention: (data.reduce((a,b)=>a+b.retention,0)/data.length).toFixed(0)+'%'
+    };
+    return html`
+      <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-indigo-700 mb-2">📊 SaaS User Adoption & Engagement</h1>
+        <p class="text-gray-600 mb-6">Interactive synthetic metrics for portfolio showcase.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          ${React.createElement(InfoCard,{label:'Active Users (Latest)', value: totals.users})}
+          ${React.createElement(InfoCard,{label:'Total Signups (YTD)', value: totals.signups})}
+          ${React.createElement(InfoCard,{label:'Avg Churn', value: totals.churn})}
+          ${React.createElement(InfoCard,{label:'Avg Wk4 Retention', value: totals.retention})}
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow p-4">
+            <h3 class="font-semibold mb-3">User Growth & Signups</h3>
+            ${html`<${ResponsiveContainer} width="100%" height=${300}>
+              <${LineChart} data=${data}>
+                <${CartesianGrid} strokeDasharray="3 3" />
+                <${XAxis} dataKey="month" /><${YAxis} />
+                <${Tooltip} /><${Legend} />
+                <${Line} type="monotone" dataKey="active" name="Active Users" stroke="#6366f1" strokeWidth=${2} />
+                <${Line} type="monotone" dataKey="signups" name="New Signups" stroke="#10b981" strokeWidth=${2} />
+              <//>
+            <//>`}
+          </div>
+
+          <div class="bg-white rounded-xl shadow p-4">
+            <h3 class="font-semibold mb-3">Churn vs Retention</h3>
+            ${html`<${ResponsiveContainer} width="100%" height=${300}>
+              <${BarChart} data=${data}>
+                <${CartesianGrid} strokeDasharray="3 3" />
+                <${XAxis} dataKey="month" /><${YAxis} />
+                <${Tooltip} /><${Legend} />
+                <${Bar} dataKey="churn" name="Churn (%)" fill="#ef4444" />
+                <${Bar} dataKey="retention" name="Wk4 Retention (%)" fill="#8b5cf6" />
+              <//>
+            <//>`}
+          </div>
+        </div>
+
+        <div class="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-900">
+          ⚠️ Synthetic data created by Lexi Barry for demonstration purposes.
+        </div>
+      </div>
+    `;
+  }
+
+  createRoot(document.getElementById('root')).render(html`<${App} />`);
 </script>
 </body>
 </html>
