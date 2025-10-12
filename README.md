@@ -51,6 +51,11 @@ lexibarry.github.io/
     ├── cohort_analysis.py
     ├── requirements.txt
     └── README.md
+└── private/
+    ├── index.html
+    ├── onepager-template.html
+    ├── deck-product-role.pdf
+    └── deck-data-leader.pdf
 </pre>
 
 ---
