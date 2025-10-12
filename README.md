@@ -6,7 +6,6 @@
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://lexibarry.github.io/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Analytics](https://img.shields.io/badge/Google_Analytics-G--BTL6GP30YH-orange)](https://analytics.google.com)
 
 ---
 
