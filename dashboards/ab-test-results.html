@@ -1,26 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A/B Test Results | Lexi Barry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;margin:0;text-align:center;}
-    header{background:linear-gradient(90deg,#1e3a8a,#2563eb);color:#fff;padding:60px 16px;}
-    h1{margin:0;font-size:2rem;}
-    iframe{width:90%;height:700px;margin-top:40px;border-radius:12px;border:0;box-shadow:0 8px 24px rgba(0,0,0,.1);}
-    a.back{display:inline-block;margin:40px auto;text-decoration:none;color:#2563eb;font-weight:600;}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>A/B Test Results</h1>
-    <p>Variant performance • Conversion lift • Statistical significance</p>
-  </header>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A/B Test Results | Lexi Barry</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</head><body class="bg-gray-50"><div id="root"></div>
+<script type="text/babel">
+const {useMemo}=React;
+const {ResponsiveContainer,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend} = Recharts;
 
-  <iframe src="https://app.powerbi.com/view?r=PLACEHOLDER_ABTEST" allowFullScreen></iframe>
+function makeData(){
+  const tests=['Header CTA','Pricing Copy','Onboarding Email','Search Tuning','Paywall'];
+  return tests.map((t,i)=>({
+    test:t, lift:+(Math.random()*8-1).toFixed(1), pvalue:+(0.01+Math.random()*0.08).toFixed(3), significant: i%2===0
+  }));
+}
 
-  <a class="back" href="/dashboards/">← Back to Dashboard Gallery</a>
-</body>
-</html>
+function App(){
+  const rows=useMemo(()=>makeData(),[]);
+  return (
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-bold text-indigo-700 mb-1">🧪 A/B Test Results</h1>
+      <p className="text-gray-600 mb-6">Lift, p-values, and recommendations (synthetic).</p>
+
+      <div className="bg-white rounded-xl shadow p-5 mb-6 overflow-x-auto">
+        <table className="min-w-full text-sm">
+          <thead><tr className="bg-indigo-50 text-indigo-700">
+            <th className="p-3 text-left">Test</th><th className="p-3 text-left">Lift %</th><th className="p-3 text-left">p-value</th><th className="p-3 text-left">Decision</th>
+          </tr></thead>
+          <tbody>
+            {rows.map(r=>(
+              <tr key={r.test} className="border-t">
+                <td className="p-3">{r.test}</td>
+                <td className="p-3">{r.lift}</td>
+                <td className="p-3">{r.pvalue}</td>
+                <td className="p-3">{r.significant ? '✅ Ship' : '⏳ Inconclusive'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="bg-white rounded-xl shadow p-5">
+        <h3 className="font-semibold mb-3">Lift Distribution</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={rows}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="test"/><YAxis/><Tooltip/><Legend/>
+            <Bar dataKey="lift" name="Lift %" fill="#10b981"/>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-900">⚠️ Synthetic data for demo.</div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>
