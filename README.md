@@ -1,64 +1,149 @@
-# 🌟 Lexi Barry — Portfolio Website
+# 📊 Lexi Barry - Product-Minded Data Leader Portfolio
 
-**Data Product Manager | Analytics Leader | AI Innovator**  
-Live site: **https://lexibarry.github.io**
+> *"I have no special talent. I am only passionately curious." – Albert Einstein*
 
-![Deploy](https://img.shields.io/badge/GitHub%20Pages-Auto%20Deploy-2ea44f) ![Analytics](https://img.shields.io/badge/GA4-Active-blue) ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=lexibarry.lexibarry)
+**Product-Minded Data Leader • Data Storytelling • Product Strategy • Growth Insights**
 
----
-
-## ✨ About
-
-I build analytics products that people love to use—turning complex data into clear, actionable decisions.  
-This site showcases my work across **user adoption**, **voice of customer**, **GTM readiness**, **experimentation**, and **CPG category strategy**.
-
-All datasets in public demos are **non-confidential, publicly available** and used solely for **educational and demonstration** purposes.  
-**No proprietary data, client information, or internal tools from past employers are included.**
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://lexibarry.github.io/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Analytics](https://img.shields.io/badge/Google_Analytics-G--BTL6GP30YH-orange)](https://analytics.google.com)
 
 ---
 
-## 📊 Featured Dashboards & Projects
+## 🎯 About This Portfolio
 
-These live dashboards demonstrate product thinking, UX empathy, and commercial acumen:
+This repository showcases my product management and data analytics skills through interactive data visualizations, strategic presentations, and technical code samples. All datasets, analyses, and methodologies are **my own work and synthetically generated** for demonstration purposes—these represent my own ideologies and in no way represent any confidential or proprietary information from previous employers.
 
-| # | Dashboard | What it Shows | Live Link |
-|---|---|---|---|
-| 1 | **User Adoption & Engagement Tracker** | DAU/WAU/MAU, feature adoption, retention cohorts, churn indicators | https://lexibarry.github.io/dashboards/user-adoption-engagement.html |
-| 2 | **Voice of the User (VoU) Dashboard** | Review themes, sentiment, NPS trends, top feature requests | https://lexibarry.github.io/dashboards/voice-of-user.html |
-| 3 | **Go-To-Market (GTM) Readiness Tracker** | Cross-functional launch checklist, risks, % complete, timeline | https://lexibarry.github.io/dashboards/gtm-readiness.html |
-| 4 | **A/B Test Results** | Variant performance, significance, lift, sample size tracking | https://lexibarry.github.io/dashboards/ab-test-results.html |
-| 5 | **Product Conversation Analysis** | Simulated team convo topics, sentiment by function, keyword trends | https://lexibarry.github.io/dashboards/product-conversation.html |
-| 6 | **Category Performance Tracker (CPG)** | Sales, share, price vs. volume, promo mix, distribution/ACV | https://lexibarry.github.io/dashboards/category-performance.html |
-
-**Browse all in one place:** https://lexibarry.github.io/dashboards/ (dynamic grid index)
+**Live Portfolio:** [https://lexibarry.github.io/](https://lexibarry.github.io/)
 
 ---
 
-## 🗂 Repository Structure
-/
-├─ index.html # Main landing page (HTML + styling + GA4)  
-├─ dashboards/ # Individual dashboard pages (embed/iframes)  
-│ ├─ index.html # Dynamic grid index (previews of all dashboards)  
-│ ├─ user-adoption-engagement.html  
-│ ├─ voice-of-user.html  
-│ ├─ gtm-readiness.html  
-│ ├─ ab-test-results.html  
-│ ├─ product-conversation.html  
-│ └─ category-performance.html  
-├─ assets/ # Images and optional thumbnails  
-│ ├─ thumbs/  
-│ │ ├─ adoption.png  
-│ │ ├─ vou.png  
-│ │ ├─ gtm.png  
-│ │ ├─ ab.png  
-│ │ ├─ convo.png  
-│ │ └─ category.png  
-└─ README.md
+## 📂 Repository Structure
+lexibarry.github.io/
+├── index.html                          # Landing page
+├── dashboards/
+│   ├── saas-adoption.html             # SaaS User Adoption Dashboard
+│   ├── voice-of-user.html             # NPS & Sentiment Analysis
+│   ├── gtm-readiness.html             # Go-to-Market Tracker
+│   ├── ab-test-results.html           # A/B Testing Results
+│   ├── product-conversations.html     # Cross-functional Analysis
+│   └── category-performance.html      # CPG Category Performance
+├── presentations/
+│   └── saas-retention-strategy.html   # Executive Strategy Deck
+├── code/
+│   ├── cohort_analysis.py             # User Retention Analysis
+│   ├── ab_test_framework.py           # Statistical Significance Testing
+│   └── metrics_pipeline.py            # ETL Data Pipeline
+└── README.md                           # This file
+---
+
+## 🚀 Live Dashboards
+
+### 1. **SaaS User Adoption & Engagement**
+Track user growth, retention metrics, and feature adoption with actionable insights.
+- [View Dashboard](./dashboards/saas-adoption.html)
+
+### 2. **Voice of User (NPS & Sentiment)**
+Customer feedback analysis with NPS scoring and sentiment trends.
+- [View Dashboard](./dashboards/voice-of-user.html)
+
+### 3. **GTM Readiness Tracker**
+Cross-functional launch tracking with task management and risk assessment.
+- [View Dashboard](./dashboards/gtm-readiness.html)
+
+### 4. **A/B Test Results**
+Experiment performance with statistical rigor and decision frameworks.
+- [View Dashboard](./dashboards/ab-test-results.html)
+
+### 5. **Product Conversations Analysis**
+Cross-functional collaboration insights from internal discussions.
+- [View Dashboard](./dashboards/product-conversations.html)
+
+### 6. **Category Performance (CPG)**
+Sales analytics for consumer packaged goods portfolio.
+- [View Dashboard](./dashboards/category-performance.html)
+
+---
+
+## 📊 Executive Presentation
+
+**SaaS Retention Crisis - Strategic Solution**
+- **Framework:** Problem → Data → Solution → Implementation → Metrics
+- **Format:** 12-slide executive presentation
+- [View Presentation](./presentations/saas-retention-strategy.html)
+
+---
+
+## 🐍 Python Code Samples
+
+Demonstrating technical proficiency in data analysis, statistical testing, and pipeline automation:
+
+### 1. **Cohort Analysis Engine** (`cohort_analysis.py`)
+- User retention tracking with cohort tables
+- Customer Lifetime Value (LTV) calculations
+- At-risk user identification
+- Visualization with heatmaps
+
+### 2. **A/B Test Statistical Framework** (`ab_test_framework.py`)
+- Two-proportion z-tests for significance
+- Confidence interval calculations
+- Sample size recommendations
+- Automated reporting with decision recommendations
+
+### 3. **Product Metrics Pipeline** (`metrics_pipeline.py`)
+- ETL pipeline for dashboard data
+- DAU/MAU calculations
+- Feature adoption metrics
+- Retention cohort generation
+
+[View All Code Samples](./code/)
+
+---
+
+## 💻 Technology Stack
+
+**Frontend:**
+- React (interactive components)
+- Recharts (data visualization)
+- HTML5/CSS3/JavaScript
+
+**Data Analysis:**
+- Python (Pandas, NumPy, SciPy)
+- Statistical analysis
+- Data pipeline automation
+
+**Analytics:**
+- Google Analytics (G-BTL6GP30YH)
+- Custom event tracking
+- User behavior analysis
+
+---
+
+## 📊 Confidentiality & Data Notice
+
+All datasets, analyses, and methodologies in this portfolio are **my own work and synthetically generated** by Lexi Barry for demonstration and learning purposes. These represent my own ideologies and analytical approaches.
+
+**Important:** This portfolio contains NO confidential or proprietary information from previous employers. All data is fictional and designed to demonstrate analytical capabilities while respecting confidentiality, ethics, and intellectual property rights.
 
 ---
 
 ## 📫 Contact
 
-**Email:** lexi.barry@outlook.com  
-**LinkedIn:** [linkedin.com/in/lexi-barry](https://linkedin.com/in/lexi-barry)  
-**Portfolio:** [lexibarry.github.io](https://lexibarry.github.io)
+**Lexi Barry** - Product-Minded Data Leader
+- 📧 Email: [lexi.barry@outlook.com](mailto:lexi.barry@outlook.com)
+- 💼 LinkedIn: [linkedin.com/in/lexi-barry](https://www.linkedin.com/in/lexi-barry)
+- 🐙 GitHub: [github.com/lexibarry](https://github.com/lexibarry)
+- 🌐 Portfolio: [lexibarry.github.io](https://lexibarry.github.io/)
+
+---
+
+## 📄 License
+
+MIT License - feel free to use this portfolio structure as inspiration for your own!
+
+---
+
+© 2025 Lexi Barry — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio  
+Google Analytics Tracking Active (G-BTL6GP30YH)  
+All data and methodologies are my own and synthetically generated for demonstration purposes  
+No confidential or proprietary information from previous employers is used
