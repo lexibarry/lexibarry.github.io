@@ -22,6 +22,17 @@ This repository showcases my product management and data analytics skills throug
 lexibarry.github.io/
 ├── index.html
 ├── README.md
+├── assets/
+│   ├── css/style.css
+│   ├── js/main.js
+│   └── images/
+│       └── dashboard-previews/
+│           ├── saas-adoption.png
+│           ├── voice-of-user.png
+│           ├── gtm-readiness.png
+│           ├── ab-test-results.png
+│           ├── product-conversations.png
+│           └── category-performance.png
 ├── dashboards/
 │   ├── saas-adoption.html
 │   ├── voice-of-user.html
@@ -32,9 +43,11 @@ lexibarry.github.io/
 ├── presentations/
 │   └── saas-retention-strategy.html
 └── code/
-    ├── cohort_analysis.py
     ├── ab_test_framework.py
-    └── metrics_pipeline.py
+    ├── metrics_pipeline.py
+    ├── cohort_analysis.py
+    ├── requirements.txt
+    └── README.md
 ---
 
 ## 🚀 Live Dashboards
