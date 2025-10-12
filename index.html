@@ -7,11 +7,33 @@
   <meta name="description" content="Portfolio showcasing data storytelling, product strategy, and analytics projects by Lexi Barry." />
   <link rel="icon" href="assets/images/dashboard-previews/saas-user-adoption.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 🔹 Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTL6GP30YH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BTL6GP30YH');
+  </script>
+
+  <!-- 🔹 Smooth Scroll Animation -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("a[href^='#']");
+      for (const link of links) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    });
+  </script>
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans">
-  <!-- 🔹 HERO / LANDING SECTION -->
-  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6 text-center shadow-lg">
+  <!-- HERO -->
+  <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 px-6 text-center shadow-lg animate-fadeIn">
     <h1 class="text-4xl sm:text-5xl font-bold mb-4">Hi, I'm Lexi Barry 👋</h1>
     <p class="text-lg sm:text-xl mb-6 max-w-2xl mx-auto">
       A <strong>Product-Minded Data Leader</strong> passionate about transforming data into strategy, storytelling, and growth.  
@@ -27,99 +49,108 @@
     </div>
   </section>
 
-  <!-- 🔹 ABOUT SECTION -->
-  <section class="max-w-4xl mx-auto py-16 px-6 text-center">
-    <blockquote class="italic text-gray-600 mb-6">"I have no special talent. I am only passionately curious." – Albert Einstein</blockquote>
+  <!-- ABOUT -->
+  <section class="max-w-4xl mx-auto py-16 px-6 text-center animate-fadeIn delay-200">
+    <blockquote class="italic text-gray-600 mb-6">
+      "I have no special talent. I am only passionately curious." – Albert Einstein
+    </blockquote>
     <p class="text-lg leading-relaxed text-gray-700">
       With a background in <strong>data analytics, marketing, and product strategy</strong>, I blend storytelling and insight to deliver
-      meaningful outcomes for teams and customers alike.  
-      This portfolio showcases my ability to craft actionable insights, automate analytics pipelines, and present data through engaging visualizations.
+      meaningful outcomes for teams and customers alike. This portfolio showcases my ability to craft actionable insights, automate analytics pipelines, and present data through engaging visualizations.
     </p>
   </section>
 
-  <!-- 🔹 DASHBOARDS SECTION -->
-  <section id="dashboards" class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-8 my-10">
+  <!-- DASHBOARDS -->
+  <section id="dashboards" class="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-8 my-10 animate-fadeIn delay-400">
     <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">🚀 Live Dashboards</h2>
-    <p class="text-center text-gray-600 mb-6">Explore interactive dashboards that demonstrate product insights, user growth, and experiment analysis.</p>
+    <p class="text-center text-gray-600 mb-6">Explore interactive dashboards that demonstrate analytical and product insights.</p>
 
     <div class="overflow-x-auto">
-      <table class="min-w-full border-collapse border border-gray-200">
+      <table class="min-w-full border-collapse border border-gray-200 text-sm text-gray-700">
         <thead>
           <tr class="bg-blue-50 text-blue-700">
-            <th class="p-3 text-left border-b border-gray-200">#</th>
-            <th class="p-3 text-left border-b border-gray-200">Dashboard</th>
-            <th class="p-3 text-left border-b border-gray-200">Description</th>
-            <th class="p-3 text-left border-b border-gray-200">Preview</th>
+            <th class="p-3 text-left border-b">#</th>
+            <th class="p-3 text-left border-b">Dashboard</th>
+            <th class="p-3 text-left border-b">Description</th>
+            <th class="p-3 text-left border-b">Link</th>
           </tr>
         </thead>
-        <tbody class="text-sm text-gray-700">
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">1</td>
-            <td class="p-3 font-semibold">SaaS User Adoption Dashboard</td>
-            <td class="p-3">Tracks user growth, retention metrics, and feature adoption with actionable insights.</td>
-            <td class="p-3"><a href="dashboards/saas-user-adoption.html"><img src="assets/images/dashboard-previews/saas-user-adoption.png" width="120"></a></td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">2</td>
-            <td class="p-3 font-semibold">Voice of User Dashboard</td>
-            <td class="p-3">Analyzes NPS, customer sentiment, and keyword feedback trends.</td>
-            <td class="p-3"><a href="dashboards/voice-of-user.html"><img src="assets/images/dashboard-previews/voice-of-user.png" width="120"></a></td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">3</td>
-            <td class="p-3 font-semibold">GTM Readiness Dashboard</td>
-            <td class="p-3">Monitors cross-functional launch readiness, timelines, and risk management.</td>
-            <td class="p-3"><a href="dashboards/gtm-readiness.html"><img src="assets/images/dashboard-previews/gtm-readiness.png" width="120"></a></td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">4</td>
-            <td class="p-3 font-semibold">A/B Test Results Dashboard</td>
-            <td class="p-3">Summarizes experiment outcomes, lift percentages, and statistical significance.</td>
-            <td class="p-3"><a href="dashboards/ab-test-results.html"><img src="assets/images/dashboard-previews/ab-test-results.png" width="120"></a></td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">5</td>
-            <td class="p-3 font-semibold">Product Conversations Dashboard</td>
-            <td class="p-3">Highlights internal collaboration topics and key sentiment shifts across teams.</td>
-            <td class="p-3"><a href="dashboards/product-conversations.html"><img src="assets/images/dashboard-previews/product-conversations.png" width="120"></a></td>
-          </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="p-3">6</td>
-            <td class="p-3 font-semibold">Category Performance Dashboard</td>
-            <td class="p-3">Evaluates category growth, market share, and product velocity across key KPIs.</td>
-            <td class="p-3"><a href="dashboards/category-performance.html"><img src="assets/images/dashboard-previews/category-performance.png" width="120"></a></td>
-          </tr>
+        <tbody>
+          <tr class="hover:bg-gray-50"><td class="p-3">1</td><td class="p-3 font-semibold">SaaS User Adoption</td><td class="p-3">Tracks growth, retention, and feature adoption trends.</td><td class="p-3"><a href="dashboards/saas-user-adoption.html" class="text-blue-600 hover:underline">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">2</td><td class="p-3 font-semibold">Voice of User</td><td class="p-3">NPS scoring, sentiment, and user feedback trends.</td><td class="p-3"><a href="dashboards/voice-of-user.html" class="text-blue-600 hover:underline">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">3</td><td class="p-3 font-semibold">GTM Readiness</td><td class="p-3">Launch readiness tracking and cross-functional visibility.</td><td class="p-3"><a href="dashboards/gtm-readiness.html" class="text-blue-600 hover:underline">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">4</td><td class="p-3 font-semibold">A/B Test Results</td><td class="p-3">Experiment lift, confidence, and recommendation summaries.</td><td class="p-3"><a href="dashboards/ab-test-results.html" class="text-blue-600 hover:underline">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">5</td><td class="p-3 font-semibold">Product Conversations</td><td class="p-3">Topic frequency and sentiment by team discussion data.</td><td class="p-3"><a href="dashboards/product-conversations.html" class="text-blue-600 hover:underline">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">6</td><td class="p-3 font-semibold">Category Performance</td><td class="p-3">Market share growth and product velocity metrics.</td><td class="p-3"><a href="dashboards/category-performance.html" class="text-blue-600 hover:underline">View</a></td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- 🔹 CODE SECTION -->
-  <section id="code" class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8 my-10">
+  <!-- PRESENTATION -->
+  <section id="presentation" class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8 my-10 text-center animate-fadeIn delay-600">
+    <h2 class="text-2xl font-bold text-blue-700 mb-4">📊 Executive Presentation</h2>
+    <p class="text-gray-600 mb-6">A strategic storytelling deck highlighting data-driven insights and solutions.</p>
+    <h3 class="text-xl font-semibold mb-2">SaaS Retention Crisis — Strategic Solution</h3>
+    <p class="text-gray-600 mb-4"><em>Problem → Data → Solution → Implementation → Metrics</em></p>
+    <a href="presentations/saas-retention-strategy.html" class="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">View Presentation</a>
+  </section>
+
+  <!-- CODE -->
+  <section id="code" class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8 my-10 animate-fadeIn delay-800">
     <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">🐍 Python Code Samples</h2>
-    <p class="text-center text-gray-600 mb-6">Demonstrating technical proficiency in data analysis, statistical testing, and pipeline automation.</p>
+    <p class="text-center text-gray-600 mb-6">Demonstrating technical proficiency in data analysis, experimentation, and pipeline automation.</p>
     <ul class="space-y-3 text-gray-700">
-      <li><strong>Cohort Analysis Engine</strong> — Retention tracking, LTV calculations, churn detection. <a href="code/cohort_analysis.py" class="text-blue-600 hover:underline">View Code</a></li>
-      <li><strong>A/B Test Framework</strong> — Significance testing, confidence intervals, automated reporting. <a href="code/ab_test_framework.py" class="text-blue-600 hover:underline">View Code</a></li>
-      <li><strong>Metrics Pipeline</strong> — ETL pipeline for product metrics and feature adoption. <a href="code/metrics_pipeline.py" class="text-blue-600 hover:underline">View Code</a></li>
+      <li><strong>Cohort Analysis Engine</strong> — Retention tracking, LTV estimation (<a href="code/cohort_analysis.py" class="text-blue-600 hover:underline">View</a>)</li>
+      <li><strong>A/B Test Framework</strong> — Statistical significance, confidence intervals (<a href="code/ab_test_framework.py" class="text-blue-600 hover:underline">View</a>)</li>
+      <li><strong>Metrics Pipeline</strong> — ETL pipeline and product analytics (<a href="code/metrics_pipeline.py" class="text-blue-600 hover:underline">View</a>)</li>
     </ul>
   </section>
 
-  <!-- 🔹 CONTACT SECTION -->
-  <section class="max-w-3xl mx-auto text-center py-16">
-    <h2 class="text-2xl font-bold text-blue-700 mb-3">📫 Get in Touch</h2>
-    <p class="text-gray-600 mb-6">Let’s connect! I love discussing product strategy, analytics, and data storytelling.</p>
-    <p>
-      <a href="mailto:lexi.barry@outlook.com" class="text-blue-600 font-medium hover:underline">lexi.barry@outlook.com</a> |
-      <a href="https://www.linkedin.com/in/lexi-barry" class="text-blue-600 font-medium hover:underline">LinkedIn</a> |
-      <a href="https://github.com/lexibarry" class="text-blue-600 font-medium hover:underline">GitHub</a>
+  <!-- CONFIDENTIALITY NOTICE -->
+  <section class="max-w-5xl mx-auto bg-amber-50 border-l-4 border-amber-500 p-6 my-10 rounded-r-lg shadow-sm animate-fadeIn delay-1000">
+    <p class="text-sm text-amber-900 leading-relaxed">
+      <strong>⚠️ Data Confidentiality Notice:</strong> All datasets, analyses, visualizations, and methodologies presented in this portfolio were independently created by Lexi Barry using synthetically generated data.  
+      No confidential, proprietary, or client data from any employer has been used or replicated.  
+      These examples are intended solely to demonstrate analytical and storytelling capabilities.
     </p>
   </section>
 
-  <!-- 🔹 FOOTER -->
+  <!-- PRIVATE ACCESS -->
+  <section class="max-w-3xl mx-auto text-center py-8 animate-fadeIn delay-1200">
+    <h2 class="text-xl font-semibold mb-2">🔒 Private Pitch Decks</h2>
+    <p class="text-gray-600 mb-4">Password-protected one-pagers and pitch decks for confidential job applications.</p>
+    <a href="private/" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700 transition">Access Private Section</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="max-w-3xl mx-auto text-center py-16 animate-fadeIn delay-1400">
+    <h2 class="text-2xl font-bold text-blue-700 mb-3">📫 Get in Touch</h2>
+    <p class="text-gray-600 mb-6">Let's connect about product strategy, data storytelling, and innovation.</p>
+    <p>
+      <a href="mailto:lexi.barry@outlook.com" class="text-blue-600 hover:underline">lexi.barry@outlook.com</a> | 
+      <a href="https://www.linkedin.com/in/lexi-barry" class="text-blue-600 hover:underline">LinkedIn</a> | 
+      <a href="https://github.com/lexibarry" class="text-blue-600 hover:underline">GitHub</a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="bg-gray-900 text-white text-center py-6">
-    <p>© 2025 Lexi Barry — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio</p>
-    <p class="text-sm mt-2 text-gray-300">MIT License — feel free to use this portfolio structure with attribution.</p>
+    <p>© 2025 Lexi Barry — Product-Minded Data Leader | Analytics Portfolio</p>
+    <p class="text-sm mt-2 text-gray-300">MIT License — structure available for educational use with attribution.</p>
   </footer>
+
+  <style>
+    /* Simple fade-in animation */
+    .animate-fadeIn { animation: fadeIn 1.2s ease-in-out both; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-600 { animation-delay: 0.6s; }
+    .delay-800 { animation-delay: 0.8s; }
+    .delay-1000 { animation-delay: 1s; }
+    .delay-1200 { animation-delay: 1.2s; }
+    .delay-1400 { animation-delay: 1.4s; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
 </body>
 </html>
