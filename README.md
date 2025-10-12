@@ -108,6 +108,18 @@ Demonstrating technical proficiency in data analysis, statistical testing, and p
 
 ---
 
+## 🔒 Private Pitch Decks (Password-Protected)
+
+The private section hosts tailored **one-pagers and pitch decks** for specific job applications.  
+Access is restricted for confidentiality and shared only with hiring teams.
+
+**Private URL:** [lexibarry.github.io/private/](https://lexibarry.github.io/private/)  
+*(Password required)*
+
+Each one-pager (e.g. `/onepager-meta.html`) includes role-specific materials showcasing strategy alignment and fit.
+
+---
+
 ## 💻 Technology Stack
 
 **Frontend:**
