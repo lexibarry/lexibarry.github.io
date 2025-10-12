@@ -20,21 +20,21 @@ This repository showcases my product management and data analytics skills throug
 
 ## 📂 Repository Structure
 lexibarry.github.io/
-├── index.html                          # Landing page
+├── index.html
 ├── dashboards/
-│   ├── saas-adoption.html             # SaaS User Adoption Dashboard
-│   ├── voice-of-user.html             # NPS & Sentiment Analysis
-│   ├── gtm-readiness.html             # Go-to-Market Tracker
-│   ├── ab-test-results.html           # A/B Testing Results
-│   ├── product-conversations.html     # Cross-functional Analysis
-│   └── category-performance.html      # CPG Category Performance
+   ├── saas-adoption.html
+   ├── voice-of-user.html
+│   ├── gtm-readiness.html
+│   ├── ab-test-results.html
+│   ├── product-conversations.html
+│   └── category-performance.html
 ├── presentations/
-│   └── saas-retention-strategy.html   # Executive Strategy Deck
+│   └── saas-retention-strategy.html
 ├── code/
-│   ├── cohort_analysis.py             # User Retention Analysis
-│   ├── ab_test_framework.py           # Statistical Significance Testing
-│   └── metrics_pipeline.py            # ETL Data Pipeline
-└── README.md                           # This file
+│   ├── cohort_analysis.py
+│   ├── ab_test_framework.py
+│   └── metrics_pipeline.py
+└── README.md
 ---
 
 ## 🚀 Live Dashboards
