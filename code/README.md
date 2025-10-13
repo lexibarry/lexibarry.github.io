@@ -102,6 +102,3 @@ MIT License — feel free to use this portfolio structure as inspiration for you
 © 2025 **Lexi Barry** — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio  
 All data and methodologies are my own and synthetically generated for demonstration purposes.  
 No confidential or proprietary information from previous employers is used.
-
-⬆️ [Back to Top](#)
-
