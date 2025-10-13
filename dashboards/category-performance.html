@@ -143,13 +143,96 @@
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 bg-blue-50 p-4 rounded-r-lg">
-          <h3 class="font-semibold text-gray-800 mb-2">💰 GMROI</h3>
+          <h3 class="font-semibold text-gray-800 mb-2">📈 YoY Growth Rate</h3>
           <p class="text-sm text-gray-700 mb-1">
-            <strong>Definition:</strong> Gross Margin Return on Inventory Investment
+            <strong>Definition:</strong> % change in sales vs same period last year
           </p>
           <p class="text-xs text-gray-600">
-            <strong>Why it matters:</strong> (Gross Margin $ / Avg Inventory Cost). Shows profitability per dollar 
-            invested in inventory. GMROI &gt;150% = healthy. Used for shelf space allocation.
+            <strong>Why it matters:</strong> Shows category momentum. Compare dollar growth vs unit growth to 
+            understand if growth is from volume (good) or just price increases. Track both for complete picture.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-orange-500 pl-4 bg-orange-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">🏪 Private Label Share</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> % of category sales from store brands
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> Private label drives margin expansion (typically 300-500bps higher than 
+            national brands). Target: 25-35% for mature categories. Too low = margin opportunity. Too high = risk brand erosion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel Metrics Explained -->
+    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-purple-500">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">👥 Panel Metrics: Understanding Shopper Behavior</h2>
+      <p class="text-gray-700 mb-6">
+        Panel metrics (from household panel data like Nielsen, IRI, or Circana) break down category performance 
+        by shopper behavior, not just sales. This reveals WHY a category is growing or declining.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">🏠</span> Household Penetration
+          </h3>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> % of all households that bought from the category in the past year
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Example:</strong> 78% HH penetration for Beverages = 78 out of 100 households bought beverages
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Insight:</strong> High penetration (70%+) = mass market category. Low penetration (20-40%) = niche. 
+            Growing penetration means attracting new buyers.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">🛒</span> Buying Rate
+          </h3>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Average units purchased per buying household per year
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Example:</strong> 12.4 buying rate = each household that buys beverages purchases 12.4 units/year
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Insight:</strong> Increasing buying rate means existing customers are consuming more. Focus on 
+            usage occasions and basket building to drive this up.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">🔄</span> Purchase Frequency
+          </h3>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Average number of shopping trips with category purchase per year
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Example:</strong> 8.2 frequency = buyers purchase beverages on 8.2 different shopping trips/year
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Insight:</strong> High frequency (8+) = routine replenishment. Low (2-4) = considered purchase. 
+            Promotions drive frequency up for price-sensitive categories.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-white rounded-xl p-5 shadow">
+        <h3 class="font-semibold text-gray-800 mb-3">📊 The Growth Equation</h3>
+        <div class="bg-purple-50 rounded-lg p-4">
+          <p class="text-sm font-mono text-center mb-2">
+            <strong>Category Sales = Household Penetration × Buying Rate × Purchase Frequency × Price per Unit</strong>
+          </p>
+          <p class="text-xs text-gray-600 text-center">
+            This decomposition helps diagnose growth: Are we attracting new buyers (penetration), getting buyers to 
+            buy more (buying rate), increasing trip frequency, or raising prices? Each lever requires different tactics.
           </p>
         </div>
       </div>
@@ -264,24 +347,31 @@
 
     <!-- Detailed Table -->
     <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Category Scorecard</h3>
-      <p class="text-sm text-gray-600 mb-6">Comprehensive performance metrics by category</p>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Comprehensive Category Scorecard</h3>
+      <p class="text-sm text-gray-600 mb-6">All key performance metrics by category</p>
       <div class="overflow-x-auto">
-        <table class="min-w-full text-sm">
+        <table class="min-w-full text-xs">
           <thead>
             <tr class="bg-blue-50 text-blue-700">
-              <th class="p-3 text-left font-semibold">Category</th>
-              <th class="p-3 text-left font-semibold">Sales ($K)</th>
-              <th class="p-3 text-left font-semibold">Velocity</th>
-              <th class="p-3 text-left font-semibold">Market Share</th>
-              <th class="p-3 text-left font-semibold">Promo Lift</th>
-              <th class="p-3 text-left font-semibold">Margin %</th>
-              <th class="p-3 text-left font-semibold">Role</th>
+              <th class="p-2 text-left font-semibold">Category</th>
+              <th class="p-2 text-left font-semibold">Sales ($K)</th>
+              <th class="p-2 text-left font-semibold">YoY Growth</th>
+              <th class="p-2 text-left font-semibold">Unit Growth</th>
+              <th class="p-2 text-left font-semibold">Velocity</th>
+              <th class="p-2 text-left font-semibold">Margin %</th>
+              <th class="p-2 text-left font-semibold">HH Pen %</th>
+              <th class="p-2 text-left font-semibold">Buying Rate</th>
+              <th class="p-2 text-left font-semibold">Freq</th>
+              <th class="p-2 text-left font-semibold">PL %</th>
+              <th class="p-2 text-left font-semibold">Role</th>
             </tr>
           </thead>
           <tbody id="category-table">
           </tbody>
         </table>
+      </div>
+      <div class="mt-4 text-xs text-gray-500">
+        <strong>Legend:</strong> HH Pen = Household Penetration | Freq = Purchase Frequency | PL = Private Label Share
       </div>
     </div>
 
@@ -318,6 +408,42 @@
             and TPRs (Temporary Price Reductions). Personal Care has lower lift (28%), suggesting less price sensitivity—
             focus on brand building over discounting. Pet shows moderate lift, indicating loyal customers willing to pay 
             premium prices.
+          </p>
+        </div>
+      </div>
+
+      <!-- YoY Growth Analysis -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">YoY Growth: Sales vs Unit Volume</h3>
+        <p class="text-sm text-gray-600 mb-6">Decomposing growth into volume gains vs price/mix effects</p>
+        <div style="height: 360px;">
+          <canvas id="growthChart"></canvas>
+        </div>
+        <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-yellow-900 mb-2">💡 What This Tells Us:</p>
+          <p class="text-sm text-yellow-800 leading-relaxed">
+            Pet and Snacks show strong unit growth (5.2% and 4.8%), meaning real volume increases—the healthiest type 
+            of growth. Personal Care's sales growth (5.1%) outpaces unit growth (2.8%), indicating price increases or 
+            premium mix shift. Household shows declining units (-0.5%) despite slight sales growth—all from pricing, 
+            signaling category maturity.
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel Metrics -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Panel Metrics: Household Behavior Drivers</h3>
+        <p class="text-sm text-gray-600 mb-6">Understanding penetration, buying rate, and frequency by category</p>
+        <div style="height: 360px;">
+          <canvas id="panelChart"></canvas>
+        </div>
+        <div class="mt-6 bg-purple-50 border-l-4 border-purple-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-purple-900 mb-2">💡 What This Tells Us:</p>
+          <p class="text-sm text-purple-800 leading-relaxed">
+            Household (85%) and Snacks (82%) have highest penetration—mass market categories most households buy. 
+            Baby (22%) and Pet (45%) are niche categories with concentrated buyers. Pet shows high buying rate (18.6 
+            units/buyer), indicating heavy usage among buyers. Snacks lead in frequency (9.8 trips/year)—perfect for 
+            promotional triggers to drive store visits.
           </p>
         </div>
       </div>
@@ -530,7 +656,15 @@
           marketShare: 24.5, 
           promoLift: 38, 
           margin: 18.3,
-          role: 'Routine'
+          role: 'Routine',
+          yoyGrowth: 2.8,
+          yoyUnitGrowth: 1.2,
+          hhPenetration: 78,
+          buyingRate: 12.4,
+          purchaseFreq: 8.2,
+          privateLabelShare: 18,
+          basketPen: 42,
+          avgPrice: 3.85
         },
         { 
           category: 'Snacks', 
@@ -539,7 +673,15 @@
           marketShare: 19.2, 
           promoLift: 42, 
           margin: 20.7,
-          role: 'Routine'
+          role: 'Routine',
+          yoyGrowth: 6.2,
+          yoyUnitGrowth: 4.8,
+          hhPenetration: 82,
+          buyingRate: 15.6,
+          purchaseFreq: 9.8,
+          privateLabelShare: 28,
+          basketPen: 38,
+          avgPrice: 4.25
         },
         { 
           category: 'Personal Care', 
@@ -548,7 +690,15 @@
           marketShare: 16.8, 
           promoLift: 28, 
           margin: 21.4,
-          role: 'Destination'
+          role: 'Destination',
+          yoyGrowth: 5.1,
+          yoyUnitGrowth: 2.8,
+          hhPenetration: 68,
+          buyingRate: 8.4,
+          purchaseFreq: 4.2,
+          privateLabelShare: 15,
+          basketPen: 24,
+          avgPrice: 8.50
         },
         { 
           category: 'Household', 
@@ -557,7 +707,15 @@
           marketShare: 15.3, 
           promoLift: 25, 
           margin: 19.8,
-          role: 'Routine'
+          role: 'Routine',
+          yoyGrowth: 1.2,
+          yoyUnitGrowth: -0.5,
+          hhPenetration: 85,
+          buyingRate: 10.2,
+          purchaseFreq: 6.4,
+          privateLabelShare: 35,
+          basketPen: 32,
+          avgPrice: 5.15
         },
         { 
           category: 'Baby', 
@@ -566,7 +724,15 @@
           marketShare: 12.4, 
           promoLift: 35, 
           margin: 22.3,
-          role: 'Destination'
+          role: 'Destination',
+          yoyGrowth: 3.8,
+          yoyUnitGrowth: 2.1,
+          hhPenetration: 22,
+          buyingRate: 24.8,
+          purchaseFreq: 11.2,
+          privateLabelShare: 12,
+          basketPen: 8,
+          avgPrice: 12.25
         },
         { 
           category: 'Pet', 
@@ -575,13 +741,21 @@
           marketShare: 11.8, 
           promoLift: 32, 
           margin: 23.1,
-          role: 'Destination'
+          role: 'Destination',
+          yoyGrowth: 8.4,
+          yoyUnitGrowth: 5.2,
+          hhPenetration: 45,
+          buyingRate: 18.6,
+          purchaseFreq: 7.8,
+          privateLabelShare: 8,
+          basketPen: 18,
+          avgPrice: 15.75
         }
       ];
     }
 
     const categoryData = generateCategoryData();
-    let salesVelocityChart, promoChart;
+    let salesVelocityChart, promoChart, growthChart, panelChart;
 
     function populateKPIs() {
       const totalSales = categoryData.reduce((sum, cat) => sum + cat.sales, 0);
@@ -607,17 +781,26 @@
 
     function populateTable() {
       const tbody = document.getElementById('category-table');
-      tbody.innerHTML = categoryData.map(cat => `
+      tbody.innerHTML = categoryData.map(cat => {
+        const growthColor = cat.yoyGrowth >= 5 ? 'text-green-600' : cat.yoyGrowth >= 2 ? 'text-gray-700' : 'text-red-600';
+        const unitGrowthColor = cat.yoyUnitGrowth >= 3 ? 'text-green-600' : cat.yoyUnitGrowth >= 0 ? 'text-gray-700' : 'text-red-600';
+        
+        return `
         <tr class="border-t hover:bg-gray-50">
-          <td class="p-3 font-medium">${cat.category}</td>
-          <td class="p-3 text-gray-700">$${cat.sales.toLocaleString()}</td>
-          <td class="p-3 font-semibold ${cat.velocity >= 3 ? 'text-green-600' : cat.velocity >= 2 ? 'text-yellow-600' : 'text-red-600'}">${cat.velocity}</td>
-          <td class="p-3 text-gray-700">${cat.marketShare}%</td>
-          <td class="p-3 font-semibold ${cat.promoLift >= 35 ? 'text-green-600' : 'text-gray-700'}">+${cat.promoLift}%</td>
-          <td class="p-3 font-semibold ${cat.margin >= 22 ? 'text-green-600' : 'text-gray-700'}">${cat.margin}%</td>
-          <td class="p-3"><span class="px-3 py-1 rounded-full text-xs font-semibold ${getRoleBadge(cat.role)}">${cat.role}</span></td>
+          <td class="p-2 font-medium">${cat.category}</td>
+          <td class="p-2 text-gray-700">${cat.sales.toLocaleString()}</td>
+          <td class="p-2 font-semibold ${growthColor}">+${cat.yoyGrowth}%</td>
+          <td class="p-2 font-semibold ${unitGrowthColor}">${cat.yoyUnitGrowth > 0 ? '+' : ''}${cat.yoyUnitGrowth}%</td>
+          <td class="p-2 font-semibold ${cat.velocity >= 3 ? 'text-green-600' : cat.velocity >= 2 ? 'text-yellow-600' : 'text-red-600'}">${cat.velocity}</td>
+          <td class="p-2 font-semibold ${cat.margin >= 22 ? 'text-green-600' : 'text-gray-700'}">${cat.margin}%</td>
+          <td class="p-2 text-gray-700">${cat.hhPenetration}%</td>
+          <td class="p-2 text-gray-700">${cat.buyingRate}</td>
+          <td class="p-2 text-gray-700">${cat.purchaseFreq}</td>
+          <td class="p-2 text-gray-700">${cat.privateLabelShare}%</td>
+          <td class="p-2"><span class="px-2 py-1 rounded-full text-xs font-semibold ${getRoleBadge(cat.role)}">${cat.role}</span></td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function createSalesVelocityChart() {
@@ -696,6 +879,186 @@
             label: 'Promotional Lift %',
             data: categoryData.map(c => c.promoLift),
             backgroundColor: categoryData.map(c => c.promoLift >= 35 ? '#10B981' : c.promoLift >= 30 ? '#F59E0B' : '#EF4444'),
+            borderRadius: 6,
+            datalabels: {
+              anchor: 'end',
+              align: 'top',
+              color: '#1F2937',
+              font: { size: 11, weight: 'bold' },
+              formatter: (value) => '+' + value + '%'
+            }
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)' }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Promotional Lift %' },
+              ticks: { font: { size: 12 } }
+            },
+            x: { ticks: { font: { size: 12 } } }
+          }
+        }
+      });
+    }
+
+    function createGrowthChart() {
+      const ctx = document.getElementById('growthChart').getContext('2d');
+      growthChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categoryData.map(c => c.category),
+          datasets: [
+            {
+              label: 'Sales Growth %',
+              data: categoryData.map(c => c.yoyGrowth),
+              backgroundColor: '#3B82F6',
+              borderRadius: 6,
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#1E40AF',
+                font: { size: 10, weight: 'bold' },
+                formatter: (value) => '+' + value + '%'
+              }
+            },
+            {
+              label: 'Unit Growth %',
+              data: categoryData.map(c => c.yoyUnitGrowth),
+              backgroundColor: '#10B981',
+              borderRadius: 6,
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#065F46',
+                font: { size: 10, weight: 'bold' },
+                formatter: (value) => (value > 0 ? '+' : '') + value + '%'
+              }
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 12 } } },
+            tooltip: { 
+              backgroundColor: 'rgba(0,0,0,0.8)',
+              callbacks: {
+                afterLabel: (context) => {
+                  if (context.datasetIndex === 0) {
+                    const cat = categoryData[context.dataIndex];
+                    const priceMix = cat.yoyGrowth - cat.yoyUnitGrowth;
+                    return `Price/Mix: +${priceMix.toFixed(1)}%`;
+                  }
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              title: { display: true, text: 'Growth %' },
+              ticks: { font: { size: 12 } }
+            },
+            x: { ticks: { font: { size: 12 } } }
+          }
+        }
+      });
+    }
+
+    function createPanelChart() {
+      const ctx = document.getElementById('panelChart').getContext('2d');
+      panelChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categoryData.map(c => c.category),
+          datasets: [
+            {
+              label: 'HH Penetration %',
+              data: categoryData.map(c => c.hhPenetration),
+              backgroundColor: '#8B5CF6',
+              borderRadius: 6,
+              yAxisID: 'y',
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#6D28D9',
+                font: { size: 9, weight: 'bold' },
+                formatter: (value) => value + '%'
+              }
+            },
+            {
+              label: 'Buying Rate',
+              data: categoryData.map(c => c.buyingRate),
+              backgroundColor: '#F59E0B',
+              borderRadius: 6,
+              yAxisID: 'y1',
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#B45309',
+                font: { size: 9, weight: 'bold' },
+                formatter: (value) => value.toFixed(1)
+              }
+            },
+            {
+              label: 'Purchase Frequency',
+              data: categoryData.map(c => c.purchaseFreq),
+              backgroundColor: '#EC4899',
+              borderRadius: 6,
+              yAxisID: 'y1',
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#9F1239',
+                font: { size: 9, weight: 'bold' },
+                formatter: (value) => value.toFixed(1)
+              }
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 11 } } },
+            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)' }
+          },
+          scales: {
+            y: {
+              type: 'linear',
+              position: 'left',
+              title: { display: true, text: 'HH Penetration %' },
+              ticks: { font: { size: 11 } },
+              max: 100
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              title: { display: true, text: 'Buying Rate / Frequency' },
+              ticks: { font: { size: 11 } },
+              grid: { drawOnChartArea: false }
+            },
+            x: { ticks: { font: { size: 10 } } }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateKPIs();
+      populateTable();
+      createSalesVelocityChart();
+      createPromoChart();
+      createGrowthChart();
+      createPanelChart();
+    });
             borderRadius: 6,
             datalabels: {
               anchor: 'end',
