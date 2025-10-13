@@ -48,23 +48,53 @@ git clone https://github.com/lexibarry/lexibarry.github.io.git
 cd lexibarry.github.io/code
 pip install -r ../requirements.txt
 python cohort_analysis.py
----
-
-## 📬 Contact
-
-**Lexi Barry — Product-Minded Data Leader**  
-📫 [lexi.barry@outlook.com](mailto:lexi.barry@outlook.com)  
-🔗 [linkedin.com/in/lexi-barry](https://linkedin.com/in/lexi-barry)  
-💻 [github.com/lexibarry](https://github.com/lexibarry)
 
 ---
 
-### 🪪 License & Confidentiality
+## 💻 Technology Stack
 
-All datasets, analyses, and visuals are **synthetic** and created by Lexi Barry for demonstration.  
-No employer or client data is used.  
-Licensed under the **MIT License** — reuse allowed with attribution.
+**Frontend:**
+- React (interactive components)  
+- Recharts (data visualization)  
+- HTML5/CSS3/JavaScript  
 
-© 2025 **Lexi Barry** — *Data Storytelling & Analytics Portfolio*  
+**Data Analysis:**
+- Python (Pandas, NumPy, SciPy)  
+- Statistical analysis  
+- Data pipeline automation  
+
+**Analytics:**
+- Google Analytics (G-BTL6GP30YH)  
+- Custom event tracking  
+- User behavior analysis  
+
+---
+
+## 📊 Confidentiality & Data Notice
+
+All datasets, analyses, and methodologies in this portfolio are **my own work and synthetically generated** by Lexi Barry for demonstration and learning purposes. These represent my own ideologies and analytical approaches.
+
+**Important:** This portfolio contains **no confidential or proprietary information** from previous employers. All data is fictional and designed to demonstrate analytical capabilities while respecting confidentiality, ethics, and intellectual property rights.
+
+---
+
+## 📫 Contact
+
+**Lexi Barry** — Product-Minded Data Leader  
+- 📧 Email: [lexi.barry@outlook.com](mailto:lexi.barry@outlook.com)  
+- 💼 LinkedIn: [linkedin.com/in/lexi-barry](https://www.linkedin.com/in/lexi-barry)  
+- 🐙 GitHub: [github.com/lexibarry](https://github.com/lexibarry)  
+- 🌐 Portfolio: [lexibarry.github.io](https://lexibarry.github.io/)
+
+---
+
+## 📄 License
+
+MIT License — feel free to use this portfolio structure as inspiration for your own!
+
+---
+
+© 2025 **Lexi Barry** — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio  
+All data and methodologies are my own and synthetically generated for demonstration purposes. No confidential or proprietary information from previous employers is used.
 
 ⬆️ [Back to Top](#)
