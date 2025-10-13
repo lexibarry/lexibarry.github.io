@@ -1,137 +1,954 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Product Conversations | Lexi Barry</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Conversations & Feedback Loop | Lexi Barry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #4169E1 0%, #5B7FE8 100%); }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-<div class="max-w-7xl mx-auto p-4"><a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">← Return to Home</a></div>
-<div id="root"></div>
 
-<script type="module">
-  import React from 'https://esm.sh/react@18';
-  import { createRoot } from 'https://esm.sh/react-dom@18/client';
-  import * as Recharts from 'https://esm.sh/recharts@2.12.5';
-  import htm from 'https://unpkg.com/htm?module';
-  const html = htm.bind(React.createElement);
-  const { ResponsiveContainer, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } = Recharts;
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto p-4">
+    <a href="index.html" class="inline-block bg-white text-blue-600 px-5 py-2 rounded-lg shadow hover:shadow-md transition-all font-medium">
+      ← Back to Portfolio
+    </a>
+  </div>
 
-  function makeTopicData(){
-    const topics=['Activation','Billing','Search','AI Help','Export','Sharing'];
-    return topics.map((t,i)=>({topic:t, mentions: 40+i*12+Math.round(Math.random()*8), sentiment: Math.max(45, Math.min(90, 60+i*3+(i%3? -5: 2))) }));
-  }
-  function makeChannelTrend(){
-    const months=['2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
-    return months.map((m,i)=>({ month:m, Slack:120+i*25+(i%2?15:0), Email:90+i*18+(i%3?8:0), Tickets:140+i*30+(i%2?5:12) }));
-  }
-
-  const Card = ({label,value,sub}) => html`
-    <div class="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
-      <p class="text-sm text-gray-600">${label}</p>
-      <p class="text-2xl font-bold">${value}</p>
-      ${sub ? html`<p class="text-xs text-gray-500 mt-1">${sub}</p>` : null}
+  <!-- Hero Section -->
+  <div class="gradient-bg text-white py-12 mb-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-4xl font-bold mb-3">Product Conversations & Feedback Loop Analysis</h1>
+      <p class="text-xl text-blue-100 mb-2">VitalMetrics Pro+: Listening to Customers, Driving Product Improvements</p>
+      <p class="text-sm text-blue-200 italic">"Your most unhappy customers are your greatest source of learning." – Bill Gates</p>
+      <div class="mt-3 bg-blue-800/50 backdrop-blur rounded-lg px-4 py-2 inline-block">
+        <p class="text-xs text-blue-100">⚠️ <strong>Portfolio Demonstration:</strong> VitalMetrics Pro+ is a fictional product. All feedback data is synthetic and created for portfolio purposes only.</p>
+      </div>
     </div>
-  `;
+  </div>
 
-  function App(){
-    const topics = makeTopicData();
-    const trend  = makeChannelTrend();
-    const totalMentions = topics.reduce((a,b)=>a+b.mentions,0);
-    const avgSent = Math.round(topics.reduce((a,b)=>a+b.sentiment,0)/topics.length);
-    const topPhrases = [
-      { phrase: 'Can’t find feature', topic: 'Search', impact: 'High', action:'Improve relevance + “did you mean” UX' },
-      { phrase: 'Billing prorate confusion', topic: 'Billing', impact: 'High', action:'Add tooltip + help center explainer' },
-      { phrase: 'AI suggestions unclear', topic: 'AI Help', impact: 'Medium', action:'Add examples & confidence badges' },
-      { phrase: 'Export CSV timeout', topic: 'Export', impact: 'Medium', action:'Queue large exports; email when ready' },
-      { phrase: 'Invite flow unclear', topic: 'Sharing', impact: 'Low', action:'Clarify roles; add success toast' },
-    ];
+  <div class="max-w-7xl mx-auto px-6 pb-12">
 
-    return html`
-      <div class="max-w-7xl mx-auto p-6">
-        <h1 class="text-3xl font-bold text-indigo-700 mb-2">💬 Product Conversations</h1>
-        <p class="text-gray-600 mb-6">Topics, sentiment, and channel trends (synthetic).</p>
-
-        <!-- Main Takeaways -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          ${html`<${Card} label="Total Mentions (YTD)" value=${totalMentions.toLocaleString()} />`}
-          ${html`<${Card} label="Avg Topic Sentiment" value=${avgSent + '%'} />`}
-          ${html`<${Card} label="Primary Channel" value="Tickets" sub="Highest volume (last 6 mo)" />`}
+    <!-- C-SUITE EXECUTIVE SUMMARY -->
+    <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 mb-8">
+      <div class="flex items-start gap-4 mb-4">
+        <div class="text-4xl">💬</div>
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Executive Summary — Customer Feedback Impact</h2>
+          <p class="text-blue-100 text-sm">90 days post-launch: How customer conversations drove product improvements</p>
+          <p class="text-blue-200 text-xs mt-1 italic">📝 Note: VitalMetrics Pro+ is fictional. This showcases product feedback loop methodology using synthetic data.</p>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white rounded-xl shadow p-5">
-            <h3 class="font-semibold mb-3">Topic Frequency & Sentiment</h3>
-            ${html`<${ResponsiveContainer} width="100%" height=${320}>
-              <${BarChart} data=${topics}>
-                <${CartesianGrid} strokeDasharray="3 3" />
-                <${XAxis} dataKey="topic" /><${YAxis} />
-                <${Tooltip} /><${Legend} />
-                <${Bar} dataKey="mentions" name="Mentions" fill="#6366f1" />
-                <${Bar} dataKey="sentiment" name="Sentiment %" fill="#22c55e" />
-              <//>
-            <//>`}
-            <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
-              <b>Insight:</b> Search and Billing dominate mentions—invest in query assistance and billing clarity to reduce friction.
-            </div>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-4">
+        <h3 class="font-semibold mb-3 text-lg">🎯 Bottom Line Impact</h3>
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">3,847</div>
+            <div class="text-xs text-blue-100">Customer conversations analyzed</div>
           </div>
-
-          <div class="bg-white rounded-xl shadow p-5">
-            <h3 class="font-semibold mb-3">Conversation Volume by Channel</h3>
-            ${html`<${ResponsiveContainer} width="100%" height=${320}>
-              <${LineChart} data=${trend}>
-                <${CartesianGrid} strokeDasharray="3 3" />
-                <${XAxis} dataKey="month" /><${YAxis} />
-                <${Tooltip} /><${Legend} />
-                <${Line} type="monotone" dataKey="Slack" stroke="#06b6d4" strokeWidth=${2}/>
-                <${Line} type="monotone" dataKey="Email" stroke="#f59e0b" strokeWidth=${2}/>
-                <${Line} type="monotone" dataKey="Tickets" stroke="#ef4444" strokeWidth=${2}/>
-              <//>
-            <//>`}
-            <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
-              <b>Insight:</b> Ticket volume is rising faster than Slack/Email—strong signal to improve self-serve help and in-product guidance.
-            </div>
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">+22%</div>
+            <div class="text-xs text-blue-100">NPS improvement after fixes</div>
+          </div>
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">12 days</div>
+            <div class="text-xs text-blue-100">Avg feedback → fix cycle time</div>
           </div>
         </div>
+        <p class="text-sm text-blue-50 leading-relaxed">
+          In the first 90 days post-launch, we collected and analyzed 3,847 customer conversations across support tickets, 
+          app reviews, surveys, and user interviews. We identified 8 critical issues, prioritized and shipped fixes for the 
+          top 5, and measured a +22 point NPS improvement. Our feedback loop reduced battery complaints by 68%, fixed the 
+          #1 reported bug (syncing), and added the most-requested feature (silent alarm). Customer satisfaction jumped from 
+          3.8★ to 4.6★.
+        </p>
+      </div>
 
-        <div class="bg-white rounded-xl shadow p-5 mt-6 overflow-x-auto">
-          <h3 class="font-semibold mb-3">Top Emerging Phrases</h3>
-          <table class="min-w-full text-sm">
-            <thead>
-              <tr class="bg-indigo-50 text-indigo-700">
-                <th class="p-3 text-left">Phrase</th>
-                <th class="p-3 text-left">Topic</th>
-                <th class="p-3 text-left">Impact</th>
-                <th class="p-3 text-left">Suggested Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${topPhrases.map((r,i)=>html`<tr class="border-t">
-                <td class="p-3">${r.phrase}</td>
-                <td class="p-3">${r.topic}</td>
-                <td class="p-3">${r.impact}</td>
-                <td class="p-3">${r.action}</td>
-              </tr>`)}
-            </tbody>
-          </table>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+          <h3 class="font-semibold mb-2 flex items-center gap-2">
+            <span>🎯</span> Top Customer Pain Points Resolved
+          </h3>
+          <ul class="text-sm text-blue-50 space-y-1">
+            <li>• #1: Sync reliability (mentioned in 847 conversations) → Fixed Week 4</li>
+            <li>• #2: Battery drain (623 mentions) → Firmware update Week 6</li>
+            <li>• #3: Silent alarm missing (512 requests) → Shipped Week 8</li>
+            <li>• #4: Sleep score confusing (398 mentions) → Redesigned Week 10</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+          <h3 class="font-semibold mb-2 flex items-center gap-2">
+            <span>📈</span> Measurable Impact
+          </h3>
+          <ul class="text-sm text-blue-50 space-y-1">
+            <li>• NPS: 42 → 64 (+22 points)</li>
+            <li>• App Store rating: 3.8★ → 4.6★</li>
+            <li>• Support ticket volume: -41% after fixes</li>
+            <li>• 30-day retention: 72% → 84%</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business Question -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-blue-600">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Business Question</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        How do we systematically collect, analyze, and act on customer feedback to drive continuous product improvement? 
+        What's the end-to-end methodology for turning raw customer conversations into prioritized product changes, and 
+        how do we measure the impact of those changes on customer satisfaction and business metrics?
+      </p>
+    </div>
+
+    <!-- Product Context -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🌿 Product Context: VitalMetrics Pro+ Post-Launch</h2>
+      <div class="bg-amber-100 border-l-4 border-amber-500 p-4 mb-4 rounded-r-lg">
+        <p class="text-sm text-amber-900">
+          <strong>📝 Note:</strong> VitalMetrics Pro+ is a <strong>fictional product created for this portfolio demonstration</strong>. 
+          All customer feedback, support tickets, sentiment analysis, and product changes are synthetic and do not represent 
+          real customer data or company operations. This case study showcases product feedback loop methodology.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3">Launch Context</h3>
+          <p class="text-sm text-gray-700 mb-3">
+            VitalMetrics Pro+ launched in May 2025 as a $299 sleep & recovery tracking ring. Initial launch was successful 
+            (25K units sold in 90 days), but customer feedback revealed critical issues affecting satisfaction and retention. 
+            This analysis covers the first 90 days post-launch (May-July 2025) and the feedback loop that drove rapid 
+            product improvements.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-green-50 p-2 rounded"><strong>Launch:</strong> May 15, 2025</div>
+            <div class="bg-blue-50 p-2 rounded"><strong>Analysis Period:</strong> 90 days</div>
+            <div class="bg-purple-50 p-2 rounded"><strong>Active Users:</strong> 22.4K</div>
+            <div class="bg-amber-50 p-2 rounded"><strong>Feedback Items:</strong> 3,847</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3">Why Feedback Loops Matter</h3>
+          <p class="text-sm text-gray-700">
+            New product launches always have rough edges—bugs, missing features, UX friction. The difference between 
+            successful products and failures is how quickly teams listen, learn, and iterate. A systematic feedback loop 
+            transforms customer pain points into product improvements, turning frustrated users into advocates. This 
+            dashboard showcases the complete process: collection → analysis → prioritization → implementation → measurement.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Methodology: The Feedback Loop -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🔍 Methodology: The Complete Feedback Loop</h2>
+      <p class="text-gray-700 mb-6">
+        Our feedback loop operates on a continuous 2-week sprint cycle. Here's the end-to-end process we followed 
+        post-launch to drive rapid product improvements:
+      </p>
+
+      <!-- Feedback Loop Stages -->
+      <div class="grid md:grid-cols-5 gap-3 mb-6">
+        <div class="bg-white rounded-xl p-4 shadow text-center border-t-4 border-blue-500">
+          <div class="text-3xl mb-2">📥</div>
+          <div class="font-semibold text-gray-800 text-sm mb-1">1. Collect</div>
+          <div class="text-xs text-gray-600">Gather feedback from all channels</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow text-center border-t-4 border-green-500">
+          <div class="text-3xl mb-2">🔍</div>
+          <div class="font-semibold text-gray-800 text-sm mb-1">2. Analyze</div>
+          <div class="text-xs text-gray-600">Extract themes & sentiment</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow text-center border-t-4 border-purple-500">
+          <div class="text-3xl mb-2">🎯</div>
+          <div class="font-semibold text-gray-800 text-sm mb-1">3. Prioritize</div>
+          <div class="text-xs text-gray-600">Rank by impact × volume</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow text-center border-t-4 border-amber-500">
+          <div class="text-3xl mb-2">⚙️</div>
+          <div class="font-semibold text-gray-800 text-sm mb-1">4. Implement</div>
+          <div class="text-xs text-gray-600">Ship fixes & features</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow text-center border-t-4 border-blue-600">
+          <div class="text-3xl mb-2">📊</div>
+          <div class="font-semibold text-gray-800 text-sm mb-1">5. Measure</div>
+          <div class="text-xs text-gray-600">Track impact on KPIs</div>
         </div>
       </div>
 
-      <!-- Footer -->
-      <footer class="bg-gray-900 text-white text-center py-8 mt-12">
-        <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
-        <p class="text-sm">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
-          LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> |
-          GitHub: <a href="https://github.com/lexibarry" class="underline">github.com/lexibarry</a></p>
-        <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
-          <p><b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.</p>
-          <p><b>License:</b> MIT License — you may reuse this structure with attribution.</p>
+      <!-- Detailed Process Breakdown -->
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-blue-700 mb-3 flex items-center gap-2">
+            <span class="text-2xl">📥</span> Stage 1: Collect Feedback from Multiple Channels
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            We aggregate customer conversations from 6 different channels to get a comprehensive view of sentiment and issues:
+          </p>
+          <div class="grid md:grid-cols-3 gap-3 text-sm">
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">📧 Support Tickets</div>
+              <div class="text-xs text-gray-600">Zendesk (2,145 tickets in 90 days) — Bugs, technical issues, how-to questions</div>
+            </div>
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">⭐ App Store Reviews</div>
+              <div class="text-xs text-gray-600">iOS/Android (847 reviews) — Public sentiment, feature requests, frustrations</div>
+            </div>
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">📋 In-App Surveys</div>
+              <div class="text-xs text-gray-600">NPS + open-ended (521 responses) — Structured feedback on specific flows</div>
+            </div>
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">🎤 User Interviews</div>
+              <div class="text-xs text-gray-600">Zoom calls (45 interviews, 30min each) — Deep dive qualitative insights</div>
+            </div>
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">💬 Social Media</div>
+              <div class="text-xs text-gray-600">Twitter, Reddit, FB (189 mentions) — Unfiltered user experiences</div>
+            </div>
+            <div class="bg-blue-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-1">📞 Sales Calls</div>
+              <div class="text-xs text-gray-600">Pre-purchase questions (100 logged) — Objections, concerns, comparisons</div>
+            </div>
+          </div>
         </div>
-        <p class="mt-4 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
-      </footer>
-    `;
-  }
 
-  createRoot(document.getElementById('root')).render(html`<${App} />`);
-</script>
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-green-700 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🔍</span> Stage 2: Analyze & Extract Themes
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            Raw feedback is processed through both automated and manual analysis to identify patterns:
+          </p>
+          <ul class="text-sm text-gray-700 space-y-2 ml-4">
+            <li>• <strong>Sentiment Analysis:</strong> Classify each piece of feedback as Positive, Neutral, Negative, or Critical using NLP (Python NLTK/TextBlob)</li>
+            <li>• <strong>Theme Extraction:</strong> Tag feedback with categories (Bug, Feature Request, UX Issue, Performance, etc.) using keyword matching + manual review</li>
+            <li>• <strong>Topic Modeling:</strong> Use LDA (Latent Dirichlet Allocation) to discover hidden themes in open-ended responses</li>
+            <li>• <strong>Frequency Analysis:</strong> Count how often each issue/theme appears to understand prevalence</li>
+            <li>• <strong>User Context:</strong> Join feedback with user data (subscription tier, usage patterns, device type) to understand which segments are affected</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-purple-700 mb-3 flex items-center gap-2">
+            <span class="text-2xl">🎯</span> Stage 3: Prioritize Using Impact × Volume Framework
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            Not all feedback is equal. We use a scoring matrix to prioritize what to fix first:
+          </p>
+          <div class="bg-purple-50 p-4 rounded-lg mb-3">
+            <div class="font-semibold text-gray-800 mb-2 text-sm">Priority Score Formula:</div>
+            <div class="text-sm text-gray-700 font-mono bg-white px-3 py-2 rounded">
+              Score = (Frequency × 10) + (Severity × 20) + (Segment Impact × 15)
+            </div>
+          </div>
+          <ul class="text-sm text-gray-700 space-y-1 ml-4">
+            <li>• <strong>Frequency:</strong> How many users reported this? (1-10 scale based on mention count)</li>
+            <li>• <strong>Severity:</strong> How much does it hurt the experience? (1-10: Annoyance → Blocker)</li>
+            <li>• <strong>Segment Impact:</strong> Does it affect premium users or a critical use case? (1-10)</li>
+            <li>• <strong>Result:</strong> Top-scoring items go into the next sprint backlog</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-amber-700 mb-3 flex items-center gap-2">
+            <span class="text-2xl">⚙️</span> Stage 4: Implement Fixes & Features
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            Prioritized items move from feedback → Jira tickets → development → QA → release (2-week sprints):
+          </p>
+          <div class="grid md:grid-cols-2 gap-3 text-xs">
+            <div class="bg-gray-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-2">Bug Fixes (Critical)</div>
+              <div class="text-gray-600">Sync issues, crashes, data loss → Hotfix within 3-5 days</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-2">UX Improvements (High)</div>
+              <div class="text-gray-600">Confusing UI, friction points → Include in next sprint (2 weeks)</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-2">Feature Requests (Medium)</div>
+              <div class="text-gray-600">New capabilities → Roadmap planning (4-8 weeks)</div>
+            </div>
+            <div class="bg-gray-50 p-3 rounded">
+              <div class="font-semibold text-gray-800 mb-2">Nice-to-Haves (Low)</div>
+              <div class="text-gray-600">Polish, edge cases → Backlog for future consideration</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-blue-700 mb-3 flex items-center gap-2">
+            <span class="text-2xl">📊</span> Stage 5: Measure Impact & Close the Loop
+          </h3>
+          <p class="text-sm text-gray-700 mb-3">
+            After shipping fixes, we measure impact on both qualitative and quantitative metrics:
+          </p>
+          <ul class="text-sm text-gray-700 space-y-2 ml-4">
+            <li>• <strong>Qualitative:</strong> Monitor support tickets, reviews, social sentiment for mentions of the fixed issue (should decrease)</li>
+            <li>• <strong>Quantitative:</strong> Track before/after metrics: NPS, app rating, retention, feature adoption, error rates</li>
+            <li>• <strong>Communication:</strong> Announce fixes to users ("We listened! Here's what we fixed") via email, in-app messages, release notes</li>
+            <li>• <strong>Validation:</strong> If metrics improve, mark as successful. If not, dig deeper or iterate on the solution</li>
+            <li>• <strong>Feedback Loop:</strong> Repeat the cycle every 2 weeks, continuously improving the product</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-6 shadow mt-6">
+        <h3 class="font-semibold text-gray-800 mb-3">🛠️ Tech Stack & Tools Used</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Feedback Collection</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• Zendesk (support tickets)</li>
+              <li>• App Store Connect API (reviews)</li>
+              <li>• Qualtrics (in-app surveys)</li>
+              <li>• Dovetail (interview transcripts)</li>
+              <li>• Zapier (social listening automation)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Analysis & Processing</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• Python (NLTK, TextBlob for NLP)</li>
+              <li>• SQL (BigQuery for aggregations)</li>
+              <li>• Excel/Sheets (manual tagging)</li>
+              <li>• Dovetail (qualitative coding)</li>
+              <li>• Looker (feedback dashboards)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Implementation & Tracking</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• Jira (issue tracking, sprints)</li>
+              <li>• Productboard (roadmap prioritization)</li>
+              <li>• Amplitude (impact measurement)</li>
+              <li>• Slack (cross-functional collaboration)</li>
+              <li>• Confluence (documentation)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Metrics Dashboard -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Feedback Loop Performance (90 Days Post-Launch)</h2>
+      <p class="text-gray-600 mb-4">Key metrics showing the health and impact of our customer feedback process:</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-blue-100 text-sm font-medium mb-1">Total Conversations</p>
+          <p class="text-3xl font-bold mb-2">3,847</p>
+          <p class="text-xs text-blue-100">Across 6 channels</p>
+        </div>
+        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-green-100 text-sm font-medium mb-1">Issues Identified</p>
+          <p class="text-3xl font-bold mb-2">47</p>
+          <p class="text-xs text-green-100">8 critical, 15 high priority</p>
+        </div>
+        <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-purple-100 text-sm font-medium mb-1">Fixes Shipped</p>
+          <p class="text-3xl font-bold mb-2">23</p>
+          <p class="text-xs text-purple-100">In 90 days (5 sprints)</p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-blue-100 text-sm font-medium mb-1">Avg Cycle Time</p>
+          <p class="text-3xl font-bold mb-2">12 days</p>
+          <p class="text-xs text-blue-100">Feedback → shipped fix</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visualizations -->
+    <div class="space-y-8 mb-8">
+      <!-- Feedback Volume by Channel -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Feedback Volume by Channel Over Time</h3>
+        <p class="text-sm text-gray-600 mb-6">Tracking where customers are sharing their experiences</p>
+        <div style="height: 400px;">
+          <canvas id="channelChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            Support tickets spiked in Week 2 post-launch as early adopters hit bugs (sync issues). App reviews peaked 
+            in Week 6 after we shipped major fixes—users updated their reviews to reflect improvements. User interviews 
+            remained steady throughout as we proactively recruited for qualitative research. The decline in support 
+            volume after Week 6 validates that our fixes resolved core issues.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">Zendesk API for ticket data, App Store Connect API for reviews, manual 
+          logging for interviews, aggregation in BigQuery, time-series visualization in Chart.js</p>
+        </div>
+      </div>
+
+      <!-- Sentiment Analysis -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sentiment Analysis: Evolution Over 90 Days</h3>
+        <p class="text-sm text-gray-600 mb-6">How customer sentiment improved as we shipped fixes</p>
+        <div style="height: 400px;">
+          <canvas id="sentimentChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            Negative sentiment dominated Weeks 1-4 (45-50% of feedback) due to sync bugs and battery drain. After 
+            shipping fixes in Weeks 4-6, negative sentiment dropped to 18% while positive sentiment rose from 25% to 
+            62%. The crossover point in Week 6 marks when fixes reached critical mass. By Week 12, we achieved net 
+            positive sentiment—proof the feedback loop works.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">Python NLTK and TextBlob for sentiment classification, manual validation 
+          on 10% sample for accuracy calibration, stored in BigQuery, rolling 7-day average for trend smoothing</p>
+        </div>
+      </div>
+
+      <!-- Top Issues & Priority -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Top Customer Issues: Priority & Resolution Status</h3>
+        <p class="text-sm text-gray-600 mb-6">The most-reported issues ranked by our prioritization framework</p>
+        <div style="height: 420px;">
+          <canvas id="issuesChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            The #1 issue (Sync Reliability, 847 mentions) scored highest in our prioritization framework and was fixed 
+            in Week 4. Battery drain (#2) required firmware optimization, shipped Week 6. Silent alarm (#3) was the 
+            most-requested feature, added Week 8. By tackling the top 5 issues, we addressed 78% of all negative 
+            feedback. Items 6-10 are in the roadmap but had lower impact scores.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">Manual theme tagging in Excel, frequency counting in SQL, priority scoring 
+          formula in Python, horizontal bar chart with color coding by status in Chart.js</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Implementation Timeline -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">⚙️ Fix Implementation Timeline & Impact</h2>
+      <p class="text-sm text-gray-600 mb-4">How we responded to top customer issues with measurable results:</p>
+      
+      <div class="space-y-4">
+        <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-gray-800">Week 4: Fixed Sync Reliability Bug</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ Shipped</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Problem:</p>
+              <p class="text-gray-600 text-xs">847 users reported sleep data not syncing to app. Root cause: Bluetooth 
+              connection dropping during large data transfers. Users had to manually re-pair device.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Fix & Impact:</p>
+              <p class="text-gray-600 text-xs">Implemented chunked data transfer + automatic retry logic. Support tickets 
+              mentioning "sync" dropped 82% (from 187/week to 34/week). App rating improved 0.3★.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-gray-800">Week 6: Optimized Battery Life</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ Shipped</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Problem:</p>
+              <p class="text-gray-600 text-xs">623 users complained battery lasting 4-5 days vs advertised 7 days. 
+              Heart rate sensor polling too frequently, draining battery unnecessarily.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Fix & Impact:</p>
+              <p class="text-gray-600 text-xs">Firmware update reduced HR polling during inactive periods. Real-world 
+              battery life improved to 6.8 days avg. "Battery" complaints dropped 68%. NPS +8 points.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-gray-800">Week 8: Added Silent Alarm Feature</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ Shipped</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Request:</p>
+              <p class="text-gray-600 text-xs">512 users requested vibration-based alarm to wake without disturbing 
+              partner. Competitors (Oura, Whoop) offered this. Major differentiator gap identified.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Feature & Impact:</p>
+              <p class="text-gray-600 text-xs">Shipped smart wake window (vibrate during light sleep 30min before target). 
+              65% of users activated within 1 week. Feature mentioned in 89 positive reviews. Premium conversion +5%.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-gray-800">Week 10: Redesigned Sleep Score UI</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">✓ Shipped</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Problem:</p>
+              <p class="text-gray-600 text-xs">398 users found sleep score confusing. Complained about not understanding 
+              why score was low or how to improve it. Led to disengagement.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Fix & Impact:</p>
+              <p class="text-gray-600 text-xs">Added visual breakdown (REM %, deep sleep %, efficiency) + actionable tips. 
+              "Confusing" complaints dropped 91%. Daily active usage +14% as users engaged more with insights.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-6 py-4 bg-blue-50 rounded-r-lg">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-gray-800">Week 12: Performance Optimization</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">✓ Shipped</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Problem:</p>
+              <p class="text-gray-600 text-xs">287 users reported app slowness, especially on older phones. Load times 
+              for historical data exceeded 8 seconds, causing frustration.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700 mb-1">The Fix & Impact:</p>
+              <p class="text-gray-600 text-xs">Implemented lazy loading, caching, and database query optimization. 
+              Load times reduced to 1.2 seconds avg. Complaints dropped 76%. Improved app stability ratings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Metrics -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-green-600">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">📈 Measured Impact: Before vs After Fixes</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-4 text-center">Customer Satisfaction Metrics</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">NPS Score</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">42</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">64</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">+22</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">App Store Rating</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">3.8★</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">4.6★</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">+0.8</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">CSAT (Support)</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">71%</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">89%</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">+18%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-4 text-center">Business Impact Metrics</h3>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">30-Day Retention</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">72%</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">84%</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">+12%</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">Support Tickets/Week</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">412</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">243</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">-41%</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-700">Daily Active Users</span>
+              <div class="flex gap-2 items-center">
+                <span class="text-red-600 font-semibold">58%</span>
+                <span class="text-gray-400">→</span>
+                <span class="text-green-600 font-semibold text-lg">71%</span>
+                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-bold">+13%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl p-6 shadow">
+        <h3 class="font-semibold text-gray-800 mb-3 text-center">ROI of Feedback Loop Investment</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-3xl font-bold text-blue-600">$145K</div>
+            <div class="text-xs text-gray-600 mt-1">Cost (tooling, analysis, eng time)</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-green-600">$890K</div>
+            <div class="text-xs text-gray-600 mt-1">Retained revenue (reduced churn)</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-purple-600">6.1x</div>
+            <div class="text-xs text-gray-600 mt-1">ROI in 90 days</div>
+          </div>
+        </div>
+        <p class="text-sm text-gray-700 mt-4 text-center">
+          By reducing churn from 28% to 16% through customer-driven fixes, we retained an estimated $890K in recurring 
+          revenue. The entire feedback loop process cost $145K (tools + personnel), delivering 6.1x ROI in just 90 days.
+        </p>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">🎯 Key Takeaways</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-5">
+          <div class="text-3xl mb-2">✅</div>
+          <h3 class="font-semibold mb-2">What Worked</h3>
+          <ul class="text-sm space-y-2 text-blue-50">
+            <li>• Multi-channel feedback collection (6 sources = comprehensive view)</li>
+            <li>• Data-driven prioritization framework (avoided opinion-based roadmap)</li>
+            <li>• Rapid iteration (12-day avg cycle time, 2-week sprints)</li>
+            <li>• Measurable impact tracking (NPS +22, retention +12%, tickets -41%)</li>
+            <li>• Customer communication (announced fixes, closed the loop)</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-5">
+          <div class="text-3xl mb-2">📚</div>
+          <h3 class="font-semibold mb-2">Key Learnings</h3>
+          <ul class="text-sm space-y-2 text-blue-50">
+            <li>• Listen early: Sync bug (847 mentions) emerged Week 1—we fixed Week 4</li>
+            <li>• Volume matters: Top 5 issues represented 78% of negative feedback</li>
+            <li>• Context is critical: Join feedback with user data to understand segments</li>
+            <li>• Close the loop: Telling users "we fixed it" turns critics into advocates</li>
+            <li>• ROI is real: 6.1x return on feedback loop investment in 90 days</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 bg-white/10 backdrop-blur rounded-xl p-5">
+        <p class="text-sm leading-relaxed">
+          <strong>Bottom Line:</strong> Systematic customer feedback loops are not a nice-to-have—they're essential 
+          for product success. By collecting, analyzing, prioritizing, implementing, and measuring feedback across 6 
+          channels, we transformed VitalMetrics Pro+ from a rocky 3.8★ launch to a 4.6★ product with 84% retention 
+          in just 90 days. The process works, the ROI is clear, and customers become partners in building better products.
+        </p>
+      </div>
+    </div>
+
+    <!-- Methodology Note -->
+    <div class="bg-gray-100 rounded-xl p-6 mb-8">
+      <h3 class="font-semibold text-gray-800 mb-3">📋 Methodology & Data Notes</h3>
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4 rounded-r-lg">
+        <p class="text-sm text-amber-900 font-semibold mb-2">
+          🎭 IMPORTANT: This is a portfolio demonstration using entirely synthetic data.
+        </p>
+        <p class="text-xs text-amber-800">
+          <strong>VitalMetrics Pro+ does not exist.</strong> This product conversations analysis uses synthetic customer 
+          feedback data created by Lexi Barry to demonstrate feedback loop methodology. All support tickets, app reviews, 
+          user interviews, sentiment scores, and product improvements are fabricated and do not represent real customer 
+          data or company operations. The frameworks, processes, and analytical approaches are real and based on industry 
+          best practices for customer-driven product development.
+        </p>
+      </div>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">
+        This analysis uses <strong>synthetic data</strong> modeling realistic post-launch feedback patterns. The dataset 
+        represents 3,847 pieces of customer feedback collected over 90 days (May-July 2025) across 6 channels: Support 
+        tickets (2,145), App store reviews (847), In-app surveys (521), User interviews (45), Social media (189), 
+        Sales calls (100).
+      </p>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">
+        <strong>Analysis methodology:</strong> Sentiment analysis performed using Python NLTK/TextBlob with manual validation. 
+        Theme extraction via keyword matching + manual tagging. Priority scoring formula: (Frequency × 10) + (Severity × 20) + 
+        (Segment Impact × 15). Impact measured by comparing metrics pre/post fix implementation using statistical significance 
+        testing (t-test, p < 0.05).
+      </p>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        <strong>Tech stack:</strong> Zendesk (support), App Store Connect API (reviews), Qualtrics (surveys), Dovetail 
+        (interviews), Python (NLP, analysis), SQL/BigQuery (aggregations), Jira (implementation tracking), Productboard 
+        (roadmap), Amplitude (impact measurement), Looker (dashboards), Chart.js (visualization). All synthetic data and 
+        analysis created by Lexi Barry for portfolio purposes only.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="gradient-bg text-white py-10">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="mb-3 text-2xl font-bold">Lexi Barry</p>
+      <p class="text-blue-100 mb-4">Product-Minded Data Leader | Analytics & Business Intelligence</p>
+      <div class="flex justify-center gap-6 mb-6 text-sm">
+        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-200 transition">📧 lexi.barry@outlook.com</a>
+        <a href="https://linkedin.com/in/lexi-barry" class="hover:text-blue-200 transition">💼 LinkedIn</a>
+        <a href="https://github.com/lexibarry" class="hover:text-blue-200 transition">💻 GitHub</a>
+      </div>
+      <div class="max-w-3xl mx-auto text-xs text-blue-100 space-y-2 leading-relaxed">
+        <p><strong>Confidentiality & Disclaimer:</strong> All datasets, analyses, visualizations, feedback data, and 
+        product improvements featured in this dashboard are <strong>100% synthetic and fictional</strong>. VitalMetrics 
+        Pro+ does not exist. All customer conversations, support tickets, and sentiment data are created by Lexi Barry 
+        for portfolio demonstration purposes only. No employer, client, or real customer data is used. This showcases 
+        feedback loop methodology, not real product operations.</p>
+        <p><strong>License:</strong> MIT License — Feel free to reuse this structure with attribution.</p>
+      </div>
+      <p class="mt-6 text-xs text-blue-200">© 2025 Lexi Barry — Data Analytics Portfolio</p>
+    </div>
+  </footer>
+
+  <script>
+    // Generate synthetic feedback data
+    const weeks = ['Wk1','Wk2','Wk3','Wk4','Wk5','Wk6','Wk7','Wk8','Wk9','Wk10','Wk11','Wk12'];
+    
+    const channelData = {
+      labels: weeks,
+      support: [287, 412, 385, 298, 245, 189, 164, 145, 132, 118, 105, 98],
+      reviews: [45, 78, 102, 89, 134, 156, 98, 67, 42, 23, 8, 5],
+      surveys: [12, 28, 45, 67, 89, 78, 65, 54, 38, 25, 15, 5],
+      interviews: [2, 4, 5, 6, 5, 4, 5, 4, 3, 4, 2, 1]
+    };
+
+    const sentimentData = {
+      labels: weeks,
+      positive: [25, 22, 20, 28, 35, 45, 52, 58, 62, 65, 67, 68],
+      neutral: [28, 30, 32, 32, 31, 30, 28, 26, 24, 21, 20, 20],
+      negative: [47, 48, 48, 40, 34, 25, 20, 16, 14, 14, 13, 12]
+    };
+
+    const issuesData = {
+      labels: ['Sync Reliability', 'Battery Drain', 'Silent Alarm Missing', 'Sleep Score Confusing', 'App Performance', 'Size Fit Issues', 'HR Accuracy', 'Notification Spam'],
+      mentions: [847, 623, 512, 398, 287, 156, 134, 89],
+      status: ['Fixed', 'Fixed', 'Fixed', 'Fixed', 'Fixed', 'Backlog', 'In Progress', 'Backlog']
+    };
+
+    let channelChart, sentimentChart, issuesChart;
+
+    function updateCharts() {
+      // Channel volume chart
+      if (channelChart) channelChart.destroy();
+      const channelCtx = document.getElementById('channelChart').getContext('2d');
+      channelChart = new Chart(channelCtx, {
+        type: 'line',
+        data: {
+          labels: channelData.labels,
+          datasets: [
+            {
+              label: 'Support Tickets',
+              data: channelData.support,
+              borderColor: '#ef4444',
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              fill: true
+            },
+            {
+              label: 'App Reviews',
+              data: channelData.reviews,
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              fill: true
+            },
+            {
+              label: 'Surveys',
+              data: channelData.surveys,
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: false
+            },
+            {
+              label: 'User Interviews',
+              data: channelData.interviews,
+              borderColor: '#a855f7',
+              backgroundColor: 'rgba(168, 85, 247, 0.1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Customer Feedback Volume by Channel (Weekly)',
+              font: { size: 16, weight: 'bold' },
+              padding: { bottom: 20 }
+            },
+            legend: { position: 'top', labels: { font: { size: 13 }, padding: 12 } },
+            datalabels: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Number of Feedback Items', font: { size: 14, weight: 'bold' } },
+              ticks: { font: { size: 11 } }
+            },
+            x: {
+              title: { display: true, text: 'Weeks Post-Launch', font: { size: 14, weight: 'bold' } },
+              ticks: { font: { size: 11 } }
+            }
+          }
+        }
+      });
+
+      // Sentiment chart
+      if (sentimentChart) sentimentChart.destroy();
+      const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+      sentimentChart = new Chart(sentimentCtx, {
+        type: 'bar',
+        data: {
+          labels: sentimentData.labels,
+          datasets: [
+            {
+              label: 'Positive',
+              data: sentimentData.positive,
+              backgroundColor: '#10b981',
+              borderRadius: 6
+            },
+            {
+              label: 'Neutral',
+              data: sentimentData.neutral,
+              backgroundColor: '#9ca3af',
+              borderRadius: 6
+            },
+            {
+              label: 'Negative',
+              data: sentimentData.negative,
+              backgroundColor: '#ef4444',
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Customer Sentiment Distribution Over Time (%)',
+              font: { size: 16, weight: 'bold' },
+              padding: { bottom: 20 }
+            },
+            legend: { position: 'top', labels: { font: { size: 13 }, padding: 12 } },
+            datalabels: { display: false }
+          },
+          scales: {
+            x: {
+              stacked: true,
+              title: { display: true, text: 'Weeks Post-Launch', font: { size: 14, weight: 'bold' } },
+              ticks: { font: { size: 11 } }
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+              max: 100,
+              title: { display: true, text: 'Percentage of Feedback (%)', font: { size: 14, weight: 'bold' } },
+              ticks: { callback: v => v + '%', font: { size: 11 } }
+            }
+          }
+        }
+      });
+
+      // Issues chart
+      if (issuesChart) issuesChart.destroy();
+      const issuesCtx = document.getElementById('issuesChart').getContext('2d');
+      issuesChart = new Chart(issuesCtx, {
+        type: 'bar',
+        data: {
+          labels: issuesData.labels,
+          datasets: [{
+            label: 'Number of Mentions',
+            data: issuesData.mentions,
+            backgroundColor: issuesData.status.map(s => 
+              s === 'Fixed' ? '#10b981' : s === 'In Progress' ? '#f59e0b' : '#9ca3af'
+            ),
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Top Customer Issues by Mention Frequency',
+              font: { size: 16, weight: 'bold' },
+              padding: { bottom: 20 }
+            },
+            legend: { display: false },
+            datalabels: {
+              anchor: 'end',
+              align: 'end',
+              color: '#166534',
+              font: { size: 11, weight: 'bold' },
+              formatter: function(value, context) {
+                const status = issuesData.status[context.dataIndex];
+                return value + ' (' + status + ')';
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              title: { display: true, text: 'Number of Customer Mentions', font: { size: 14, weight: 'bold' } },
+              ticks: { font: { size: 11 } }
+            },
+            y: {
+              ticks: { font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      Chart.register(ChartDataLabels);
+      updateCharts();
+    });
+  </script>
 </body>
 </html>
