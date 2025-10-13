@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lexi Barry | Product-Minded Data Leader</title>
+  <meta name="description" content="Dashboards, code, presentation, and patents by Lexi Barry. Synthetic data only." />
   <link rel="icon" href="assets/images/dashboard-previews/saas-user-adoption.png" />
-  <meta name="description" content="Dashboards, code, and presentation by Lexi Barry. Synthetic data only." />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Analytics (hidden via base64) -->
+  <!-- Hidden Google Analytics (base64) -->
   <script>
     (function(){
       const GA_B64 = "Ry1CVExNNkdQMzBZSA=="; // base64 of G-BTL6GP30YH
@@ -23,9 +23,10 @@
   </script>
 
   <style>
-    .nav-link { padding: .5rem 1rem; border-radius:.5rem; }
-    .nav-link:hover { background: #e0e7ff; }
-    .active { background: #c7d2fe; }
+    .nav-link { padding:.5rem 1rem; border-radius:.5rem }
+    .nav-link:hover { background:#e0e7ff }
+    .active { background:#c7d2fe }
+    .card { box-shadow: 0 10px 20px rgba(0,0,0,.06); }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -39,6 +40,7 @@
         <a href="presentations/saas-retention-strategy.html" class="nav-link">Presentation</a>
         <a href="#code" class="nav-link">Python Code</a>
         <a href="private/" class="nav-link">Private Decks</a>
+        <a href="patents.html" class="nav-link">Patents & Publications</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
@@ -46,22 +48,26 @@
 
   <!-- HERO -->
   <header class="text-center py-12 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-    <h1 class="text-4xl font-bold mb-3">Product-Minded Data Leader</h1>
-    <p class="text-lg max-w-2xl mx-auto">I turn data into strategy and storytelling that drives growth. Explore my interactive dashboards, code, and executive narrative.</p>
+    <h1 class="text-4xl font-bold mb-2">Lexi Barry — Product-Minded Data Leader</h1>
+    <p class="italic text-blue-100 mb-4">“I have no special talent. I am only passionately curious.” — Albert Einstein</p>
+    <p class="text-lg max-w-3xl mx-auto">
+      I turn complex analytics into clear, actionable stories that drive product strategy and growth.
+      My work blends marketing insight, experimentation, and behavioral psychology to inspire decisions and create user impact.
+    </p>
   </header>
 
   <!-- SUMMARY -->
   <section class="max-w-4xl mx-auto px-6 my-10">
     <h2 class="text-2xl font-bold text-indigo-700 mb-3">Summary</h2>
     <p class="leading-relaxed text-gray-700">
-      This portfolio features six interactive, web-based dashboards, a Reveal.js executive presentation,
-      and Python code samples for experimentation and pipelines. All content uses <b>synthetic data</b>
-      created by me to demonstrate product analytics, A/B testing, and data storytelling—never employer datasets.
+      I’m a product-minded data professional who builds dashboards, frameworks, and experiments that make
+      strategy obvious. This portfolio showcases six interactive, web-based dashboards, an executive HTML presentation,
+      and Python code samples used for cohort analysis, A/B testing, and KPI pipelines. All content uses <b>synthetic data</b> I created.
     </p>
   </section>
 
   <!-- DASHBOARDS -->
-  <section id="dashboards" class="max-w-6xl mx-auto bg-white rounded-xl shadow p-8 my-10">
+  <section id="dashboards" class="max-w-6xl mx-auto bg-white rounded-xl card p-8 my-10">
     <h2 class="text-2xl font-semibold text-blue-700 mb-4 text-center">🚀 Live Dashboards</h2>
     <div class="overflow-x-auto">
       <table class="min-w-full border border-gray-200 text-sm">
@@ -74,8 +80,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="hover:bg-gray-50"><td class="p-3">1</td><td class="p-3 font-semibold">SaaS User Adoption</td><td class="p-3">Growth, retention, and adoption</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/saas-user-adoption.html">View</a></td></tr>
-          <tr class="hover:bg-gray-50"><td class="p-3">2</td><td class="p-3 font-semibold">Voice of User (NPS)</td><td class="p-3">NPS trend & response mix</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/voice-of-user.html">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">1</td><td class="p-3 font-semibold">SaaS User Adoption</td><td class="p-3">Growth, retention, feature adoption</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/saas-user-adoption.html">View</a></td></tr>
+          <tr class="hover:bg-gray-50"><td class="p-3">2</td><td class="p-3 font-semibold">Voice of User (NPS)</td><td class="p-3">NPS trends & response mix</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/voice-of-user.html">View</a></td></tr>
           <tr class="hover:bg-gray-50"><td class="p-3">3</td><td class="p-3 font-semibold">GTM Readiness</td><td class="p-3">Cross-functional launch tracking</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/gtm-readiness.html">View</a></td></tr>
           <tr class="hover:bg-gray-50"><td class="p-3">4</td><td class="p-3 font-semibold">A/B Test Results</td><td class="p-3">Lift, p-values & decisions</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/ab-test-results.html">View</a></td></tr>
           <tr class="hover:bg-gray-50"><td class="p-3">5</td><td class="p-3 font-semibold">Product Conversations</td><td class="p-3">Topics & sentiment by channel</td><td class="p-3"><a class="text-blue-600 hover:underline" href="dashboards/product-conversations.html">View</a></td></tr>
@@ -86,35 +92,33 @@
   </section>
 
   <!-- PRESENTATION CTA -->
-  <section class="max-w-4xl mx-auto bg-white rounded-xl shadow p-8 my-10 text-center">
+  <section class="max-w-4xl mx-auto bg-white rounded-xl card p-8 my-10 text-center">
     <h2 class="text-2xl font-semibold text-blue-700 mb-2">Executive Presentation</h2>
     <p class="text-gray-600 mb-6">Problem → Data → Solution → Implementation → Metrics</p>
     <a href="presentations/saas-retention-strategy.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700">View HTML Deck</a>
   </section>
 
   <!-- CODE -->
-  <section id="code" class="max-w-4xl mx-auto bg-white rounded-xl shadow p-8 my-10">
+  <section id="code" class="max-w-4xl mx-auto bg-white rounded-xl card p-8 my-10">
     <h2 class="text-2xl font-semibold text-blue-700 mb-3">Python Code Samples</h2>
     <ul class="space-y-2 text-gray-700">
       <li><b>cohort_analysis.py</b> — Cohort retention & LTV (<a class="text-blue-600 hover:underline" href="code/cohort_analysis.py">View</a>)</li>
       <li><b>ab_test_framework.py</b> — Two-proportion z-tests & CIs (<a class="text-blue-600 hover:underline" href="code/ab_test_framework.py">View</a>)</li>
-      <li><b>metrics_pipeline.py</b> — ETL + KPI pipeline (<a class="text-blue-600 hover:underline" href="code/metrics_pipeline.py">View</a>)</li>
+      <li><b>metrics_pipeline.py</b> — ETL & KPI pipeline (<a class="text-blue-600 hover:underline" href="code/metrics_pipeline.py">View</a>)</li>
     </ul>
   </section>
 
-  <!-- CONFIDENTIALITY + MIT -->
-  <section class="max-w-5xl mx-auto bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg shadow my-10">
-    <p class="text-sm text-amber-900">
-      <b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.
-      <br/><b>License:</b> MIT License — you may reuse this structure with attribution.
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <footer id="contact" class="bg-gray-900 text-white text-center py-8">
-    <p class="mb-2">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a></p>
-    <p class="text-sm">LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> | GitHub: <a class="underline" href="https://github.com/lexibarry">github.com/lexibarry</a></p>
-    <p class="mt-4 text-xs text-gray-400">© 2025 Lexi Barry — Product-Minded Data Leader</p>
+  <!-- FOOTER -->
+  <footer id="contact" class="bg-gray-900 text-white text-center py-8 mt-12">
+    <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
+    <p class="text-sm">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
+       LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> |
+       GitHub: <a href="https://github.com/lexibarry" class="underline">github.com/lexibarry</a></p>
+    <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
+      <p><b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.</p>
+      <p><b>License:</b> MIT License — you may reuse this structure with attribution.</p>
+    </div>
+    <p class="mt-4 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
   </footer>
 </body>
 </html>
