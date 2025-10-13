@@ -1,84 +1,736 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Category Performance (CPG) | Lexi Barry</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Category Performance (CPG) | Lexi Barry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #4169E1 0%, #5B7FE8 100%); }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,0.1); }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-<div class="max-w-7xl mx-auto p-4"><a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">← Return to Home</a></div>
-<div id="root"></div>
 
-<script type="module">
-  import React from 'https://esm.sh/react@18';
-  import { createRoot } from 'https://esm.sh/react-dom@18/client';
-  import * as Recharts from 'https://esm.sh/recharts@2.12.5';
-  import htm from 'https://unpkg.com/htm?module';
-  const html = htm.bind(React.createElement);
-  const { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } = Recharts;
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto p-4">
+    <a href="../index.html" class="inline-block bg-white text-blue-600 px-5 py-2 rounded-lg shadow hover:shadow-md transition-all font-medium">
+      ← Back to Portfolio
+    </a>
+  </div>
 
-  function makeData(){
-    const cats=['Beverages','Snacks','Personal Care','Household','Baby','Pet'];
-    return cats.map((c,i)=>({category:c, sales:Math.round(1200+Math.random()*600*i), growth:+(2.5+i*0.8+Math.random()*1.5).toFixed(1), margin:+(18+i*0.9+Math.random()*1.3).toFixed(1)}));
-  }
-
-  const Card = ({label,value}) => html`
-    <div class="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
-      <p class="text-sm text-gray-600">${label}</p>
-      <p class="text-2xl font-bold">${value}</p>
+  <!-- Hero Section -->
+  <div class="gradient-bg text-white py-12 mb-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-4xl font-bold mb-3">🏷️ CPG Category Management Analysis</h1>
+      <p class="text-xl text-blue-100 mb-2">Optimizing Assortment, Pricing, Promotion & Shelf Strategy</p>
+      <p class="text-sm text-blue-200 italic">"The consumer is boss." – A.G. Lafley, Former CEO of Procter & Gamble</p>
     </div>
-  `;
+  </div>
 
-  function App(){
-    const data = makeData();
-    const leader = data.reduce((a,b)=> a.sales>b.sales?a:b).category;
-    const bestMargin = data.reduce((a,b)=> a.margin>b.margin?a:b).margin + '%';
+  <div class="max-w-7xl mx-auto px-6 pb-12">
+    
+    <!-- Business Question -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-blue-600">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Business Question</h2>
+      <p class="text-lg text-gray-700 leading-relaxed mb-4">
+        How should we manage our product categories to maximize profitability and shopper satisfaction? Which 
+        categories need more shelf space, deeper promotional investment, or assortment optimization?
+      </p>
+      <p class="text-gray-700 leading-relaxed">
+        Category management is the strategic approach to organizing and optimizing product groups. Using the 8-step 
+        category management process, we analyze performance across multiple dimensions to make data-driven decisions 
+        about assortment, pricing, promotion, and merchandising.
+      </p>
+    </div>
 
-    return html`
-      <div class="max-w-7xl mx-auto p-6">
-        <h1 class="text-3xl font-bold text-indigo-700 mb-2">🏷️ Category Performance (CPG)</h1>
-        <p class="text-gray-600 mb-6">Sales, growth, and margin by category (synthetic).</p>
+    <!-- The 8-Step Category Management Process -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📋 The 8-Step Category Management Process</h2>
+      <p class="text-gray-700 mb-6">
+        Industry-standard framework used by retailers and CPG manufacturers (ECR, Nielsen methodology):
+      </p>
+      
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-bold text-sm mb-2">STEP 1-2</div>
+          <h3 class="font-semibold text-gray-800 text-sm mb-2">Define & Assign Role</h3>
+          <p class="text-xs text-gray-600">Categorize products, assign strategic role (Destination, Routine, Convenience, Seasonal)</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-bold text-sm mb-2">STEP 3-4</div>
+          <h3 class="font-semibold text-gray-800 text-sm mb-2">Assess & Scorecard</h3>
+          <p class="text-xs text-gray-600">Analyze performance metrics: sales, margin, velocity, market share, promotion efficiency</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-bold text-sm mb-2">STEP 5-6</div>
+          <h3 class="font-semibold text-gray-800 text-sm mb-2">Strategies & Tactics</h3>
+          <p class="text-xs text-gray-600">Apply 4Ps: Product (assortment), Price, Place (shelf), Promotion</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-bold text-sm mb-2">STEP 7-8</div>
+          <h3 class="font-semibold text-gray-800 text-sm mb-2">Implement & Review</h3>
+          <p class="text-xs text-gray-600">Execute changes, measure impact, iterate on learnings</p>
+        </div>
+      </div>
+    </div>
 
-        <!-- Main Takeaways -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          ${html`<${Card} label="Sales Leader" value=${leader} />`}
-          ${html`<${Card} label="Best Margin" value=${bestMargin} />`}
-          ${html`<${Card} label="Growth Focus" value="Snacks & Personal Care" />`}
+    <!-- Key CPG Metrics -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Key Category Performance Metrics</h2>
+      <p class="text-gray-700 mb-6">
+        Real CPG metrics used by retailers and manufacturers to evaluate category health:
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border-l-4 border-blue-500 pl-4 bg-blue-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">💰 Sales Revenue</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> Total dollar volume sold in the category
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> Determines category importance to overall store revenue. High-sales 
+            categories get priority in shelf space allocation and promotional calendars.
+          </p>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-5">
-          <h3 class="font-semibold mb-3">Sales, Growth, Margin by Category</h3>
-          ${html`<${ResponsiveContainer} width="100%" height=${340}>
-            <${BarChart} data=${data}>
-              <${CartesianGrid} strokeDasharray="3 3" />
-              <${XAxis} dataKey="category" /><${YAxis} />
-              <${Tooltip} /><${Legend} />
-              <${Bar} dataKey="sales" fill="#3b82f6" />
-              <${Bar} dataKey="growth" fill="#22c55e" />
-              <${Bar} dataKey="margin" fill="#a855f7" />
-            <//>
-          <//>`}
-          <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
-            <b>Insight:</b> Beverages lead revenue, while margin opportunities cluster in Personal Care.
-            Direct promo and pricing experiments where growth and margin intersect.
+        <div class="border-l-4 border-green-500 pl-4 bg-green-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">📦 Unit Velocity</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> Units sold per store per week
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> THE most important CPG metric. Shows product movement rate. Velocity 
+            &lt;1 unit/store/week = consider discontinuation. Velocity &gt;5 = increase facings.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-purple-500 pl-4 bg-purple-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">🎯 Market Share</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> % of total category sales your products capture
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> Indicates competitive position. Track share gains/losses to understand 
+            if growth is from category expansion or stealing share from competitors.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-yellow-500 pl-4 bg-yellow-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">🏷️ Promotional Lift</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> % sales increase during promotion vs baseline
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> Measures promo efficiency. Lift &lt;20% = weak promo. 20-50% = good. 
+            &gt;50% = strong response. Must exceed cost of discount + display.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">💵 Gross Margin %</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> (Sales - COGS) / Sales
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> Profitability metric. Must balance with velocity—high margin but slow 
+            velocity ties up shelf space. Target: 20-30% for branded, 30-40% for private label.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 bg-blue-50 p-4 rounded-r-lg">
+          <h3 class="font-semibold text-gray-800 mb-2">💰 GMROI</h3>
+          <p class="text-sm text-gray-700 mb-1">
+            <strong>Definition:</strong> Gross Margin Return on Inventory Investment
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Why it matters:</strong> (Gross Margin $ / Avg Inventory Cost). Shows profitability per dollar 
+            invested in inventory. GMROI &gt;150% = healthy. Used for shelf space allocation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Role Framework -->
+    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-amber-500">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Category Role Strategy Framework</h2>
+      <p class="text-gray-700 mb-6">
+        The industry-standard approach to categorizing products by strategic role (not the BCG matrix):
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-5 shadow">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🎯</span>
+            <h3 class="font-semibold text-gray-800">Destination Categories</h3>
           </div>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Categories shoppers make special trips for. Must-win categories that drive 
+            store choice.
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Examples:</strong> Fresh produce, meat/seafood, pharmacy (drugstores), diapers (for parents)
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Strategy:</strong> Maximize selection, competitive pricing, high in-stock, prominent placement. 
+            Willing to sacrifice margin for traffic.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🔄</span>
+            <h3 class="font-semibold text-gray-800">Routine Categories</h3>
+          </div>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Regular, frequent purchases. Basket builders that drive frequency.
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Examples:</strong> Beverages, snacks, bread, milk, eggs, household cleaners
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Strategy:</strong> Balance assortment with space efficiency. Optimize for velocity and margin. 
+            Use promotions to drive traffic during slow periods.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">🎄</span>
+            <h3 class="font-semibold text-gray-800">Seasonal/Occasional</h3>
+          </div>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Holiday or event-driven purchases with predictable spikes.
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Examples:</strong> Halloween candy, BBQ supplies (summer), cold/flu (winter), school supplies
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Strategy:</strong> Heavy promotion during season, minimal off-season presence. Maximize margin 
+            during peak. Use end-caps and displays.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">⚡</span>
+            <h3 class="font-semibold text-gray-800">Convenience/Fill-in</h3>
+          </div>
+          <p class="text-sm text-gray-700 mb-2">
+            <strong>Definition:</strong> Low-frequency impulse or emergency purchases. Not planned.
+          </p>
+          <p class="text-xs text-gray-600 mb-2">
+            <strong>Examples:</strong> Batteries, greeting cards, first aid, travel-size items, checkout candy
+          </p>
+          <p class="text-xs text-gray-600">
+            <strong>Strategy:</strong> Premium pricing (low elasticity), minimal facings, strategic placement 
+            (checkout, end-caps). Focus on high-margin items.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Performance -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Category Performance Dashboard</h2>
+      <p class="text-gray-600 mb-4">Key metrics across our six major product categories:</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-blue-100 text-sm font-medium mb-1">Total Sales</p>
+          <p id="kpi-sales" class="text-3xl font-bold mb-2">$0M</p>
+          <p class="text-xs text-blue-100">Combined category revenue</p>
+        </div>
+        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-green-100 text-sm font-medium mb-1">Avg Velocity</p>
+          <p id="kpi-velocity" class="text-3xl font-bold mb-2">0</p>
+          <p class="text-xs text-green-100">Units/store/week</p>
+        </div>
+        <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-yellow-100 text-sm font-medium mb-1">Promo Efficiency</p>
+          <p id="kpi-promo" class="text-3xl font-bold mb-2">0%</p>
+          <p class="text-xs text-yellow-100">Avg promotional lift</p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-blue-100 text-sm font-medium mb-1">Portfolio Margin</p>
+          <p id="kpi-margin" class="text-3xl font-bold mb-2">0%</p>
+          <p class="text-xs text-blue-100">Weighted avg gross margin</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Table -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Category Scorecard</h3>
+      <p class="text-sm text-gray-600 mb-6">Comprehensive performance metrics by category</p>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead>
+            <tr class="bg-blue-50 text-blue-700">
+              <th class="p-3 text-left font-semibold">Category</th>
+              <th class="p-3 text-left font-semibold">Sales ($K)</th>
+              <th class="p-3 text-left font-semibold">Velocity</th>
+              <th class="p-3 text-left font-semibold">Market Share</th>
+              <th class="p-3 text-left font-semibold">Promo Lift</th>
+              <th class="p-3 text-left font-semibold">Margin %</th>
+              <th class="p-3 text-left font-semibold">Role</th>
+            </tr>
+          </thead>
+          <tbody id="category-table">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Visualizations -->
+    <div class="space-y-8 mb-8">
+      <!-- Sales & Velocity -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sales vs Unit Velocity</h3>
+        <p class="text-sm text-gray-600 mb-6">Balancing revenue size with product movement efficiency</p>
+        <div style="height: 360px;">
+          <canvas id="salesVelocityChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 What This Tells Us:</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            Beverages dominate in dollar sales but have moderate velocity (3.2 units/store/week). Snacks show the 
+            best velocity (4.8), indicating fast inventory turns. Categories with velocity &lt;2.0 need assortment 
+            rationalization to free up shelf space for faster-moving SKUs.
+          </p>
         </div>
       </div>
 
-      <!-- Footer -->
-      <footer class="bg-gray-900 text-white text-center py-8 mt-12">
-        <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
-        <p class="text-sm">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
-          LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> |
-          GitHub: <a href="https://github.com/lexibarry" class="underline">github.com/lexibarry</a></p>
-        <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
-          <p><b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.</p>
-          <p><b>License:</b> MIT License — you may reuse this structure with attribution.</p>
+      <!-- Promotion Efficiency -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Promotional Lift by Category</h3>
+        <p class="text-sm text-gray-600 mb-6">Which categories respond best to promotional investment</p>
+        <div style="height: 360px;">
+          <canvas id="promoChart"></canvas>
         </div>
-        <p class="mt-4 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
-      </footer>
-    `;
-  }
+        <div class="mt-6 bg-green-50 border-l-4 border-green-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-green-900 mb-2">💡 What This Tells Us:</p>
+          <p class="text-sm text-green-800 leading-relaxed">
+            Snacks and Beverages show the highest promotional lift (38-42%), making them ideal for weekly feature ads 
+            and TPRs (Temporary Price Reductions). Personal Care has lower lift (28%), suggesting less price sensitivity—
+            focus on brand building over discounting. Pet shows moderate lift, indicating loyal customers willing to pay 
+            premium prices.
+          </p>
+        </div>
+      </div>
+    </div>
 
-  createRoot(document.getElementById('root')).render(html`<${App} />`);
-</script>
-</body></html>
+    <!-- The 4Ps Framework -->
+    <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-teal-500">
+      <h2 class="text-2xl font-bold text-gray-800 mb-3">🎯 The 4Ps of Category Management</h2>
+      <p class="text-gray-700 mb-6">
+        Tactical levers category managers use to optimize performance:
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">📦</span> Product (Assortment)
+          </h3>
+          <p class="text-sm text-gray-700 mb-2"><strong>What it is:</strong> SKU selection and variety depth</p>
+          <ul class="text-xs text-gray-600 space-y-1 ml-4">
+            <li>• SKU rationalization: Cut SKUs with velocity &lt;1 unit/store/week</li>
+            <li>• Add premium/natural variants in growing segments</li>
+            <li>• Private label penetration targets (25-35% of category)</li>
+            <li>• Manage brand portfolio: national brands, regional, private label</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">💰</span> Price
+          </h3>
+          <p class="text-sm text-gray-700 mb-2"><strong>What it is:</strong> Everyday pricing and promotional pricing strategy</p>
+          <ul class="text-xs text-gray-600 space-y-1 ml-4">
+            <li>• Price elasticity analysis: test 5-10% price changes</li>
+            <li>• Competitive price positioning vs market basket</li>
+            <li>• Hi-Lo vs EDLP (Everyday Low Price) strategy by category</li>
+            <li>• Promotional calendar: depth of discount, frequency, timing</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">📍</span> Place (Merchandising)
+          </h3>
+          <p class="text-sm text-gray-700 mb-2"><strong>What it is:</strong> Shelf placement and space allocation</p>
+          <ul class="text-xs text-gray-600 space-y-1 ml-4">
+            <li>• Planogram optimization: allocate facings based on velocity × margin</li>
+            <li>• Eye-level = buy level: premium placement for high-margin SKUs</li>
+            <li>• Cross-merchandising: place complementary items together</li>
+            <li>• Secondary placements: end-caps, displays, checkout</li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">🎁</span> Promotion
+          </h3>
+          <p class="text-sm text-gray-700 mb-2"><strong>What it is:</strong> Advertising, features, displays, TPRs</p>
+          <ul class="text-xs text-gray-600 space-y-1 ml-4">
+            <li>• TPR (Temporary Price Reduction): BOGO, $1 off, % discounts</li>
+            <li>• Feature ads: weekly circular, digital coupons</li>
+            <li>• Display effectiveness: end-cap lift 200-400%</li>
+            <li>• Measure incremental volume vs baseline to calculate ROI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-3">🚀 Category Management Recommendations</h2>
+      <p class="text-sm text-gray-600 mb-6">Data-driven tactics to optimize the 4Ps</p>
+      
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">1. Beverages: Launch Private Label Program</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Expected ROI: 180%</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Insight:</strong> Beverages are high-volume (3.2 velocity) but low-margin (18.3%). Private label 
+            can capture 300-500bps margin improvement.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• <strong>Product:</strong> Launch store brand in sparkling water, iced tea, juice (10-12 SKUs)</li>
+            <li>• <strong>Price:</strong> Price 15-20% below national brands (Coke, Pepsi, Snapple)</li>
+            <li>• <strong>Place:</strong> Eye-level placement next to national brands</li>
+            <li>• <strong>Promotion:</strong> Intro TPR at 2/$5 for first 8 weeks, then EDLP</li>
+            <li>• <strong>Target:</strong> 12% category share, +$85K margin annually</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-green-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">2. Snacks: Optimize Promotional Calendar</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Expected ROI: 145%</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Insight:</strong> Snacks show 42% promotional lift—highest responsiveness. Increase promo frequency 
+            to capitalize on price elasticity.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• <strong>Product:</strong> Focus promos on salty snacks, chips (highest lift sub-segment)</li>
+            <li>• <strong>Price:</strong> Test 2/$6 BOGO vs 20% off—measure which drives more units</li>
+            <li>• <strong>Place:</strong> Add end-cap displays during promo weeks (200-300% lift)</li>
+            <li>• <strong>Promotion:</strong> Increase from 4 to 8 promo events/quarter, stagger brands</li>
+            <li>• <strong>Target:</strong> +6% category sales, maintain margin through volume</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-yellow-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">3. Household: SKU Rationalization</h3>
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">Expected ROI: 120%</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Insight:</strong> Household has lowest velocity (1.8) with bloated assortment. Cut slow movers, 
+            reallocate space to Pet/Personal Care.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• <strong>Product:</strong> Discontinue 25-30 SKUs with velocity &lt;0.5 units/store/week</li>
+            <li>• <strong>Price:</strong> Maintain competitive pricing on staples (laundry, paper towels)</li>
+            <li>• <strong>Place:</strong> Reduce shelf space by 20%, reallocate to Pet (+15%) and Personal Care (+5%)</li>
+            <li>• <strong>Promotion:</strong> Reduce promo frequency (low lift = inefficient spend)</li>
+            <li>• <strong>Target:</strong> Neutral sales, free up 32 linear feet for higher-velocity categories</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-blue-700 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">4. Pet: Premium Assortment Expansion</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Expected ROI: 210%</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Insight:</strong> Pet shows highest margin (23.1%) and moderate velocity (2.7). Capitalize on 
+            premiumization trend with natural/grain-free products.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• <strong>Product:</strong> Add 15-20 premium/natural SKUs (Blue Buffalo, Wellness, Open Farm)</li>
+            <li>• <strong>Price:</strong> Price 30-40% above mass brands (low elasticity for pet owners)</li>
+            <li>• <strong>Place:</strong> Create premium section within Pet, increase linear footage by 25%</li>
+            <li>• <strong>Promotion:</strong> Minimal TPRs—use loyalty rewards, not discounts</li>
+            <li>• <strong>Target:</strong> +$120K sales, 25%+ margin, attract new high-value shoppers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
+    <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 mb-8">
+      <h2 class="text-2xl font-bold mb-6">🎯 Key Takeaways</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-5">
+          <div class="text-3xl mb-2">📊</div>
+          <h3 class="font-semibold mb-2">Category Performance</h3>
+          <ul class="text-sm space-y-2 text-blue-50">
+            <li>• Snacks lead in velocity (4.8 units/store/week) and promo response (42% lift)</li>
+            <li>• Beverages dominate sales but need margin improvement via private label</li>
+            <li>• Pet shows premium potential: high margin, low price sensitivity</li>
+            <li>• Household needs SKU rationalization to improve space productivity</li>
+          </ul>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-5">
+          <div class="text-3xl mb-2">🎯</div>
+          <h3 class="font-semibold mb-2">Strategic Priorities</h3>
+          <ul class="text-sm space-y-2 text-blue-50">
+            <li>• Apply 4Ps framework: optimize Product, Price, Place, Promotion</li>
+            <li>• Focus on velocity × margin optimization, not just sales volume</li>
+            <li>• Increase promo frequency where lift &gt;35% (Snacks, Beverages)</li>
+            <li>• Reallocate shelf space based on GMROI and velocity thresholds</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-6 bg-white/10 backdrop-blur rounded-xl p-5">
+        <p class="text-sm leading-relaxed">
+          <strong>Bottom Line:</strong> Using the 8-step category management process and 4Ps framework, we've identified 
+          clear opportunities to drive +$205K incremental margin through private label launches, promotional optimization, 
+          assortment rationalization, and strategic space reallocation. These are proven CPG tactics with measurable ROI.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="gradient-bg text-white py-10">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <p class="mb-3 text-2xl font-bold">Lexi Barry</p>
+      <p class="text-blue-100 mb-4">Product-Minded Data Leader | Analytics & Business Intelligence</p>
+      <div class="flex justify-center gap-6 mb-6 text-sm">
+        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-200 transition">📧 lexi.barry@outlook.com</a>
+        <a href="https://linkedin.com/in/lexi-barry" class="hover:text-blue-200 transition">💼 LinkedIn</a>
+        <a href="https://github.com/lexibarry" class="hover:text-blue-200 transition">💻 GitHub</a>
+      </div>
+      <div class="max-w-3xl mx-auto text-xs text-blue-100 space-y-2 leading-relaxed">
+        <p><strong>Confidentiality:</strong> All datasets, analyses, and visualizations are synthetic and created by Lexi Barry for portfolio demonstration purposes. No employer or client data is used.</p>
+        <p><strong>License:</strong> MIT License — Feel free to reuse this structure with attribution.</p>
+      </div>
+      <p class="mt-6 text-xs text-blue-200">© 2025 Lexi Barry — Data Analytics Portfolio</p>
+    </div>
+  </footer>
+
+  <script>
+    // Generate realistic CPG category data
+    function generateCategoryData() {
+      return [
+        { 
+          category: 'Beverages', 
+          sales: 3425, 
+          velocity: 3.2, 
+          marketShare: 24.5, 
+          promoLift: 38, 
+          margin: 18.3,
+          role: 'Routine'
+        },
+        { 
+          category: 'Snacks', 
+          sales: 2890, 
+          velocity: 4.8, 
+          marketShare: 19.2, 
+          promoLift: 42, 
+          margin: 20.7,
+          role: 'Routine'
+        },
+        { 
+          category: 'Personal Care', 
+          sales: 2340, 
+          velocity: 2.4, 
+          marketShare: 16.8, 
+          promoLift: 28, 
+          margin: 21.4,
+          role: 'Destination'
+        },
+        { 
+          category: 'Household', 
+          sales: 2150, 
+          velocity: 1.8, 
+          marketShare: 15.3, 
+          promoLift: 25, 
+          margin: 19.8,
+          role: 'Routine'
+        },
+        { 
+          category: 'Baby', 
+          sales: 1680, 
+          velocity: 2.1, 
+          marketShare: 12.4, 
+          promoLift: 35, 
+          margin: 22.3,
+          role: 'Destination'
+        },
+        { 
+          category: 'Pet', 
+          sales: 1520, 
+          velocity: 2.7, 
+          marketShare: 11.8, 
+          promoLift: 32, 
+          margin: 23.1,
+          role: 'Destination'
+        }
+      ];
+    }
+
+    const categoryData = generateCategoryData();
+    let salesVelocityChart, promoChart;
+
+    function populateKPIs() {
+      const totalSales = categoryData.reduce((sum, cat) => sum + cat.sales, 0);
+      const avgVelocity = (categoryData.reduce((sum, cat) => sum + cat.velocity, 0) / categoryData.length).toFixed(1);
+      const avgPromo = (categoryData.reduce((sum, cat) => sum + cat.promoLift, 0) / categoryData.length).toFixed(0);
+      const weightedMargin = (categoryData.reduce((sum, cat) => sum + (cat.margin * cat.sales), 0) / totalSales).toFixed(1);
+
+      document.getElementById('kpi-sales').textContent = '$' + (totalSales / 1000).toFixed(1) + 'M';
+      document.getElementById('kpi-velocity').textContent = avgVelocity;
+      document.getElementById('kpi-promo').textContent = '+' + avgPromo + '%';
+      document.getElementById('kpi-margin').textContent = weightedMargin + '%';
+    }
+
+    function getRoleBadge(role) {
+      const badges = {
+        'Destination': 'bg-blue-100 text-blue-800',
+        'Routine': 'bg-green-100 text-green-800',
+        'Seasonal': 'bg-yellow-100 text-yellow-800',
+        'Convenience': 'bg-purple-100 text-purple-800'
+      };
+      return badges[role] || 'bg-gray-100 text-gray-800';
+    }
+
+    function populateTable() {
+      const tbody = document.getElementById('category-table');
+      tbody.innerHTML = categoryData.map(cat => `
+        <tr class="border-t hover:bg-gray-50">
+          <td class="p-3 font-medium">${cat.category}</td>
+          <td class="p-3 text-gray-700">$${cat.sales.toLocaleString()}</td>
+          <td class="p-3 font-semibold ${cat.velocity >= 3 ? 'text-green-600' : cat.velocity >= 2 ? 'text-yellow-600' : 'text-red-600'}">${cat.velocity}</td>
+          <td class="p-3 text-gray-700">${cat.marketShare}%</td>
+          <td class="p-3 font-semibold ${cat.promoLift >= 35 ? 'text-green-600' : 'text-gray-700'}">+${cat.promoLift}%</td>
+          <td class="p-3 font-semibold ${cat.margin >= 22 ? 'text-green-600' : 'text-gray-700'}">${cat.margin}%</td>
+          <td class="p-3"><span class="px-3 py-1 rounded-full text-xs font-semibold ${getRoleBadge(cat.role)}">${cat.role}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function createSalesVelocityChart() {
+      Chart.register(ChartDataLabels);
+      
+      const ctx = document.getElementById('salesVelocityChart').getContext('2d');
+      salesVelocityChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categoryData.map(c => c.category),
+          datasets: [
+            {
+              label: 'Sales ($K)',
+              data: categoryData.map(c => c.sales),
+              backgroundColor: '#3B82F6',
+              borderRadius: 6,
+              yAxisID: 'y',
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#1E40AF',
+                font: { size: 10, weight: 'bold' },
+                formatter: (value) => '$' + (value / 1000).toFixed(1) + 'M'
+              }
+            },
+            {
+              label: 'Velocity (units/store/wk)',
+              data: categoryData.map(c => c.velocity),
+              backgroundColor: '#10B981',
+              borderRadius: 6,
+              yAxisID: 'y1',
+              datalabels: {
+                anchor: 'end',
+                align: 'top',
+                color: '#065F46',
+                font: { size: 10, weight: 'bold' },
+                formatter: (value) => value.toFixed(1)
+              }
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 12 } } },
+            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)' }
+          },
+          scales: {
+            y: {
+              type: 'linear',
+              position: 'left',
+              title: { display: true, text: 'Sales ($K)' },
+              ticks: { font: { size: 11 } }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              title: { display: true, text: 'Velocity' },
+              ticks: { font: { size: 11 } },
+              grid: { drawOnChartArea: false }
+            },
+            x: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    function createPromoChart() {
+      const ctx = document.getElementById('promoChart').getContext('2d');
+      promoChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: categoryData.map(c => c.category),
+          datasets: [{
+            label: 'Promotional Lift %',
+            data: categoryData.map(c => c.promoLift),
+            backgroundColor: categoryData.map(c => c.promoLift >= 35 ? '#10B981' : c.promoLift >= 30 ? '#F59E0B' : '#EF4444'),
+            borderRadius: 6,
+            datalabels: {
+              anchor: 'end',
+              align: 'top',
+              color: '#1F2937',
+              font: { size: 11, weight: 'bold' },
+              formatter: (value) => '+' + value + '%'
+            }
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { backgroundColor: 'rgba(0,0,0,0.8)' }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: { display: true, text: 'Promotional Lift %' },
+              ticks: { font: { size: 12 } }
+            },
+            x: { ticks: { font: { size: 12 } } }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      populateKPIs();
+      populateTable();
+      createSalesVelocityChart();
+      createPromoChart();
+    });
+  </script>
+</body>
+</html>
