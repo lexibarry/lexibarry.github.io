@@ -1,144 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VitalMetrics Premium — Retention & Growth Strategy | Lexi Barry</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-    :root {
-      --brand1:#3b82f6; /* blue-500 */
-      --brand2:#1e3a8a; /* indigo-900 */
-      --ink:#111827;    /* gray-900 */
-      --sub:#6b7280;    /* gray-500 */
-      --ok:#16a34a;     /* green-600 */
-      --warn:#f59e0b;   /* amber-500 */
-      --alert:#dc2626;  /* red-600 */
-    }
-    body { font-family:'Inter',sans-serif; color:var(--ink); background:#f9fafb; scroll-behavior:smooth; }
-    .slide { min-height:100svh; display:flex; align-items:center; justify-content:center; padding:3rem 1rem; scroll-snap-align:start; }
-    .slides { scroll-snap-type:y mandatory; }
-    .hero { background:linear-gradient(135deg, var(--brand1), var(--brand2)); color:white; }
-    .cap { color:#e5e7eb; font-size:.9rem; letter-spacing:.02em; }
-    .card { background:white; border-radius:1rem; box-shadow:0 10px 30px rgba(0,0,0,.08); }
-    .card-tight { padding:1rem 1.25rem; }
-    .kpi { border-radius:.75rem; background:#fff; padding:1rem 1.25rem; box-shadow:0 6px 18px rgba(0,0,0,.06); }
-    .foot { font-size:.75rem; color:var(--sub); margin-top:1rem; text-align:center; }
-    .tag { display:inline-block; padding:.35rem .6rem; background:#eff6ff; color:#1e40af; border-radius:.5rem; font-weight:600; font-size:.75rem; }
-    .badge { display:inline-flex; align-items:center; gap:.4rem; padding:.4rem .6rem; border-radius:.5rem; font-size:.75rem; font-weight:600; }
-    .b-ok{ background:#ecfdf5; color:#065f46; }
-    .b-warn{ background:#fffbeb; color:#92400e; }
-    .b-alert{ background:#fef2f2; color:#991b1b; }
-    .proto-tile{ background:linear-gradient(180deg,#ffffff, #f8fafc); border:1px solid #e5e7eb; border-radius:.75rem; height:80px; }
-    .proto-metric{ background:white; border:1px solid #e5e7eb; border-radius:.75rem; padding:.75rem; text-align:center; }
-    .callout{ background:#eef2ff; border-left:4px solid #4338ca; border-radius:.75rem; padding:1rem 1.25rem; }
-    @media (min-width: 1024px) {
-      .container-xl{ max-width: 1024px; margin:0 auto; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VitalMetrics Premium — Product & Growth Strategy | Lexi Barry</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- html2pdf for download -->
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  :root{
+    --ink:#111827; /* gray-900 */
+    --sub:#4b5563; /* gray-600 */
+    --muted:#6b7280; /* gray-500 */
+    --accent:#4338ca; /* indigo-700 */
+    --accent-2:#3b82f6; /* blue-500 */
+    --ok:#16a34a; --warn:#f59e0b; --alert:#dc2626;
+  }
+  html,body{font-family:'Inter',sans-serif;color:var(--ink);background:#f5f7fb;}
+  .deck {scroll-snap-type:y proximity;}
+  .slide {scroll-snap-align:start; min-height:100svh; display:flex; align-items:center; padding:2.5rem 1rem;}
+  .slide-card{background:#fff;border:1px solid #e5e7eb;border-radius:1.25rem;box-shadow:0 10px 30px rgba(2,6,23,.07);padding:2rem;}
+  .slide-num{position:absolute;right:1rem;top:1rem;font-size:.8rem;color:var(--muted);}
+  .kpi{border:1px solid #e5e7eb;border-radius:.75rem;padding:1rem;text-align:center;background:#fff}
+  .callout{background:#eef2ff;border-left:4px solid var(--accent);border-radius:.75rem;padding:1rem;}
+  .badge{display:inline-flex;gap:.4rem;align-items:center;border-radius:.5rem;padding:.35rem .6rem;font-weight:600;font-size:.75rem}
+  .b-ok{background:#ecfdf5;color:#065f46}.b-warn{background:#fffbeb;color:#92400e}.b-alert{background:#fef2f2;color:#991b1b}
+  .navbtn{background:#111827;color:#fff;border-radius:.75rem;padding:.6rem .85rem;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+  .section-title{color:#1e293b}
+  .foot{font-size:.75rem;color:#6b7280;margin-top:1rem;text-align:center}
+  .proto-tile{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid #e5e7eb;border-radius:.75rem}
+  .t-small{font-size:.85rem;color:var(--muted)}
+  .logo-dot{background:linear-gradient(135deg,#93c5fd,#4338ca);width:38px;height:38px;border-radius:999px}
+  @media (min-width:1024px){.container-xl{max-width:1024px;margin:0 auto}}
+</style>
 </head>
 <body>
 
-  <!-- SLIDE 1: TITLE -->
-  <section class="slide hero">
-    <div class="container-xl text-center px-4">
-      <!-- Simple Logo (SVG wordmark + heartbeat) -->
-      <div class="mx-auto mb-6 flex items-center justify-center gap-3">
-        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#93c5fd"/><stop offset="1" stop-color="#1e3a8a"/>
-            </linearGradient>
-          </defs>
-          <circle cx="32" cy="32" r="30" stroke="url(#g)" stroke-width="3" fill="none"/>
-          <path d="M10 34h8l4-8 6 16 4-8h12l10-6" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="text-left">
-          <div class="text-2xl font-extrabold tracking-tight">VitalMetrics <span class="opacity-90">Premium</span></div>
-          <div class="cap">Wellness Analytics Suite</div>
-        </div>
+<!-- Top controls -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+    <div class="flex items-center gap-3">
+      <div class="logo-dot"></div>
+      <div>
+        <div class="font-extrabold tracking-tight">VitalMetrics Premium</div>
+        <div class="t-small">Wellness Analytics — Product & Growth Strategy</div>
       </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="btnPrev" class="navbtn" title="Previous (←)">←</button>
+      <button id="btnNext" class="navbtn" title="Next (→)">→</button>
+      <button id="btnDownload" class="navbtn bg-indigo-700" title="Download PDF">Download PDF</button>
+      <a href="/index.html" class="navbtn bg-white text-indigo-700 border border-indigo-200">Back</a>
+    </div>
+  </div>
+</header>
 
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Retention & Growth Strategy</h1>
-      <p class="mt-3 text-lg md:text-xl text-blue-100">Connecting my dashboards into a single product narrative that answers business questions and drives action.</p>
-      <p class="mt-6 text-sm text-blue-200">Prepared by <strong>Lexi Barry</strong> — Data Product Manager & Analytics Leader</p>
-      <div class="foot">
-        Note: VitalMetrics Premium is a fictional product for this portfolio. All data are synthetic. Period: Jan–Jun 2025. Tools: Python, SQL, Power BI, Tableau, HTML/CSS/JS.
+<main id="deck" class="deck">
+
+  <!-- SLIDE 1: Title -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 1 of 13</div>
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center gap-3 mb-2">
+            <div class="logo-dot"></div>
+            <h1 class="text-3xl md:text-4xl font-extrabold">VitalMetrics Premium</h1>
+          </div>
+          <p class="text-lg text-slate-600">Retention & Growth Strategy — Connecting Dashboards → Decisions</p>
+          <p class="t-small mt-1">Prepared by <b>Lexi Barry</b> — Data Product Manager & Analytics Leader</p>
+        </div>
+        <div class="foot">© 2025 Lexi Barry™ · MIT License · All data are synthetic for demonstration purposes only.</div>
       </div>
     </div>
   </section>
 
-  <main class="slides">
-
-    <!-- SLIDE 2: AGENDA -->
-    <section class="slide">
-      <div class="container-xl px-4 text-center">
-        <h2 class="text-3xl font-bold text-indigo-900 mb-6">Agenda</h2>
-        <div class="grid md:grid-cols-2 gap-4 text-left max-w-3xl mx-auto">
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">1) Context & Business Question</h3>
-            <p class="text-sm text-gray-600">What we’re solving and why it matters.</p>
+  <!-- SLIDE 2: Agenda -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 2 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4">Agenda</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="callout">
+            <b>1) Context & Business Question</b><br><span class="t-small">What we’re solving and why it matters</span>
           </div>
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">2) Current Performance</h3>
-            <p class="text-sm text-gray-600">Where we stand today (retention, churn, NPS).</p>
+          <div class="callout">
+            <b>2) Current Performance</b><br><span class="t-small">Where we stand (retention, churn, NPS)</span>
           </div>
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">3) Drivers & Insights</h3>
-            <p class="text-sm text-gray-600">What the data say across the dashboards I built.</p>
+          <div class="callout">
+            <b>3) Drivers & Insights</b><br><span class="t-small">What the data say across dashboards I built</span>
           </div>
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">4) Opportunities & Experiments</h3>
-            <p class="text-sm text-gray-600">Hypotheses, tests, and expected impact.</p>
+          <div class="callout">
+            <b>4) Experiments & Evidence</b><br><span class="t-small">A/B results and decisions</span>
           </div>
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">5) Recommendations & Roadmap</h3>
-            <p class="text-sm text-gray-600">Near-term actions and ownership.</p>
+          <div class="callout">
+            <b>5) Recommendations & Roadmap</b><br><span class="t-small">Near-term actions and ownership</span>
           </div>
-          <div class="card card-tight">
-            <h3 class="font-semibold mb-2">6) Success Metrics & Next Steps</h3>
-            <p class="text-sm text-gray-600">How we’ll measure progress.</p>
+          <div class="callout">
+            <b>6) Success Metrics</b><br><span class="t-small">How we’ll measure progress</span>
           </div>
         </div>
-        <div class="foot">This deck explicitly connects my dashboards into an executive product story.</div>
+        <div class="foot">This deck explicitly ties my dashboards into a single PM narrative.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 3: CONTEXT & BUSINESS QUESTION -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">Context & Business Question</h2>
-        <p class="text-lg text-center max-w-3xl mx-auto">VitalMetrics Premium is a wellness analytics add-on that unifies <strong>fitness</strong>, <strong>nutrition</strong>, and <strong>mindfulness</strong> insights. Our goal is to <strong>increase 90-day retention by 15%</strong> this quarter while improving member satisfaction.</p>
-        <div class="grid md:grid-cols-3 gap-4 mt-8">
+  <!-- SLIDE 3: Context & Business Question -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 3 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-3">Context & Business Question</h2>
+        <p class="text-slate-700 mb-4">
+          VitalMetrics Premium unifies <b>fitness</b>, <b>nutrition</b>, and <b>mindfulness</b> insights. Our goal is to
+          increase <b>90-day retention by 15%</b> this quarter while improving member satisfaction and ARPU.
+        </p>
+        <div class="grid md:grid-cols-3 gap-4">
           <div class="callout">
-            <div class="font-semibold">Dashboards I built →</div>
-            <ul class="text-sm text-gray-800 list-disc list-inside">
-              <li><a href="/dashboards/saas-user-adoption.html" class="underline">SaaS User Adoption</a></li>
-              <li><a href="/dashboards/voice-of-user.html" class="underline">NPS / Voice of User</a></li>
-              <li><a href="/dashboards/gtm-readiness.html" class="underline">GTM Readiness</a></li>
-              <li><a href="/dashboards/ab-test-results.html" class="underline">A/B Test Results</a></li>
-              <li><a href="/dashboards/product-conversation.html" class="underline">Product Conversation</a></li>
-              <li><a href="/dashboards/category-performance.html" class="underline">Category Performance</a></li>
+            <b>Dashboards I built</b>
+            <ul class="list-disc list-inside t-small mt-1">
+              <li>SaaS User Adoption</li>
+              <li>Voice of User (NPS)</li>
+              <li>GTM Readiness</li>
+              <li>A/B Test Results</li>
+              <li>Product Conversation</li>
+              <li>Category Performance</li>
             </ul>
           </div>
           <div class="callout">
-            <div class="font-semibold">PM Story →</div>
-            <p class="text-sm">I’m connecting these dashboards into a single narrative that answers the business question and translates analytics into product decisions.</p>
+            <b>PM Framing</b>
+            <p class="t-small mt-1">AARRR funnel + HEART signals guide our focus on <b>Activation → Retention</b>.</p>
           </div>
           <div class="callout">
-            <div class="font-semibold">Target →</div>
-            <p class="text-sm">+15% 90-day retention, +10 NPS, +8% ARPU via Premium bundling and cross-feature engagement.</p>
+            <b>Targets</b>
+            <ul class="list-disc list-inside t-small mt-1">
+              <li>+15 pts D90 retention</li>
+              <li>+10 NPS</li>
+              <li>+8% ARPU through Premium</li>
+            </ul>
           </div>
         </div>
-        <div class="foot">Synthetic data representing Jan–Jun 2025. Tools: Python/SQL, Power BI, Tableau.</div>
+        <div class="foot">Synthetic data, Jan–Jun 2025. Tools: Python, SQL, Tableau/Power BI, HTML/JS.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 4: WHERE WE STAND (KPIs) -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-6 text-center">Where We Stand</h2>
+  <!-- SLIDE 4: Where We Stand -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 4 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-6 text-center">Where We Stand</h2>
         <div class="grid md:grid-cols-4 gap-4 max-w-4xl mx-auto">
           <div class="kpi">
             <div class="text-xs uppercase text-gray-500">Active Subscribers</div>
@@ -148,7 +162,7 @@
           <div class="kpi">
             <div class="text-xs uppercase text-gray-500">90-Day Retention</div>
             <div class="text-3xl font-extrabold">68%</div>
-            <div class="badge b-warn mt-2">-3 pts vs. target</div>
+            <div class="badge b-warn mt-2">-3 pts vs target</div>
           </div>
           <div class="kpi">
             <div class="text-xs uppercase text-gray-500">Monthly Churn</div>
@@ -158,314 +172,283 @@
           <div class="kpi">
             <div class="text-xs uppercase text-gray-500">NPS</div>
             <div class="text-3xl font-extrabold">+56</div>
-            <div class="badge b-ok mt-2">+4 vs. last month</div>
+            <div class="badge b-ok mt-2">+4 MoM</div>
           </div>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4">KPI snapshot sourced from my SaaS Adoption and NPS dashboards.</p>
-        <div class="foot">Period: Jan–Jun 2025 • Tools: Power BI, Tableau, Python • Data synthetic for demo</div>
+        <p class="t-small text-center mt-3">Sourced from my SaaS Adoption & NPS dashboards.</p>
+        <div class="foot">Period: Jan–Jun 2025 · Data are synthetic · Methods mirror production practices.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 5: COHORT RETENTION (SVG CHART + CALLOUTS) -->
-    <section class="slide">
-      <div class="container-xl px-4 text-center">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-3">Cohort Retention (Jan–Jun)</h2>
-        <p class="text-gray-600 mb-4">Multi-feature users (fitness+nutrition+mindfulness) retain significantly longer than single-feature users.</p>
-        <div class="card p-6 max-w-3xl mx-auto">
-          <svg viewBox="0 0 620 300" class="w-full h-auto">
-            <!-- axes -->
-            <line x1="60" y1="20" x2="60" y2="260" stroke="#e5e7eb" />
-            <line x1="60" y1="260" x2="580" y2="260" stroke="#e5e7eb" />
-            <!-- single-feature bars -->
-            <rect x="100" y="180" width="60" height="80" fill="#93c5fd"/>
-            <rect x="200" y="200" width="60" height="60" fill="#60a5fa"/>
-            <rect x="300" y="210" width="60" height="50" fill="#3b82f6"/>
-            <!-- multi-feature bars -->
-            <rect x="140" y="120" width="60" height="140" fill="#a7f3d0"/>
-            <rect x="240" y="110" width="60" height="150" fill="#34d399"/>
-            <rect x="340" y="95"  width="60" height="165" fill="#10b981"/>
-            <!-- labels -->
-            <text x="105" y="280" font-size="12" fill="#374151">D30</text>
-            <text x="205" y="280" font-size="12" fill="#374151">D60</text>
-            <text x="305" y="280" font-size="12" fill="#374151">D90</text>
-            <text x="410" y="60" font-size="12" fill="#111827" font-weight="700">+22 pts</text>
-            <!-- callout line -->
-            <line x1="370" y1="95" x2="430" y2="70" stroke="#10b981" stroke-width="3"/>
-          </svg>
-          <div class="grid md:grid-cols-2 gap-3 text-left mt-4">
-            <div class="callout">
-              <div class="font-semibold">Insight</div>
-              <p class="text-sm">Users engaging with ≥2 features show +22 point higher D90 retention vs single-feature users.</p>
-            </div>
-            <div class="callout">
-              <div class="font-semibold">Action</div>
-              <p class="text-sm">Prioritize cross-feature onboarding & nudges to convert single-feature users to multi-feature habits.</p>
+  <!-- SLIDE 5: Cohort Retention Chart -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 5 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-2 text-center">Cohort Retention — Multi-Feature Wins</h2>
+        <p class="t-small text-center mb-4 text-slate-700">Multi-feature users (fitness+nutrition+mindfulness) retain significantly longer than single-feature users.</p>
+        <div class="max-w-3xl mx-auto">
+          <div class="bg-white border border-gray-200 rounded-xl p-4">
+            <!-- Accessible SVG bar pairs -->
+            <svg viewBox="0 0 620 300" class="w-full h-auto" role="img" aria-label="D30, D60, D90 retention for single vs multi-feature users">
+              <desc>Green bars show multi-feature; blue bars show single-feature retention.</desc>
+              <line x1="60" y1="20" x2="60" y2="260" stroke="#e5e7eb"/>
+              <line x1="60" y1="260" x2="580" y2="260" stroke="#e5e7eb"/>
+              <!-- single-feature -->
+              <rect x="120" y="190" width="60" height="70" fill="#93c5fd"/>
+              <rect x="260" y="205" width="60" height="55" fill="#60a5fa"/>
+              <rect x="400" y="220" width="60" height="40" fill="#3b82f6"/>
+              <!-- multi-feature -->
+              <rect x="180" y="140" width="60" height="120" fill="#34d399"/>
+              <rect x="320" y="130" width="60" height="130" fill="#10b981"/>
+              <rect x="460" y="115" width="60" height="145" fill="#059669"/>
+              <!-- labels -->
+              <text x="135" y="280" font-size="12" fill="#374151">D30</text>
+              <text x="275" y="280" font-size="12" fill="#374151">D60</text>
+              <text x="415" y="280" font-size="12" fill="#374151">D90</text>
+              <text x="470" y="95" font-size="12" fill="#111827" font-weight="700">+22 pts</text>
+              <line x1="490" y1="115" x2="540" y2="95" stroke="#059669" stroke-width="3"/>
+            </svg>
+            <div class="grid md:grid-cols-2 gap-3 mt-4">
+              <div class="callout"><b>Insight:</b> +22pt lift at D90 for multi-feature cohorts.</div>
+              <div class="callout"><b>Action:</b> Cross-feature onboarding & nudges in first 14 days.</div>
             </div>
           </div>
         </div>
-        <div class="foot">Derived from my Cohort Retention analysis (SaaS Adoption dashboard). Period: Jan–Jun 2025.</div>
+        <div class="foot">Derived from my Cohort/Adoption dashboard.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 6: ADOPTION FUNNEL (from SaaS Adoption) -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">Activation & Adoption Funnel</h2>
-        <p class="text-center text-gray-600 mb-6">Funnel shows drop-off at “Connect Wearable” and “Complete Week 1 Plan”.</p>
-        <div class="max-w-3xl mx-auto card p-6">
+  <!-- SLIDE 6: Activation Funnel -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 6 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-2 text-center">Activation Funnel — Friction Points</h2>
+        <p class="t-small text-center mb-4">Drop-offs at “Connect Wearable” and “Complete Week-1 Plan”.</p>
+        <div class="max-w-3xl mx-auto">
           <div class="grid md:grid-cols-5 gap-3 text-center">
-            <div class="proto-metric">
-              <div class="text-xs text-gray-500 uppercase">Sign-Up</div>
-              <div class="text-2xl font-extrabold">100%</div>
-            </div>
-            <div class="proto-metric">
-              <div class="text-xs text-gray-500 uppercase">Onboard</div>
-              <div class="text-2xl font-extrabold">86%</div>
-            </div>
-            <div class="proto-metric">
-              <div class="text-xs text-gray-500 uppercase">Connect Wearable</div>
-              <div class="text-2xl font-extrabold text-amber-600">62%</div>
-            </div>
-            <div class="proto-metric">
-              <div class="text-xs text-gray-500 uppercase">Complete W1 Plan</div>
-              <div class="text-2xl font-extrabold text-amber-600">48%</div>
-            </div>
-            <div class="proto-metric">
-              <div class="text-xs text-gray-500 uppercase">Repeat Weekly</div>
-              <div class="text-2xl font-extrabold text-green-600">41%</div>
-            </div>
+            <div class="kpi"><div class="text-xs text-gray-500 uppercase">Sign-Up</div><div class="text-2xl font-extrabold">100%</div></div>
+            <div class="kpi"><div class="text-xs text-gray-500 uppercase">Onboard</div><div class="text-2xl font-extrabold">86%</div></div>
+            <div class="kpi"><div class="text-xs text-gray-500 uppercase">Connect Wearable</div><div class="text-2xl font-extrabold text-amber-600">62%</div></div>
+            <div class="kpi"><div class="text-xs text-gray-500 uppercase">Complete W1</div><div class="text-2xl font-extrabold text-amber-600">48%</div></div>
+            <div class="kpi"><div class="text-xs text-gray-500 uppercase">Repeat Weekly</div><div class="text-2xl font-extrabold text-green-600">41%</div></div>
           </div>
-          <p class="text-sm text-gray-600 mt-3">Opportunity: smooth wearable connection UX and tighter “Week-1 Value Realization”.</p>
+          <p class="t-small mt-3 text-center">Opportunity: smoother wearable OAuth + Week-1 Value plan.</p>
         </div>
-        <div class="foot">Source: my SaaS User Adoption dashboard. Synthetic demo data (Jan–Jun 2025).</div>
+        <div class="foot">Source: my SaaS Adoption dashboard.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 7: NPS / VOICE OF USER -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">Voice of User (NPS Themes)</h2>
+  <!-- SLIDE 7: NPS / Voice of User -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 7 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-2 text-center">Voice of User — NPS Themes</h2>
         <div class="grid md:grid-cols-3 gap-4">
-          <div class="card p-5">
-            <div class="tag mb-2">Promoters (+56)</div>
-            <ul class="text-sm text-gray-700 space-y-2">
-              <li>“Personalized plans keep me engaged.”</li>
-              <li>“Mindfulness streaks help daily consistency.”</li>
-              <li>“Nutrition tips feel practical.”</li>
-            </ul>
-          </div>
-          <div class="card p-5">
-            <div class="tag mb-2">Passives</div>
-            <ul class="text-sm text-gray-700 space-y-2">
-              <li>“Setup took longer than expected.”</li>
-              <li>“Unsure which feature to start with.”</li>
-            </ul>
-          </div>
-          <div class="card p-5">
-            <div class="tag mb-2">Detractors</div>
-            <ul class="text-sm text-gray-700 space-y-2">
-              <li>“Wearable connection failed twice.”</li>
-              <li>“Plans feel generic at first.”</li>
-            </ul>
-          </div>
+          <div class="callout"><b>Promoters (+56):</b><br><span class="t-small">“Personalized plans keep me engaged.”</span></div>
+          <div class="callout"><b>Passives:</b><br><span class="t-small">“Setup took longer than expected.”</span></div>
+          <div class="callout"><b>Detractors:</b><br><span class="t-small">“Wearable connection failed twice.”</span></div>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4">Actions: streamline setup, clarify “first-week path,” add smart defaults.</p>
-        <div class="foot">Source: my Voice-of-User/NPS dashboard. Tools: Text mining in Python + Tableau visuals.</div>
+        <p class="t-small text-center mt-4">Actions: streamline setup, clarify “first-week path,” add smart defaults.</p>
+        <div class="foot">Source: my NPS/Voice-of-User dashboard with text mining.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 8: EXPERIMENTS (A/B RESULTS) -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-5 text-center">Experiments & Evidence</h2>
-        <div class="overflow-x-auto card p-4">
-          <table class="w-full text-sm">
-            <thead>
+  <!-- SLIDE 8: Experiments -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 8 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4 text-center">Experiments & Evidence</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm border border-gray-200 rounded-md">
+            <thead class="bg-gray-50">
               <tr class="text-left text-gray-600 border-b">
-                <th class="py-2">Experiment</th>
-                <th class="py-2">Variant</th>
-                <th class="py-2">Primary Metric</th>
-                <th class="py-2">Uplift</th>
-                <th class="py-2">Decision</th>
+                <th class="p-3">Experiment</th><th class="p-3">Variant</th><th class="p-3">Primary Metric</th><th class="p-3">Uplift</th><th class="p-3">Decision</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="border-b">
-                <td class="py-3">Onboarding Path</td>
-                <td>Guided (vs. default)</td>
-                <td>D14 Retention</td>
-                <td><span class="badge b-ok">+7.8%</span></td>
-                <td><span class="badge b-ok">Ship</span></td>
-              </tr>
-              <tr class="border-b">
-                <td class="py-3">Wearable Connect UX</td>
-                <td>One-tap OAuth</td>
-                <td>Connect Rate</td>
-                <td><span class="badge b-ok">+12.4%</span></td>
-                <td><span class="badge b-ok">Ship</span></td>
+            <tbody class="divide-y">
+              <tr>
+                <td class="p-3">Onboarding Path</td><td class="p-3">Guided vs Default</td><td class="p-3">D14 Retention</td>
+                <td class="p-3"><span class="badge b-ok">+7.8%</span></td><td class="p-3"><span class="badge b-ok">Ship</span></td>
               </tr>
               <tr>
-                <td class="py-3">Mindfulness Streaks</td>
-                <td>Streak nudges</td>
-                <td>Weekly Sessions</td>
-                <td><span class="badge b-warn">+3.1%</span></td>
-                <td><span class="badge b-warn">Iterate</span></td>
+                <td class="p-3">Wearable Connect</td><td class="p-3">One-tap OAuth</td><td class="p-3">Connect Rate</td>
+                <td class="p-3"><span class="badge b-ok">+12.4%</span></td><td class="p-3"><span class="badge b-ok">Ship</span></td>
+              </tr>
+              <tr>
+                <td class="p-3">Mindfulness Streaks</td><td class="p-3">Nudges</td><td class="p-3">Weekly Sessions</td>
+                <td class="p-3"><span class="badge b-warn">+3.1%</span></td><td class="p-3"><span class="badge b-warn">Iterate</span></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4">Source: my A/B Test Results dashboard. Stats: two-proportion tests, 95% CI, MDE pre-calculated.</p>
-        <div class="foot">Synthetic experiments for demo; methods mirror production standards.</div>
+        <p class="t-small text-center mt-3">Stats: two-proportion tests, 95% CI, MDE pre-set. Source: my A/B Results dashboard.</p>
+        <div class="foot">Synthetic experiments for demo; decisions mirror production rigor.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 9: PRODUCT PROTOTYPE MOCK -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">VitalMetrics — Premium Overview (Prototype)</h2>
+  <!-- SLIDE 9: Prototype Mock -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 9 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4 text-center">Premium Overview — Prototype</h2>
         <div class="grid md:grid-cols-3 gap-4">
           <div class="proto-tile p-4 col-span-2">
             <div class="text-sm text-gray-600 mb-2">Dashboard</div>
             <div class="grid grid-cols-3 gap-3">
-              <div class="proto-metric">
-                <div class="text-xs text-gray-500 uppercase">Retention D90</div>
-                <div class="text-xl font-extrabold text-green-600">+68%</div>
-              </div>
-              <div class="proto-metric">
-                <div class="text-xs text-gray-500 uppercase">NPS</div>
-                <div class="text-xl font-extrabold">+56</div>
-              </div>
-              <div class="proto-metric">
-                <div class="text-xs text-gray-500 uppercase">ARPU</div>
-                <div class="text-xl font-extrabold">$14.20</div>
-              </div>
+              <div class="kpi"><div class="text-xs text-gray-500 uppercase">Retention D90</div><div class="text-xl font-extrabold text-green-600">68%</div></div>
+              <div class="kpi"><div class="text-xs text-gray-500 uppercase">NPS</div><div class="text-xl font-extrabold">+56</div></div>
+              <div class="kpi"><div class="text-xs text-gray-500 uppercase">ARPU</div><div class="text-xl font-extrabold">$14.20</div></div>
             </div>
           </div>
           <div class="proto-tile p-4">
-            <div class="text-sm text-gray-600 mb-2">Next Best Action</div>
+            <div class="text-sm text-gray-600 mb-2">Next Best Actions</div>
             <ul class="text-sm text-gray-700 space-y-1">
               <li>• Connect wearable</li>
               <li>• Complete Week-1 plan</li>
-              <li>• Try mindfulness session</li>
+              <li>• Try a mindfulness session</li>
             </ul>
           </div>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4">Concept mock designed in-code to show the intended Premium surface.</p>
-        <div class="foot">Design language aligned to site; built with HTML/CSS/Tailwind (no images).</div>
+        <div class="foot">Design language coded in Tailwind; concept only.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 10: OPPORTUNITIES & IDEAS -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">Opportunities & Product Ideas</h2>
+  <!-- SLIDE 10: Opportunities -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 10 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4 text-center">Opportunities</h2>
         <div class="grid md:grid-cols-2 gap-4">
-          <div class="card p-5">
-            <h3 class="font-semibold mb-2">1) Cross-Feature Onboarding</h3>
-            <p class="text-sm text-gray-700">Drive users from single-feature to multi-feature habits in first 14 days.</p>
-            <div class="badge b-ok mt-3">High Impact</div>
-          </div>
-          <div class="card p-5">
-            <h3 class="font-semibold mb-2">2) One-Tap Wearable Connect</h3>
-            <p class="text-sm text-gray-700">OAuth consolidations, better error handling to raise connect rate.</p>
-            <div class="badge b-ok mt-3">High Impact</div>
-          </div>
-          <div class="card p-5">
-            <h3 class="font-semibold mb-2">3) Week-1 Value Plan</h3>
-            <p class="text-sm text-gray-700">Auto-generated plan with smart defaults; reduce time-to-value.</p>
-            <div class="badge b-warn mt-3">Med Impact</div>
-          </div>
-          <div class="card p-5">
-            <h3 class="font-semibold mb-2">4) Mindfulness Streaks 2.0</h3>
-            <p class="text-sm text-gray-700">Personalized streak goals + social proof to increase repeat sessions.</p>
-            <div class="badge b-warn mt-3">Med Impact</div>
-          </div>
+          <div class="callout"><b>Cross-Feature Onboarding</b><br><span class="t-small">Drive users to ≥2 features in first 14 days.</span></div>
+          <div class="callout"><b>One-Tap OAuth</b><br><span class="t-small">Consolidate providers + better error handling.</span></div>
+          <div class="callout"><b>Week-1 Value Plan</b><br><span class="t-small">Smart defaults, immediate value realization.</span></div>
+          <div class="callout"><b>Streaks 2.0</b><br><span class="t-small">Personalized streak goals + social proof.</span></div>
         </div>
         <div class="foot">Inputs from Adoption, NPS, and Conversation dashboards.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 11: RECOMMENDATIONS & ROADMAP -->
-    <section class="slide">
-      <div class="container-xl px-4">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4 text-center">Recommendations & Roadmap</h2>
+  <!-- SLIDE 11: Recommendations & Roadmap -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 11 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4 text-center">Recommendations & Roadmap</h2>
         <div class="grid md:grid-cols-3 gap-4">
-          <div class="card p-5">
-            <div class="text-xs uppercase text-gray-500 mb-1">Now (0–30d)</div>
-            <ul class="text-sm text-gray-700 space-y-1">
+          <div class="kpi text-left">
+            <div class="text-xs uppercase text-gray-500">Now (0–30d)</div>
+            <ul class="t-small mt-1">
               <li>• Ship Guided Onboarding</li>
               <li>• Launch One-Tap OAuth</li>
-              <li>• D14 retention KPI review weekly</li>
+              <li>• Weekly D14 KPI review</li>
             </ul>
           </div>
-          <div class="card p-5">
-            <div class="text-xs uppercase text-gray-500 mb-1">Next (30–60d)</div>
-            <ul class="text-sm text-gray-700 space-y-1">
+          <div class="kpi text-left">
+            <div class="text-xs uppercase text-gray-500">Next (30–60d)</div>
+            <ul class="t-small mt-1">
               <li>• Week-1 Value Plan pilot</li>
-              <li>• Mindfulness Streaks v2 test</li>
-              <li>• Premium bundle pricing A/B</li>
+              <li>• Streaks v2 A/B</li>
+              <li>• Premium bundle pricing test</li>
             </ul>
           </div>
-          <div class="card p-5">
-            <div class="text-xs uppercase text-gray-500 mb-1">Later (60–90d)</div>
-            <ul class="text-sm text-gray-700 space-y-1">
-              <li>• Expand cross-feature nudges</li>
-              <li>• Rollout winning price/pack</li>
-              <li>• Scale NLP feedback loop</li>
+          <div class="kpi text-left">
+            <div class="text-xs uppercase text-gray-500">Later (60–90d)</div>
+            <ul class="t-small mt-1">
+              <li>• Scale cross-feature nudges</li>
+              <li>• Roll out winning price/pack</li>
+              <li>• Expand NLP feedback loop</li>
             </ul>
           </div>
         </div>
-        <p class="text-center text-sm text-gray-600 mt-4">Ownership: PM (you), Design, Mobile, Data Science, Marketing Ops (GTM), Support.</p>
-        <div class="foot">Aligned with GTM Readiness dashboard milestones.</div>
+        <p class="t-small text-center mt-3">Owners: PM, Design, Mobile, Data Science, GTM, Support.</p>
+        <div class="foot">Aligned with GTM Readiness milestones.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 12: SUCCESS METRICS -->
-    <section class="slide">
-      <div class="container-xl px-4 text-center">
-        <h2 class="text-3xl font-extrabold text-indigo-900 mb-4">What Success Looks Like</h2>
+  <!-- SLIDE 12: Success Metrics -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 12 of 13</div>
+        <h2 class="text-2xl font-extrabold section-title mb-4 text-center">What Success Looks Like</h2>
         <div class="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          <div class="kpi">
-            <div class="text-xs uppercase text-gray-500">90-Day Retention</div>
-            <div class="text-3xl font-extrabold text-green-600">+15% pts</div>
-          </div>
-          <div class="kpi">
-            <div class="text-xs uppercase text-gray-500">NPS</div>
-            <div class="text-3xl font-extrabold">+10 pts</div>
-          </div>
-          <div class="kpi">
-            <div class="text-xs uppercase text-gray-500">ARPU</div>
-            <div class="text-3xl font-extrabold">+8%</div>
-          </div>
+          <div class="kpi"><div class="text-xs text-gray-500 uppercase">90-Day Retention</div><div class="text-3xl font-extrabold text-green-600">+15 pts</div></div>
+          <div class="kpi"><div class="text-xs text-gray-500 uppercase">NPS</div><div class="text-3xl font-extrabold">+10 pts</div></div>
+          <div class="kpi"><div class="text-xs text-gray-500 uppercase">ARPU</div><div class="text-3xl font-extrabold">+8%</div></div>
         </div>
-        <p class="text-sm text-gray-600 mt-4">Monitored via my dashboards + experiment read-outs in a weekly exec cadence.</p>
-        <div class="foot">KPIs roll up to Growth North Star: sustainable engagement & revenue.</div>
+        <p class="t-small text-center mt-3">Monitored via dashboards + weekly experiment readouts.</p>
+        <div class="foot">KPIs roll up to sustainable growth north star.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SLIDE 13: CLOSE -->
-    <section class="slide hero">
-      <div class="container-xl text-center px-4">
-        <h2 class="text-4xl font-extrabold">From Dashboards → Decisions</h2>
-        <p class="mt-3 text-blue-100 max-w-3xl mx-auto">I built these dashboards and this deck to demonstrate how I think like a Product Manager: 
-          <strong>use data to tell a story, answer the business question, and drive clear product action.</strong></p>
-        <div class="mt-6 flex items-center justify-center gap-3">
-          <a href="/dashboards/saas-user-adoption.html" class="tag">Adoption</a>
-          <a href="/dashboards/voice-of-user.html" class="tag">NPS</a>
-          <a href="/dashboards/gtm-readiness.html" class="tag">GTM</a>
-          <a href="/dashboards/ab-test-results.html" class="tag">A/B</a>
-          <a href="/dashboards/product-conversation.html" class="tag">Conversation</a>
-          <a href="/dashboards/category-performance.html" class="tag">Revenue</a>
+  <!-- SLIDE 13: Close -->
+  <section class="slide">
+    <div class="container-xl w-full relative">
+      <div class="slide-card">
+        <div class="slide-num">Slide 13 of 13</div>
+        <h2 class="text-2xl md:text-3xl font-extrabold section-title text-center mb-3">From Dashboards → Decisions</h2>
+        <p class="text-center text-slate-700 max-w-3xl mx-auto">
+          I built these dashboards and this deck to demonstrate **how I think like a PM**: connect data to a clear story,
+          answer the business question, and drive **actionable product decisions**.
+        </p>
+        <div class="text-center mt-6">
+          <a href="/index.html" class="inline-block bg-white text-indigo-700 border border-indigo-200 font-semibold py-3 px-6 rounded-lg hover:bg-indigo-50">← Back to Portfolio</a>
         </div>
-        <div class="foot">All visuals & data are synthetic. Period: Jan–Jun 2025. Tools: Python, SQL, Power BI, Tableau, HTML/CSS/JS.</div>
-        <div class="mt-6">
-          <a href="/index.html" class="inline-block bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-6 rounded-lg">
-            ← Back to Portfolio
-          </a>
-        </div>
+        <div class="foot">© 2025 Lexi Barry™ · MIT License · Synthetic data for demonstration.</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
+
+<script>
+  // slide navigation
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  function go(n){
+    i = Math.max(0, Math.min(slides.length-1, n));
+    slides[i].scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  document.getElementById('btnPrev').addEventListener('click', ()=>go(i-1));
+  document.getElementById('btnNext').addEventListener('click', ()=>go(i+1));
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='ArrowRight') go(i+1);
+    if(e.key==='ArrowLeft') go(i-1);
+  });
+  // sync i as you scroll
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ i = slides.indexOf(entry.target); }
+    });
+  },{threshold:.6});
+  slides.forEach(s=>obs.observe(s));
+
+  // download to PDF
+  document.getElementById('btnDownload').addEventListener('click', ()=>{
+    const opt = {
+      margin:       [0.5,0.5,0.5,0.5],
+      filename:     'VitalMetrics_Premium_LexiBarry_2025.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS:true, background:'#ffffff' },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(document.getElementById('deck')).save();
+  });
+</script>
 </body>
 </html>
