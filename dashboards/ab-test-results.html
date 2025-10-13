@@ -2,60 +2,96 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>A/B Test Results | Lexi Barry</title>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
-</head><body class="bg-gray-50"><div id="root"></div>
-<script type="text/babel">
-const {useMemo}=React;
-const {ResponsiveContainer,BarChart,Bar,XAxis,YAxis,CartesianGrid,Tooltip,Legend} = Recharts;
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div class="max-w-7xl mx-auto p-4"><a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">← Return to Home</a></div>
+<div id="root"></div>
 
-function makeData(){
-  const tests=['Header CTA','Pricing Copy','Onboarding Email','Search Tuning','Paywall'];
-  return tests.map((t,i)=>({
-    test:t, lift:+(Math.random()*8-1).toFixed(1), pvalue:+(0.01+Math.random()*0.08).toFixed(3), significant: i%2===0
-  }));
-}
+<script type="module">
+  import React from 'https://esm.sh/react@18';
+  import { createRoot } from 'https://esm.sh/react-dom@18/client';
+  import * as Recharts from 'https://esm.sh/recharts@2.12.5';
+  import htm from 'https://unpkg.com/htm?module';
+  const html = htm.bind(React.createElement);
+  const { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
-function App(){
-  const rows=useMemo(()=>makeData(),[]);
-  return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-indigo-700 mb-1">🧪 A/B Test Results</h1>
-      <p className="text-gray-600 mb-6">Lift, p-values, and recommendations (synthetic).</p>
+  function makeData(){
+    const tests=['Header CTA','Pricing Copy','Onboarding Email','Search Tuning','Paywall'];
+    return tests.map((t,i)=>({ test:t, lift:+(Math.random()*8-1).toFixed(1), pvalue:+(0.01+Math.random()*0.08).toFixed(3), significant: i%2===0 }));
+  }
 
-      <div className="bg-white rounded-xl shadow p-5 mb-6 overflow-x-auto">
-        <table className="min-w-full text-sm">
-          <thead><tr className="bg-indigo-50 text-indigo-700">
-            <th className="p-3 text-left">Test</th><th className="p-3 text-left">Lift %</th><th className="p-3 text-left">p-value</th><th className="p-3 text-left">Decision</th>
-          </tr></thead>
-          <tbody>
-            {rows.map(r=>(
-              <tr key={r.test} className="border-t">
-                <td className="p-3">{r.test}</td>
-                <td className="p-3">{r.lift}</td>
-                <td className="p-3">{r.pvalue}</td>
-                <td className="p-3">{r.significant ? '✅ Ship' : '⏳ Inconclusive'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="bg-white rounded-xl shadow p-5">
-        <h3 className="font-semibold mb-3">Lift Distribution</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={rows}><CartesianGrid strokeDasharray="3 3"/><XAxis dataKey="test"/><YAxis/><Tooltip/><Legend/>
-            <Bar dataKey="lift" name="Lift %" fill="#10b981"/>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-
-      <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-900">⚠️ Synthetic data for demo.</div>
+  const Card = ({label,value}) => html`
+    <div class="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
+      <p class="text-sm text-gray-600">${label}</p>
+      <p class="text-2xl font-bold">${value}</p>
     </div>
-  );
-}
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script></body></html>
+  `;
+
+  function App(){
+    const rows = makeData();
+    const shipped = rows.filter(r=>r.significant).length;
+    const avgLift = (rows.reduce((a,b)=>a+b.lift,0)/rows.length).toFixed(1)+'%';
+
+    return html`
+      <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-indigo-700 mb-2">🧪 A/B Test Results</h1>
+        <p class="text-gray-600 mb-6">Lift, p-values, and decisions (synthetic).</p>
+
+        <!-- Main Takeaways -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          ${html`<${Card} label="Experiments (YTD)" value=${rows.length} />`}
+          ${html`<${Card} label="Shipped Variants" value=${shipped} />`}
+          ${html`<${Card} label="Avg Lift" value=${avgLift} />`}
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-5 mb-6 overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead><tr class="bg-indigo-50 text-indigo-700">
+              <th class="p-3 text-left">Test</th><th class="p-3 text-left">Lift %</th><th class="p-3 text-left">p-value</th><th class="p-3 text-left">Decision</th>
+            </tr></thead>
+            <tbody>
+              ${rows.map(r=>html`<tr class="border-t">
+                <td class="p-3">${r.test}</td>
+                <td class="p-3">${r.lift}</td>
+                <td class="p-3">${r.pvalue}</td>
+                <td class="p-3">${r.significant ? '✅ Ship' : '⏳ Inconclusive'}</td>
+              </tr>`)}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-5">
+          <h3 class="font-semibold mb-3">Lift Distribution</h3>
+          ${html`<${ResponsiveContainer} width="100%" height=${300}>
+            <${BarChart} data=${rows}>
+              <${CartesianGrid} strokeDasharray="3 3" />
+              <${XAxis} dataKey="test" /><${YAxis} />
+              <${Tooltip} /><${Legend} />
+              <${Bar} dataKey="lift" name="Lift %" fill="#10b981" />
+            <//>
+          <//>`}
+          <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
+            <b>Insight:</b> Most tests cluster around modest uplift with a few strong winners—good signal to keep iterating on copy and onboarding.
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white text-center py-8 mt-12">
+        <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
+        <p class="text-sm">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
+          LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> |
+          GitHub: <a href="https://github.com/lexibarry" class="underline">github.com/lexibarry</a></p>
+        <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
+          <p><b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.</p>
+          <p><b>License:</b> MIT License — you may reuse this structure with attribution.</p>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
+      </footer>
+    `;
+  }
+
+  createRoot(document.getElementById('root')).render(html`<${App} />`);
+</script>
+</body></html>
