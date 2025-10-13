@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PulsePathAI Case Study | Lexi Barry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Spectral:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1c1917;
+      --sub: #57534e;
+      --accent: #b45309;
+      --bg: #fafaf9;
+    }
+    html, body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3 {
+      font-family: 'Spectral', serif;
+    }
+    .deck {
+      scroll-snap-type: y mandatory;
+    }
+    .slide {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    .logo-dot-pulse {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fbbf24, #78350f);
+    }
+    .navbtn {
+      background: #1c1917;
+      color: #fff;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+    .slide-num {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    .footer {
+      font-size: 0.75rem;
+      color: #78716c;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="sticky top-0 bg-white/90 backdrop-blur border-b border-gray-200 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex gap-3 items-center">
+      <div class="logo-dot-pulse"></div>
+      <div>
+        <div class="text-lg font-bold tracking-tight">PulsePathAI</div>
+        <div class="text-sm text-gray-600">Enterprise AI Insights for Strategic Growth</div>
+      </div>
+    </div>
+    <div class="flex gap-2">
+      <button id="btnPrev" class="navbtn">←</button>
+      <button id="btnNext" class="navbtn">→</button>
+      <button id="btnDownload" class="navbtn bg-yellow-700">Download PDF</button>
+    </div>
+  </div>
+</header>
+
+<main id="deck" class="deck">
+
+  <!-- Slide 1 -->
+  <section class="slide">
+    <div class="card relative">
+      <div class="slide-num">Slide 1 of 10</div>
+      <h1 class="text-4xl font-bold mb-4 text-center">PulsePathAI</h1>
+      <p class="text-xl text-center text-gray-700 mb-6">A Strategic Product Case Study</p>
+      <p class="text-center text-sm">Prepared by <b>Lexi Barry</b> · Fall 2025</p>
+      <div class="footer">All data are synthetic for demonstration only</div>
+    </div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide">
+    <div class="card relative">
+      <div class="slide-num">Slide 2 of 10</div>
+      <h2 class="text-2xl font-bold mb-4">Business Context</h2>
+      <p>PulsePathAI builds vertical-specific AI solutions for enterprise clients in healthcare, fintech, and logistics. The company seeks to prioritize the most impactful use cases across verticals while improving trial retention and conversion.</p>
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="slide">
+    <div class="card relative">
+      <div class="slide-num">Slide 3 of 10</div>
+      <h2 class="text-2xl font-bold mb-4">Key Business Questions</h2>
+      <ul class="list-disc pl-5 space-y-2">
+        <li>Which AI use cases drive the highest ROI and retention?</li>
+        <li>What industry segments show highest engagement?</li>
+        <li>Where should product and GTM teams focus next?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="slide">
+    <div class="card relative">
+      <div class="slide-num">Slide 4 of 10</div>
+      <h2 class="text-2xl font-bold mb-4">Dataset Overview</h2>
+      <ul class="list-disc pl-5 text-sm">
+        <li>Use Cases across verticals</li>
+        <li>Engagement Score (0–100)</li>
+        <li>Trial Retention %</li>
+        <li>Revenue per Use Case</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 5: Chart -->
+  <section class="slide">
+    <div class="card relative">
+      <div class="slide-num">Slide 5 of 10</div>
+      <h2 class="text-2xl font-bold mb-4 text-center">Use Case Comparison</h2>
+      <canvas id="barChart" height="300"></canvas>
+      <div class="footer">Synthetic Data — PulsePathAI Engagement & Retention</div>
+    </div>
+  </section>
+
+  <!-- Slide 6–10 -->
+  <section class="slide"><div class="card relative"><div class="slide-num">Slide 6 of 10</div><h2 class="text-2xl font-bold mb-3">Insight</h2><p><b>AI Coaching in EdTech</b> and <b>Claims Automation in Health Insurance</b> show both high engagement and retention. These use cases merit increased investment and focused onboarding.</p></div></section>
+  <section class="slide"><div class="card relative"><div class="slide-num">Slide 7 of 10</div><h2 class="text-2xl font-bold mb-3">Recommendations</h2><ul class="list-disc pl-5 space-y-2"><li>Prioritize AI Coaching and Claims Automation in roadmap planning</li><li>Improve onboarding in use cases with lower trial retention (e.g., Compliance Assist)</li><li>Align GTM strategy with high-retention industries (EdTech, Health)</li></ul></div></section>
+  <section class="slide"><div class="card relative"><div class="slide-num">Slide 8 of 10</div><h2 class="text-2xl font-bold mb-3">Roadmap Snapshot</h2><ul class="list-disc pl-5 text-sm space-y-2"><li><b>Now (0–30d):</b> Focus on onboarding UX</li><li><b>Next (30–60d):</b> A/B test feature flows</li><li><b>Later (60–90d):</b> Scale across verticals</li></ul></div></section>
+  <section class="slide"><div class="card relative"><div class="slide-num">Slide 9 of 10</div><h2 class="text-2xl font-bold mb-3">Metrics for Success</h2><ul class="list-disc pl-5 text-sm space-y-1"><li>+10 pts in Trial Retention</li><li>15% increase in AI feature adoption</li><li>Revenue per customer +12%</li></ul></div></section>
+  <section class="slide"><div class="card relative text-center"><div class="slide-num">Slide 10 of 10</div><h2 class="text-3xl font-bold mb-4">Case Study Complete</h2><p>This deck demonstrates how I approach product strategy using data, structure, and recommendations.</p><a href="/index.html" class="inline-block mt-6 text-sm text-yellow-700 underline">← Back to Portfolio</a><div class="footer">© 2025 Lexi Barry · MIT License · PulsePathAI (Mock)</div></div></section>
+
+</main>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  function go(n){ i = Math.max(0, Math.min(slides.length-1, n)); slides[i].scrollIntoView({behavior:'smooth'}); }
+  document.getElementById('btnPrev').addEventListener('click', ()=>go(i-1));
+  document.getElementById('btnNext').addEventListener('click', ()=>go(i+1));
+  document.addEventListener('keydown', e => {
+    if(e.key==='ArrowRight') go(i+1);
+    if(e.key==='ArrowLeft') go(i-1);
+  });
+
+  new Chart(document.getElementById('barChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['Claims', 'Routing', 'Compliance', 'Coaching', 'Leads', 'Forecast'],
+      datasets: [
+        { label: 'Engagement', data: [87,76,62,91,78,70], backgroundColor: '#f59e0b' },
+        { label: 'Retention %', data: [65,72,58,71,68,63], backgroundColor: '#d97706' }
+      ]
+    },
+    options: { responsive:true, scales: { y: { beginAtZero:true, max:100 } } }
+  });
+
+  document.getElementById('btnDownload').addEventListener('click', () => {
+    const opt = {
+      margin: 0.5,
+      filename: 'PulsePathAI_CaseStudy_LexiBarry.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(document.getElementById('deck')).save();
+  });
+</script>
+</body>
+</html>
