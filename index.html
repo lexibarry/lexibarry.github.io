@@ -1,68 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lexi Barry | Product-Minded Data Leader</title>
-  <meta name="description" content="Product analytics, experimentation frameworks, and executive storytelling by Lexi Barry. Synthetic data portfolio." />
-  <link rel="icon" href="assets/images/dashboard-previews/saas-user-adoption.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    body {
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .gradient-bg { background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%); }
-    .nav-link { padding: .5rem 1rem; border-radius: .5rem; transition: all 0.2s; font-size: 0.9rem; }
-    .nav-link:hover { background: #e0e7ff; }
-    .skill-badge { transition: all 0.2s; display: inline-block; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; }
-    .skill-badge:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-    footer { margin-top: auto; background-color: #111827; color: white; }
-    @media (max-width: 768px) {
-      .nav-menu { display: none; flex-direction: column; width: 100%; }
-      .nav-menu.active { display: flex; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lexi Barry | Data Storytelling & Product Analytics Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-  <!-- NAV -->
-  <nav class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
-      <a href="#top" class="text-lg sm:text-xl font-bold text-blue-700">Lexi Barry</a>
-      <button id="menu-btn" class="sm:hidden text-blue-700 text-2xl focus:outline-none">☰</button>
-      <div id="nav-menu" class="nav-menu sm:flex sm:items-center sm:gap-2">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#built" class="nav-link">Built From Scratch</a>
-        <a href="#dashboards" class="nav-link">Dashboards</a>
-        <a href="#code" class="nav-link">Python</a>
-        <a href="#presentation" class="nav-link">Deck</a>
-        <a href="#private" class="nav-link">Private Decks</a>
-        <a href="#expertise" class="nav-link">Technical Skills</a>
-        <a href="#patents" class="nav-link">Patents</a>
-        <a href="#contact" class="nav-link">Contact</a>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-16 flex items-center gap-4 flex-wrap">
+        <a href="index.html" class="text-xl font-bold text-indigo-700">Lexi Barry</a>
+        <a href="#about" class="hover:text-indigo-700">About</a>
+        <a href="#dashboards" class="hover:text-indigo-700">Dashboards</a>
+        <a href="#code" class="hover:text-indigo-700">Code</a>
+        <a href="#deck" class="hover:text-indigo-700">Deck</a>
+        <a href="#private" class="hover:text-indigo-700">Private Works</a>
+        <a href="#patents" class="hover:text-indigo-700">Patents</a>
+        <a href="#expertise" class="hover:text-indigo-700">Expertise</a>
+        <a href="#skills" class="hover:text-indigo-700">Technical Skills</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header id="top" class="text-center py-16 px-6 gradient-bg text-white">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-3">Lexi Barry</h1>
-      <p class="text-xl sm:text-2xl font-semibold text-blue-100 mb-3">Product-Minded Data Leader</p>
-      <p class="italic text-blue-200 mb-6 text-base sm:text-lg">
-        "I have no special talent. I am only passionately curious." — Albert Einstein
-      </p>
-      <p class="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-        I build analytical products that merge data, design, and business strategy to create clarity and measurable results. 
-        Combining <strong>data science</strong>, <strong>AI automation</strong>, and <strong>product management</strong>, 
-        I transform insights into scalable, actionable solutions.
-      </p>
-    </div>
+  <header class="text-center py-16 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <h1 class="text-4xl md:text-5xl font-bold mb-3">Lexi Barry | Data-Driven Product Leader</h1>
+    <p class="text-blue-100 text-lg">Transforming insights into strategy through analytics, storytelling, and product thinking</p>
   </header>
 
   <!-- ABOUT -->
@@ -77,155 +44,231 @@
     </div>
   </section>
 
-  <!-- BUILT FROM SCRATCH -->
-  <section id="built" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-10 border-l-4 border-blue-500">
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <div class="text-6xl">🛠️</div>
-        <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-800 mb-3">Built Entirely From Scratch</h2>
-          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Every part of this site — from <strong>HTML & CSS structure</strong> to <strong>Tailwind styling</strong> and 
-            <strong>JavaScript interactivity</strong> — was hand-coded by me. This portfolio showcases both design intuition and technical execution, 
-            mirroring how I approach building analytics products from the ground up.
-          </p>
-          <p class="text-sm text-gray-600 italic mb-4">
-            No templates. No builders. 100% designed and coded by me to reflect my curiosity, craftsmanship, and storytelling approach.
-          </p>
-          <a href="https://github.com/lexibarry/lexibarry.github.io" target="_blank"
-             class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-             View Source Code →
-          </a>
-        </div>
-      </div>
+  <!-- DASHBOARDS -->
+  <section id="dashboards" class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">📊 Dashboards</h2>
+    <p class="text-gray-600 mb-6">
+      Each dashboard was <b>built entirely from scratch</b> using synthetic data to demonstrate how I connect business questions to insights — 
+      the same way a product manager translates analytics into action.
+    </p>
+
+    <div class="bg-white rounded-2xl shadow p-8 overflow-x-auto">
+      <table class="min-w-full text-sm border-collapse">
+        <thead>
+          <tr class="bg-indigo-50 text-indigo-700 text-left">
+            <th class="p-3 font-semibold">#</th>
+            <th class="p-3 font-semibold">Dashboard</th>
+            <th class="p-3 font-semibold">Business Question</th>
+            <th class="p-3 font-semibold">Key Insights</th>
+            <th class="p-3 font-semibold">Link</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">1</td>
+            <td class="p-3 font-semibold">SaaS User Adoption</td>
+            <td class="p-3 text-gray-600">How are users engaging across plans, regions, and devices?</td>
+            <td class="p-3 text-gray-600">88% enterprise retention, free-to-paid opportunity.</td>
+            <td class="p-3"><a href="dashboards/saas-user-adoption.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">2</td>
+            <td class="p-3 font-semibold">Voice of User (NPS)</td>
+            <td class="p-3 text-gray-600">What drives customer satisfaction and detractor feedback?</td>
+            <td class="p-3 text-gray-600">NPS improved 42→58; pricing concerns in detractors.</td>
+            <td class="p-3"><a href="dashboards/voice-of-user.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">3</td>
+            <td class="p-3 font-semibold">GTM Readiness</td>
+            <td class="p-3 text-gray-600">Are we ready to launch? What blockers exist?</td>
+            <td class="p-3 text-gray-600">Cross-functional gaps reduced 28%; QA readiness up 15%.</td>
+            <td class="p-3"><a href="dashboards/gtm-readiness.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">4</td>
+            <td class="p-3 font-semibold">A/B Test Results</td>
+            <td class="p-3 text-gray-600">Which experiments should we ship or iterate?</td>
+            <td class="p-3 text-gray-600">Variant B improved CTR 9% (p=0.02); ship recommended.</td>
+            <td class="p-3"><a href="dashboards/ab-test-results.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">5</td>
+            <td class="p-3 font-semibold">Product Conversation</td>
+            <td class="p-3 text-gray-600">What topics dominate user feedback and sentiment?</td>
+            <td class="p-3 text-gray-600">Positive trend in “energy” features; support cited as key factor.</td>
+            <td class="p-3"><a href="dashboards/product-conversation.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-semibold">6</td>
+            <td class="p-3 font-semibold">Category Performance</td>
+            <td class="p-3 text-gray-600">Which categories drive revenue and margin growth?</td>
+            <td class="p-3 text-gray-600">CPG + wellness up 11% YoY; margin optimized 6.4 pts.</td>
+            <td class="p-3"><a href="dashboards/category-performance.html" class="text-indigo-600 hover:underline font-semibold">View →</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- PRIVATE DECKS -->
-  <section id="private" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl p-10 border-l-4 border-amber-500">
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <div class="text-6xl">🔒</div>
-        <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-800 mb-3">Private Executive Decks</h2>
-          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Secure, password-protected materials designed for recruiters and executives.  
-            These include <strong>strategy decks</strong>, <strong>executive data stories</strong>, and <strong>confidential frameworks</strong>.
-          </p>
-          <div class="bg-white rounded-xl p-6 shadow mb-6">
-            <h3 class="font-semibold text-gray-800 mb-3">Contents Include:</h3>
-            <ul class="text-sm text-gray-700 space-y-2 list-disc list-inside">
-              <li>Executive storytelling dashboards</li>
-              <li>Data-driven market opportunity analysis</li>
-              <li>Go-to-market & retention frameworks</li>
-              <li>Client-ready product strategy materials</li>
-            </ul>
-          </div>
-          <p class="text-sm text-gray-600 italic mb-4">Email <a href="mailto:lexi.barry@outlook.com" class="underline text-amber-700">lexi.barry@outlook.com</a> to request access.</p>
-          <a href="private/index.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-            Access Private Decks →
-          </a>
-        </div>
-      </div>
+  <!-- CODE -->
+  <section id="code" class="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-10 my-16">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">💻 Python Code Samples</h2>
+    <p class="text-gray-600 mb-8">
+      Below are Python-based analytics scripts demonstrating my approach to experimentation, data transformation, 
+      and KPI automation — all built from scratch using synthetic datasets to model real-world SaaS and product scenarios.
+    </p>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm border border-gray-200 divide-y divide-gray-200 rounded-lg">
+        <thead class="bg-indigo-50 text-indigo-700">
+          <tr>
+            <th class="p-3 text-left font-semibold">File</th>
+            <th class="p-3 text-left font-semibold">Description</th>
+            <th class="p-3 text-left font-semibold">Preview</th>
+            <th class="p-3 text-left font-semibold">Download</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr class="hover:bg-gray-50 transition">
+            <td class="p-3 font-semibold text-gray-800">cohort_analysis.py</td>
+            <td class="p-3 text-gray-700">Performs cohort-based retention, churn, and lifetime value analysis for SaaS user data.</td>
+            <td class="p-3">
+              <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/cohort_analysis.py" target="_blank" class="text-indigo-600 hover:underline font-semibold">Preview on GitHub →</a>
+            </td>
+            <td class="p-3">
+              <a href="code/cohort_analysis.py" download class="text-blue-600 hover:underline font-semibold">Download</a>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-gray-50 transition">
+            <td class="p-3 font-semibold text-gray-800">ab_test_framework.py</td>
+            <td class="p-3 text-gray-700">Framework for running two-proportion z-tests and computing confidence intervals for experiments.</td>
+            <td class="p-3">
+              <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/ab_test_framework.py" target="_blank" class="text-indigo-600 hover:underline font-semibold">Preview on GitHub →</a>
+            </td>
+            <td class="p-3">
+              <a href="code/ab_test_framework.py" download class="text-blue-600 hover:underline font-semibold">Download</a>
+            </td>
+          </tr>
+
+          <tr class="hover:bg-gray-50 transition">
+            <td class="p-3 font-semibold text-gray-800">metrics_pipeline.py</td>
+            <td class="p-3 text-gray-700">ETL pipeline for cleaning, transforming, and calculating KPIs across business categories.</td>
+            <td class="p-3">
+              <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/metrics_pipeline.py" target="_blank" class="text-indigo-600 hover:underline font-semibold">Preview on GitHub →</a>
+            </td>
+            <td class="p-3">
+              <a href="code/metrics_pipeline.py" download class="text-blue-600 hover:underline font-semibold">Download</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-xs text-gray-500 mt-4 italic text-center">
+      All code samples are synthetic and created to demonstrate my analytics engineering and product experimentation skills.
+    </p>
+  </section>
+
+  <!-- DECKS -->
+  <section id="deck" class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">📈 Data Storytelling Decks</h2>
+    <p class="text-gray-600 mb-6">Executive-ready narratives built from my dashboards, showing how analytics evolve into product decisions and strategy.</p>
+    <div class="space-y-4">
+      <a href="presentations/vitalmetrics.html" class="block bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-1">VitalMetrics Premium — Retention & Growth Strategy</h3>
+        <p class="text-sm text-gray-600">End-to-end PM narrative connecting engagement, retention, and monetization data into actionable recommendations.</p>
+      </a>
+      <a href="presentations/saas-retention-strategy.html" class="block bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
+        <h3 class="font-semibold text-lg mb-1">SaaS Retention Strategy</h3>
+        <p class="text-sm text-gray-600">A case study on transforming insights into measurable outcomes.</p>
+      </a>
     </div>
   </section>
 
-  <!-- TECHNICAL & PRODUCT SKILLS -->
-  <section id="expertise" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="bg-white rounded-2xl shadow-lg p-10">
-      <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Technical & Product Skills Stack</h3>
-      <div class="space-y-10">
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Product Management & Lifecycle Strategy</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Roadmap Ownership</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Agile Development</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Cross-Functional Collaboration</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Feature Prioritization</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Stakeholder Influence</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">User Adoption Strategy</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Sprint Planning</span>
-            <span class="skill-badge bg-indigo-100 text-indigo-800">Go-To-Market (GTM)</span>
-          </div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Programming & Data Engineering</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-blue-100 text-blue-800">Python</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">SQL</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">JavaScript</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">HTML</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">Git & GitHub</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">Tailwind CSS</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">AWS</span>
-          </div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Analytics & Business Intelligence</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-green-100 text-green-800">Power BI</span>
-            <span class="skill-badge bg-green-100 text-green-800">Tableau</span>
-            <span class="skill-badge bg-green-100 text-green-800">Looker</span>
-            <span class="skill-badge bg-green-100 text-green-800">Mode Analytics</span>
-            <span class="skill-badge bg-green-100 text-green-800">Amplitude</span>
-            <span class="skill-badge bg-green-100 text-green-800">Google Analytics 4</span>
-          </div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Statistical Analysis</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-purple-100 text-purple-800">A/B Testing</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Experiment Design</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Regression Analysis</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Data Storytelling</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Cohort Analysis</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Retention Modeling</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- PRIVATE WORKS -->
+  <section id="private" class="max-w-6xl mx-auto py-16 px-6 bg-white rounded-2xl shadow">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">🔒 Private Works</h2>
+    <p class="text-gray-600 mb-6">Confidential executive deliverables and advanced analytics dashboards available by request.</p>
+    <a href="private/index.html" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">Request Access →</a>
   </section>
 
   <!-- PATENTS -->
-  <section id="patents" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="bg-gradient-to-br from-gray-50 to-slate-100 rounded-2xl shadow-xl p-10 border-l-4 border-gray-400">
-      <div class="flex flex-col md:flex-row items-start gap-6">
-        <div class="text-6xl">💡</div>
-        <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-800 mb-3">Patents & Publications</h2>
-          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Explore original patents and publications authored by Lexi Barry — focusing on innovation, usability, and design rooted in analytics.
-          </p>
-          <a href="patents.html" class="inline-block bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-            View Patents Page →
-          </a>
-        </div>
+  <section id="patents" class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">📜 Patents & Publications</h2>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-lg text-sm">
+        <thead class="bg-indigo-50">
+          <tr>
+            <th class="px-6 py-3 text-left font-semibold text-gray-700">Type</th>
+            <th class="px-6 py-3 text-left font-semibold text-gray-700">Description</th>
+            <th class="px-6 py-3 text-left font-semibold text-gray-700">Stage</th>
+            <th class="px-6 py-3 text-left font-semibold text-gray-700">Year</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-100">
+          <tr>
+            <td class="px-6 py-4 text-gray-800 font-medium">Utility & Design Patents</td>
+            <td class="px-6 py-4 text-gray-600">Two innovative product concepts currently under review.</td>
+            <td class="px-6 py-4 text-gray-600">Provisional Filed — In Review</td>
+            <td class="px-6 py-4 text-gray-600">2025</td>
+          </tr>
+          <tr>
+            <td class="px-6 py-4 text-gray-800 font-medium">Publication</td>
+            <td class="px-6 py-4 text-gray-600">Psychology-based nonfiction work on growth and resilience.</td>
+            <td class="px-6 py-4 text-gray-600">Manuscript in Progress</td>
+            <td class="px-6 py-4 text-gray-600">2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section id="expertise" class="bg-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-indigo-800 mb-6">🧠 Expertise</h2>
+      <ul class="grid md:grid-cols-2 gap-4 text-gray-700 text-base leading-relaxed list-disc list-inside">
+        <li>Product Management & Lifecycle Strategy</li>
+        <li>Data Analytics & Visualization</li>
+        <li>AI & Automation (LLMs, APIs, Prompt Engineering)</li>
+        <li>Market & Consumer Analytics (CPG, Retail, Wellness)</li>
+        <li>Agile Collaboration & Sprint Planning</li>
+        <li>User Adoption & Change Management</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section id="skills" class="max-w-6xl mx-auto py-16 px-6">
+    <h2 class="text-3xl font-bold text-indigo-800 mb-6">⚙️ Technical Skills</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-gray-700">
+      <div>
+        <h3 class="font-semibold mb-2">Languages & Tools</h3>
+        <p>Python • SQL • R • Power BI • Tableau • Excel • AWS • Azure • Salesforce • Jira • Git/GitHub • HTML • JavaScript</p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2">Statistical & Analytical</h3>
+        <p>Segmentation • Regression • Cohort Analysis • Retention Modeling • A/B Testing • Funnel Analysis • KPI Frameworks</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer id="contact" class="text-center py-12 px-6">
-    <div class="max-w-4xl mx-auto">
-      <p class="text-2xl font-bold mb-3">Lexi Barry</p>
-      <p class="text-lg text-gray-300 mb-4">Data Product Manager | Analytics Leader | AI Innovator</p>
-      <div class="flex justify-center gap-4 sm:gap-6 mb-6 text-sm flex-wrap">
-        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-400 transition">📧 Email</a>
-        <a href="https://linkedin.com/in/lexi-barry" class="hover:text-blue-400 transition">💼 LinkedIn</a>
-        <a href="https://github.com/lexibarry" class="hover:text-blue-400 transition">💻 GitHub</a>
-        <a href="./private/index.html" class="hover:text-blue-400 transition">🔒 Private</a>
-      </div>
-      <div class="max-w-3xl mx-auto text-xs text-gray-400 leading-relaxed border-t border-gray-700 pt-6">
-        <p><strong>Confidentiality Notice:</strong> All datasets, dashboards, and visuals are synthetic, created for demonstration only. No employer or client data is used.</p>
-        <p class="mt-3">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
-      </div>
+  <footer class="bg-gray-900 text-white text-center py-10 px-6">
+    <p class="text-lg font-semibold mb-2">Lexi Barry — Product-Minded Data Leader</p>
+    <p class="text-sm mb-4">
+      📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
+      <a href="https://linkedin.com/in/lexi-barry" class="underline">LinkedIn</a> |
+      <a href="https://github.com/lexibarry" class="underline">GitHub</a>
+    </p>
+    <div class="max-w-4xl mx-auto text-xs text-gray-400 leading-relaxed">
+      <p><strong>Confidentiality:</strong> All datasets and visuals are <b>synthetic</b> and created solely for demonstration. No client or employer data used.</p>
+      <p><strong>License:</strong> MIT License — feel free to reuse with attribution.</p>
+      <p class="mt-2">© 2025 Lexi Barry — Data Storytelling & Product Analytics Portfolio</p>
+      <p class="mt-1 text-[11px] text-gray-500 italic">crafted by me • source code available on GitHub</p>
     </div>
   </footer>
-
-  <script>
-    const btn = document.getElementById('menu-btn');
-    const nav = document.getElementById('nav-menu');
-    btn.addEventListener('click', () => { nav.classList.toggle('active'); });
-  </script>
 </body>
 </html>
