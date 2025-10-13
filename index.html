@@ -8,52 +8,42 @@
   <link rel="icon" href="assets/images/dashboard-previews/saas-user-adoption.png" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Hidden Google Analytics (base64) -->
-  <script>
-    (function(){
-      const GA_B64 = "Ry1CVExNNkdQMzBZSA==";
-      const GA = atob(GA_B64);
-      const s = document.createElement('script');
-      s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id="+GA;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments)} window.gtag = gtag;
-      gtag('js', new Date()); gtag('config', GA);
-    })();
-  </script>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .nav-link { padding:.5rem 1rem; border-radius:.5rem; transition: all 0.2s; font-size: 0.9rem; }
-    .nav-link:hover { background:#e0e7ff; }
-    .card { box-shadow: 0 10px 20px rgba(0,0,0,.06); transition: all 0.3s; }
-    .card:hover { box-shadow: 0 20px 40px rgba(0,0,0,.1); transform: translateY(-4px); }
-    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-    .skill-badge { 
-      transition: all 0.2s; 
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-size: 0.875rem;
-      font-weight: 600;
+    body {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
+    .gradient-bg { background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%); }
+    .nav-link { padding: .5rem 1rem; border-radius: .5rem; transition: all 0.2s; font-size: 0.9rem; }
+    .nav-link:hover { background: #e0e7ff; }
+    .skill-badge { transition: all 0.2s; display: inline-block; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 600; }
     .skill-badge:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    footer { margin-top: auto; background-color: #111827; color: white; }
+    @media (max-width: 768px) {
+      .nav-menu { display: none; flex-direction: column; width: 100%; }
+      .nav-menu.active { display: flex; }
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- NAV -->
   <nav class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="h-16 flex items-center gap-2">
-        <a href="#top" class="text-xl font-bold text-indigo-700 mr-2">Lexi Barry</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
+      <a href="#top" class="text-lg sm:text-xl font-bold text-blue-700">Lexi Barry</a>
+      <button id="menu-btn" class="sm:hidden text-blue-700 text-2xl focus:outline-none">☰</button>
+      <div id="nav-menu" class="nav-menu sm:flex sm:items-center sm:gap-2">
         <a href="#about" class="nav-link">About</a>
-        <a href="#expertise" class="nav-link">Expertise</a>
+        <a href="#built" class="nav-link">Built From Scratch</a>
         <a href="#dashboards" class="nav-link">Dashboards</a>
         <a href="#code" class="nav-link">Python</a>
         <a href="#presentation" class="nav-link">Deck</a>
-        <a href="#private" class="nav-link">Private</a>
+        <a href="#private" class="nav-link">Private Decks</a>
+        <a href="#expertise" class="nav-link">Technical Skills</a>
+        <a href="#patents" class="nav-link">Patents</a>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
@@ -62,496 +52,180 @@
   <!-- HERO -->
   <header id="top" class="text-center py-16 px-6 gradient-bg text-white">
     <div class="max-w-4xl mx-auto">
-      <h1 class="text-5xl font-bold mb-3">Lexi Barry</h1>
-      <p class="text-2xl font-semibold text-blue-100 mb-3">Product-Minded Data Leader</p>
-      <p class="italic text-blue-200 mb-6 text-lg">"I have no special talent. I am only passionately curious." — Albert Einstein</p>
-      <p class="text-lg leading-relaxed max-w-3xl mx-auto">
-        I architect data systems and analytical frameworks that transform complexity into clarity. Specializing in 
-        <strong>SaaS product analytics</strong>, <strong>experimentation design</strong>, and <strong>executive storytelling</strong> 
-        that bridges technical depth with strategic business impact.
+      <h1 class="text-4xl sm:text-5xl font-bold mb-3">Lexi Barry</h1>
+      <p class="text-xl sm:text-2xl font-semibold text-blue-100 mb-3">Product-Minded Data Leader</p>
+      <p class="italic text-blue-200 mb-6 text-base sm:text-lg">
+        "I have no special talent. I am only passionately curious." — Albert Einstein
+      </p>
+      <p class="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+        I build analytical products that merge data, design, and business strategy to create clarity and measurable results. 
+        Combining <strong>data science</strong>, <strong>AI automation</strong>, and <strong>product management</strong>, 
+        I transform insights into scalable, actionable solutions.
       </p>
     </div>
   </header>
 
-  <!-- ABOUT ME -->
+  <!-- ABOUT -->
   <section id="about" class="max-w-6xl mx-auto px-6 py-16">
     <div class="bg-white rounded-2xl shadow-lg p-10">
       <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">About Me</h2>
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-5">
-        <p>
-          I'm a <strong>product-minded data professional</strong> who doesn't just analyze numbers—I architect frameworks 
-          that make insights obvious and action inevitable. My career spans <strong>SaaS product analytics, behavioral 
-          psychology, marketing experimentation, and go-to-market strategy</strong>.
-        </p>
-        <p>
-          What differentiates my approach is the intersection of three disciplines:
-        </p>
-        <div class="grid md:grid-cols-3 gap-6 my-6">
-          <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-500">
-            <h3 class="font-bold text-blue-900 mb-2">🔬 Technical Mastery</h3>
-            <p class="text-sm text-blue-800">Python, SQL, statistical modeling, A/B testing frameworks, data pipeline architecture</p>
-          </div>
-          <div class="bg-green-50 rounded-xl p-6 border-l-4 border-green-500">
-            <h3 class="font-bold text-green-900 mb-2">💼 Business Strategy</h3>
-            <p class="text-sm text-green-800">Product strategy, growth marketing, customer psychology, revenue operations, GTM (Go-To-Market) planning</p>
-          </div>
-          <div class="bg-purple-50 rounded-xl p-6 border-l-4 border-purple-500">
-            <h3 class="font-bold text-purple-900 mb-2">🎨 Storytelling Design</h3>
-            <p class="text-sm text-purple-800">Executive communication, data visualization, narrative architecture, stakeholder influence</p>
-          </div>
-        </div>
-        <p>
-          I build end-to-end: from <strong>data collection and ETL (Extract, Transform, Load) pipelines</strong> to 
-          <strong>statistical analysis and experimentation</strong> to <strong>interactive dashboards</strong> and 
-          <strong>C-suite presentations</strong>. My work doesn't stop at delivering insights—I ensure they drive 
-          measurable business outcomes.
-        </p>
-        <p class="text-center font-semibold text-gray-800 mt-6">
-          This portfolio showcases <strong>6 interactive dashboards</strong>, <strong>3 Python frameworks</strong>, 
-          <strong>1 executive presentation deck</strong>, and access to <strong>private strategic analyses</strong>—all 
-          built from scratch using synthetic data.
-        </p>
-      </div>
-    </div>
-  </section>
-
-    <!-- Methodologies -->
-    <div class="mt-8 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border-l-4 border-indigo-500">
-      <h3 class="text-xl font-bold text-gray-800 mb-4">Analytical Methodologies & Frameworks</h3>
-      <div class="grid md:grid-cols-3 gap-4 text-sm text-gray-700">
-        <div>
-          <h4 class="font-semibold text-indigo-900 mb-2">📈 SaaS Metrics</h4>
-          <ul class="space-y-1 text-xs">
-            <li>• MRR (Monthly Recurring Revenue)</li>
-            <li>• ARR (Annual Recurring Revenue)</li>
-            <li>• LTV (Lifetime Value)</li>
-            <li>• CAC (Customer Acquisition Cost)</li>
-            <li>• NRR (Net Revenue Retention)</li>
-            <li>• Cohort Retention Analysis</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-indigo-900 mb-2">🧪 Experimentation</h4>
-          <ul class="space-y-1 text-xs">
-            <li>• A/B/n Testing & MVT (Multivariate Testing)</li>
-            <li>• Statistical Power Analysis</li>
-            <li>• Bayesian A/B Testing</li>
-            <li>• Sequential Testing</li>
-            <li>• MDE (Minimum Detectable Effect)</li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold text-indigo-900 mb-2">🎯 Product Analytics</h4>
-          <ul class="space-y-1 text-xs">
-            <li>• AARRR (Acquisition, Activation, Retention, Revenue, Referral)</li>
-            <li>• Funnel Analysis & Optimization</li>
-            <li>• Feature Adoption Tracking</li>
-            <li>• RFM (Recency, Frequency, Monetary) Segmentation</li>
-            <li>• NPS (Net Promoter Score)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DASHBOARDS -->
-  <section id="dashboards" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold text-gray-800 mb-3">🚀 Six Interactive Dashboards</h2>
-      <p class="text-gray-600 max-w-3xl mx-auto">
-        Built from scratch using HTML, JavaScript, and Chart.js. Each dashboard answers a real business question 
-        with interactive filters, KPI (Key Performance Indicator) calculations, and actionable recommendations.
+      <p class="text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
+        I’m a <strong>data product manager and analytics leader</strong> passionate about transforming complex data into clear, strategic narratives. 
+        At NielsenIQ, I lead analytics products for Fortune 500 CPG brands, driving smarter decisions through experimentation frameworks, 
+        AI automation, and user-centric dashboards. My work bridges analytics, psychology, and product strategy — ensuring every insight drives impact.
       </p>
     </div>
-
-    <div class="bg-white rounded-2xl card p-8">
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-sm">
-          <thead>
-            <tr class="bg-blue-50 text-blue-700">
-              <th class="p-4 text-left font-semibold">#</th>
-              <th class="p-4 text-left font-semibold">Dashboard</th>
-              <th class="p-4 text-left font-semibold">Business Question</th>
-              <th class="p-4 text-left font-semibold">Key Insights</th>
-              <th class="p-4 text-left font-semibold">Link</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">1</td>
-              <td class="p-4 font-semibold">SaaS User Adoption</td>
-              <td class="p-4 text-gray-600">How are users engaging across plans, regions, devices?</td>
-              <td class="p-4 text-gray-600">88% Enterprise retention, Free-to-Paid opportunity</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/saas-user-adoption.html">View →</a></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">2</td>
-              <td class="p-4 font-semibold">Voice of User (NPS)</td>
-              <td class="p-4 text-gray-600">What drives customer satisfaction trends?</td>
-              <td class="p-4 text-gray-600">NPS improved 42→58, pricing concerns in detractors</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/voice-of-user.html">View →</a></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">3</td>
-              <td class="p-4 font-semibold">GTM Readiness</td>
-              <td class="p-4 text-gray-600">Are we ready to launch? What's blocked?</td>
-              <td class="p-4 text-gray-600">Cross-functional tracking, risk-based prioritization</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/gtm-readiness.html">View →</a></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">4</td>
-              <td class="p-4 font-semibold">A/B Test Results</td>
-              <td class="p-4 text-gray-600">Which experiments should we ship vs kill?</td>
-              <td class="p-4 text-gray-600">Statistical significance, confidence intervals, MDE</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/ab-test-results.html">View →</a></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">5</td>
-              <td class="p-4 font-semibold">Product Conversation</td>
-              <td class="p-4 text-gray-600">What are customers saying? What trends emerge?</td>
-              <td class="p-4 text-gray-600">Topic modeling, sentiment by channel, trend detection</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/product-conversation.html">View →</a></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="p-4 font-semibold text-gray-700">6</td>
-              <td class="p-4 font-semibold">Category Performance</td>
-              <td class="p-4 text-gray-600">Which categories drive revenue and margin?</td>
-              <td class="p-4 text-gray-600">CPG (Consumer Packaged Goods) sales trends, portfolio optimization</td>
-              <td class="p-4"><a class="text-blue-600 hover:underline font-semibold" href="dashboards/category-performance.html">View →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </section>
 
-  <!-- PYTHON CODE -->
-  <section id="code" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl font-bold text-gray-800 mb-3">💻 Python Analytics Frameworks</h2>
-      <p class="text-gray-600 max-w-3xl mx-auto">
-        Production-quality Python code demonstrating analytical frameworks used in real-world data roles. 
-        All examples use synthetic data and showcase statistical rigor, clean code, and business context.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Cohort Analysis -->
-      <div class="bg-white rounded-xl shadow-lg p-6 card">
-        <div class="text-4xl mb-3">📈</div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Cohort Retention Analysis</h3>
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
-          Track user retention, lifetime value (LTV), and behavioral cohorts over time. Includes retention matrices, 
-          LTV projections, and cohort-specific metric calculations.
-        </p>
-        <div class="bg-blue-50 rounded-lg p-3 mb-4 text-xs text-blue-900">
-          <strong>Key Functions:</strong> generate_cohort_data(), calculate_retention_matrix(), estimate_ltv()
-        </div>
-        <div class="flex gap-3 text-sm">
-          <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/cohort_analysis.py" target="_blank" class="text-blue-600 hover:underline font-semibold">GitHub →</a>
-          <a href="code/cohort_analysis.py" download class="text-blue-600 hover:underline font-semibold">Download →</a>
-        </div>
-      </div>
-
-      <!-- A/B Testing -->
-      <div class="bg-white rounded-xl shadow-lg p-6 card">
-        <div class="text-4xl mb-3">🧪</div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">A/B Testing Framework</h3>
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
-          Statistical evaluation of experiments with two-proportion z-tests, p-values, confidence intervals, 
-          power analysis, and automated ship/kill decisions.
-        </p>
-        <div class="bg-green-50 rounded-lg p-3 mb-4 text-xs text-green-900">
-          <strong>Key Functions:</strong> run_ab_test(), calculate_confidence_interval(), determine_significance()
-        </div>
-        <div class="flex gap-3 text-sm">
-          <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/ab_test_framework.py" target="_blank" class="text-blue-600 hover:underline font-semibold">GitHub →</a>
-          <a href="code/ab_test_framework.py" download class="text-blue-600 hover:underline font-semibold">Download →</a>
-        </div>
-      </div>
-
-      <!-- Metrics Pipeline -->
-      <div class="bg-white rounded-xl shadow-lg p-6 card">
-        <div class="text-4xl mb-3">⚙️</div>
-        <h3 class="text-xl font-bold text-gray-800 mb-2">Metrics Pipeline & ETL</h3>
-        <p class="text-sm text-gray-600 mb-4 leading-relaxed">
-          Automate SaaS KPI calculations (MRR, churn, CAC, LTV, payback) with ETL (Extract, Transform, Load) pipelines, 
-          data quality validation, and dashboard-ready exports.
-        </p>
-        <div class="bg-purple-50 rounded-lg p-3 mb-4 text-xs text-purple-900">
-          <strong>Key Functions:</strong> calculate_saas_metrics(), validate_data_quality(), export_dashboard_data()
-        </div>
-        <div class="flex gap-3 text-sm">
-          <a href="https://github.com/lexibarry/lexibarry.github.io/blob/main/code/metrics_pipeline.py" target="_blank" class="text-blue-600 hover:underline font-semibold">GitHub →</a>
-          <a href="code/metrics_pipeline.py" download class="text-blue-600 hover:underline font-semibold">Download →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-8">
-      <a href="code/" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-        View Full Code Portfolio →
-      </a>
-    </div>
-  </section>
-
-  <!-- PRESENTATION DECK -->
-  <section id="presentation" class="max-w-6xl mx-auto px-6 py-16">
-    <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-xl p-10 border-l-4 border-purple-500">
-      <div class="flex items-start gap-6">
-        <div class="text-6xl">📊</div>
+  <!-- BUILT FROM SCRATCH -->
+  <section id="built" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-10 border-l-4 border-blue-500">
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="text-6xl">🛠️</div>
         <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-800 mb-3">Executive Presentation Deck</h2>
+          <h2 class="text-3xl font-bold text-gray-800 mb-3">Built Entirely From Scratch</h2>
           <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Professional HTML slide deck demonstrating how I communicate complex analytics to executives using the 
-            <strong>Problem → Data → Solution → Implementation → Metrics</strong> framework.
+            Every part of this site — from <strong>HTML & CSS structure</strong> to <strong>Tailwind styling</strong> and 
+            <strong>JavaScript interactivity</strong> — was hand-coded by me. This portfolio showcases both design intuition and technical execution, 
+            mirroring how I approach building analytics products from the ground up.
           </p>
-          <div class="bg-white rounded-xl p-5 mb-4 shadow">
-            <h3 class="font-semibold text-gray-800 mb-3">📋 Presentation: SaaS Retention Strategy</h3>
-            <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700 mb-4">
-              <div>
-                <strong>Problem:</strong> 28% churn in Pro tier
-              </div>
-              <div>
-                <strong>Solution:</strong> Behavioral triggers + feature education
-              </div>
-              <div>
-                <strong>Data:</strong> Cohort analysis, feature usage patterns
-              </div>
-              <div>
-                <strong>Impact:</strong> $2.4M ARR (Annual Recurring Revenue) recovery, 18% churn reduction
-              </div>
-            </div>
-            <p class="text-xs text-gray-600 italic mb-4">
-              12 slides | Web-optimized HTML deck | No login required | Print-friendly
-            </p>
-          </div>
-          <a href="presentations/saas-retention-strategy.html" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-            View Presentation Deck →
+          <p class="text-sm text-gray-600 italic mb-4">
+            No templates. No builders. 100% designed and coded by me to reflect my curiosity, craftsmanship, and storytelling approach.
+          </p>
+          <a href="https://github.com/lexibarry/lexibarry.github.io" target="_blank"
+             class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
+             View Source Code →
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRIVATE WORK -->
+  <!-- PRIVATE DECKS -->
   <section id="private" class="max-w-6xl mx-auto px-6 py-16">
     <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl p-10 border-l-4 border-amber-500">
-      <div class="flex items-start gap-6">
+      <div class="flex flex-col md:flex-row items-start gap-6">
         <div class="text-6xl">🔒</div>
         <div class="flex-1">
-          <h2 class="text-3xl font-bold text-gray-800 mb-3">Private Executive Materials</h2>
+          <h2 class="text-3xl font-bold text-gray-800 mb-3">Private Executive Decks</h2>
           <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            In addition to this public portfolio, I maintain a collection of <strong>password-protected strategic 
-            analyses, executive one-pagers, and confidential presentation decks</strong> that showcase deeper analytical 
-            work and C-suite storytelling.
+            Secure, password-protected materials designed for recruiters and executives.  
+            These include <strong>strategy decks</strong>, <strong>executive data stories</strong>, and <strong>confidential frameworks</strong>.
           </p>
-          
           <div class="bg-white rounded-xl p-6 shadow mb-6">
-            <h3 class="font-semibold text-gray-800 mb-3">What These Materials Demonstrate:</h3>
-            <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Executive-ready narrative synthesis from complex datasets</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Problem-solution-impact storytelling frameworks</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Strategic vision balanced with tactical roadmaps</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Technical concepts adapted for non-technical stakeholders</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Business case development and ROI (Return on Investment) modeling</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-amber-600 font-bold">✓</span>
-                <span>Data-driven decision frameworks and recommendation matrices</span>
-              </div>
-            </div>
+            <h3 class="font-semibold text-gray-800 mb-3">Contents Include:</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-disc list-inside">
+              <li>Executive storytelling dashboards</li>
+              <li>Data-driven market opportunity analysis</li>
+              <li>Go-to-market & retention frameworks</li>
+              <li>Client-ready product strategy materials</li>
+            </ul>
           </div>
-
-          <div class="bg-amber-100 rounded-xl p-4 mb-4 border-l-4 border-amber-600">
-            <p class="text-sm text-amber-900">
-              <strong>📧 Request Access:</strong> If you're a hiring manager or recruiter interested in viewing these 
-              private materials during the interview process, please reach out at 
-              <a href="mailto:lexi.barry@outlook.com" class="font-semibold underline">lexi.barry@outlook.com</a>
-            </p>
-          </div>
-
-          <a href="private/" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
-            Request Private Access →
+          <p class="text-sm text-gray-600 italic mb-4">Email <a href="mailto:lexi.barry@outlook.com" class="underline text-amber-700">lexi.barry@outlook.com</a> to request access.</p>
+          <a href="private/index.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
+            Access Private Decks →
           </a>
         </div>
       </div>
     </div>
   </section>
-<a href="./private/index.html" class="text-blue-600 hover:underline">
-  🔒 View Private Executive Materials
-</a>
 
-  <!-- TESTIMONIALS / DIFFERENTIATORS -->
-  <section class="max-w-6xl mx-auto px-6 py-16">
+  <!-- TECHNICAL & PRODUCT SKILLS -->
+  <section id="expertise" class="max-w-6xl mx-auto px-6 py-16">
     <div class="bg-white rounded-2xl shadow-lg p-10">
-      <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Why Work With Me</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="text-4xl mb-3">🎯</div>
-          <h3 class="font-bold text-gray-800 mb-2">Business-First Analytics</h3>
-          <p class="text-sm text-gray-600">I don't just deliver insights—I ensure they drive measurable business outcomes with clear ROI (Return on Investment)</p>
+      <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Technical & Product Skills Stack</h3>
+      <div class="space-y-10">
+        <div>
+          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Product Management & Lifecycle Strategy</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Roadmap Ownership</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Agile Development</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Cross-Functional Collaboration</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Feature Prioritization</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Stakeholder Influence</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">User Adoption Strategy</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Sprint Planning</span>
+            <span class="skill-badge bg-indigo-100 text-indigo-800">Go-To-Market (GTM)</span>
+          </div>
         </div>
-        <div class="text-center">
-          <div class="text-4xl mb-3">🔄</div>
-          <h3 class="font-bold text-gray-800 mb-2">End-to-End Ownership</h3>
-          <p class="text-sm text-gray-600">From data pipeline to dashboard to executive presentation—I own the full analytical lifecycle</p>
-        </div>
-        <div class="text-center">
-          <div class="text-4xl mb-3">🧠</div>
-          <h3 class="font-bold text-gray-800 mb-2">Strategic Partner</h3>
-          <p class="text-sm text-gray-600">I'm not just a data analyst—I'm a strategic thought partner who challenges assumptions and drives innovation</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- CORE EXPERTISE & SKILLS -->
-  <section id="expertise" class="max-w-6xl mx-auto px-6 py-16 bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl my-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Core Expertise & Technical Skills</h2>
-    
-    <!-- Expertise Areas -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-      <div class="bg-white rounded-xl p-6 shadow-lg">
-        <div class="text-4xl mb-3">📊</div>
-        <h3 class="font-bold text-gray-800 mb-2">Product Analytics</h3>
-        <p class="text-sm text-gray-600">Cohort analysis, retention modeling, funnel optimization, feature adoption tracking, user segmentation</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-lg">
-        <div class="text-4xl mb-3">🧪</div>
-        <h3 class="font-bold text-gray-800 mb-2">Experimentation</h3>
-        <p class="text-sm text-gray-600">A/B testing design, statistical significance, power analysis, multivariate testing, causal inference</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-lg">
-        <div class="text-4xl mb-3">🚀</div>
-        <h3 class="font-bold text-gray-800 mb-2">Growth Strategy</h3>
-        <p class="text-sm text-gray-600">GTM (Go-To-Market) planning, conversion optimization, churn reduction, pricing strategy, customer journey mapping</p>
-      </div>
-      <div class="bg-white rounded-xl p-6 shadow-lg">
-        <div class="text-4xl mb-3">💬</div>
-        <h3 class="font-bold text-gray-800 mb-2">Stakeholder Influence</h3>
-        <p class="text-sm text-gray-600">Executive presentations, data storytelling, cross-functional alignment, strategic recommendations</p>
-      </div>
-    </div>
-
-    <!-- Technical Skills -->
-    <div class="bg-white rounded-2xl p-8 shadow-lg">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Technical Skills Stack</h3>
-      
-      <div class="space-y-6">
-        <!-- Programming & Data -->
         <div>
           <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Programming & Data Engineering</h4>
           <div class="flex flex-wrap gap-2">
             <span class="skill-badge bg-blue-100 text-blue-800">Python</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">SQL (PostgreSQL, MySQL, BigQuery)</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">Pandas & NumPy</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">dbt (Data Build Tool)</span>
-            <span class="skill-badge bg-blue-100 text-blue-800">Apache Airflow</span>
+            <span class="skill-badge bg-blue-100 text-blue-800">SQL</span>
+            <span class="skill-badge bg-blue-100 text-blue-800">JavaScript</span>
+            <span class="skill-badge bg-blue-100 text-blue-800">HTML</span>
             <span class="skill-badge bg-blue-100 text-blue-800">Git & GitHub</span>
+            <span class="skill-badge bg-blue-100 text-blue-800">Tailwind CSS</span>
+            <span class="skill-badge bg-blue-100 text-blue-800">AWS</span>
           </div>
         </div>
-
-        <!-- Analytics & BI -->
         <div>
           <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Analytics & Business Intelligence</h4>
           <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-green-100 text-green-800">Looker</span>
+            <span class="skill-badge bg-green-100 text-green-800">Power BI</span>
             <span class="skill-badge bg-green-100 text-green-800">Tableau</span>
-            <span class="skill-badge bg-green-100 text-green-800">Mixpanel</span>
-            <span class="skill-badge bg-green-100 text-green-800">Amplitude</span>
-            <span class="skill-badge bg-green-100 text-green-800">Google Analytics 4 (GA4)</span>
-            <span class="skill-badge bg-green-100 text-green-800">Segment (CDP)</span>
+            <span class="skill-badge bg-green-100 text-green-800">Looker</span>
             <span class="skill-badge bg-green-100 text-green-800">Mode Analytics</span>
+            <span class="skill-badge bg-green-100 text-green-800">Amplitude</span>
+            <span class="skill-badge bg-green-100 text-green-800">Google Analytics 4</span>
           </div>
         </div>
-
-        <!-- Statistical & ML -->
         <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Statistical Analysis & Machine Learning</h4>
+          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Statistical Analysis</h4>
           <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-purple-100 text-purple-800">SciPy & Statsmodels</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Hypothesis Testing</span>
+            <span class="skill-badge bg-purple-100 text-purple-800">A/B Testing</span>
+            <span class="skill-badge bg-purple-100 text-purple-800">Experiment Design</span>
             <span class="skill-badge bg-purple-100 text-purple-800">Regression Analysis</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Scikit-learn</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Predictive Modeling</span>
-            <span class="skill-badge bg-purple-100 text-purple-800">Time Series Forecasting</span>
-          </div>
-        </div>
-
-        <!-- Data Visualization -->
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Data Visualization & Design</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-yellow-100 text-yellow-800">Matplotlib & Seaborn</span>
-            <span class="skill-badge bg-yellow-100 text-yellow-800">Plotly</span>
-            <span class="skill-badge bg-yellow-100 text-yellow-800">Chart.js</span>
-            <span class="skill-badge bg-yellow-100 text-yellow-800">D3.js</span>
-            <span class="skill-badge bg-yellow-100 text-yellow-800">HTML/CSS/JavaScript</span>
-            <span class="skill-badge bg-yellow-100 text-yellow-800">Tailwind CSS</span>
-          </div>
-        </div>
-
-        <!-- Cloud & Infrastructure -->
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Cloud & Data Infrastructure</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-red-100 text-red-800">Snowflake</span>
-            <span class="skill-badge bg-red-100 text-red-800">AWS (Amazon Web Services)</span>
-            <span class="skill-badge bg-red-100 text-red-800">GCP (Google Cloud Platform)</span>
-            <span class="skill-badge bg-red-100 text-red-800">Docker</span>
-            <span class="skill-badge bg-red-100 text-red-800">REST APIs</span>
-          </div>
-        </div>
-
-        <!-- Business Tools -->
-        <div>
-          <h4 class="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">Business & Collaboration Tools</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="skill-badge bg-gray-100 text-gray-800">Excel (Advanced - Pivot, Power Query, VBA)</span>
-            <span class="skill-badge bg-gray-100 text-gray-800">Jira</span>
-            <span class="skill-badge bg-gray-100 text-gray-800">Asana</span>
-            <span class="skill-badge bg-gray-100 text-gray-800">Notion</span>
-            <span class="skill-badge bg-gray-100 text-gray-800">Slack</span>
-            <span class="skill-badge bg-gray-100 text-gray-800">Figma</span>
+            <span class="skill-badge bg-purple-100 text-purple-800">Data Storytelling</span>
+            <span class="skill-badge bg-purple-100 text-purple-800">Cohort Analysis</span>
+            <span class="skill-badge bg-purple-100 text-purple-800">Retention Modeling</span>
           </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- PATENTS -->
+  <section id="patents" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="bg-gradient-to-br from-gray-50 to-slate-100 rounded-2xl shadow-xl p-10 border-l-4 border-gray-400">
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="text-6xl">💡</div>
+        <div class="flex-1">
+          <h2 class="text-3xl font-bold text-gray-800 mb-3">Patents & Publications</h2>
+          <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Explore original patents and publications authored by Lexi Barry — focusing on innovation, usability, and design rooted in analytics.
+          </p>
+          <a href="patents.html" class="inline-block bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition">
+            View Patents Page →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
-  <footer id="contact" class="bg-gray-900 text-white text-center py-12 mt-16">
-    <div class="max-w-4xl mx-auto px-6">
+  <footer id="contact" class="text-center py-12 px-6">
+    <div class="max-w-4xl mx-auto">
       <p class="text-2xl font-bold mb-3">Lexi Barry</p>
-      <p class="text-lg text-gray-300 mb-4">Product-Minded Data Leader</p>
-      <div class="flex justify-center gap-6 mb-6 text-sm flex-wrap">
-        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-400 transition">📧 lexi.barry@outlook.com</a>
+      <p class="text-lg text-gray-300 mb-4">Data Product Manager | Analytics Leader | AI Innovator</p>
+      <div class="flex justify-center gap-4 sm:gap-6 mb-6 text-sm flex-wrap">
+        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-400 transition">📧 Email</a>
         <a href="https://linkedin.com/in/lexi-barry" class="hover:text-blue-400 transition">💼 LinkedIn</a>
         <a href="https://github.com/lexibarry" class="hover:text-blue-400 transition">💻 GitHub</a>
+        <a href="./private/index.html" class="hover:text-blue-400 transition">🔒 Private</a>
       </div>
-      <div class="max-w-3xl mx-auto text-xs text-gray-400 leading-relaxed space-y-2 border-t border-gray-700 pt-6">
-        <p><strong>Confidentiality & Data Notice:</strong> All datasets, analyses, visualizations, and methodologies 
-        are 100% synthetic and created by Lexi Barry for demonstration purposes. This portfolio contains no confidential 
-        or proprietary information from previous employers. All data is fictional and designed to demonstrate analytical 
-        capabilities while respecting confidentiality, ethics, and intellectual property rights.</p>
-        <p><strong>License:</strong> MIT License — feel free to use this portfolio structure with attribution.</p>
+      <div class="max-w-3xl mx-auto text-xs text-gray-400 leading-relaxed border-t border-gray-700 pt-6">
+        <p><strong>Confidentiality Notice:</strong> All datasets, dashboards, and visuals are synthetic, created for demonstration only. No employer or client data is used.</p>
+        <p class="mt-3">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
       </div>
-      <p class="mt-6 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
     </div>
   </footer>
 
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('nav-menu');
+    btn.addEventListener('click', () => { nav.classList.toggle('active'); });
+  </script>
 </body>
 </html>
