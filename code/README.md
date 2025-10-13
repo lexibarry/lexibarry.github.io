@@ -42,12 +42,15 @@ Each project uses **synthetic data** to demonstrate clear analytical thinking, b
 ---
 
 ## 🛠️ Run Locally
+
 If you’d like to experiment with the scripts:
-```bash
-git clone https://github.com/lexibarry/lexibarry.github.io.git
-cd lexibarry.github.io/code
-pip install -r ../requirements.txt
-python cohort_analysis.py
+
+\`\`\`bash
+git clone https://github.com/lexibarry/lexibarry.github.io.git  
+cd lexibarry.github.io/code  
+pip install -r ../requirements.txt  
+python cohort_analysis.py  
+\`\`\`
 
 ---
 
@@ -72,19 +75,21 @@ python cohort_analysis.py
 
 ## 📊 Confidentiality & Data Notice
 
-All datasets, analyses, and methodologies in this portfolio are **my own work and synthetically generated** by Lexi Barry for demonstration and learning purposes. These represent my own ideologies and analytical approaches.
+All datasets, analyses, and methodologies in this portfolio are **my own work and synthetically generated** by Lexi Barry for demonstration and learning purposes.  
+These represent my own ideologies and analytical approaches.
 
-**Important:** This portfolio contains **no confidential or proprietary information** from previous employers. All data is fictional and designed to demonstrate analytical capabilities while respecting confidentiality, ethics, and intellectual property rights.
+**Important:** This portfolio contains **no confidential or proprietary information** from previous employers.  
+All data is fictional and designed to demonstrate analytical capabilities while respecting confidentiality, ethics, and intellectual property rights.
 
 ---
 
 ## 📫 Contact
 
-**Lexi Barry** — Product-Minded Data Leader  
-- 📧 Email: [lexi.barry@outlook.com](mailto:lexi.barry@outlook.com)  
-- 💼 LinkedIn: [linkedin.com/in/lexi-barry](https://www.linkedin.com/in/lexi-barry)  
-- 🐙 GitHub: [github.com/lexibarry](https://github.com/lexibarry)  
-- 🌐 Portfolio: [lexibarry.github.io](https://lexibarry.github.io/)
+**Lexi Barry — Product-Minded Data Leader**  
+📧 [lexi.barry@outlook.com](mailto:lexi.barry@outlook.com)  
+💼 [linkedin.com/in/lexi-barry](https://www.linkedin.com/in/lexi-barry)  
+🐙 [github.com/lexibarry](https://github.com/lexibarry)  
+🌐 [lexibarry.github.io](https://lexibarry.github.io/)
 
 ---
 
@@ -95,6 +100,8 @@ MIT License — feel free to use this portfolio structure as inspiration for you
 ---
 
 © 2025 **Lexi Barry** — Product-Minded Data Leader | Data Storytelling & Analytics Portfolio  
-All data and methodologies are my own and synthetically generated for demonstration purposes. No confidential or proprietary information from previous employers is used.
+All data and methodologies are my own and synthetically generated for demonstration purposes.  
+No confidential or proprietary information from previous employers is used.
 
 ⬆️ [Back to Top](#)
+
