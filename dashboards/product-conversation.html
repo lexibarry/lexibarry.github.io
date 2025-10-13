@@ -1,164 +1,136 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Conversations | Lexi Barry</title>
-<!-- React + Recharts + Babel + Tailwind (CDN) -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
+<div class="max-w-7xl mx-auto p-4"><a href="../index.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700">← Return to Home</a></div>
 <div id="root"></div>
 
-<script type="text/babel">
-const { useMemo, useState } = React;
-const {
-  ResponsiveContainer, BarChart, Bar, LineChart, Line,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend
-} = Recharts;
+<script type="module">
+  import React from 'https://esm.sh/react@18';
+  import { createRoot } from 'https://esm.sh/react-dom@18/client';
+  import * as Recharts from 'https://esm.sh/recharts@2.12.5';
+  import htm from 'https://unpkg.com/htm?module';
+  const html = htm.bind(React.createElement);
+  const { ResponsiveContainer, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } = Recharts;
 
-function makeTopicData(){
-  const topics = ['Activation','Billing','Search','AI Help','Export','Sharing'];
-  return topics.map((t,i)=>({
-    topic: t,
-    mentions: 40 + i*12 + Math.round(Math.random()*8),
-    sentiment: Math.max(45, Math.min(90, 60 + i*3 + (i%3? -5: 2)))
-  }));
-}
+  function makeTopicData(){
+    const topics=['Activation','Billing','Search','AI Help','Export','Sharing'];
+    return topics.map((t,i)=>({topic:t, mentions: 40+i*12+Math.round(Math.random()*8), sentiment: Math.max(45, Math.min(90, 60+i*3+(i%3? -5: 2))) }));
+  }
+  function makeChannelTrend(){
+    const months=['2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
+    return months.map((m,i)=>({ month:m, Slack:120+i*25+(i%2?15:0), Email:90+i*18+(i%3?8:0), Tickets:140+i*30+(i%2?5:12) }));
+  }
 
-function makeChannelTrend(){
-  const months=['2024-07','2024-08','2024-09','2024-10','2024-11','2024-12'];
-  return months.map((m,i)=>({
-    month:m,
-    Slack: 120 + i*25 + (i%2?15:0),
-    Email: 90 + i*18 + (i%3?8:0),
-    Tickets: 140 + i*30 + (i%2?5:12)
-  }));
-}
+  const Card = ({label,value,sub}) => html`
+    <div class="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
+      <p class="text-sm text-gray-600">${label}</p>
+      <p class="text-2xl font-bold">${value}</p>
+      ${sub ? html`<p class="text-xs text-gray-500 mt-1">${sub}</p>` : null}
+    </div>
+  `;
 
-const Info = ({label,value,sub}) => (
-  <div className="bg-white rounded-xl shadow p-5 border-l-4 border-indigo-600">
-    <p className="text-sm text-gray-600">{label}</p>
-    <p className="text-2xl font-bold">{value}</p>
-    {sub && <p className="text-xs text-gray-500 mt-1">{sub}</p>}
-  </div>
-);
+  function App(){
+    const topics = makeTopicData();
+    const trend  = makeChannelTrend();
+    const totalMentions = topics.reduce((a,b)=>a+b.mentions,0);
+    const avgSent = Math.round(topics.reduce((a,b)=>a+b.sentiment,0)/topics.length);
+    const topPhrases = [
+      { phrase: 'Can’t find feature', topic: 'Search', impact: 'High', action:'Improve relevance + “did you mean” UX' },
+      { phrase: 'Billing prorate confusion', topic: 'Billing', impact: 'High', action:'Add tooltip + help center explainer' },
+      { phrase: 'AI suggestions unclear', topic: 'AI Help', impact: 'Medium', action:'Add examples & confidence badges' },
+      { phrase: 'Export CSV timeout', topic: 'Export', impact: 'Medium', action:'Queue large exports; email when ready' },
+      { phrase: 'Invite flow unclear', topic: 'Sharing', impact: 'Low', action:'Clarify roles; add success toast' },
+    ];
 
-function App(){
-  const topics = useMemo(()=>makeTopicData(),[]);
-  const trend  = useMemo(()=>makeChannelTrend(),[]);
-  const totalMentions = topics.reduce((a,b)=>a+b.mentions,0);
-  const avgSent = Math.round(topics.reduce((a,b)=>a+b.sentiment,0)/topics.length);
+    return html`
+      <div class="max-w-7xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-indigo-700 mb-2">💬 Product Conversations</h1>
+        <p class="text-gray-600 mb-6">Topics, sentiment, and channel trends (synthetic).</p>
 
-  const [sortKey, setSortKey] = useState('mentions'); // 'mentions' | 'sentiment'
-  const sorted = useMemo(()=>{
-    const arr=[...topics];
-    arr.sort((a,b)=> b[sortKey]-a[sortKey]);
-    return arr;
-  },[topics, sortKey]);
+        <!-- Main Takeaways -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          ${html`<${Card} label="Total Mentions (YTD)" value=${totalMentions.toLocaleString()} />`}
+          ${html`<${Card} label="Avg Topic Sentiment" value=${avgSent + '%'} />`}
+          ${html`<${Card} label="Primary Channel" value="Tickets" sub="Highest volume (last 6 mo)" />`}
+        </div>
 
-  const topPhrases = [
-    { phrase: 'Can’t find feature', topic: 'Search', impact: 'High' },
-    { phrase: 'Billing prorate confusion', topic: 'Billing', impact: 'High' },
-    { phrase: 'AI suggestions unclear', topic: 'AI Help', impact: 'Medium' },
-    { phrase: 'Export CSV timeout', topic: 'Export', impact: 'Medium' },
-    { phrase: 'Invite flow unclear', topic: 'Sharing', impact: 'Low' },
-  ];
-
-  return (
-    <div className="max-w-7xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-indigo-700 mb-1">💬 Product Conversations Dashboard</h1>
-      <p className="text-gray-600 mb-6">Topic frequency, sentiment, and channel trends (synthetic data).</p>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <Info label="Total Mentions (YTD)" value={totalMentions.toLocaleString()} />
-        <Info label="Avg Topic Sentiment" value={`${avgSent}%`} />
-        <Info label="Primary Channel" value="Tickets" sub="Highest volume over last 6 months" />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow p-5">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold">Topic Frequency & Sentiment</h3>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-gray-600">Sort by:</span>
-              <select
-                value={sortKey}
-                onChange={e=>setSortKey(e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1"
-              >
-                <option value="mentions">Mentions</option>
-                <option value="sentiment">Sentiment</option>
-              </select>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow p-5">
+            <h3 class="font-semibold mb-3">Topic Frequency & Sentiment</h3>
+            ${html`<${ResponsiveContainer} width="100%" height=${320}>
+              <${BarChart} data=${topics}>
+                <${CartesianGrid} strokeDasharray="3 3" />
+                <${XAxis} dataKey="topic" /><${YAxis} />
+                <${Tooltip} /><${Legend} />
+                <${Bar} dataKey="mentions" name="Mentions" fill="#6366f1" />
+                <${Bar} dataKey="sentiment" name="Sentiment %" fill="#22c55e" />
+              <//>
+            <//>`}
+            <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
+              <b>Insight:</b> Search and Billing dominate mentions—invest in query assistance and billing clarity to reduce friction.
             </div>
           </div>
-          <ResponsiveContainer width="100%" height={320}>
-            <BarChart data={sorted}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="topic"/><YAxis/>
-              <Tooltip/><Legend/>
-              <Bar dataKey="mentions" name="Mentions" fill="#6366f1"/>
-              <Bar dataKey="sentiment" name="Sentiment %" fill="#22c55e"/>
-            </BarChart>
-          </ResponsiveContainer>
+
+          <div class="bg-white rounded-xl shadow p-5">
+            <h3 class="font-semibold mb-3">Conversation Volume by Channel</h3>
+            ${html`<${ResponsiveContainer} width="100%" height=${320}>
+              <${LineChart} data=${trend}>
+                <${CartesianGrid} strokeDasharray="3 3" />
+                <${XAxis} dataKey="month" /><${YAxis} />
+                <${Tooltip} /><${Legend} />
+                <${Line} type="monotone" dataKey="Slack" stroke="#06b6d4" strokeWidth=${2}/>
+                <${Line} type="monotone" dataKey="Email" stroke="#f59e0b" strokeWidth=${2}/>
+                <${Line} type="monotone" dataKey="Tickets" stroke="#ef4444" strokeWidth=${2}/>
+              <//>
+            <//>`}
+            <div class="mt-3 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-sm text-indigo-900">
+              <b>Insight:</b> Ticket volume is rising faster than Slack/Email—strong signal to improve self-serve help and in-product guidance.
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-5">
-          <h3 className="font-semibold mb-3">Conversation Volume by Channel</h3>
-          <ResponsiveContainer width="100%" height={320}>
-            <LineChart data={trend}>
-              <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="month"/><YAxis/>
-              <Tooltip/><Legend/>
-              <Line type="monotone" dataKey="Slack" stroke="#06b6d4" strokeWidth={2}/>
-              <Line type="monotone" dataKey="Email" stroke="#f59e0b" strokeWidth={2}/>
-              <Line type="monotone" dataKey="Tickets" stroke="#ef4444" strokeWidth={2}/>
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl shadow p-5 mt-6 overflow-x-auto">
-        <h3 className="font-semibold mb-3">Top Emerging Phrases</h3>
-        <table className="min-w-full text-sm">
-          <thead>
-            <tr className="bg-indigo-50 text-indigo-700">
-              <th className="p-3 text-left">Phrase</th>
-              <th className="p-3 text-left">Mapped Topic</th>
-              <th className="p-3 text-left">Impact</th>
-              <th className="p-3 text-left">Suggested Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {topPhrases.map((r,i)=>(
-              <tr key={i} className="border-t">
-                <td className="p-3">{r.phrase}</td>
-                <td className="p-3">{r.topic}</td>
-                <td className="p-3">{r.impact}</td>
-                <td className="p-3">
-                  {r.topic==='Search' && 'Ship improved relevance + “did you mean” UX'}
-                  {r.topic==='Billing' && 'Publish prorate explainer + inline tooltip'}
-                  {r.topic==='AI Help' && 'Add example prompts + confidence badges'}
-                  {r.topic==='Export' && 'Queue large exports; email when ready'}
-                  {r.topic==='Sharing' && 'Clarify invite roles; add success toast'}
-                </td>
+        <div class="bg-white rounded-xl shadow p-5 mt-6 overflow-x-auto">
+          <h3 class="font-semibold mb-3">Top Emerging Phrases</h3>
+          <table class="min-w-full text-sm">
+            <thead>
+              <tr class="bg-indigo-50 text-indigo-700">
+                <th class="p-3 text-left">Phrase</th>
+                <th class="p-3 text-left">Topic</th>
+                <th class="p-3 text-left">Impact</th>
+                <th class="p-3 text-left">Suggested Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              ${topPhrases.map((r,i)=>html`<tr class="border-t">
+                <td class="p-3">${r.phrase}</td>
+                <td class="p-3">${r.topic}</td>
+                <td class="p-3">${r.impact}</td>
+                <td class="p-3">${r.action}</td>
+              </tr>`)}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg text-sm text-amber-900">
-        ⚠️ All data shown here is synthetic and created by Lexi Barry for demonstration purposes only.
-      </div>
-    </div>
-  );
-}
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white text-center py-8 mt-12">
+        <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
+        <p class="text-sm">📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
+          LinkedIn: <a href="https://linkedin.com/in/lexi-barry" class="underline">linkedin.com/in/lexi-barry</a> |
+          GitHub: <a href="https://github.com/lexibarry" class="underline">github.com/lexibarry</a></p>
+        <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
+          <p><b>Confidentiality:</b> All datasets, analyses, and visuals are <b>synthetic</b> and created by Lexi Barry for demonstration. No employer or client data is used.</p>
+          <p><b>License:</b> MIT License — you may reuse this structure with attribution.</p>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">© 2025 Lexi Barry — Data Storytelling & Analytics Portfolio</p>
+      </footer>
+    `;
+  }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  createRoot(document.getElementById('root')).render(html`<${App} />`);
 </script>
-</body>
-</html>
+</body></html>
