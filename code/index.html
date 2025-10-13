@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lexi Barry | Python Code Portfolio</title>
+  <meta name="description" content="Python code samples, frameworks, and data analytics scripts by Lexi Barry. Synthetic data only." />
+  <link rel="icon" href="../assets/images/dashboard-previews/saas-user-adoption.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Hidden Google Analytics (base64) -->
+  <script>
+    (function(){
+      const GA_B64 = "Ry1CVExNNkdQMzBZSA=="; // base64 of G-BTL6GP30YH
+      const GA = atob(GA_B64);
+      const s = document.createElement('script');
+      s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id="+GA;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)} window.gtag = gtag;
+      gtag('js', new Date()); gtag('config', GA);
+    })();
+  </script>
+
+  <style>
+    .nav-link { padding:.5rem 1rem; border-radius:.5rem }
+    .nav-link:hover { background:#e0e7ff }
+    .active { background:#c7d2fe }
+    .card { box-shadow: 0 10px 20px rgba(0,0,0,.06); }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- NAV -->
+  <nav class="bg-white shadow sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="h-16 flex items-center gap-3">
+        <a href="../index.html" class="text-xl font-bold text-indigo-700">Lexi Barry</a>
+        <a href="../index.html#dashboards" class="nav-link">Dashboards</a>
+        <a href="../presentations/saas-retention-strategy.html" class="nav-link">Presentation</a>
+        <a href="../code/index.html" class="nav-link active">Python Code</a>
+        <a href="../private/" class="nav-link">Private Decks</a>
+        <a href="../patents.html" class="nav-link">Patents</a>
+        <a href="../index.html#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="text-center py-12 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <h1 class="text-4xl font-bold mb-2">Python Code Portfolio</h1>
+    <p class="italic text-blue-100 mb-4">“Turning complex data into actionable clarity.”</p>
+    <p class="text-lg max-w-3xl mx-auto">
+      These scripts demonstrate product analytics, experimentation, and data pipeline automation — all built from synthetic data
+      for demonstration purposes.
+    </p>
+  </header>
+
+  <!-- CODE GRID -->
+  <section class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 p-8">
+    <!-- Cohort Analysis -->
+    <a href="cohort_analysis.py" target="_blank" class="bg-white card rounded-xl p-6 hover:-translate-y-1 transition-all">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2">Cohort Retention & LTV Analysis</h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Simulates user cohorts, computes retention matrices, and estimates lifetime value (LTV) by signup month.
+      </p>
+      <div class="text-sm text-gray-500">
+        <span class="font-semibold">Tech:</span> pandas, numpy  
+      </div>
+      <div class="mt-4">
+        <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-1 rounded">Data Simulation</span>
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1 rounded">Cohort Retention</span>
+      </div>
+    </a>
+
+    <!-- A/B Testing -->
+    <a href="ab_test_framework.py" target="_blank" class="bg-white card rounded-xl p-6 hover:-translate-y-1 transition-all">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2">A/B Testing Framework</h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Calculates z-scores, p-values, and sample sizes for two-proportion tests, providing statistical power insights.
+      </p>
+      <div class="text-sm text-gray-500">
+        <span class="font-semibold">Tech:</span> scipy, math  
+      </div>
+      <div class="mt-4">
+        <span class="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded">Experimentation</span>
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1 rounded">Significance Testing</span>
+      </div>
+    </a>
+
+    <!-- Metrics Pipeline -->
+    <a href="metrics_pipeline.py" target="_blank" class="bg-white card rounded-xl p-6 hover:-translate-y-1 transition-all">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2">KPI Automation & ETL Pipeline</h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Builds synthetic SaaS data and automates KPI calculations (MRR, LTV, payback period) via a clean ETL process.
+      </p>
+      <div class="text-sm text-gray-500">
+        <span class="font-semibold">Tech:</span> pandas, numpy  
+      </div>
+      <div class="mt-4">
+        <span class="bg-yellow-100 text-yellow-700 text-xs font-semibold px-2 py-1 rounded">ETL</span>
+        <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1 rounded">KPI Reporting</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- README LINK -->
+  <section class="text-center my-10">
+    <a href="README.md" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-blue-700">View Full Code README</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white text-center py-8 mt-12">
+    <p class="mb-2 text-lg font-semibold">Lexi Barry — Product-Minded Data Leader</p>
+    <p class="text-sm">
+      📫 <a href="mailto:lexi.barry@outlook.com" class="underline">lexi.barry@outlook.com</a> |
+      <a href="https://linkedin.com/in/lexi-barry" class="underline">LinkedIn</a> |
+      <a href="https://github.com/lexibarry" class="underline">GitHub</a>
+    </p>
+    <div class="max-w-4xl mx-auto mt-6 text-xs text-gray-400 leading-relaxed px-6">
+      <p><b>Note:</b> All data used in this portfolio is <b>synthetic</b> and generated by Lexi Barry for demonstration purposes only.</p>
+      <p><b>License:</b> MIT License © 2025 Lexi Barry</p>
+    </div>
+  </footer>
+
+</body>
+</html>
