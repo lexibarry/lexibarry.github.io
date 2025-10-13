@@ -136,11 +136,25 @@
             <span class="bg-blue-600 text-white font-bold px-3 py-1 rounded-full text-sm">1</span>
             <h3 class="font-semibold text-gray-800">Hypothesis Formation</h3>
           </div>
-          <p class="text-sm text-gray-700">
-            Define the problem, identify the metric to optimize, and state a falsifiable hypothesis. Example: 
-            "Changing the CTA button from 'Learn More' to 'Start Free Trial' will increase click-through rate by 
-            at least 10% because it's more action-oriented."
+          <p class="text-sm text-gray-700 mb-3">
+            Define the problem, identify the metric to optimize, and state a falsifiable hypothesis using the 
+            "If... then... because..." format.
           </p>
+          <div class="bg-white rounded-lg p-3 mb-2">
+            <p class="text-xs font-semibold text-gray-700 mb-1">Example Hypothesis Structure:</p>
+            <p class="text-xs text-gray-600 italic">
+              "If we [change/add/remove X], then [metric Y] will [increase/decrease] by at least [Z%], 
+              because [user behavior insight]."
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-3">
+            <p class="text-xs font-semibold text-gray-700 mb-1">Real Example - Header CTA Test:</p>
+            <p class="text-xs text-gray-600 italic">
+              "If we change the CTA button from 'Learn More' to 'Start Free Trial', then click-through rate 
+              will increase by at least 10%, because action-oriented language creates urgency and clearly 
+              states the value proposition."
+            </p>
+          </div>
         </div>
 
         <div class="border-l-4 border-green-600 pl-6 py-3 bg-green-50 rounded-r-lg">
@@ -228,6 +242,7 @@
           <thead>
             <tr class="bg-blue-50 text-blue-700">
               <th class="p-3 text-left font-semibold">Test Name</th>
+              <th class="p-3 text-left font-semibold">Hypothesis</th>
               <th class="p-3 text-left font-semibold">Primary Metric</th>
               <th class="p-3 text-left font-semibold">Lift %</th>
               <th class="p-3 text-left font-semibold">p-value</th>
@@ -311,13 +326,37 @@
     <!-- Recommendations -->
     <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
       <h2 class="text-2xl font-bold text-gray-800 mb-3">🚀 Strategic Recommendations</h2>
-      <p class="text-sm text-gray-600 mb-6">Prioritized using RICE + expected statistical power</p>
+      <p class="text-sm text-gray-600 mb-4">Prioritized using RICE framework (Reach × Impact × Confidence ÷ Effort)</p>
+      
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-5 mb-6">
+        <h3 class="font-semibold text-gray-800 mb-3">📊 About RICE Prioritization</h3>
+        <p class="text-sm text-gray-700 mb-3">
+          RICE is a framework for prioritizing initiatives based on four factors:
+        </p>
+        <div class="grid md:grid-cols-4 gap-4 text-xs">
+          <div class="bg-white rounded-lg p-3">
+            <strong class="text-blue-600">Reach:</strong> How many users/tests will this impact per time period?
+          </div>
+          <div class="bg-white rounded-lg p-3">
+            <strong class="text-green-600">Impact:</strong> How much will this impact each user? (1=minimal, 2=medium, 3=high)
+          </div>
+          <div class="bg-white rounded-lg p-3">
+            <strong class="text-yellow-600">Confidence:</strong> How confident are we? (50%=low, 80%=medium, 100%=high)
+          </div>
+          <div class="bg-white rounded-lg p-3">
+            <strong class="text-red-600">Effort:</strong> Person-months to implement (or weeks for smaller projects)
+          </div>
+        </div>
+        <p class="text-xs text-gray-600 mt-3">
+          <strong>Formula:</strong> RICE Score = (Reach × Impact × Confidence) / Effort | Higher scores = higher priority
+        </p>
+      </div>
       
       <div class="space-y-6">
         <div class="border-l-4 border-blue-600 pl-6 py-2">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-semibold text-gray-800">1. Scale Copy Optimization Program</h3>
-            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Impact: High</span>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">RICE: 840</span>
           </div>
           <p class="text-gray-700 mb-3">
             <strong>Action:</strong> Run 2-3 copy tests per month across landing pages, emails, and in-product messaging. 
@@ -329,12 +368,21 @@
             <li>• Historical win rate: 67% of copy tests showed positive lift</li>
             <li>• <strong>Expected Impact:</strong> 5-10% cumulative conversion rate improvement</li>
           </ul>
+          <div class="mt-3 bg-blue-50 rounded-lg p-3">
+            <div class="grid grid-cols-4 gap-2 text-xs">
+              <div><strong>Reach:</strong> 14,000 users/test</div>
+              <div><strong>Impact:</strong> High (3/3)</div>
+              <div><strong>Confidence:</strong> 80%</div>
+              <div><strong>Effort:</strong> 2 weeks</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2"><strong>RICE Calculation:</strong> (14,000 × 3 × 0.80) / 2 = 840</p>
+          </div>
         </div>
 
         <div class="border-l-4 border-green-600 pl-6 py-2">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-semibold text-gray-800">2. Iterate on Inconclusive Tests</h3>
-            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Impact: Medium</span>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">RICE: 384</span>
           </div>
           <p class="text-gray-700 mb-3">
             <strong>Action:</strong> Paywall timing showed +2.3% lift but missed significance (p=0.067). Run V2 with 
@@ -346,12 +394,21 @@
             <li>• Segment by user type (free vs returning)</li>
             <li>• <strong>Expected Impact:</strong> Could unlock 3-5% revenue uplift if validated</li>
           </ul>
+          <div class="mt-3 bg-green-50 rounded-lg p-3">
+            <div class="grid grid-cols-4 gap-2 text-xs">
+              <div><strong>Reach:</strong> 6,400 users/test</div>
+              <div><strong>Impact:</strong> High (3/3)</div>
+              <div><strong>Confidence:</strong> 60%</div>
+              <div><strong>Effort:</strong> 3 weeks</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2"><strong>RICE Calculation:</strong> (6,400 × 3 × 0.60) / 3 = 384</p>
+          </div>
         </div>
 
         <div class="border-l-4 border-yellow-600 pl-6 py-2">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-semibold text-gray-800">3. Add Qualitative Layer to Complex Tests</h3>
-            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">Impact: Medium</span>
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full">RICE: 240</span>
           </div>
           <p class="text-gray-700 mb-3">
             <strong>Action:</strong> For high-effort feature tests (like Search Tuning), run user research first to 
@@ -363,12 +420,21 @@
             <li>• Use session recordings to understand behavior</li>
             <li>• <strong>Expected Impact:</strong> Reduce wasted engineering time by 30%</li>
           </ul>
+          <div class="mt-3 bg-yellow-50 rounded-lg p-3">
+            <div class="grid grid-cols-4 gap-2 text-xs">
+              <div><strong>Reach:</strong> 3 tests/quarter</div>
+              <div><strong>Impact:</strong> Medium (2/3)</div>
+              <div><strong>Confidence:</strong> 70%</div>
+              <div><strong>Effort:</strong> 1.5 weeks/test</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2"><strong>RICE Calculation:</strong> (3 × 2 × 0.70) / 1.5 = 280 (adjusted for ongoing process)</p>
+          </div>
         </div>
 
         <div class="border-l-4 border-blue-700 pl-6 py-2">
           <div class="flex justify-between items-start mb-2">
             <h3 class="font-semibold text-gray-800">4. Build Testing Infrastructure</h3>
-            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Impact: High</span>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">RICE: 720</span>
           </div>
           <p class="text-gray-700 mb-3">
             <strong>Action:</strong> Invest in experimentation platform (Optimizely, LaunchDarkly, or internal) to 
@@ -380,6 +446,15 @@
             <li>• Multi-armed bandit for faster results</li>
             <li>• <strong>Expected Impact:</strong> 3x testing velocity, faster innovation cycles</li>
           </ul>
+          <div class="mt-3 bg-blue-50 rounded-lg p-3">
+            <div class="grid grid-cols-4 gap-2 text-xs">
+              <div><strong>Reach:</strong> All product teams</div>
+              <div><strong>Impact:</strong> High (3/3)</div>
+              <div><strong>Confidence:</strong> 90%</div>
+              <div><strong>Effort:</strong> 8 weeks</div>
+            </div>
+            <p class="text-xs text-gray-600 mt-2"><strong>RICE Calculation:</strong> (15 tests × 3 × 0.90) / 2 months = 720 (annualized impact)</p>
+          </div>
         </div>
       </div>
     </div>
@@ -530,11 +605,51 @@
     // Generate synthetic test data
     function generateTestData() {
       const tests = [
-        { name: 'Header CTA Copy', metric: 'Click-through Rate', lift: 6.8, pvalue: 0.008, sampleSize: 12500, decision: 'ship' },
-        { name: 'Pricing Page Copy', metric: 'Trial Conversion', lift: 3.4, pvalue: 0.042, sampleSize: 8200, decision: 'ship' },
-        { name: 'Onboarding Email Sequence', metric: 'Day-7 Activation', lift: 5.2, pvalue: 0.015, sampleSize: 15000, decision: 'ship' },
-        { name: 'Search Algorithm Tuning', metric: 'Search Success Rate', lift: 1.2, pvalue: 0.234, sampleSize: 9800, decision: 'inconclusive' },
-        { name: 'Paywall Timing', metric: 'Upgrade Rate', lift: 2.3, pvalue: 0.067, sampleSize: 6400, decision: 'extend' }
+        { 
+          name: 'Header CTA Copy', 
+          hypothesis: 'If we change "Learn More" to "Start Free Trial", then CTR will increase 10%+ because action-oriented language is clearer',
+          metric: 'Click-through Rate', 
+          lift: 6.8, 
+          pvalue: 0.008, 
+          sampleSize: 12500, 
+          decision: 'ship' 
+        },
+        { 
+          name: 'Pricing Page Copy', 
+          hypothesis: 'If we add social proof ("Join 10,000+ users"), then trial conversion will increase 5%+ because it builds trust',
+          metric: 'Trial Conversion', 
+          lift: 3.4, 
+          pvalue: 0.042, 
+          sampleSize: 8200, 
+          decision: 'ship' 
+        },
+        { 
+          name: 'Onboarding Email Sequence', 
+          hypothesis: 'If we send Day-3 feature tips email, then Day-7 activation will increase 8%+ because it drives engagement',
+          metric: 'Day-7 Activation', 
+          lift: 5.2, 
+          pvalue: 0.015, 
+          sampleSize: 15000, 
+          decision: 'ship' 
+        },
+        { 
+          name: 'Search Algorithm Tuning', 
+          hypothesis: 'If we boost recent items in search, then search success rate will increase 5%+ because recency indicates relevance',
+          metric: 'Search Success Rate', 
+          lift: 1.2, 
+          pvalue: 0.234, 
+          sampleSize: 9800, 
+          decision: 'inconclusive' 
+        },
+        { 
+          name: 'Paywall Timing', 
+          hypothesis: 'If we show paywall after 3 actions (vs 5), then upgrade rate will increase 4%+ because earlier exposure drives urgency',
+          metric: 'Upgrade Rate', 
+          lift: 2.3, 
+          pvalue: 0.067, 
+          sampleSize: 6400, 
+          decision: 'extend' 
+        }
       ];
       return tests;
     }
@@ -572,6 +687,7 @@
         return `
           <tr class="border-t hover:bg-gray-50">
             <td class="p-3 font-medium">${test.name}</td>
+            <td class="p-3 text-xs text-gray-600 italic" style="max-width: 250px;">${test.hypothesis}</td>
             <td class="p-3 text-gray-600">${test.metric}</td>
             <td class="p-3 font-semibold ${test.lift > 0 ? 'text-green-600' : 'text-red-600'}">${test.lift > 0 ? '+' : ''}${test.lift}%</td>
             <td class="p-3 ${test.pvalue < 0.05 ? 'text-green-600 font-semibold' : 'text-gray-600'}">${test.pvalue.toFixed(3)}</td>
