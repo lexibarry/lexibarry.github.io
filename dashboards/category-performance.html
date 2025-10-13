@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPG Category Management: Performance, Panel Metrics & Growth Analysis | Lexi Barry</title>
-
-  <!-- Tailwind & Chart.js -->
+  <title>CPG Category Performance & Panel Metrics | Lexi Barry</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
@@ -21,211 +18,907 @@
 
 <body class="bg-gray-50">
   <div class="max-w-7xl mx-auto p-4">
-    <a href="../index.html" class="inline-block bg-white text-blue-600 px-5 py-2 rounded-lg shadow hover:shadow-md transition-all font-medium">
+    <a href="index.html" class="inline-block bg-white text-blue-600 px-5 py-2 rounded-lg shadow hover:shadow-md transition-all font-medium">
       ← Back to Portfolio
     </a>
   </div>
 
-  <!-- HERO -->
+  <!-- Hero Section -->
   <div class="gradient-bg text-white py-12 mb-8">
     <div class="max-w-7xl mx-auto px-6">
-      <h1 class="text-4xl font-bold mb-3">🏷️ CPG Category Management Dashboard</h1>
-      <p class="text-xl text-blue-100 mb-2">Performance Analytics, Panel Metrics & Strategic Growth Planning</p>
-      <p class="text-sm text-blue-200 italic">"The consumer is boss." – A.G. Lafley, Former CEO of Procter & Gamble</p>
+      <h1 class="text-4xl font-bold mb-3">CPG Category Performance & Panel Metrics Analysis</h1>
+      <p class="text-xl text-blue-100 mb-2">Connected Wellness Devices: Market Share, Velocity & Household Penetration Tracking</p>
+      <p class="text-sm text-blue-200 italic">"In God we trust. All others must bring data." – W. Edwards Deming</p>
+      <div class="mt-3 bg-blue-800/50 backdrop-blur rounded-lg px-4 py-2 inline-block">
+        <p class="text-xs text-blue-100">⚠️ <strong>Portfolio Demonstration:</strong> VitalMetrics is a fictional brand. All market data is synthetic and created for portfolio purposes only.</p>
+      </div>
     </div>
   </div>
 
-  <!-- CONTENT -->
   <div class="max-w-7xl mx-auto px-6 pb-12">
-    <!-- BUSINESS QUESTION -->
+
+    <!-- C-SUITE EXECUTIVE SUMMARY -->
+    <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 mb-8">
+      <div class="flex items-start gap-4 mb-4">
+        <div class="text-4xl">📊</div>
+        <div>
+          <h2 class="text-2xl font-bold mb-2">Executive Summary — For Busy Leaders</h2>
+          <p class="text-blue-100 text-sm">Category performance at a glance: where we're winning and where to invest</p>
+          <p class="text-blue-200 text-xs mt-1 italic">📝 Note: VitalMetrics is fictional. This showcases CPG analytics methodology using synthetic Nielsen-style data.</p>
+        </div>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur rounded-xl p-6 mb-4">
+        <h3 class="font-semibold mb-3 text-lg">🎯 Bottom Line Impact</h3>
+        <div class="grid md:grid-cols-3 gap-4 mb-4">
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">9.8%</div>
+            <div class="text-xs text-blue-100">Dollar share (up from 7.2% YoY)</div>
+          </div>
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">+32.4%</div>
+            <div class="text-xs text-blue-100">YoY sales growth vs +12.3% category</div>
+          </div>
+          <div class="bg-white/10 rounded-lg p-3">
+            <div class="text-2xl font-bold">8.7%</div>
+            <div class="text-xs text-blue-100">Household penetration (room to grow)</div>
+          </div>
+        </div>
+        <p class="text-sm text-blue-50 leading-relaxed">
+          VitalMetrics is taking share from established players in the connected wellness devices category. We're 
+          growing 2.6x faster than the category, driven by strength in Natural/Specialty retail (+45% YoY) and 
+          online channels (+38% YoY). Our household penetration lags category leaders, representing our biggest 
+          growth opportunity.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+          <h3 class="font-semibold mb-2 flex items-center gap-2">
+            <span>🏆</span> Biggest Strength
+          </h3>
+          <p class="text-sm text-blue-50">
+            <strong>High buying rate (3.2 units/buyer):</strong> Customers who try VitalMetrics become repeat buyers 
+            at rates above category average (2.9). This validates product quality and drives efficient CAC payback. 
+            Focus on trial generation, not loyalty improvements.
+          </p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-xl p-4">
+          <h3 class="font-semibold mb-2 flex items-center gap-2">
+            <span>🎯</span> Biggest Opportunity
+          </h3>
+          <p class="text-sm text-blue-50">
+            <strong>Mass market channel expansion:</strong> We're under-indexed in mass retail (6.2% share vs 14.5% 
+            in natural) but showing +45% YoY growth. Mass represents 40% of category volume—successful expansion here 
+            could add $12-15M annual revenue.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Business Question -->
     <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-blue-600">
       <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Business Question</h2>
-      <p class="text-lg text-gray-700 leading-relaxed mb-4">
-        How should we manage our product categories to maximize profitability and shopper satisfaction? Which categories need more shelf space, deeper promotional investment, or assortment optimization?
+      <p class="text-lg text-gray-700 leading-relaxed">
+        How is VitalMetrics performing against competitors in the connected wellness devices category? Where are we 
+        gaining or losing market share, and which consumer segments and retail channels offer the greatest growth 
+        opportunities? What panel metrics signal healthy category performance vs areas needing strategic intervention?
       </p>
     </div>
 
-    <!-- KPI CARDS -->
-    <div class="mb-8">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-2xl font-bold text-gray-800">📊 Category Performance Dashboard</h2>
-        <div class="flex gap-4">
-          <select id="time-filter" class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            <option value="current">Current Period</option>
-            <option value="q1">Q1 2024</option>
-            <option value="q2">Q2 2024</option>
-            <option value="q3">Q3 2024</option>
-            <option value="q4">Q4 2024</option>
-            <option value="ytd">YTD 2024</option>
-          </select>
-          <button id="refresh-data" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium">
-            🔄 Refresh Data
-          </button>
+    <!-- Product Context -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🌿 Product Context: VitalMetrics Smart Scale</h2>
+      <div class="bg-amber-100 border-l-4 border-amber-500 p-4 mb-4 rounded-r-lg">
+        <p class="text-sm text-amber-900">
+          <strong>📝 Note:</strong> VitalMetrics Smart Scale is a <strong>fictional product created for this portfolio demonstration</strong>. 
+          All market share data, panel metrics, competitive landscape, and category trends are synthetic and do not represent 
+          real Nielsen panel data or actual company performance. This case study showcases CPG category analytics methodology.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3">Our Product Line</h3>
+          <p class="text-sm text-gray-700 mb-3">
+            VitalMetrics offers connected wellness devices that track body composition, weight trends, and sync with 
+            a mobile app for insights. Positioned as premium ($79 device + $9.99/mo app subscription) targeting 
+            health-conscious consumers in the Natural/Specialty and online channels, with growing mass market presence.
+          </p>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="bg-green-50 p-2 rounded"><strong>Price:</strong> Premium ($79-99)</div>
+            <div class="bg-blue-50 p-2 rounded"><strong>Target:</strong> Ages 25-54</div>
+            <div class="bg-purple-50 p-2 rounded"><strong>Launch:</strong> 2022 (3 years)</div>
+            <div class="bg-amber-50 p-2 rounded"><strong>Distribution:</strong> Multi-channel</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3">Why Connected Wellness Matters</h3>
+          <p class="text-sm text-gray-700">
+            The connected wellness devices category is at an inflection point. Consumers demand accuracy, integration 
+            with health ecosystems (Apple Health, Google Fit), and actionable insights—not just data. CPG category 
+            analytics help us understand not just what people buy, but brand switching behavior, channel preferences, 
+            and how to position products in an increasingly crowded $2.3B market.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytical Approach -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">🔍 Analytical Approach</h2>
+      <p class="text-gray-700 mb-4">
+        This analysis uses Nielsen Retail Panel data (52-week period ending Dec 2024) combined with IRI household 
+        panel data to track category performance across three key dimensions:
+      </p>
+      <div class="grid md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-semibold mb-2">📊 Share & Velocity</div>
+          <div class="text-sm text-gray-600">Dollar share, unit share, sales velocity by channel and time period</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-semibold mb-2">👥 Panel Metrics</div>
+          <div class="text-sm text-gray-600">Household penetration, buying rate, repeat purchase behavior</div>
+        </div>
+        <div class="bg-white rounded-xl p-4 shadow">
+          <div class="text-blue-600 font-semibold mb-2">📈 Growth Trends</div>
+          <div class="text-sm text-gray-600">YoY comparisons, category growth benchmarking, channel shifts</div>
         </div>
       </div>
 
+      <div class="bg-white rounded-xl p-6 shadow">
+        <h3 class="font-semibold text-gray-800 mb-3">🛠️ Tech Stack & Tools Used</h3>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Data Sources & ETL</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• Nielsen Retail Panel (POS data)</li>
+              <li>• IRI Household Panel (consumer behavior)</li>
+              <li>• Python pandas (data transformation)</li>
+              <li>• dbt (data modeling & warehouse)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Analysis & Visualization</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• SQL (BigQuery for aggregations)</li>
+              <li>• Python (scipy, statsmodels)</li>
+              <li>• Tableau/Looker (dashboarding)</li>
+              <li>• Excel (ad-hoc stakeholder reports)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold text-blue-600 mb-2">Category Intelligence</div>
+            <ul class="text-gray-700 space-y-1">
+              <li>• Nielsen Answers (market share)</li>
+              <li>• IRI Growth Platform (panel metrics)</li>
+              <li>• Numerator (competitive insights)</li>
+              <li>• Custom Python scripts (YoY calcs)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Filters -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">🎛️ Interactive Filters</h3>
+      <p class="text-sm text-gray-600 mb-4">Customize the view to explore specific time periods and channels:</p>
+      <div id="filters" class="flex gap-4 flex-wrap"></div>
+    </div>
+
+    <!-- Metrics Explanation -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">📈 Nielsen Panel Metrics Explained</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-gray-800 mb-2">Dollar Share (%)</h3>
+          <p class="text-sm text-gray-600">
+            Percentage of total category sales (in dollars) captured by our brand. Formula: (VitalMetrics Sales / 
+            Total Category Sales) × 100. Industry benchmark: 8-12% for emerging premium brands in growth categories.
+          </p>
+        </div>
+        <div class="border-l-4 border-green-500 pl-4">
+          <h3 class="font-semibold text-gray-800 mb-2">Household Penetration (%)</h3>
+          <p class="text-sm text-gray-600">
+            Percentage of panel households that purchased our brand at least once in the 52-week period. Higher 
+            penetration = broader reach. Connected device brands typically achieve 5-15% penetration depending on 
+            price point and distribution.
+          </p>
+        </div>
+        <div class="border-l-4 border-purple-500 pl-4">
+          <h3 class="font-semibold text-gray-800 mb-2">Buying Rate (Units/Buyer)</h3>
+          <p class="text-sm text-gray-600">
+            Average number of units purchased per buying household over 52 weeks. Measures loyalty and repeat purchase. 
+            Connected devices typically see 2.5-3.5 units/buyer (gifting, multi-device households, replacements).
+          </p>
+        </div>
+        <div class="border-l-4 border-blue-600 pl-4">
+          <h3 class="font-semibold text-gray-800 mb-2">YoY Growth (%)</h3>
+          <p class="text-sm text-gray-600">
+            Year-over-year percentage change in dollar sales. Benchmarking against category growth reveals if we're 
+            gaining share (growing faster than category) or losing share (growing slower). Connected devices category 
+            growing at +12-15% annually.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current Metrics Dashboard -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">📊 Current Performance Snapshot</h2>
+      <p class="text-gray-600 mb-4">Based on your selected filters (52-week period ending Dec 2024):</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white card-hover">
-          <p class="text-blue-100 text-sm font-medium mb-1">Total Sales</p>
-          <p id="kpi-sales" class="text-3xl font-bold mb-2">$0M</p>
+          <p class="text-blue-100 text-sm font-medium mb-1">Dollar Share</p>
+          <p id="kpi-share" class="text-3xl font-bold mb-2">9.8%</p>
+          <p class="text-xs text-blue-100">Of total category</p>
         </div>
         <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white card-hover">
-          <p class="text-green-100 text-sm font-medium mb-1">Avg Velocity</p>
-          <p id="kpi-velocity" class="text-3xl font-bold mb-2">0</p>
+          <p class="text-green-100 text-sm font-medium mb-1">HH Penetration</p>
+          <p id="kpi-penetration" class="text-3xl font-bold mb-2">8.7%</p>
+          <p class="text-xs text-green-100">Panel households reached</p>
         </div>
-        <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl shadow-lg p-6 text-white card-hover">
-          <p class="text-yellow-100 text-sm font-medium mb-1">Promo Efficiency</p>
-          <p id="kpi-promo" class="text-3xl font-bold mb-2">0%</p>
+        <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white card-hover">
+          <p class="text-purple-100 text-sm font-medium mb-1">Buying Rate</p>
+          <p id="kpi-buying-rate" class="text-3xl font-bold mb-2">3.2</p>
+          <p class="text-xs text-purple-100">Units per buyer</p>
         </div>
         <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 text-white card-hover">
-          <p class="text-blue-100 text-sm font-medium mb-1">Portfolio Margin</p>
-          <p id="kpi-margin" class="text-3xl font-bold mb-2">0%</p>
+          <p class="text-blue-100 text-sm font-medium mb-1">YoY Growth</p>
+          <p id="kpi-yoy" class="text-3xl font-bold mb-2">+32.4%</p>
+          <p class="text-xs text-blue-100">Vs last year</p>
         </div>
       </div>
     </div>
 
-    <!-- CHARTS -->
+    <!-- Visualizations -->
     <div class="space-y-8 mb-8">
+      <!-- Market Share Trend -->
       <div class="bg-white rounded-2xl shadow-lg p-8">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Sales vs Unit Velocity</h3>
-        <div style="height: 360px;">
-          <canvas id="salesVelocityChart"></canvas>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Market Share Trend: VitalMetrics vs Top Competitors</h3>
+        <p class="text-sm text-gray-600 mb-6">Tracking dollar share across 12-month rolling period</p>
+        <div style="height: 400px;">
+          <canvas id="shareChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            VitalMetrics is gaining share consistently, growing from 7.2% (Dec 2023) to 9.8% (Dec 2024). We're 
+            outpacing category growth and taking share primarily from NatureMax (declining from 18.5% → 17.1%). 
+            The upward trajectory suggests strong product-market fit and effective distribution expansion, particularly 
+            in Q3-Q4 where we accelerated growth.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">Nielsen Retail Panel data extracted via Nielsen Answers API, processed in 
+          BigQuery using SQL window functions for rolling 12-week calculations, visualized with Chart.js</p>
         </div>
       </div>
 
+      <!-- Channel Performance -->
       <div class="bg-white rounded-2xl shadow-lg p-8">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Promotional Lift by Category</h3>
-        <div style="height: 360px;">
-          <canvas id="promoChart"></canvas>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Channel Performance: Share & YoY Growth by Retail Channel</h3>
+        <p class="text-sm text-gray-600 mb-6">Where we're winning and where we have opportunity</p>
+        <div style="height: 400px;">
+          <canvas id="channelChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            Natural/Specialty retailers are our stronghold with 14.5% share, but Mass Market and Online channels show 
+            the highest YoY growth rates (+45% and +38% respectively). This indicates successful channel expansion beyond 
+            our core natural foods audience into mainstream wellness consumers. Mass Market represents our biggest 
+            opportunity—we're under-indexed (6.2% share) but growing fast.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">Nielsen channel-level data aggregated in Python pandas, YoY calculations using 
+          custom date logic, dual-axis chart built with Chart.js to show both share (bars) and growth (line)</p>
+        </div>
+      </div>
+
+      <!-- Panel Metrics -->
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Household Panel Metrics: Penetration vs Buying Rate</h3>
+        <p class="text-sm text-gray-600 mb-6">Understanding reach and loyalty across top brands</p>
+        <div style="height: 380px;">
+          <canvas id="panelChart"></canvas>
+        </div>
+        <div class="mt-6 bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg">
+          <p class="text-sm font-semibold text-blue-900 mb-2">💡 Quick Insight</p>
+          <p class="text-sm text-blue-800 leading-relaxed">
+            VitalMetrics has room to grow penetration (8.7% vs category leaders at 12-15%) but shows strong loyalty 
+            with a buying rate of 3.2 units per buyer—above category average of 2.9. This suggests customers who try 
+            us become repeat buyers. Growth strategy should focus on trial generation (increasing penetration) while 
+            maintaining our premium positioning that drives high buying rates.
+          </p>
+        </div>
+        <div class="mt-4 bg-gray-50 rounded-lg p-4">
+          <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+          <p class="text-xs text-gray-600">IRI household panel data accessed via Growth Platform API, scatter plot 
+          analysis in Python matplotlib for initial exploration, final visualization in Chart.js with bubble sizing 
+          by dollar sales volume</p>
         </div>
       </div>
     </div>
 
-    <!-- TAKEAWAYS -->
+    <!-- Competitive Landscape -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">🏆 Competitive Landscape: Brand Performance Scorecard</h2>
+      <p class="text-sm text-gray-600 mb-4">52-week period ending Dec 2024 | All brands are fictional for portfolio demonstration</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">Brand</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Dollar Share</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">YoY Growth</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">HH Penetration</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Buying Rate</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Avg Price/Unit</th>
+              <th class="px-4 py-3 text-center font-semibold text-gray-700">Repeat Rate</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="bg-green-50">
+              <td class="px-4 py-3 font-semibold text-gray-800">VitalMetrics (Us)</td>
+              <td class="px-4 py-3 text-center text-green-700 font-bold">9.8%</td>
+              <td class="px-4 py-3 text-center text-green-700 font-bold">+32.4%</td>
+              <td class="px-4 py-3 text-center">8.7%</td>
+              <td class="px-4 py-3 text-center font-semibold">3.2</td>
+              <td class="px-4 py-3 text-center">$86.50</td>
+              <td class="px-4 py-3 text-center">68%</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-700">FitScale Pro</td>
+              <td class="px-4 py-3 text-center">17.3%</td>
+              <td class="px-4 py-3 text-center text-red-600">-2.8%</td>
+              <td class="px-4 py-3 text-center">14.8%</td>
+              <td class="px-4 py-3 text-center">2.7</td>
+              <td class="px-4 py-3 text-center">$72.99</td>
+              <td class="px-4 py-3 text-center">58%</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-700">SmartBody</td>
+              <td class="px-4 py-3 text-center">14.1%</td>
+              <td class="px-4 py-3 text-center">+6.2%</td>
+              <td class="px-4 py-3 text-center">12.1%</td>
+              <td class="px-4 py-3 text-center">3.0</td>
+              <td class="px-4 py-3 text-center">$79.95</td>
+              <td class="px-4 py-3 text-center">64%</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-700">HealthTrack Plus</td>
+              <td class="px-4 py-3 text-center">11.5%</td>
+              <td class="px-4 py-3 text-center">+9.1%</td>
+              <td class="px-4 py-3 text-center">10.3%</td>
+              <td class="px-4 py-3 text-center">3.1</td>
+              <td class="px-4 py-3 text-center">$84.25</td>
+              <td class="px-4 py-3 text-center">66%</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-700">BodyMetrics</td>
+              <td class="px-4 py-3 text-center">10.7%</td>
+              <td class="px-4 py-3 text-center">+3.5%</td>
+              <td class="px-4 py-3 text-center">9.6%</td>
+              <td class="px-4 py-3 text-center">2.9</td>
+              <td class="px-4 py-3 text-center">$76.50</td>
+              <td class="px-4 py-3 text-center">61%</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-700">Others (Combined)</td>
+              <td class="px-4 py-3 text-center">36.6%</td>
+              <td class="px-4 py-3 text-center">-0.8%</td>
+              <td class="px-4 py-3 text-center">—</td>
+              <td class="px-4 py-3 text-center">—</td>
+              <td class="px-4 py-3 text-center">$65.80</td>
+              <td class="px-4 py-3 text-center">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 bg-gray-50 rounded-lg p-4">
+        <p class="text-xs font-semibold text-gray-700 mb-2">🛠️ Tools Used:</p>
+        <p class="text-xs text-gray-600">Nielsen brand-level data joined with IRI panel metrics in SQL, repeat rate 
+        calculated as (households with 2+ purchases / total buying households) × 100, competitive table formatted in HTML 
+        with conditional styling for performance indicators</p>
+      </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-amber-500">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">💼 Key Insights & What The Numbers Mean</h2>
+      
+      <div class="space-y-6">
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">📈</span> Strength: Outpacing Category Growth by 2.6x
+          </h3>
+          <p class="text-gray-700 mb-2">
+            <strong>The Data:</strong> VitalMetrics growing at +32.4% YoY while category grows at +12.3%.
+          </p>
+          <p class="text-gray-600 text-sm">
+            <strong>What It Means:</strong> We're taking share from competitors and expanding the category. This is the 
+            ideal scenario—proving we can grow even if the overall market slows. Our premium positioning ($86.50 avg price 
+            vs $72-76 for competitors) is resonating with wellness-conscious consumers who value accuracy and integration 
+            with health ecosystems.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">💪</span> Strength: High Buying Rate & Repeat Purchase
+          </h3>
+          <p class="text-gray-700 mb-2">
+            <strong>The Data:</strong> 3.2 units per buyer vs 2.9 category average; 68% repeat purchase rate leads category.
+          </p>
+          <p class="text-gray-600 text-sm">
+            <strong>What It Means:</strong> Once customers try VitalMetrics, they stick with us and buy additional units 
+            (multi-device households, gifting). This validates our product quality and app ecosystem. High loyalty reduces 
+            CAC importance—we can afford higher trial generation costs knowing lifetime value is strong. Focus should shift 
+            from loyalty programs to awareness and trial.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">⚠️</span> Opportunity: Penetration Gap vs Category Leaders
+          </h3>
+          <p class="text-gray-700 mb-2">
+            <strong>The Data:</strong> Our 8.7% HH penetration significantly trails FitScale Pro (14.8%) and SmartBody (12.1%).
+          </p>
+          <p class="text-gray-600 text-sm">
+            <strong>What It Means:</strong> We have massive headroom for growth—millions of wellness consumers haven't 
+            tried us yet. This is primarily an awareness and distribution challenge, not a product issue (evidenced by 
+            strong buying rate among those who do purchase). Every 1% penetration gain = ~$3.2M additional revenue at 
+            current buying rates.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 shadow">
+          <h3 class="font-semibold text-gray-800 mb-3 flex items-center">
+            <span class="text-2xl mr-2">🎯</span> Opportunity: Mass Market Channel Breakthrough
+          </h3>
+          <p class="text-gray-700 mb-2">
+            <strong>The Data:</strong> Mass Market share is 6.2% (vs 14.5% in Natural) but growing +45% YoY, fastest of all channels.
+          </p>
+          <p class="text-gray-600 text-sm">
+            <strong>What It Means:</strong> We're successfully breaking out of natural/specialty into mainstream retail. 
+            Mass represents 40% of category dollar volume—if we can reach natural channel share levels in mass, that's 
+            $12-15M incremental annual revenue. The +45% growth proves demand exists; now it's about execution (shelf 
+            placement, retailer relationships, trade spend).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Answer to Business Question -->
+    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-8 mb-8 border-l-4 border-green-600">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">✅ Answering the Business Question</h2>
+      <div class="space-y-4">
+        <p class="text-gray-800 leading-relaxed">
+          <strong>VitalMetrics is significantly outperforming the connected wellness devices category</strong> with 32.4% 
+          YoY growth vs 12.3% category growth. We've gained 2.6 share points (from 7.2% to 9.8%) over the past year, 
+          primarily taking share from established players like FitScale Pro who are declining. Our success is driven by 
+          superior product quality (evidenced by 68% repeat rate, highest in category) and expanding distribution.
+        </p>
+        <p class="text-gray-800 leading-relaxed">
+          <strong>The biggest opportunities for growth lie in two areas:</strong>
+        </p>
+        <ol class="list-decimal list-inside space-y-2 text-gray-700 ml-4">
+          <li><strong>Increasing household penetration</strong> – At 8.7%, we trail category leaders by 4-6 share points. 
+          This represents our largest growth lever, worth ~$10-15M if we can close half the gap.</li>
+          <li><strong>Expanding mass market presence</strong> – We're under-indexed in mass retail (6.2% share) despite 
+          +45% YoY growth. Mass represents 40% of category volume and mainstream wellness consumers are ready for premium 
+          connected devices.</li>
+        </ol>
+        <p class="text-gray-800 leading-relaxed">
+          The panel metrics indicate we have strong product-market fit with customers who try us (high buying rate, 
+          repeat rate). Our challenge is not loyalty—it's awareness and availability. Strategic focus should be trial 
+          generation (sampling, influencer partnerships, retail expansion) rather than retention programs.
+        </p>
+      </div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-3">🚀 Strategic Recommendations</h2>
+      <p class="text-sm text-gray-600 mb-6">Prioritized by expected revenue impact and strategic importance</p>
+      
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">1. Accelerate Mass Market Distribution</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Impact: $12-15M ARR</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Action:</strong> Expand Target, Walmart, and CVS presence from current 35% ACV (all commodity volume 
+            distribution) to 65% ACV within 18 months.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• Invest in trade spend and retailer relationships to gain incremental shelf space</li>
+            <li>• Create mass-market SKU ($74.99 price point) without premium app features</li>
+            <li>• Launch in-store sampling program in top 50 mass doors</li>
+            <li>• <strong>Expected Impact:</strong> Close gap to natural channel share levels, adding $12-15M annual revenue</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-green-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">2. Trial Generation Campaign to Boost Penetration</h3>
+            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">Impact: $8-10M ARR</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Action:</strong> Launch targeted awareness campaign to drive household penetration from 8.7% to 11% 
+            (closing 40% of gap to category leaders).
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• Digital advertising focused on wellness enthusiasts (lookalike audiences of current buyers)</li>
+            <li>• Partner with fitness influencers and wellness podcasts for authentic endorsements</li>
+            <li>• Offer first-time buyer discount ($20 off) to reduce trial barrier</li>
+            <li>• <strong>Expected Impact:</strong> 2.3% penetration gain × 3.2 buying rate × $86.50 ASP = $8-10M revenue</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-purple-600 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">3. Online Channel Optimization</h3>
+            <span class="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full">Impact: $5-7M ARR</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Action:</strong> Capitalize on +38% YoY online growth by improving Amazon ranking and DTC conversion.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• Invest in Amazon advertising to improve search ranking for "smart scale" keywords</li>
+            <li>• Optimize product detail pages with enhanced A+ content and video</li>
+            <li>• Build retargeting campaigns for DTC site abandoners</li>
+            <li>• <strong>Expected Impact:</strong> Sustain +35% online growth, adding $5-7M incremental revenue</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-blue-700 pl-6 py-2">
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-semibold text-gray-800">4. Competitive Attack on FitScale Pro Switchers</h3>
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">Impact: $3-5M ARR</span>
+          </div>
+          <p class="text-gray-700 mb-3">
+            <strong>Action:</strong> Target FitScale Pro customers (declining -2.8% YoY) with trade-in program emphasizing 
+            superior accuracy and app features.
+          </p>
+          <ul class="text-sm text-gray-600 space-y-1 ml-4">
+            <li>• Create "Upgrade from FitScale" landing page with comparison chart</li>
+            <li>• Offer $30 trade-in credit for any competitor device</li>
+            <li>• Highlight app integration advantages (Apple Health, Google Fit, more metrics)</li>
+            <li>• <strong>Expected Impact:</strong> Capture 15-20% of FitScale Pro's declining base</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Takeaways -->
     <div class="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-8 mb-8">
       <h2 class="text-2xl font-bold mb-6">🎯 Key Takeaways</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white/10 backdrop-blur rounded-xl p-5">
-          <div class="text-3xl mb-2">📊</div>
-          <h3 class="font-semibold mb-2">Performance Highlights</h3>
+          <div class="text-3xl mb-2">💪</div>
+          <h3 class="font-semibold mb-2">What's Working</h3>
           <ul class="text-sm space-y-2 text-blue-50">
-            <li>• Snacks lead in velocity and promotional responsiveness</li>
-            <li>• Beverages dominate sales but need margin optimization</li>
-            <li>• Pet category shows premium opportunity</li>
+            <li>• +32.4% YoY growth (2.6x category rate) = taking share</li>
+            <li>• 68% repeat rate highest in category = product quality validated</li>
+            <li>• Strong Natural/Specialty position (14.5% share)</li>
+            <li>• Online (+38%) and Mass (+45%) channels accelerating</li>
           </ul>
         </div>
         <div class="bg-white/10 backdrop-blur rounded-xl p-5">
           <div class="text-3xl mb-2">🎯</div>
-          <h3 class="font-semibold mb-2">Strategic Focus</h3>
+          <h3 class="font-semibold mb-2">Where to Focus</h3>
           <ul class="text-sm space-y-2 text-blue-50">
-            <li>• Apply 4Ps to rebalance Product, Price, Place, and Promotion</li>
-            <li>• Focus on velocity × margin optimization</li>
-            <li>• Rationalize slow-moving SKUs</li>
+            <li>• Household penetration (8.7%) trails leaders by 4-6 points</li>
+            <li>• Mass market under-indexed despite high growth rate</li>
+            <li>• Trial generation more important than loyalty programs</li>
+            <li>• Premium positioning working—don't compete on price</li>
           </ul>
         </div>
       </div>
+      <div class="mt-6 bg-white/10 backdrop-blur rounded-xl p-5">
+        <p class="text-sm leading-relaxed">
+          <strong>Bottom Line:</strong> VitalMetrics has strong product-market fit evidenced by high repeat rates and 
+          above-category buying rates. Growth is constrained by awareness and distribution, not product quality. By 
+          expanding mass market presence and driving household penetration through trial generation, we can sustain 
+          30%+ growth and reach 15% category share within 24 months. The path to scaling from $45M to $75M ARR is 
+          clear and execution-focused.
+        </p>
+      </div>
     </div>
+
+    <!-- Methodology Note -->
+    <div class="bg-gray-100 rounded-xl p-6 mb-8">
+      <h3 class="font-semibold text-gray-800 mb-3">📋 Methodology & Data Notes</h3>
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 mb-4 rounded-r-lg">
+        <p class="text-sm text-amber-900 font-semibold mb-2">
+          🎭 IMPORTANT: This is a portfolio demonstration using entirely synthetic data.
+        </p>
+        <p class="text-xs text-amber-800">
+          <strong>VitalMetrics and all competitor brands are fictional.</strong> This analysis uses synthetic Nielsen-style 
+          panel data created by Lexi Barry to demonstrate CPG category analytics methodology. All market shares, growth 
+          rates, penetration metrics, and competitive data are fabricated and do not represent any real company's 
+          performance or actual Nielsen/IRI panel data. The analytical frameworks, tools, and approaches are real and 
+          based on industry best practices for CPG category management.
+        </p>
+      </div>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">
+        This analysis uses <strong>synthetic data</strong> modeling realistic Nielsen retail panel and IRI household panel 
+        patterns for the connected wellness devices category. The dataset represents 52-week period (ending Dec 2024) 
+        with monthly data points across 5 major brands, 4 retail channels (Natural/Specialty, Mass Market, Online, Club), 
+        and panel metrics for ~50,000 modeled households.
+      </p>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">
+        <strong>Data sources (if real):</strong> Nielsen Retail Panel (POS data aggregated from retailer partners), 
+        IRI household panel (consumer purchase behavior from panel participants), Numerator (competitive intelligence). 
+        <strong>Metrics calculated:</strong> Dollar Share = Brand Sales / Category Sales; Penetration = Buying HHs / Total 
+        Panel HHs; Buying Rate = Units Purchased / Buying HHs; Repeat Rate = HHs with 2+ purchases / Buying HHs; 
+        YoY Growth = (Current Period - Prior Year Period) / Prior Year Period.
+      </p>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        <strong>Tech stack:</strong> Nielsen Answers API (simulated), IRI Growth Platform (simulated), Python (pandas for 
+        ETL, scipy for statistical tests), SQL (BigQuery for aggregations), dbt (data modeling), Tableau/Looker (dashboards), 
+        Chart.js (visualizations). All synthetic data and analysis created by Lexi Barry for portfolio purposes only.
+      </p>
+    </div>
+
   </div>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer class="gradient-bg text-white py-10">
     <div class="max-w-7xl mx-auto px-6 text-center">
       <p class="mb-3 text-2xl font-bold">Lexi Barry</p>
       <p class="text-blue-100 mb-4">Product-Minded Data Leader | Analytics & Business Intelligence</p>
       <div class="flex justify-center gap-6 mb-6 text-sm">
-        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-200 transition">📧 Email</a>
+        <a href="mailto:lexi.barry@outlook.com" class="hover:text-blue-200 transition">📧 lexi.barry@outlook.com</a>
         <a href="https://linkedin.com/in/lexi-barry" class="hover:text-blue-200 transition">💼 LinkedIn</a>
         <a href="https://github.com/lexibarry" class="hover:text-blue-200 transition">💻 GitHub</a>
       </div>
-      <p class="text-xs text-blue-100">Synthetic data for portfolio demonstration only.</p>
+      <div class="max-w-3xl mx-auto text-xs text-blue-100 space-y-2 leading-relaxed">
+        <p><strong>Confidentiality & Disclaimer:</strong> All datasets, analyses, visualizations, brands, and market data 
+        featured in this dashboard are <strong>100% synthetic and fictional</strong>. VitalMetrics and all competitor brands 
+        do not exist. All Nielsen panel data, IRI metrics, and category performance data are created by Lexi Barry for 
+        portfolio demonstration purposes only. No employer, client, Nielsen, IRI, or real company data is used. This showcases 
+        CPG category analytics methodology, not real market data.</p>
+        <p><strong>License:</strong> MIT License — Feel free to reuse this structure with attribution.</p>
+      </div>
+      <p class="mt-6 text-xs text-blue-200">© 2025 Lexi Barry — Data Analytics Portfolio</p>
     </div>
   </footer>
 
-  <!-- SCRIPT -->
   <script>
-    const categoryData = [
-      { category: 'Beverages', sales: 3425, velocity: 3.2, promoLift: 38, margin: 18.3 },
-      { category: 'Snacks', sales: 2890, velocity: 4.8, promoLift: 42, margin: 20.7 },
-      { category: 'Personal Care', sales: 2340, velocity: 2.4, promoLift: 28, margin: 24.2 },
-      { category: 'Household', sales: 2150, velocity: 1.8, promoLift: 25, margin: 19.8 },
-      { category: 'Pet', sales: 1520, velocity: 2.7, promoLift: 32, margin: 26.4 }
-    ];
+    // Generate synthetic category data
+    function generateCategoryData() {
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const shareData = months.map((m, i) => ({
+        month: m,
+        VitalMetrics: 7.2 + (i * 0.22),
+        FitScale: 18.5 - (i * 0.12),
+        SmartBody: 14.1 + (i * 0.03),
+        HealthTrack: 11.5 + (i * 0.05),
+        Others: 48.7 + (i * 0.02)
+      }));
 
-    function populateKPIs() {
-      const totalSales = categoryData.reduce((a, b) => a + b.sales, 0);
-      const avgVelocity = (categoryData.reduce((a, b) => a + b.velocity, 0) / categoryData.length).toFixed(1);
-      const avgPromo = (categoryData.reduce((a, b) => a + b.promoLift, 0) / categoryData.length).toFixed(0);
-      const weightedMargin = (categoryData.reduce((a, b) => a + (b.margin * b.sales), 0) / totalSales).toFixed(1);
+      const channelData = [
+        { channel: 'Natural/Specialty', share: 14.5, yoy: 28.3 },
+        { channel: 'Mass Market', share: 6.2, yoy: 45.1 },
+        { channel: 'Online', share: 12.8, yoy: 38.2 },
+        { channel: 'Club', share: 7.1, yoy: 22.5 }
+      ];
 
-      document.getElementById('kpi-sales').textContent = '$' + (totalSales / 1000).toFixed(1) + 'M';
-      document.getElementById('kpi-velocity').textContent = avgVelocity;
-      document.getElementById('kpi-promo').textContent = '+' + avgPromo + '%';
-      document.getElementById('kpi-margin').textContent = weightedMargin + '%';
+      const panelData = [
+        { brand: 'VitalMetrics', penetration: 8.7, buyingRate: 3.2, sales: 42 },
+        { brand: 'FitScale Pro', penetration: 14.8, buyingRate: 2.7, sales: 75 },
+        { brand: 'SmartBody', penetration: 12.1, buyingRate: 3.0, sales: 61 },
+        { brand: 'HealthTrack', penetration: 10.3, buyingRate: 3.1, sales: 50 },
+        { brand: 'BodyMetrics', penetration: 9.6, buyingRate: 2.9, sales: 46 }
+      ];
+
+      return { shareData, channelData, panelData };
     }
 
-    function createSalesVelocityChart() {
-      Chart.register(ChartDataLabels);
-      const ctx = document.getElementById('salesVelocityChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar',
+    const { shareData, channelData, panelData } = generateCategoryData();
+    let shareChart, channelChart, panelChart;
+
+    function updateCharts() {
+      // Share trend chart
+      if (shareChart) shareChart.destroy();
+      const shareCtx = document.getElementById('shareChart').getContext('2d');
+      shareChart = new Chart(shareCtx, {
+        type: 'line',
         data: {
-          labels: categoryData.map(c => c.category),
+          labels: shareData.map(d => d.month),
           datasets: [
             {
-              label: 'Sales ($K)',
-              data: categoryData.map(c => c.sales),
-              backgroundColor: '#3B82F6',
-              yAxisID: 'y',
-              borderRadius: 6,
-              datalabels: { anchor: 'end', align: 'top', color: '#1E40AF', font: { size: 10, weight: 'bold' } }
+              label: 'VitalMetrics',
+              data: shareData.map(d => d.VitalMetrics),
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.1)',
+              borderWidth: 3,
+              tension: 0.4,
+              fill: true
             },
             {
-              label: 'Velocity (units/store/wk)',
-              data: categoryData.map(c => c.velocity),
-              backgroundColor: '#10B981',
-              yAxisID: 'y1',
-              borderRadius: 6,
-              datalabels: { anchor: 'end', align: 'top', color: '#065F46', font: { size: 10, weight: 'bold' } }
+              label: 'FitScale Pro',
+              data: shareData.map(d => d.FitScale),
+              borderColor: '#ef4444',
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: false
+            },
+            {
+              label: 'SmartBody',
+              data: shareData.map(d => d.SmartBody),
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: false
+            },
+            {
+              label: 'HealthTrack',
+              data: shareData.map(d => d.HealthTrack),
+              borderColor: '#a855f7',
+              backgroundColor: 'rgba(168, 85, 247, 0.1)',
+              borderWidth: 2,
+              tension: 0.4,
+              fill: false
             }
           ]
         },
         options: {
           responsive: true,
-          plugins: { legend: { position: 'top' } },
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 13 }, padding: 12 } },
+            datalabels: { display: false }
+          },
           scales: {
-            y: { title: { display: true, text: 'Sales ($K)' } },
-            y1: { position: 'right', title: { display: true, text: 'Velocity' }, grid: { drawOnChartArea: false } }
+            y: { 
+              beginAtZero: true,
+              max: 20,
+              ticks: { callback: v => v + '%', font: { size: 11 } },
+              title: { display: true, text: 'Dollar Share (%)', font: { size: 13 } }
+            },
+            x: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+
+      // Channel performance chart
+      if (channelChart) channelChart.destroy();
+      const channelCtx = document.getElementById('channelChart').getContext('2d');
+      channelChart = new Chart(channelCtx, {
+        type: 'bar',
+        data: {
+          labels: channelData.map(d => d.channel),
+          datasets: [
+            {
+              label: 'Dollar Share (%)',
+              data: channelData.map(d => d.share),
+              backgroundColor: '#3b82f6',
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              label: 'YoY Growth (%)',
+              data: channelData.map(d => d.yoy),
+              type: 'line',
+              borderColor: '#10b981',
+              backgroundColor: '#10b981',
+              borderWidth: 3,
+              tension: 0.3,
+              yAxisID: 'y1',
+              pointRadius: 6,
+              pointHoverRadius: 8
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 13 }, padding: 12 } },
+            datalabels: { display: false }
+          },
+          scales: {
+            y: {
+              type: 'linear',
+              position: 'left',
+              beginAtZero: true,
+              max: 20,
+              ticks: { callback: v => v + '%', font: { size: 11 } },
+              title: { display: true, text: 'Dollar Share (%)', font: { size: 13 } }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              beginAtZero: true,
+              max: 50,
+              ticks: { callback: v => v + '%', font: { size: 11 } },
+              title: { display: true, text: 'YoY Growth (%)', font: { size: 13 } },
+              grid: { drawOnChartArea: false }
+            },
+            x: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+
+      // Panel metrics scatter
+      if (panelChart) panelChart.destroy();
+      const panelCtx = document.getElementById('panelChart').getContext('2d');
+      panelChart = new Chart(panelCtx, {
+        type: 'scatter',
+        data: {
+          datasets: panelData.map((d, i) => ({
+            label: d.brand,
+            data: [{ x: d.penetration, y: d.buyingRate }],
+            backgroundColor: i === 0 ? '#10b981' : ['#ef4444', '#3b82f6', '#a855f7', '#f59e0b'][i-1],
+            pointRadius: d.sales / 5,
+            pointHoverRadius: d.sales / 4
+          }))
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { font: { size: 12 }, padding: 10 } },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  if (!context || !context.parsed) return '';
+                  const brand = context.dataset.label;
+                  return `${brand}: ${context.parsed.x.toFixed(1)}% penetration, ${context.parsed.y.toFixed(1)} units/buyer`;
+                }
+              }
+            },
+            datalabels: { display: false }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Household Penetration (%)', font: { size: 13 } },
+              ticks: { callback: v => v + '%', font: { size: 11 } }
+            },
+            y: {
+              title: { display: true, text: 'Buying Rate (Units/Buyer)', font: { size: 13 } },
+              ticks: { font: { size: 11 } }
+            }
           }
         }
       });
     }
 
-    function createPromoChart() {
-      const ctx = document.getElementById('promoChart').getContext('2d');
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: categoryData.map(c => c.category),
-          datasets: [{
-            label: 'Promotional Lift %',
-            data: categoryData.map(c => c.promoLift),
-            backgroundColor: categoryData.map(c => c.promoLift >= 35 ? '#10B981' : c.promoLift >= 30 ? '#F59E0B' : '#EF4444'),
-            borderRadius: 6,
-            datalabels: { anchor: 'end', align: 'top', color: '#1F2937', font: { size: 11, weight: 'bold' } }
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { display: false } },
-          scales: { y: { beginAtZero: true, title: { display: true, text: 'Promotional Lift %' } } }
-        }
-      });
+    function createFilters() {
+      const periods = ['L52W (Dec 2024)', 'L52W (Jun 2024)', 'L52W (Dec 2023)'];
+      const channels = ['All Channels', 'Natural/Specialty', 'Mass Market', 'Online', 'Club'];
+      
+      document.getElementById('filters').innerHTML = `
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-gray-700">Time Period</label>
+          <select id="filter-period" class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 transition">
+            ${periods.map(p => `<option value="${p}">${p}</option>`).join('')}
+          </select>
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold text-gray-700">Channel</label>
+          <select id="filter-channel" class="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 transition">
+            ${channels.map(c => `<option value="${c}">${c}</option>`).join('')}
+          </select>
+        </div>
+      `;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      populateKPIs();
-      createSalesVelocityChart();
-      createPromoChart();
+      Chart.register(ChartDataLabels);
+      createFilters();
+      updateCharts();
     });
   </script>
 </body>
