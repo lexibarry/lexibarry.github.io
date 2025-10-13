@@ -1,0 +1,26 @@
+title: "Lexi Barry — Product-Minded Data Leader"
+author: "Lexi Barry"
+email: "lexi.barry@outlook.com"
+description: "Dashboards, Python analytics, and product storytelling using synthetic data."
+baseurl: "" # leave empty for GitHub Pages root
+url: "https://lexibarry.github.io"
+github_username: "lexibarry"
+
+# Optional SEO improvements
+theme: null
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Default meta tags
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+      meta:
+        author: "Lexi Barry"
+        description: "Data storytelling, analytics, and product insights by Lexi Barry."
+        keywords: "Lexi Barry, data analytics, product management, Python, dashboard, storytelling, synthetic data"
