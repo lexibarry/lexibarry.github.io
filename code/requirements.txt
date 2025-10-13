@@ -1,0 +1,15 @@
+# Core analysis and data libraries
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Statistical functions for A/B testing
+scipy>=1.11.0
+
+# Plotting and visual inspection (optional, if you add charts)
+matplotlib>=3.7.0
+
+# Command-line argument parsing (built-in argparse used, no install needed)
+# dataclasses is built-in for Python 3.7+, no install needed.
+
+# Optional: if you later add notebook examples
+jupyter>=1.0.0
