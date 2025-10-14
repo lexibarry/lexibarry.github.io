@@ -9,9 +9,21 @@
 
 ---
 
-## 🎯 About This Portfolio
+## 💡 Portfolio Overview
 
-This repository showcases my product management and data analytics skills through interactive data visualizations, strategic presentations, and technical code samples. All datasets, analyses, and methodologies are **my own work and synthetically generated** for demonstration purposes—these represent my own ideologies and in no way represent any confidential or proprietary information from previous employers.
+I built this portfolio to showcase my **data storytelling**, **product thinking**, and **analytics strategy** skills. Using fully **synthetic data**, I created a mock wellness technology brand called **Vital Metrics** — a connected ecosystem featuring a **smart scale**, **wellness ring**, and **companion app**.
+
+This project demonstrates my ability to translate data into actionable business narratives through end-to-end analytical design. Within this portfolio, you’ll find:
+
+- 📊 **Six interactive dashboards** highlighting user behavior, retention, product engagement, and performance metrics  
+- 🐍 **Python scripts** demonstrating data manipulation, transformation, and insight generation  
+- 🧠 **Executive insight deck** modeled after a real-world client presentation, emphasizing storytelling, clarity, and strategic recommendations  
+- 🧩 **Case study deck** outlining research frameworks, analysis design, and experimentation logic  
+- 🔒 **Private work section** tailored for specific companies, showcasing adaptability and confidentiality  
+
+Together, these projects reflect how I approach analytics as a **data-driven product leader** — connecting insights to business strategy through thoughtful design, clear communication, and measurable impact.
+
+All datasets, analyses, and methodologies are **my own work and synthetically generated** for demonstration purposes—these represent my own ideologies and in no way represent any confidential or proprietary information from previous employers.
 
 **Live Portfolio:** [https://lexibarry.github.io/](https://lexibarry.github.io/)
 
