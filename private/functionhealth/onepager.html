@@ -3,105 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Function Health | One-Pager Analysis</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>[Company Name] | One-Pager – Lexi Barry</title>
+  <meta name="description" content="Strategic one-pager overview for [Company Name] — created by Lexi Barry to summarize growth opportunities, insights, and recommendations." />
 
-  <!-- Fade-in Animation -->
   <style>
-    body { opacity: 0; transition: opacity 0.6s ease-in; }
-    body.loaded { opacity: 1; }
+    body {
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      margin:0;padding:0;min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      transition:opacity 0.6s ease-in;
+      opacity:0;
+    }
+    body.loaded{opacity:1;}
+    .page {
+      background:#fff;border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+      width:92%;max-width:750px;padding:48px;
+    }
+    h1 {
+      text-align:center;
+      color:#1f2937;
+      font-size:28px;
+      margin-bottom:6px;
+    }
+    h2 {
+      color:#1f2937;
+      font-size:20px;
+      margin-top:32px;
+      margin-bottom:8px;
+    }
+    p {
+      color:#4b5563;
+      line-height:1.6;
+      margin-bottom:18px;
+      font-size:15px;
+    }
+    ul {
+      margin-left:20px;
+      color:#4b5563;
+      margin-bottom:16px;
+      font-size:15px;
+    }
+    table {
+      width:100%;
+      border-collapse:collapse;
+      margin-top:16px;
+      font-size:14px;
+    }
+    th, td {
+      padding:10px;
+      border:1px solid #e5e7eb;
+    }
+    th {
+      background:#f3f4f6;
+      color:#374151;
+      text-align:left;
+    }
+    td {
+      color:#4b5563;
+    }
+    a.back {
+      display:block;
+      text-align:center;
+      margin-top:30px;
+      color:#667eea;
+      text-decoration:none;
+      font-weight:600;
+    }
+    a.back:hover{text-decoration:underline;}
   </style>
+
   <script>
-    window.addEventListener("load", () => document.body.classList.add("loaded"));
+    window.addEventListener("load",()=>document.body.classList.add("loaded"));
   </script>
 </head>
 
-<body class="bg-gray-50 min-h-screen px-6 py-12">
+<body>
 
-  <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-10">
-    <h1 class="text-3xl font-bold text-indigo-800 mb-4">Function Health: Strategic One-Pager</h1>
-    <p class="text-gray-600 mb-8 text-sm">Confidential analysis prepared by Lexi Barry</p>
+  <div class="page">
+    <h1>[Company Name] Strategic One-Pager</h1>
+    <p style="text-align:center;color:#6b7280;">Confidential analysis prepared by Lexi Barry</p>
 
-    <!-- INTRO -->
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">📋 Executive Summary</h2>
-      <p class="text-gray-700 text-sm leading-relaxed">
-        Function Health is a wellness diagnostics and data platform focused on proactive health monitoring through
-        comprehensive biomarker testing and personalized recommendations.
-        This analysis outlines opportunities to improve user retention, expand subscription tiers, and increase
-        lifetime value through improved member education, habit loops, and partner integrations.
-      </p>
-    </section>
+    <!-- SECTION 1 -->
+    <h2>📋 Executive Summary</h2>
+    <p>
+      [Company Name] operates within [industry/sector] focusing on [brief business model or value proposition]. 
+      This one-pager highlights key insights, growth levers, and data-driven strategies to enhance performance,
+      user retention, and long-term sustainability.
+    </p>
 
-    <!-- INSIGHTS -->
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">🔍 Key Insights</h2>
-      <ul class="list-disc list-inside text-gray-700 text-sm leading-relaxed">
-        <li>Members engaging with the app weekly show a 2.8× higher renewal rate.</li>
-        <li>Top churn drivers: delayed lab results and lack of perceived long-term value.</li>
-        <li>Integrating wearable syncs (Oura, Whoop, Apple Health) can reduce cancellations by ~15%.</li>
-      </ul>
-    </section>
+    <!-- SECTION 2 -->
+    <h2>🔍 Key Insights</h2>
+    <ul>
+      <li>Insight #1 – replace with your first major observation or data point.</li>
+      <li>Insight #2 – summarize a user behavior, market trend, or retention metric.</li>
+      <li>Insight #3 – highlight a key differentiation or opportunity gap.</li>
+    </ul>
 
-    <!-- STRATEGIC MOVES -->
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">🚀 Strategic Recommendations</h2>
-      <ul class="list-disc list-inside text-gray-700 text-sm leading-relaxed">
-        <li><strong>Retention Focus:</strong> Introduce milestone badges for test frequency and engagement streaks.</li>
-        <li><strong>Partnership Expansion:</strong> Collaborate with gym franchises and corporate wellness programs.</li>
-        <li><strong>Upsell Path:</strong> Develop a premium “Function+” membership with family accounts and advanced metrics.</li>
-      </ul>
-    </section>
+    <!-- SECTION 3 -->
+    <h2>🚀 Strategic Recommendations</h2>
+    <ul>
+      <li><strong>Growth:</strong> outline a specific initiative that drives measurable business impact.</li>
+      <li><strong>Retention:</strong> introduce engagement or loyalty mechanisms to boost LTV.</li>
+      <li><strong>Optimization:</strong> suggest operational or UX improvements backed by data.</li>
+    </ul>
 
-    <!-- METRICS TABLE -->
-    <section class="mb-8">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">📊 Projected Impact</h2>
-      <table class="w-full border border-gray-200 text-sm text-gray-700">
-        <thead>
-          <tr class="bg-gray-100 text-gray-800">
-            <th class="p-2 text-left">Metric</th>
-            <th class="p-2 text-left">Current</th>
-            <th class="p-2 text-left">Target</th>
-            <th class="p-2 text-left">Impact</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t">
-            <td class="p-2">Member Retention (6mo)</td>
-            <td class="p-2">68%</td>
-            <td class="p-2 text-indigo-700 font-semibold">80%</td>
-            <td class="p-2">+12% absolute</td>
-          </tr>
-          <tr class="border-t">
-            <td class="p-2">Average Revenue per User</td>
-            <td class="p-2">$420</td>
-            <td class="p-2 text-indigo-700 font-semibold">$550</td>
-            <td class="p-2">+$130/user</td>
-          </tr>
-          <tr class="border-t">
-            <td class="p-2">Referral Conversion Rate</td>
-            <td class="p-2">11%</td>
-            <td class="p-2 text-indigo-700 font-semibold">20%</td>
-            <td class="p-2">+82% increase</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <!-- SECTION 4 -->
+    <h2>📊 Projected Outcomes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Current</th>
+          <th>Target</th>
+          <th>Expected Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Retention Rate</td>
+          <td>–</td>
+          <td>–</td>
+          <td>–</td>
+        </tr>
+        <tr>
+          <td>Revenue per User</td>
+          <td>–</td>
+          <td>–</td>
+          <td>–</td>
+        </tr>
+        <tr>
+          <td>Referral Rate</td>
+          <td>–</td>
+          <td>–</td>
+          <td>–</td>
+        </tr>
+      </tbody>
+    </table>
 
-    <!-- FOOTER -->
-    <div class="text-center mt-10">
-      <a href="index.html" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">← Back to Function Health</a>
-    </div>
+    <!-- SECTION 5 -->
+    <h2>📈 Next Steps</h2>
+    <ul>
+      <li>Phase 1: Quick wins (30 days) – list actions.</li>
+      <li>Phase 2: Mid-term roadmap (90 days) – list initiatives.</li>
+      <li>Phase 3: Long-term growth vision (6-12 months).</li>
+    </ul>
+
+    <a href="index.html" class="back">← Back to [Company Name] Private Page</a>
   </div>
 
   <!-- Redirect if not authenticated -->
   <script>
-    if (
-      sessionStorage.getItem("auth_functionhealth") !== "true" &&
-      sessionStorage.getItem("auth_master") !== "true"
-    ) {
-      window.location.href = "../index.html";
-    }
+    const COMPANY_KEY = window.location.pathname.split("/").slice(-2, -1)[0];
+    const isAuthorized =
+      sessionStorage.getItem(`auth_${COMPANY_KEY}`) === "true" ||
+      sessionStorage.getItem("auth_master") === "true";
+    if (!isAuthorized) window.location.href = "../index.html";
   </script>
 
 </body>
