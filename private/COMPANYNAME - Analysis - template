@@ -402,3 +402,339 @@
 
     <!-- McKINSEY 3 HORIZONS -->
     <div class="section">
+      <div class="section-title">Strategic Initiatives (McKinsey 3 Horizons)</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 18%;">Horizon</th>
+            <th style="width: 42%;">Initiative & Impact</th>
+            <th style="width: 15%;">Confidence</th>
+            <th style="width: 12%;">Effort</th>
+            <th style="width: 13%;">Timeline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>H1: Optimize</strong><br><span style="font-size: 7px; color: #6b7280;">Core business</span></td>
+            <td>[Specific improvement to existing feature - e.g., "Reduce onboarding steps from 7 to 3, increase activation 25%"]</td>
+            <td style="color: #16a34a; font-weight: 600;">High 80%</td>
+            <td>3-4 weeks</td>
+            <td>0-6 mo</td>
+          </tr>
+          <tr>
+            <td><strong>H2: Expand</strong><br><span style="font-size: 7px; color: #6b7280;">Adjacent</span></td>
+            <td>[New feature OR new segment - e.g., "Launch SMB self-serve tier, expand TAM by $40M"]</td>
+            <td style="color: #f59e0b; font-weight: 600;">Med 60%</td>
+            <td>8-10 weeks</td>
+            <td>6-18 mo</td>
+          </tr>
+          <tr>
+            <td><strong>H3: Create</strong><br><span style="font-size: 7px; color: #6b7280;">Future</span></td>
+            <td>[Transformational bet - e.g., "AI-powered workflow automation, potential 10x efficiency"]</td>
+            <td style="color: #3b82f6; font-weight: 600;">Low 30%</td>
+            <td>4-6 mo</td>
+            <td>18+ mo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- RICE PRIORITIZATION -->
+    <div class="section">
+      <div class="section-title">Initiative Prioritization (RICE Framework)</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 28%;">Initiative</th>
+            <th style="width: 13%;">Reach</th>
+            <th style="width: 13%;">Impact</th>
+            <th style="width: 14%;">Confidence</th>
+            <th style="width: 13%;">Effort</th>
+            <th style="width: 12%;">RICE</th>
+            <th style="width: 7%;">Rank</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: #f0fdf4;">
+            <td><strong>[Initiative 1]</strong><br><span style="font-size: 7.5px; color: #6b7280;">[Brief description]</span></td>
+            <td>5K users/qtr</td>
+            <td>High (3)</td>
+            <td>80%</td>
+            <td>2 weeks</td>
+            <td style="font-weight: 700; color: #16a34a;">[60]</td>
+            <td style="font-weight: 700;">#1</td>
+          </tr>
+          <tr>
+            <td><strong>[Initiative 2]</strong><br><span style="font-size: 7.5px; color: #6b7280;">[Brief description]</span></td>
+            <td>3K users/qtr</td>
+            <td>Med (2)</td>
+            <td>70%</td>
+            <td>4 weeks</td>
+            <td style="font-weight: 700; color: #2563eb;">[35]</td>
+            <td style="font-weight: 700;">#2</td>
+          </tr>
+          <tr>
+            <td><strong>[Initiative 3]</strong><br><span style="font-size: 7.5px; color: #6b7280;">[Brief description]</span></td>
+            <td>10K users/qtr</td>
+            <td>Low (1)</td>
+            <td>50%</td>
+            <td>8 weeks</td>
+            <td style="font-weight: 700; color: #64748b;">[6]</td>
+            <td style="font-weight: 700;">#3</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 8px; margin-top: 4px; color: #6b7280;"><em>RICE = (Reach × Impact × Confidence) / Effort | Impact scale: 3=Massive, 2=High, 1=Medium, 0.5=Low</em></p>
+    </div>
+
+    <!-- COMPETITIVE POSITIONING -->
+    <div class="section">
+      <div class="section-title">Competitive Position & Strategy (BCG Matrix)</div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px;">
+        <div>
+          <div class="matrix">
+            <div class="matrix-cell high-impact">
+              <strong>Market Leaders</strong>
+              [Competitor 1]<br>[Competitor 2]
+            </div>
+            <div class="matrix-cell med-impact">
+              <strong>Challengers</strong>
+              <strong>[Your Company]</strong><br>[Competitor 3]
+            </div>
+            <div class="matrix-cell low-impact">
+              <strong>Niche Players</strong>
+              [Competitor 4]
+            </div>
+            <div class="matrix-cell low-impact">
+              <strong>Laggards</strong>
+              [Competitor 5]
+            </div>
+          </div>
+          <p style="font-size: 7.5px; color: #6b7280; text-align: center; margin-top: 3px;">Market Share vs Product Capability</p>
+        </div>
+        <div>
+          <div class="framework-box">
+            <div class="framework-title">Strategic Positioning</div>
+            <p style="margin-bottom: 3px;"><strong>Current:</strong> [Where you are - e.g., "Challenger with 8% market share, strong product but weak brand"]</p>
+            <p style="margin-bottom: 3px;"><strong>Target:</strong> [Where to move - e.g., "Become category leader in [niche] by owning [specific use case]"]</p>
+            <p><strong>Differentiator:</strong> [The ONE thing to own - e.g., "Only platform with native [feature] - 3x faster than workarounds"]</p>
+          </div>
+          <p style="font-size: 8.5px; margin-top: 5px;"><strong>Competitive Advantages:</strong></p>
+          <ul style="font-size: 8.5px;">
+            <li>[Advantage 1 - be specific and defensible]</li>
+            <li>[Advantage 2 - ideally network effects or data moats]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- USER INSIGHTS -->
+    <div class="section">
+      <div class="section-title">User Insights & Stakeholder Considerations</div>
+      <div class="two-column">
+        <div>
+          <p style="font-size: 9px; font-weight: 700; margin-bottom: 3px;">💡 Critical User Insights</p>
+          <p style="font-size: 8px; margin-bottom: 3px;">
+            <span class="insight-tag">Behavior</span>
+            <span class="insight-tag">Drop-off</span>
+            <span class="insight-tag">Aha Moment</span>
+          </p>
+          <ul style="font-size: 8.5px;">
+            <li><strong>Power users:</strong> [Pattern that predicts retention - e.g., "3+ sessions in first week = 85% retention"]</li>
+            <li><strong>Churn signal:</strong> [Early warning - e.g., "No login Day 3-5 = 92% churn by Day 30"]</li>
+            <li><strong>Aha moment:</strong> [When they get it - e.g., "First successful [action] = 10x stickiness"]</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size: 9px; font-weight: 700; margin-bottom: 3px;">🎯 Key Stakeholders (if B2B/Enterprise)</p>
+          <ul style="font-size: 8.5px;">
+            <li><strong>Economic Buyer:</strong> [Title - e.g., "VP Finance"] | Cares about: [ROI, cost savings]</li>
+            <li><strong>Champion:</strong> [Title - e.g., "Ops Manager"] | Cares about: [Ease of use, time saved]</li>
+            <li><strong>End Users:</strong> [Role] | Cares about: [Daily workflow improvement]</li>
+          </ul>
+          <p style="font-size: 8px; margin-top: 4px;"><strong>Decision Criteria:</strong> [What they evaluate - e.g., "Security, integration with Salesforce, change management"]</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 90-DAY ACTION PLAN -->
+    <div class="section">
+      <div class="section-title">90-Day Action Plan</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">Phase</th>
+            <th style="width: 50%;">Key Activities</th>
+            <th style="width: 20%;">Success Metrics</th>
+            <th style="width: 15%;">Deliverables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700;">Days 1-30<br><span style="font-size: 7px; font-weight: 400; color: #6b7280;">Learn + Quick Wins</span></td>
+            <td style="font-size: 8px;">
+              • [Quick win 1 - specific action]<br>
+              • [Quick win 2]<br>
+              • Set up analytics dashboard<br>
+              • Interview 10 users + 5 internal stakeholders
+            </td>
+            <td style="font-size: 8px;">[X]% improvement in [metric]<br><br>Dashboard live</td>
+            <td style="font-size: 8px;">2-3 shipped experiments</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Days 31-60<br><span style="font-size: 7px; font-weight: 400; color: #6b7280;">Core Optimization</span></td>
+            <td style="font-size: 8px;">
+              • [Major initiative 1 - H1 from above]<br>
+              • [Major initiative 2]<br>
+              • Run 5+ A/B tests on [critical funnel stage]<br>
+              • Build growth model
+            </td>
+            <td style="font-size: 8px;">[X]% lift in North Star metric<br><br>[X] experiments</td>
+            <td style="font-size: 8px;">H1 initiative live<br><br>Growth model</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700;">Days 61-90<br><span style="font-size: 7px; font-weight: 400; color: #6b7280;">Scale + Systems</span></td>
+            <td style="font-size: 8px;">
+              • Launch [H2 initiative] beta<br>
+              • Activate growth loop<br>
+              • Build automated reporting<br>
+              • Present roadmap to leadership
+            </td>
+            <td style="font-size: 8px;">Hit [target] for North Star<br><br>Growth loop active</td>
+            <td style="font-size: 8px;">H2 in beta<br><br>6-mo roadmap</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SUCCESS METRICS & RISKS -->
+    <div class="section">
+      <div class="section-title">Success Metrics & Risk Mitigation</div>
+      <div class="two-column">
+        <div>
+          <table style="margin-bottom: 6px;">
+            <thead>
+              <tr>
+                <th style="width: 40%;">Metric</th>
+                <th style="width: 25%;">Current</th>
+                <th style="width: 35%;">6-Month Target</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>[North Star]</strong></td>
+                <td>[Current]</td>
+                <td style="color: #16a34a; font-weight: 600;">[Target +X%]</td>
+              </tr>
+              <tr>
+                <td><strong>[Input Metric 1]</strong></td>
+                <td>[Current]</td>
+                <td style="color: #16a34a; font-weight: 600;">[Target +X%]</td>
+              </tr>
+              <tr>
+                <td><strong>[Input Metric 2]</strong></td>
+                <td>[Current]</td>
+                <td style="color: #16a34a; font-weight: 600;">[Target +X%]</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 8px;"><strong>Leading Indicators:</strong> [What to watch weekly - e.g., "Daily signups, activation rate, Day 1 retention"]</p>
+        </div>
+        <div>
+          <p style="font-size: 9px; font-weight: 700; margin-bottom: 3px; color: #dc2626;">⚠️ Top Risks & Mitigation</p>
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 50%;">Risk</th>
+                <th style="width: 50%;">Mitigation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>[Risk 1 - e.g., "Tech debt slows velocity"]</td>
+                <td>[How to address - e.g., "Allocate 20% sprint capacity"]</td>
+              </tr>
+              <tr>
+                <td>[Risk 2 - e.g., "Competitor launches similar"]</td>
+                <td>[How to address - e.g., "Focus on integration depth"]</td>
+              </tr>
+              <tr>
+                <td>[Risk 3 - e.g., "Low user adoption"]</td>
+                <td>[How to address - e.g., "Beta test with 50 users"]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY ASSUMPTIONS -->
+    <div class="section">
+      <div class="section-title">Key Assumptions & Research Sources</div>
+      <div class="two-column">
+        <div>
+          <p style="font-size: 9px; font-weight: 700; margin-bottom: 3px;">📋 Critical Assumptions</p>
+          <ul style="font-size: 8.5px;">
+            <li>[Assumption 1 - e.g., "Users will adopt new workflow within 2 weeks"]</li>
+            <li>[Assumption 2 - e.g., "Sales cycle reduces 50% with self-serve tier"]</li>
+            <li>[Assumption 3 - e.g., "Churn is due to complexity, not pricing"]</li>
+          </ul>
+          <p style="font-size: 8px; margin-top: 4px;"><strong>Validation Plan:</strong> [How to test - e.g., "User interviews (n=20), A/B test, cohort analysis"]</p>
+        </div>
+        <div>
+          <p style="font-size: 9px; font-weight: 700; margin-bottom: 3px;">🔍 Research Sources</p>
+          <ul style="font-size: 8.5px;">
+            <li>App Store/Play Store reviews ([X] reviews analyzed)</li>
+            <li>G2/Capterra competitor analysis</li>
+            <li>SimilarWeb traffic estimates</li>
+            <li>Industry reports: [Source names]</li>
+            <li>User interviews: [If you did any]</li>
+            <li>Company blog/press releases</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <strong>Prepared by Lexi Barry</strong> | lexi.barry@example.com | linkedin.com/in/lexibarry<br>
+      <em>Frameworks: McKinsey 3 Horizons, RICE Prioritization, Jobs-to-be-Done, AARRR (Pirate Metrics), BCG Matrix</em><br>
+      <em>Analysis based on publicly available information, user reviews, and estimated industry benchmarks. All data marked with sources.</em>
+    </div>
+
+  </div>
+
+  <script>
+    // 🔒 CHANGE THIS PASSWORD FOR EACH COMPANY
+    // Format: companyname2025lexi (all lowercase, no spaces)
+    // Examples: spotify2025lexi, netflix2025lexi, stripe2025lexi
+    const CORRECT_PASSWORD = 'CHANGETHIS2025lexi';
+
+    function checkPassword(event) {
+      event.preventDefault();
+      const input = document.getElementById('passwordInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const overlay = document.getElementById('loginOverlay');
+      const mainContent = document.getElementById('mainContent');
+
+      if (input === CORRECT_PASSWORD) {
+        overlay.classList.add('hidden');
+        mainContent.classList.remove('hidden');
+        sessionStorage.setItem('auth_' + CORRECT_PASSWORD, 'true');
+      } else {
+        errorMsg.style.display = 'block';
+        setTimeout(() => { errorMsg.style.display = 'none'; }, 3000);
+      }
+    }
+
+    // Auto-login if already authenticated
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('auth_' + CORRECT_PASSWORD) === 'true') {
+        document.getElementById('loginOverlay').classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+      }
+    });
+  </script>
+
+</body>
+</html>
