@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Strategy Analysis | [COMPANY NAME]</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.35;
+      color: #1a1a1a;
+      background: white;
+      padding: 0.6in;
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+    .header {
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 3px;
+    }
+    .header .subtitle {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+    }
+    .section { margin-bottom: 12px; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .priority-box {
+      background: #fef3c7;
+      border-left: 3px solid #f59e0b;
+      padding: 8px 10px;
+      margin: 5px 0;
+      font-size: 9.5px;
+    }
+    .priority-box strong { color: #92400e; font-size: 10px; }
+    .framework-box {
+      background: #f8fafc;
+      border-left: 3px solid #2563eb;
+      padding: 7px 9px;
+      margin: 5px 0;
+      font-size: 9px;
+    }
+    .framework-title {
+      font-weight: 700;
+      color: #1e40af;
+      font-size: 9.5px;
+      margin-bottom: 3px;
+    }
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 6px 0;
+    }
+    .metric-card {
+      background: #f0f9ff;
+      padding: 8px;
+      border-radius: 4px;
+      text-align: center;
+      border: 1px solid #bfdbfe;
+    }
+    .metric-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 2px;
+    }
+    .metric-label {
+      font-size: 7.5px;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+    .funnel-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin: 6px 0;
+    }
+    .funnel-stage {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #10b981;
+      border-radius: 4px;
+      padding: 6px 4px;
+      text-align: center;
+    }
+    .stage-name {
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #065f46;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .stage-metric {
+      font-size: 13px;
+      font-weight: 700;
+      color: #10b981;
+      margin-bottom: 1px;
+    }
+    .stage-label {
+      font-size: 7px;
+      color: #6b7280;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.5px;
+      margin: 5px 0;
+    }
+    th {
+      background: #f1f5f9;
+      padding: 4px 6px;
+      text-align: left;
+      font-weight: 700;
+      border: 1px solid #e2e8f0;
+      font-size: 8.5px;
+    }
+    td {
+      padding: 4px 6px;
+      border: 1px solid #e2e8f0;
+      font-size: 8.5px;
+      line-height: 1.3;
+    }
+    ul { margin-left: 14px; margin-bottom: 3px; }
+    li {
+      font-size: 9px;
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      margin: 5px 0;
+    }
+    .matrix-cell {
+      padding: 5px;
+      font-size: 8px;
+      border-radius: 3px;
+      border: 1px solid #d1d5db;
+      line-height: 1.3;
+    }
+    .matrix-cell strong {
+      display: block;
+      font-size: 8.5px;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+    .high-impact { background: #dcfce7; border-color: #16a34a; }
+    .med-impact { background: #fef3c7; border-color: #f59e0b; }
+    .low-impact { background: #fee2e2; border-color: #dc2626; }
+    .roi-highlight {
+      background: #dcfce7;
+      border-left: 3px solid #16a34a;
+      padding: 7px 9px;
+      margin: 5px 0;
+      font-size: 9px;
+    }
+    .roi-highlight strong { color: #065f46; font-size: 10px; }
+    .insight-tag {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 2px 5px;
+      border-radius: 3px;
+      font-size: 7.5px;
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 3px;
+      margin-bottom: 2px;
+    }
+    .footer {
+      margin-top: 12px;
+      padding-top: 6px;
+      border-top: 2px solid #e5e7eb;
+      font-size: 8px;
+      color: #6b7280;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .login-box {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
+    }
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .login-box p {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+    .login-box input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .login-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+    .error-msg {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 14px;
+      display: none;
+    }
+    .hidden { display: none; }
+    @media print { 
+      body { padding: 0.4in; }
+      .login-overlay { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD PROTECTION OVERLAY -->
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-box">
+      <h2>🔐 Protected Analysis</h2>
+      <p>This strategic analysis is password-protected</p>
+      <div id="errorMsg" class="error-msg">❌ Incorrect password</div>
+      <form onsubmit="checkPassword(event)">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          placeholder="Enter password"
+          required
+        >
+        <button type="submit">Access Analysis</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT (Hidden until correct password) -->
+  <div id="mainContent" class="hidden">
+
+    <div class="header">
+      <h1>Product Strategy Analysis: [COMPANY NAME] - [PRODUCT NAME]</h1>
+      <div class="subtitle">
+        <span>[Role Title] Opportunity | Prepared by Lexi Barry</span>
+        <span>[Date - e.g., October 2025]</span>
+      </div>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="section">
+      <div class="section-title">Executive Summary</div>
+      <div class="priority-box">
+        <strong>Strategic Recommendation:</strong> [One clear sentence with your main recommendation - e.g., "Prioritize activation over acquisition by rebuilding onboarding to deliver value within 5 minutes, targeting 60% D7 retention by Q3."]
+      </div>
+      <p style="font-size: 9px; margin: 4px 0;"><strong>Key Insight:</strong> [2-3 sentences about the biggest opportunity with specific data. E.g., "User reviews show 73% mention 'too complicated' in 1-star reviews. Competitors with simpler onboarding show 2.3x higher retention. The fix is a 15-minute implementation vs 6-month feature build."]</p>
+      <div class="roi-highlight">
+        <strong>Business Impact:</strong> [Quantify it - e.g., "+$2.4M ARR if we improve D7 retention from 35% to 50%, based on 10K monthly signups and $50 ARPU"]
+      </div>
+    </div>
+
+    <!-- NORTH STAR & KEY METRICS -->
+    <div class="section">
+      <div class="section-title">North Star Metric & Product Health</div>
+      <div class="framework-box">
+        <div class="framework-title">Proposed North Star: [Specific Metric Name]</div>
+        <p style="margin-bottom: 2px;"><strong>Why:</strong> [1 sentence - e.g., "Weekly Active Projects measures core value delivery and predicts both retention and revenue"]</p>
+        <p><strong>Current:</strong> [Estimate] | <strong>Target (6mo):</strong> [Target] | <strong>Source:</strong> [How you estimated]</p>
+      </div>
+      
+      <div class="three-column">
+        <div class="metric-card">
+          <div class="metric-value">[X]%</div>
+          <div class="metric-label">Activation Rate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">[X]%</div>
+          <div class="metric-label">D7 Retention</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">[$X]</div>
+          <div class="metric-label">LTV / CAC</div>
+        </div>
+      </div>
+      <p style="font-size: 7.5px; color: #6b7280; font-style: italic;">*Metrics estimated from [App Store reviews / SimilarWeb / industry benchmarks / competitor analysis]</p>
+    </div>
+
+    <!-- AARRR FUNNEL -->
+    <div class="section">
+      <div class="section-title">Growth Funnel Analysis (AARRR)</div>
+      <div class="funnel-grid">
+        <div class="funnel-stage">
+          <div class="stage-name">Acquisition</div>
+          <div class="stage-metric">[X]K</div>
+          <div class="stage-label">Monthly</div>
+        </div>
+        <div class="funnel-stage">
+          <div class="stage-name">Activation</div>
+          <div class="stage-metric">[X]%</div>
+          <div class="stage-label">Aha Moment</div>
+        </div>
+        <div class="funnel-stage">
+          <div class="stage-name">Retention</div>
+          <div class="stage-metric">[X]%</div>
+          <div class="stage-label">D30 Active</div>
+        </div>
+        <div class="funnel-stage">
+          <div class="stage-name">Revenue</div>
+          <div class="stage-metric">[X]%</div>
+          <div class="stage-label">Conversion</div>
+        </div>
+        <div class="funnel-stage">
+          <div class="stage-name">Referral</div>
+          <div class="stage-metric">[X]</div>
+          <div class="stage-label">K-Factor</div>
+        </div>
+      </div>
+      <p style="font-size: 9px; margin-top: 4px;"><strong>Biggest Bottleneck:</strong> [Identify the drop-off - e.g., "58% of users abandon during onboarding step 3, indicating friction in connecting first account"]</p>
+    </div>
+
+    <!-- JOBS-TO-BE-DONE -->
+    <div class="section">
+      <div class="section-title">Jobs-to-Be-Done & User Needs</div>
+      <div class="two-column">
+        <div>
+          <div class="framework-box">
+            <div class="framework-title">Primary Job</div>
+            <p><strong>Functional:</strong> [What users try to accomplish]</p>
+            <p><strong>Emotional:</strong> [How they want to feel]</p>
+            <p><strong>Social:</strong> [How they want to be perceived]</p>
+          </div>
+        </div>
+        <div>
+          <div class="framework-box">
+            <div class="framework-title">Critical Underserved Need</div>
+            <p><strong>Gap:</strong> [Biggest pain point from research]</p>
+            <p><strong>Evidence:</strong> "[Real user quote from review]"</p>
+            <p><strong>Opportunity:</strong> [How solving this unlocks growth]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- McKINSEY 3 HORIZONS -->
+    <div class="section">
