@@ -36,8 +36,15 @@
     a.button:hover{background:#5568d3;}
   </style>
 </head>
+  <script>
+  if (
+    sessionStorage.getItem("auth_functionhealth") !== "true" &&
+    sessionStorage.getItem("auth_master") !== "true"
+  ) {
+    window.location.href = "../index.html";
+  }
+</script>
 <body>
-
   <div class="container">
     <h1>Function Health | Product Strategy One-Pager</h1>
     <p style="text-align:center;color:#6b7280;margin-bottom:18px;">Prepared by <strong>Lexi Barry</strong> — Data-Driven Product Strategy</p>
