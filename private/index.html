@@ -14,12 +14,12 @@
     
     <!-- Header -->
     <div class="text-5xl mb-3">🔒</div>
-    <h1 class="text-3xl font-bold text-gray-800 mb-2">Private Portfolio Access</h1>
-    <p class="text-gray-500 mb-6">Exclusive strategy and insights materials by Lexi Barry</p>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Private Portfolio</h1>
+    <p class="text-gray-500 mb-6">Confidential strategy and insights materials by Lexi Barry</p>
 
-    <!-- Error Message -->
+    <!-- Error -->
     <div id="errorMessage" class="hidden bg-red-100 text-red-600 px-4 py-2 rounded-md mb-4 text-sm">
-      ❌ Incorrect password. Please try again.
+      ❌ Incorrect password
     </div>
 
     <!-- Login Form -->
@@ -27,7 +27,7 @@
       <input
         type="password"
         id="passwordInput"
-        placeholder="Enter access password"
+        placeholder="Enter master password"
         class="w-full border border-gray-300 rounded-md px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
         required
       />
@@ -42,24 +42,28 @@
     <div id="privateContent" class="hidden mt-8 text-left">
       <h2 class="text-xl font-semibold text-gray-800 mb-2">🎯 Strategic Materials</h2>
       <p class="text-gray-600 mb-6 text-sm">
-        Confidential product, data, and strategy analyses built using real-world PM frameworks.
-        Password-protected to maintain privacy and professional discretion.
+        Select a company below to access its private materials.  
+        Each project folder has its own access password.
       </p>
 
+      <!-- Company Cards -->
       <div class="space-y-4">
+
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
           <h3 class="font-semibold text-gray-800 mb-1">Template Project</h3>
-          <p class="text-gray-500 text-sm mb-3">Generic case study and one-pager example for replicating company analyses.</p>
-          <a href="template/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">View Template →</a>
+          <p class="text-gray-500 text-sm mb-3">Reusable structure for new private company pages and one-pagers.</p>
+          <a href="template/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">Access Template →</a>
         </div>
 
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
           <h3 class="font-semibold text-gray-800 mb-1">Function Health</h3>
-          <p class="text-gray-500 text-sm mb-3">Wellness strategy analysis focused on member engagement, retention, and growth.</p>
-          <a href="functionhealth/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">Access Analysis →</a>
+          <p class="text-gray-500 text-sm mb-3">Wellness strategy and data engagement analysis.</p>
+          <a href="functionhealth/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">Access Function Health →</a>
         </div>
+
       </div>
 
+      <!-- Back / Logout -->
       <div class="text-center mt-8">
         <a href="../index.html" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">← Back to Main Portfolio</a>
       </div>
@@ -71,37 +75,38 @@
   </div>
 
   <script>
-    const CORRECT_PASSWORD = 'lexibarry2025';
+    const MASTER_PASSWORD = "lexibarry2025";
 
-    function checkPassword(event) {
-      event.preventDefault();
-      const input = document.getElementById('passwordInput').value;
-      const errorMsg = document.getElementById('errorMessage');
-      const loginForm = document.getElementById('loginForm');
-      const privateContent = document.getElementById('privateContent');
+    function checkPassword(e) {
+      e.preventDefault();
+      const input = document.getElementById("passwordInput").value;
+      const err = document.getElementById("errorMessage");
+      const form = document.getElementById("loginForm");
+      const content = document.getElementById("privateContent");
 
-      if (input === CORRECT_PASSWORD) {
-        sessionStorage.setItem('authenticated', 'true');
-        loginForm.classList.add('hidden');
-        privateContent.classList.remove('hidden');
+      if (input === MASTER_PASSWORD) {
+        sessionStorage.setItem("auth_master", "true");
+        form.classList.add("hidden");
+        content.classList.remove("hidden");
       } else {
-        errorMsg.classList.remove('hidden');
-        setTimeout(() => errorMsg.classList.add('hidden'), 3000);
+        err.classList.remove("hidden");
+        setTimeout(() => err.classList.add("hidden"), 3000);
       }
     }
 
     function logout() {
-      sessionStorage.removeItem('authenticated');
-      document.getElementById('privateContent').classList.add('hidden');
-      document.getElementById('loginForm').classList.remove('hidden');
+      sessionStorage.clear();
+      document.getElementById("loginForm").classList.remove("hidden");
+      document.getElementById("privateContent").classList.add("hidden");
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('authenticated') === 'true') {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('privateContent').classList.remove('hidden');
+    window.addEventListener("DOMContentLoaded", () => {
+      if (sessionStorage.getItem("auth_master") === "true") {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("privateContent").classList.remove("hidden");
       }
     });
   </script>
+
 </body>
 </html>
