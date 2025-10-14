@@ -5,415 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vital Metrics - Product Insights</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        .slide-container {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slide {
-            background: white;
-            width: 90%;
-            max-width: 1200px;
-            height: 88vh;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            padding: 35px 55px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .slide.active {
-            display: flex;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .logo {
-            width: 40px;
-            height: 40px;
-        }
-
-        .slide-header {
-            border-bottom: 2px solid #2c5364;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-
-        .slide-title {
-            font-family: Georgia, serif;
-            font-size: 22px;
-            color: #1a1a1a;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 5px;
-        }
-
-        .slide-subtitle {
-            font-size: 13px;
-            color: #666;
-        }
-
-        .slide-content {
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .slide-footer {
-            border-top: 1px solid #e0e0e0;
-            padding-top: 8px;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 8px;
-            color: #999;
-        }
-
-        .navigation {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 1000;
-        }
-
-        .nav-btn {
-            background: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #2c5364;
-            transition: all 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background: #2c5364;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .nav-btn:disabled:hover {
-            background: white;
-            color: #2c5364;
-            transform: scale(1);
-        }
-
-        .pdf-btn {
-            position: fixed;
-            top: 25px;
-            right: 30px;
-            background: white;
-            border: 2px solid #2c5364;
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #2c5364;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .pdf-btn:hover {
-            background: #2c5364;
-            color: white;
-        }
-
-        .metric-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 12px 0;
-        }
-
-        .metric-card {
-            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-            padding: 14px;
-            border-radius: 8px;
-            color: white;
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 5px 0;
-        }
-
-        .metric-label {
-            font-size: 10px;
-            opacity: 0.9;
-            text-transform: uppercase;
-        }
-
-        .metric-change {
-            font-size: 11px;
-            margin-top: 5px;
-        }
-
-        .metric-change.positive {
-            color: #4ade80;
-        }
-
-        .chart-container {
-            height: 200px;
-            margin: 10px 0;
-        }
-
-        .chart-insight {
-            background: #f0f9ff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 10px;
-            color: #1a1a1a;
-            margin-top: 6px;
-            border-left: 3px solid #2c5364;
-            line-height: 1.3;
-        }
-
-        .content-section {
-            margin: 10px 0;
-        }
-
-        .content-section h3 {
-            font-size: 14px;
-            color: #2c5364;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .framework-box {
-            border: 2px solid #2c5364;
-            padding: 12px;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-
-        .framework-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #2c5364;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 10px 0;
-        }
-
-        .three-column {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 10px 0;
-        }
-
-        .highlight-box {
-            background: #f0f9ff;
-            border-left: 3px solid #2c5364;
-            padding: 10px 14px;
-            margin: 10px 0;
-            border-radius: 4px;
-            font-size: 11px;
-            line-height: 1.3;
-        }
-
-        .bullet-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .bullet-list li {
-            padding: 5px 0 5px 18px;
-            position: relative;
-            line-height: 1.3;
-            color: #444;
-            font-size: 11px;
-        }
-
-        .bullet-list li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #2c5364;
-            font-size: 14px;
-        }
-
-        .kpi-card {
-            background: white;
-            border: 2px solid #e5e7eb;
-            padding: 12px;
-            border-radius: 6px;
-        }
-
-        .kpi-title {
-            font-size: 11px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .kpi-value-large {
-            font-size: 26px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 6px 0;
-        }
-
-        .kpi-description {
-            font-size: 10px;
-            color: #666;
-            line-height: 1.3;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 9px;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
-        .status-badge.green {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .status-badge.yellow {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .funnel-stage {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            padding: 10px 14px;
-            margin: 6px 0;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .funnel-stage-name {
-            font-weight: 600;
-            color: #1e3a8a;
-            font-size: 12px;
-        }
-
-        .funnel-stage-value {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1e3a8a;
-        }
-
-        .insight-card {
-            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-            color: white;
-            padding: 14px;
-            border-radius: 8px;
-            margin: 8px 0;
-        }
-
-        .insight-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .insight-description {
-            font-size: 11px;
-            line-height: 1.4;
-            opacity: 0.95;
-        }
-
-        .agenda-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 18px 0;
-        }
-
-        .agenda-item {
-            background: linear-gradient(135deg, #e6f2f7 0%, #d0e7f0 100%);
-            padding: 14px;
-            border-radius: 8px;
-            border-left: 3px solid #2c5364;
-        }
-
-        .agenda-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2c5364;
-            margin-bottom: 6px;
-        }
-
-        .agenda-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-        }
-
-        .agenda-desc {
-            font-size: 10px;
-            color: #666;
-            line-height: 1.3;
-        }
-
-        strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); overflow: hidden; height: 100vh; }
+        .portfolio-btn { position: fixed; top: 22px; left: 25px; background: white; border: 2px solid #2c5364; padding: 7px 16px; border-radius: 18px; cursor: pointer; font-weight: 600; color: #2c5364; font-size: 11px; transition: all 0.3s ease; z-index: 1000; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .portfolio-btn:hover { background: #2c5364; color: white; }
+        .slide-container { height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .slide { background: white; width: 92%; max-width: 1250px; height: 90vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); padding: 28px 48px; display: none; flex-direction: column; overflow: hidden; }
+        .slide.active { display: flex; animation: slideIn 0.5s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .logo { width: 35px; height: 35px; }
+        .slide-header { border-bottom: 2px solid #2c5364; padding-bottom: 8px; margin-bottom: 12px; }
+        .slide-title { font-family: Georgia, serif; font-size: 20px; color: #1a1a1a; font-weight: 700; line-height: 1.1; margin-bottom: 4px; }
+        .slide-subtitle { font-size: 12px; color: #666; }
+        .slide-content { flex: 1; overflow: hidden; }
+        .slide-footer { border-top: 1px solid #e0e0e0; padding-top: 6px; margin-top: 8px; display: flex; justify-content: space-between; font-size: 8px; color: #999; }
+        .navigation { position: fixed; right: 25px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1000; }
+        .nav-btn { background: white; border: none; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; color: #2c5364; transition: all 0.3s ease; }
+        .nav-btn:hover { background: #2c5364; color: white; transform: scale(1.1); }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .pdf-btn { position: fixed; top: 22px; right: 25px; background: white; border: 2px solid #2c5364; padding: 7px 16px; border-radius: 18px; cursor: pointer; font-weight: 600; color: #2c5364; font-size: 11px; transition: all 0.3s ease; z-index: 1000; }
+        .pdf-btn:hover { background: #2c5364; color: white; }
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+        .metric-card { background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); padding: 12px; border-radius: 6px; color: white; text-align: center; }
+        .metric-value { font-size: 22px; font-weight: 700; margin: 4px 0; }
+        .metric-label { font-size: 9px; opacity: 0.9; text-transform: uppercase; }
+        .metric-change { font-size: 10px; margin-top: 4px; }
+        .metric-change.positive { color: #4ade80; }
+        .chart-container { height: 185px; margin: 8px 0; }
+        .chart-insight { background: #f0f9ff; padding: 6px 10px; border-radius: 4px; font-size: 9px; color: #1a1a1a; margin-top: 5px; border-left: 3px solid #2c5364; line-height: 1.25; }
+        .content-section { margin: 8px 0; }
+        .content-section h3 { font-size: 13px; color: #2c5364; margin-bottom: 5px; font-weight: 600; }
+        .framework-box { border: 2px solid #2c5364; padding: 10px; border-radius: 5px; margin: 8px 0; }
+        .framework-title { font-size: 12px; font-weight: 600; color: #2c5364; margin-bottom: 6px; text-transform: uppercase; }
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+        .highlight-box { background: #f0f9ff; border-left: 3px solid #2c5364; padding: 8px 12px; margin: 8px 0; border-radius: 3px; font-size: 10px; line-height: 1.25; }
+        .bullet-list { list-style: none; padding: 0; }
+        .bullet-list li { padding: 4px 0 4px 16px; position: relative; line-height: 1.25; color: #444; font-size: 10px; }
+        .bullet-list li:before { content: "▸"; position: absolute; left: 0; color: #2c5364; font-size: 13px; }
+        .rec-card-fancy { background: linear-gradient(135deg, #e6f2f7 0%, #fff 100%); border-left: 4px solid #2c5364; padding: 12px 15px; margin: 6px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(44,83,100,0.1); transition: all 0.3s ease; }
+        .rec-card-fancy:hover { box-shadow: 0 4px 16px rgba(44,83,100,0.2); transform: translateX(4px); }
+        .rec-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .rec-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+        .rec-title-fancy { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+        .rec-desc { font-size: 10px; color: #555; line-height: 1.4; margin-left: 42px; }
+        .agenda-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
+        .agenda-item { background: linear-gradient(135deg, #e6f2f7 0%, #d0e7f0 100%); padding: 12px; border-radius: 6px; border-left: 3px solid #2c5364; }
+        .agenda-number { font-size: 20px; font-weight: 700; color: #2c5364; margin-bottom: 5px; }
+        .agenda-title { font-size: 12px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+        .agenda-desc { font-size: 9px; color: #666; line-height: 1.25; }
+        .qa-card { background: #e6f2f7; border-left: 4px solid #2c5364; padding: 12px; margin: 8px 0; border-radius: 6px; }
+        .qa-question { font-size: 12px; font-weight: 700; color: #2c5364; margin-bottom: 6px; }
+        .qa-answer { font-size: 10px; color: #444; line-height: 1.4; }
+        strong { color: #1a1a1a; font-weight: 600; }
     </style>
 </head>
 <body>
+    <a href="#" class="portfolio-btn">← Portfolio</a>
     <button class="pdf-btn" onclick="generatePDF()">⬇ Download PDF</button>
 
     <div class="navigation">
@@ -423,9 +73,9 @@
 
     <div class="slide-container">
         <!-- Slide 1: Title -->
-        <div class="slide active" data-slide="1">
+        <div class="slide active">
             <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 20px;">
+                <svg width="90" height="90" viewBox="0 0 100 100" style="margin-bottom: 18px;">
                     <defs>
                         <linearGradient id="vitalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#0f2027;stop-opacity:1" />
@@ -436,26 +86,23 @@
                     <rect x="30" y="35" width="15" height="45" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
                     <rect x="50" y="15" width="15" height="65" rx="3" fill="url(#vitalGrad)"/>
                     <rect x="70" y="28" width="15" height="52" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
-                    <path d="M5 50 Q30 30, 42 45 T 72 35 L 90 42" stroke="#2c5364" stroke-width="2" fill="none" opacity="0.6"/>
-                    <circle cx="17" cy="15" r="4" fill="#4ade80"/>
-                    <circle cx="57" cy="10" r="4" fill="#4ade80"/>
                 </svg>
-                <h1 style="font-family: Georgia, serif; font-size: 48px; color: #1a1a1a; margin-bottom: 15px;">Vital Metrics</h1>
-                <p style="font-size: 24px; color: #2c5364; margin-bottom: 30px; font-weight: 300;">Product Performance & Insights Dashboard</p>
-                <div style="height: 2px; width: 160px; background: linear-gradient(to right, #0f2027, #2c5364); margin: 20px 0;"></div>
-                <p style="font-size: 15px; color: #666; margin-top: 15px;">GitHub Dashboard Analytics Platform</p>
-                <p style="font-size: 12px; color: #999; margin-top: 6px;">Product Metrics Review | Q4 2025</p>
+                <h1 style="font-family: Georgia, serif; font-size: 44px; color: #1a1a1a; margin-bottom: 12px;">Vital Metrics</h1>
+                <p style="font-size: 22px; color: #2c5364; margin-bottom: 25px; font-weight: 300;">Connected Wellness Scale & App</p>
+                <div style="height: 2px; width: 150px; background: linear-gradient(to right, #0f2027, #2c5364); margin: 18px 0;"></div>
+                <p style="font-size: 14px; color: #666; margin-top: 12px;">Smart Scale + Body Composition Tracking</p>
+                <p style="font-size: 11px; color: #999; margin-top: 5px;">Product Insights Review | Q4 2025</p>
             </div>
             <div class="slide-footer">
-                <span>Vital Metrics Product Dashboard</span>
+                <span>Vital Metrics Smart Wellness Device</span>
                 <span>October 2025</span>
             </div>
         </div>
 
         <!-- Slide 2: Agenda -->
-        <div class="slide" data-slide="2">
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
                     <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
                     <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
                     <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
@@ -463,68 +110,29 @@
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Product health review: User metrics, framework analysis, features, and strategic roadmap</h2>
+                <h2 class="slide-title">Product health review: App engagement, device usage, Premium conversion, retention strategy</h2>
                 <p class="slide-subtitle">Agenda</p>
             </div>
             <div class="slide-content">
                 <div class="agenda-grid">
-                    <div class="agenda-item">
-                        <div class="agenda-number">01</div>
-                        <div class="agenda-title">Executive Dashboard</div>
-                        <div class="agenda-desc">Key metrics overview and North Star</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">02</div>
-                        <div class="agenda-title">AARRR Framework</div>
-                        <div class="agenda-desc">Pirate metrics funnel and conversion</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">03</div>
-                        <div class="agenda-title">HEART Framework</div>
-                        <div class="agenda-desc">User experience metrics</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">04</div>
-                        <div class="agenda-title">Feature Performance</div>
-                        <div class="agenda-desc">Adoption rates and engagement</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">05</div>
-                        <div class="agenda-title">User Segmentation</div>
-                        <div class="agenda-desc">Cohort and behavioral analysis</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">06</div>
-                        <div class="agenda-title">Growth Metrics</div>
-                        <div class="agenda-desc">Viral coefficient and channels</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">07</div>
-                        <div class="agenda-title">Revenue & Monetization</div>
-                        <div class="agenda-desc">MRR, ARPU, LTV and conversion</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">08</div>
-                        <div class="agenda-title">Product Roadmap</div>
-                        <div class="agenda-desc">Q1 2026 priorities and impact</div>
-                    </div>
-                    <div class="agenda-item">
-                        <div class="agenda-number">09</div>
-                        <div class="agenda-title">Recommendations</div>
-                        <div class="agenda-desc">Strategic actions and next steps</div>
-                    </div>
+                    <div class="agenda-item"><div class="agenda-number">01</div><div class="agenda-title">Executive Dashboard</div><div class="agenda-desc">Key app & device metrics</div></div>
+                    <div class="agenda-item"><div class="agenda-number">02</div><div class="agenda-title">AARRR Framework</div><div class="agenda-desc">User journey funnel</div></div>
+                    <div class="agenda-item"><div class="agenda-number">03</div><div class="agenda-title">HEART Framework</div><div class="agenda-desc">User experience metrics</div></div>
+                    <div class="agenda-item"><div class="agenda-number">04</div><div class="agenda-title">Feature Performance</div><div class="agenda-desc">App feature adoption</div></div>
+                    <div class="agenda-item"><div class="agenda-number">05</div><div class="agenda-title">User Segmentation</div><div class="agenda-desc">Engagement cohorts</div></div>
+                    <div class="agenda-item"><div class="agenda-number">06</div><div class="agenda-title">Growth Metrics</div><div class="agenda-desc">Device sales & app growth</div></div>
+                    <div class="agenda-item"><div class="agenda-number">07</div><div class="agenda-title">Revenue & Monetization</div><div class="agenda-desc">Premium subscriptions</div></div>
+                    <div class="agenda-item"><div class="agenda-number">08</div><div class="agenda-title">Product Roadmap</div><div class="agenda-desc">Q1 2026 priorities</div></div>
+                    <div class="agenda-item"><div class="agenda-number">09</div><div class="agenda-title">Recommendations</div><div class="agenda-desc">Strategic actions</div></div>
                 </div>
             </div>
-            <div class="slide-footer">
-                <span>Vital Metrics Product Dashboard</span>
-                <span>2 of 11</span>
-            </div>
+            <div class="slide-footer"><span>Vital Metrics Smart Wellness Device</span><span>2 of 13</span></div>
         </div>
 
-        <!-- Slide 3: Executive Dashboard -->
-        <div class="slide" data-slide="3">
+        <!-- Slide 3: Executive -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
                     <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
                     <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
                     <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
@@ -532,75 +140,31 @@
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Product health is strong with 89% user satisfaction and 2.4x growth in active users</h2>
-                <p class="slide-subtitle">Executive Dashboard - Key Metrics Overview</p>
+                <h2 class="slide-title">Strong growth with 86% active device rate and Premium tier driving recurring revenue</h2>
+                <p class="slide-subtitle">Executive Dashboard</p>
             </div>
             <div class="slide-content">
                 <div class="metric-grid">
-                    <div class="metric-card">
-                        <div class="metric-label">Daily Active Users</div>
-                        <div class="metric-value">12.4K</div>
-                        <div class="metric-change positive">↑ 28% MoM</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Monthly Active Users</div>
-                        <div class="metric-value">47.2K</div>
-                        <div class="metric-change positive">↑ 34% MoM</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Retention Rate (D7)</div>
-                        <div class="metric-value">68%</div>
-                        <div class="metric-change positive">↑ 5% MoM</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">NPS Score</div>
-                        <div class="metric-value">67</div>
-                        <div class="metric-change positive">↑ 8pts</div>
-                    </div>
+                    <div class="metric-card"><div class="metric-label">Active Devices</div><div class="metric-value">38.5K</div><div class="metric-change positive">↑ 22% MoM</div></div>
+                    <div class="metric-card"><div class="metric-label">App MAU</div><div class="metric-value">52.8K</div><div class="metric-change positive">↑ 28% MoM</div></div>
+                    <div class="metric-card"><div class="metric-label">Premium Subs</div><div class="metric-value">14.2K</div><div class="metric-change positive">↑ 18% MoM</div></div>
+                    <div class="metric-card"><div class="metric-label">CSAT Score</div><div class="metric-value">87%</div><div class="metric-change positive">↑ 3pts MoM</div></div>
                 </div>
-
-                <div class="highlight-box">
-                    <strong>North Star: Weekly Active Dashboards Created</strong> | Target: 8,500 | Actual: 9,240 (109% of target)
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="executiveChart"></canvas>
-                </div>
-                <div class="chart-insight">
-                    <strong>Insight:</strong> 10-month trend shows accelerating growth with MAU increasing 2.6x - DAU/MAU ratio of 26% indicates healthy engagement
-                </div>
-
+                <div class="highlight-box"><strong>North Star: Weekly Active Users</strong> | Target: 28K | Actual: 31.4K (112%)</div>
+                <div class="chart-container"><canvas id="execChart"></canvas></div>
+                <div class="chart-insight"><strong>Insight:</strong> 10-month trend shows sustained growth - 86% device activation rate indicates strong hardware-software connection</div>
                 <div class="two-column">
-                    <div>
-                        <h3 style="font-size: 12px; color: #2c5364; margin-bottom: 6px;">✓ What's Working</h3>
-                        <ul class="bullet-list" style="font-size: 10px;">
-                            <li>Onboarding +42% activation</li>
-                            <li>Template library 3.2x adoption</li>
-                            <li>Mobile improvements</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 12px; color: #2c5364; margin-bottom: 6px;">⚠ Areas of Focus</h3>
-                        <ul class="bullet-list" style="font-size: 10px;">
-                            <li>D30 retention declined 3%</li>
-                            <li>Power user churn signals</li>
-                            <li>Load time 2.8s (target: 2.0s)</li>
-                        </ul>
-                    </div>
+                    <div><h3 style="font-size: 12px;">✓ What's Working</h3><ul class="bullet-list"><li>Premium conversion 27%</li><li>Daily weigh-ins +35%</li></ul></div>
+                    <div><h3 style="font-size: 12px;">⚠ Focus Areas</h3><ul class="bullet-list"><li>D30 retention 62%</li><li>Goal completion 41%</li></ul></div>
                 </div>
             </div>
-            <div class="slide-footer">
-                <span>Source: Vital Metrics analytics pipeline, last 30 days</span>
-                <span>3 of 11</span>
-            </div>
+            <div class="slide-footer"><span>Source: App analytics & device telemetry, last 30 days</span><span>3 of 13</span></div>
         </div>
 
-        <!-- Additional slides follow same pattern... -->
-
-        <!-- Slide 11: Recommendations -->
-        <div class="slide" data-slide="11">
+        <!-- Slide 4: AARRR Framework -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
                     <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
                     <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
                     <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
@@ -608,76 +172,470 @@
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Strong product-market fit validated; focus on retention and team features to accelerate growth</h2>
+                <h2 class="slide-title">Strong device activation and Premium conversion; retention optimization is key growth lever</h2>
+                <p class="slide-subtitle">AARRR Framework Analysis</p>
+            </div>
+            <div class="slide-content">
+                <div class="framework-box">
+                    <div class="framework-title">Wellness Device User Journey</div>
+                    <div class="metric-grid">
+                        <div class="metric-card"><div class="metric-label">Acquisition</div><div class="metric-value">45K</div><div class="metric-change positive">Devices sold</div></div>
+                        <div class="metric-card"><div class="metric-label">Activation</div><div class="metric-value">86%</div><div class="metric-change positive">App connected</div></div>
+                        <div class="metric-card"><div class="metric-label">Retention</div><div class="metric-value">62%</div><div class="metric-change positive">D30 active</div></div>
+                        <div class="metric-card"><div class="metric-label">Revenue</div><div class="metric-value">27%</div><div class="metric-change positive">Premium conv</div></div>
+                    </div>
+                </div>
+                <div class="chart-container"><canvas id="aarrrChart"></canvas></div>
+                <div class="two-column">
+                    <div class="highlight-box"><strong>Acquisition:</strong> Device sold at $79. Retail (Amazon, Target) 58%, Direct 42%. Amazon conversion rate 3.2%.</div>
+                    <div class="highlight-box"><strong>Activation:</strong> 86% set up app within 7 days. First weigh-in = "aha moment". Industry avg: 65%.</div>
+                </div>
+                <div class="two-column">
+                    <div class="highlight-box"><strong>Retention:</strong> D30 62%, D90 48%. Users with 3+ weekly weigh-ins: 82% D90 retention.</div>
+                    <div class="highlight-box"><strong>Revenue:</strong> 27% convert to Premium ($9.99/mo). Free users: 78% stay active but limited analytics.</div>
+                </div>
+            </div>
+            <div class="slide-footer"><span>AARRR Framework | Dave McClure's Pirate Metrics</span><span>4 of 13</span></div>
+        </div>
+
+        <!-- Slide 5: HEART Framework -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">High user satisfaction at 87% but engagement frequency needs improvement for retention</h2>
+                <p class="slide-subtitle">HEART Framework - User Experience Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="framework-box">
+                    <div class="framework-title">Google's HEART Metrics</div>
+                    <div class="metric-grid">
+                        <div class="metric-card"><div class="metric-label">Happiness</div><div class="metric-value">87%</div><div class="metric-change positive">CSAT</div></div>
+                        <div class="metric-card"><div class="metric-label">Engagement</div><div class="metric-value">4.3x/wk</div><div class="metric-change positive">Weigh-ins</div></div>
+                        <div class="metric-card"><div class="metric-label">Adoption</div><div class="metric-value">73%</div><div class="metric-change positive">Feature use</div></div>
+                        <div class="metric-card"><div class="metric-label">Retention</div><div class="metric-value">62%</div><div class="metric-change positive">D30</div></div>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div>
+                        <h3>Happiness (87% CSAT)</h3>
+                        <ul class="bullet-list">
+                            <li>Most loved: Trend graphs (94% satisfaction)</li>
+                            <li>Pain point: Goal-setting UX (58% satisfaction)</li>
+                            <li>Net Promoter Score: 52 (growing category)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Engagement (4.3x weekly)</h3>
+                        <ul class="bullet-list">
+                            <li>Power users (daily): 8.7x weekly sessions</li>
+                            <li>Casual users (2-3x/week): 2.8x sessions</li>
+                            <li>App session: 3.2 minutes avg</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="two-column">
+                    <div>
+                        <h3>Adoption (73% features)</h3>
+                        <ul class="bullet-list">
+                            <li>Weight tracking: 98% (core feature)</li>
+                            <li>Body composition: 84% (Premium driver)</li>
+                            <li>Goal-setting: 41% (needs work)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Task Success (89%)</h3>
+                        <ul class="bullet-list">
+                            <li>Device sync: 94% success rate</li>
+                            <li>View trends: 92% success rate</li>
+                            <li>Set goals: 76% success rate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer"><span>HEART Framework | Google UXPA Metrics</span><span>5 of 13</span></div>
+        </div>
+
+        <!-- Slide 6: Feature Performance -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Core tracking features excel; goal-setting and Apple Health sync underperform</h2>
+                <p class="slide-subtitle">App Feature Adoption & Performance</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container"><canvas id="featureChart"></canvas></div>
+                <div class="chart-insight"><strong>Key Finding:</strong> Goal-setting has 41% adoption despite driving 2.8x higher retention - major opportunity for growth</div>
+                <div class="two-column">
+                    <div>
+                        <h3>🔥 High Performers</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Weight Tracking (98%):</strong> Core value prop, intuitive interface</li>
+                            <li><strong>Body Comp Analysis (84%):</strong> Premium feature, highly valued</li>
+                            <li><strong>Trend Charts (92%):</strong> Visual progress, most-used Premium feature</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>⚠ Underperformers</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Goal-Setting (41%):</strong> Complex UX, hidden in settings</li>
+                            <li><strong>Apple Health Sync (36%):</strong> Permission friction, unclear value</li>
+                            <li><strong>Photo Progress (28%):</strong> Privacy concerns, manual upload</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box"><strong>Opportunity:</strong> Users with active goals have 82% D90 retention vs 48% overall. Improving goal onboarding could unlock significant retention gains.</div>
+            </div>
+            <div class="slide-footer"><span>Feature adoption tracked across 52.8K monthly active users</span><span>6 of 13</span></div>
+        </div>
+
+        <!-- Slide 7: User Segmentation -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Daily trackers drive 68% of Premium revenue; opportunity to activate weekly users</h2>
+                <p class="slide-subtitle">User Segmentation & Cohort Analysis</p>
+            </div>
+            <div class="slide-content">
+                <div class="metric-grid">
+                    <div class="metric-card"><div class="metric-label">Daily Trackers</div><div class="metric-value">22%</div><div class="metric-change positive">7+ weigh-ins/wk</div></div>
+                    <div class="metric-card"><div class="metric-label">Engaged Users</div><div class="metric-value">38%</div><div class="metric-change positive">3-6x/week</div></div>
+                    <div class="metric-card"><div class="metric-label">Casual Users</div><div class="metric-value">40%</div><div class="metric-change positive">1-2x/week</div></div>
+                    <div class="metric-card"><div class="metric-label">Conversion Rate</div><div class="metric-value">28%</div><div class="metric-change positive">Casual → Engaged</div></div>
+                </div>
+                <div class="chart-container"><canvas id="cohortChart"></canvas></div>
+                <div class="two-column">
+                    <div>
+                        <h3>Daily Trackers (22%)</h3>
+                        <ul class="bullet-list">
+                            <li>8.7x weekly weigh-ins</li>
+                            <li>74% on Premium</li>
+                            <li>88% D90 retention</li>
+                            <li>Goals set: 82%</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Casual Users (40%)</h3>
+                        <ul class="bullet-list">
+                            <li>1.8x weekly weigh-ins</li>
+                            <li>12% on Premium</li>
+                            <li>32% D90 retention</li>
+                            <li>Goals set: 18%</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box"><strong>Growth Lever:</strong> Casual users who increase to 3x weekly become "Engaged" with 2.4x higher Premium conversion. Push notifications could boost frequency.</div>
+            </div>
+            <div class="slide-footer"><span>Segmentation based on weekly weigh-in frequency</span><span>7 of 13</span></div>
+        </div>
+
+        <!-- Slide 8: Growth Metrics -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Device sales growing 22% MoM driven by Amazon and wellness influencer partnerships</h2>
+                <p class="slide-subtitle">Growth & Acquisition Metrics</p>
+            </div>
+            <div class="slide-content">
+                <div class="metric-grid">
+                    <div class="metric-card"><div class="metric-label">Device CAC</div><div class="metric-value">$22</div><div class="metric-change positive">Blended</div></div>
+                    <div class="metric-card"><div class="metric-label">LTV</div><div class="metric-value">$168</div><div class="metric-change positive">Premium user</div></div>
+                    <div class="metric-card"><div class="metric-label">Payback Period</div><div class="metric-value">3.8mo</div><div class="metric-change positive">For Premium</div></div>
+                    <div class="metric-card"><div class="metric-label">Referral Rate</div><div class="metric-value">18%</div><div class="metric-change positive">Users refer 1+</div></div>
+                </div>
+                <div class="chart-container"><canvas id="growthChart"></canvas></div>
+                <div class="two-column">
+                    <div>
+                        <h3>Acquisition Channels</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Amazon:</strong> 42% of sales, $18 CAC, 86% app activation</li>
+                            <li><strong>Direct/Website:</strong> 28% of sales, $35 CAC, 94% activation</li>
+                            <li><strong>Retail (Target/Best Buy):</strong> 30%, $15 CAC, 78% activation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Growth Drivers</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Product Reviews:</strong> 4.3★ on Amazon (6,200 reviews)</li>
+                            <li><strong>Influencer Partnerships:</strong> 8 wellness creators, 380K reach</li>
+                            <li><strong>App Store:</strong> 4.5★ (3,400 reviews), organic discovery</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box"><strong>Insight:</strong> Device margin ($79 MSRP - $31 COGS = $48) covers CAC. Premium subscriptions are pure margin with $168 LTV at 27% conversion.</div>
+            </div>
+            <div class="slide-footer"><span>Growth metrics | 90-day trailing data</span><span>8 of 13</span></div>
+        </div>
+
+        <!-- Slide 9: Revenue & Monetization -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Dual revenue model: Device sales drive acquisition, Premium MRR drives long-term value</h2>
+                <p class="slide-subtitle">Revenue & Monetization Performance</p>
+            </div>
+            <div class="slide-content">
+                <div class="metric-grid">
+                    <div class="metric-card"><div class="metric-label">Device Revenue</div><div class="metric-value">$3.55M</div><div class="metric-change positive">45K units sold</div></div>
+                    <div class="metric-card"><div class="metric-label">MRR</div><div class="metric-value">$141K</div><div class="metric-change positive">↑ 18% MoM</div></div>
+                    <div class="metric-card"><div class="metric-label">Premium ARPU</div><div class="metric-value">$9.94</div><div class="metric-change positive">Annual: $119</div></div>
+                    <div class="metric-card"><div class="metric-label">Churn Rate</div><div class="metric-value">4.8%</div><div class="metric-change positive">Monthly</div></div>
+                </div>
+                <div class="chart-container"><canvas id="revenueChart"></canvas></div>
+                <div class="two-column">
+                    <div>
+                        <h3>Revenue Mix (Annual)</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Device Sales:</strong> $3.55M (hardware at $79/unit)</li>
+                            <li><strong>Premium Subscriptions:</strong> $1.69M ARR (14.2K subs)</li>
+                            <li><strong>Total:</strong> $5.24M (Premium 32% of revenue)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Unit Economics</h3>
+                        <ul class="bullet-list">
+                            <li><strong>Device Margin:</strong> $48 per unit (61% margin)</li>
+                            <li><strong>Premium LTV:</strong> $168 (16.8mo avg subscription)</li>
+                            <li><strong>Blended CAC:</strong> $22 (device acquisition cost)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="highlight-box"><strong>Strategic Shift:</strong> Premium MRR growing 18% MoM. At 27% conversion, targeting 35% could add $600K ARR. Focus: Increase Premium value prop and conversion.</div>
+            </div>
+            <div class="slide-footer"><span>Revenue data as of October 2025</span><span>9 of 13</span></div>
+        </div>
+
+        <!-- Slide 10: Product Roadmap -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Q1 2026 roadmap prioritizes retention, goal-setting UX, and health integrations</h2>
+                <p class="slide-subtitle">Product Roadmap - Q1 2026</p>
+            </div>
+            <div class="slide-content">
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">1</div>
+                        <div class="rec-title-fancy">Goal-Setting Redesign</div>
+                    </div>
+                    <div class="rec-desc"><strong>Timeline:</strong> Jan 2026 | <strong>Impact:</strong> 41% → 70% adoption, +15% D90 retention<br><strong>Features:</strong> Onboarding wizard, smart goal suggestions, weekly check-ins, progress celebrations, milestone badges</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">2</div>
+                        <div class="rec-title-fancy">Smart Notifications</div>
+                    </div>
+                    <div class="rec-desc"><strong>Timeline:</strong> Jan-Feb 2026 | <strong>Impact:</strong> +28% engagement frequency, 62% → 72% D30 retention<br><strong>Features:</strong> Personalized reminder times, streak tracking, weekly recaps, motivational messages, trend alerts</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">3</div>
+                        <div class="rec-title-fancy">Apple Health Deep Integration</div>
+                    </div>
+                    <div class="rec-desc"><strong>Timeline:</strong> Feb 2026 | <strong>Impact:</strong> 36% → 68% sync adoption, +$240K ARR<br><strong>Features:</strong> One-tap sync, automatic activity correlation, nutrition integration, sleep data overlay, holistic wellness view</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">4</div>
+                        <div class="rec-title-fancy">Premium Feature Expansion</div>
+                    </div>
+                    <div class="rec-desc"><strong>Timeline:</strong> Feb-Mar 2026 | <strong>Impact:</strong> 27% → 35% Premium conversion, +1,280 subs<br><strong>Features:</strong> Body composition trends, custom reports, nutrition recommendations, personal coach chat, CSV export</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">5</div>
+                        <div class="rec-title-fancy">Social & Accountability Features</div>
+                    </div>
+                    <div class="rec-desc"><strong>Timeline:</strong> Mar 2026 | <strong>Impact:</strong> +22% engagement, viral growth driver<br><strong>Features:</strong> Friend challenges, family sharing, accountability partners, private groups, leaderboards (opt-in)</div>
+                </div>
+            </div>
+            <div class="slide-footer"><span>Roadmap prioritized by retention impact × revenue potential</span><span>10 of 13</span></div>
+        </div>
+
+        <!-- Slide 11: Recommendations -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Five strategic recommendations to improve retention and Premium conversion</h2>
                 <p class="slide-subtitle">Strategic Recommendations</p>
             </div>
             <div class="slide-content">
-                <div class="highlight-box">
-                    <strong>Assessment:</strong> Vital Metrics shows strong health: 89% satisfaction, 34% MoM growth. Key opportunities in retention and enterprise
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">🎯</div>
+                        <div class="rec-title-fancy">Make Goal-Setting Core to Onboarding</div>
+                    </div>
+                    <div class="rec-desc">Users with goals have 82% D90 retention vs 48% overall. Move goal-setting from settings to Day 1 onboarding. Add smart suggestions based on user profile. Target: 70% goal adoption, +18% overall retention.</div>
                 </div>
 
-                <div class="content-section">
-                    <h3>Top 5 Strategic Recommendations</h3>
-                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
-                        <strong style="color: #2c5364; font-size: 11px;">1. Launch Power User Retention Program (Immediate)</strong>
-                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
-                            Smart notifications, streaks, insights to combat D30 decline. Target: +10% retention = +$12K MRR
-                        </div>
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">💡</div>
+                        <div class="rec-title-fancy">Activate Casual Users with Smart Nudges</div>
                     </div>
-                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
-                        <strong style="color: #2c5364; font-size: 11px;">2. Accelerate Team Collaboration Features (Q1 2026)</strong>
-                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
-                            Real-time co-editing and workflows. 2.5x team adoption = +$24K MRR
-                        </div>
-                    </div>
-                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
-                        <strong style="color: #2c5364; font-size: 11px;">3. Optimize Performance & Load Times (Sprint 16)</strong>
-                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
-                            Reduce load 2.8s→<2s to decrease 12% bounce. Investment: ~$15K
-                        </div>
-                    </div>
-                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
-                        <strong style="color: #2c5364; font-size: 11px;">4. Redesign Custom Query Builder (Q1 2026)</strong>
-                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
-                            42% adoption shows friction. A/B test simplified UI to reach 65%+
-                        </div>
-                    </div>
-                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
-                        <strong style="color: #2c5364; font-size: 11px;">5. Scale GitHub Marketplace Presence (Ongoing)</strong>
-                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
-                            38% acquisition. SEO, reviews, features = 40% more organic signups
-                        </div>
-                    </div>
+                    <div class="rec-desc">40% of users are casual (1-2x/week). Implement personalized push notifications at optimal times. Add streak tracking and weekly progress summaries. Target: Move 15% of casual users to "Engaged" tier (3x/week).</div>
                 </div>
 
-                <div style="text-align: center; margin-top: 12px; padding: 10px; background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); border-radius: 6px; color: white;">
-                    <p style="font-size: 12px; font-weight: 600;">Next Review: Q1 2026 Board Meeting</p>
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">🚀</div>
+                        <div class="rec-title-fancy">Expand Premium Value Proposition</div>
+                    </div>
+                    <div class="rec-desc">Premium conversion 27% with 4.8% churn. Add: body composition trend analysis, personalized nutrition tips, coaching chat feature. Bundle annual plan at $99 (17% discount). Target: 35% conversion, 3.5% churn.</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">📈</div>
+                        <div class="rec-title-fancy">Deepen Apple Health Integration</div>
+                    </div>
+                    <div class="rec-desc">Only 36% use health sync despite high satisfaction. Simplify permissions flow, add one-tap authorization. Show holistic dashboard combining weight, activity, sleep, nutrition. Users with sync: 2.1x Premium conversion.</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">⚡</div>
+                        <div class="rec-title-fancy">Launch Referral & Social Features</div>
+                    </div>
+                    <div class="rec-desc">18% of users refer organically. Build: referral program ($15 credit), friend challenges, family sharing (up to 5 members $14.99/mo). Social accountability drives engagement and lowers CAC through viral growth.</div>
                 </div>
             </div>
-            <div class="slide-footer">
-                <span>Strategic recommendations based on product analytics, user research, and market analysis</span>
-                <span>11 of 11</span>
+            <div class="slide-footer"><span>Recommendations based on user research and cohort analysis</span><span>11 of 13</span></div>
+        </div>
+
+        <!-- Slide 12: Q&A -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
             </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Anticipated questions and prepared responses</h2>
+                <p class="slide-subtitle">Q&A Preparation</p>
+            </div>
+            <div class="slide-content">
+                <div class="qa-card">
+                    <div class="qa-question">Q: Why is D30 retention only 62% compared to competitors at 70%+?</div>
+                    <div class="qa-answer"><strong>A:</strong> Two factors: (1) 40% of users are casual trackers (1-2x/week) with lower habit formation, (2) goal-setting adoption is only 41%. Our data shows users with goals have 82% retention. Q1 roadmap directly addresses this with goal onboarding and smart notifications.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: How do you differentiate from Withings and Fitbit scales?</div>
+                    <div class="qa-answer"><strong>A:</strong> Price and simplicity. We're $79 vs Withings $149 and Fitbit $99. Our app focuses on actionable insights, not overwhelming data. We're positioning as "wellness for everyone" vs premium health tracking. Amazon reviews praise our ease of use (4.3★ vs competitors' 3.8★).</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: What's driving the low Apple Health sync adoption (36%)?</div>
+                    <div class="qa-answer"><strong>A:</strong> Friction in iOS permissions flow (requires 4 taps) and unclear value proposition in onboarding. Users who enable sync have 2.1x Premium conversion and 74% retention. Solution: One-tap authorization redesign + show holistic wellness dashboard with activity/sleep data in onboarding.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: Is 27% Premium conversion sustainable as we scale?</div>
+                    <div class="qa-answer"><strong>A:</strong> Yes, with improvements. Competitors average 22-30% subscription conversion for connected devices. Our engaged users (38% of base) convert at 42%. By moving casual users to engaged tier and expanding Premium features, we can sustain 30-35% conversion at scale.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: How will new features impact hardware costs and margins?</div>
+                    <div class="qa-answer"><strong>A:</strong> Q1 roadmap is 100% software - no hardware changes. Our scale hardware is stable at $31 COGS with 61% margin. Future v2 hardware (2026 H2) may add BLE 5.2 for faster sync (+$3 COGS) but pricing stays at $79-89 to maintain competitiveness.</div>
+                </div>
+            </div>
+            <div class="slide-footer"><span>Prepared Q&A based on user research and market analysis</span><span>12 of 13</span></div>
+        </div>
+
+        <!-- Slide 13: Thank You -->
+        <div class="slide">
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 30px;">
+                    <rect x="10" y="20" width="15" height="60" rx="3" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="15" height="45" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="15" width="15" height="65" rx="3" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="28" width="15" height="52" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+                <h1 style="font-family: Georgia, serif; font-size: 52px; color: #1a1a1a; margin-bottom: 20px;">Thank You</h1>
+                <p style="font-size: 28px; color: #2c5364; margin-bottom: 40px; font-weight: 300;">Questions?</p>
+                <div style="height: 2px; width: 200px; background: linear-gradient(to right, #0f2027, #2c5364); margin: 25px 0;"></div>
+                <p style="font-size: 16px; color: #666; margin-top: 25px;">Ready to discuss wellness product strategy</p>
+            </div>
+            <div class="slide-footer"><span>Vital Metrics Smart Wellness Device</span><span>13 of 13</span></div>
         </div>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 11;
+        const totalSlides = 13;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
             slides.forEach(slide => slide.classList.remove('active'));
-            
             if (n > totalSlides) currentSlide = totalSlides;
             if (n < 1) currentSlide = 1;
-            
             slides[currentSlide - 1].classList.add('active');
-            
             document.getElementById('prevBtn').disabled = currentSlide === 1;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
-            
-            if (currentSlide === 3) initExecutiveChart();
+            setTimeout(() => { 
+                if (currentSlide === 3) initExecChart();
+                if (currentSlide === 4) initAARRRChart();
+                if (currentSlide === 6) initFeatureChart();
+                if (currentSlide === 7) initCohortChart();
+                if (currentSlide === 8) initGrowthChart();
+                if (currentSlide === 9) initRevenueChart();
+            }, 100);
         }
 
         function changeSlide(n) {
@@ -690,44 +648,179 @@
             if (e.key === 'ArrowDown' || e.key === 'ArrowRight') changeSlide(1);
         });
 
-        function initExecutiveChart() {
-            const ctx = document.getElementById('executiveChart');
+        function initExecChart() {
+            const ctx = document.getElementById('execChart');
             if (!ctx || ctx.chart) return;
-            
             ctx.chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
                     datasets: [
-                        {
-                            label: 'DAU (K)',
-                            data: [4.2, 5.1, 5.8, 6.9, 7.8, 8.4, 9.2, 9.7, 10.8, 12.4],
-                            borderColor: '#2c5364',
-                            tension: 0.4
-                        },
-                        {
-                            label: 'MAU (K)',
-                            data: [18, 21, 24, 27, 30, 32, 35, 37, 41, 47.2],
-                            borderColor: '#0f2027',
-                            tension: 0.4
-                        }
+                        { label: 'Active Devices (K)', data: [21.2, 24.1, 26.8, 29.2, 31.5, 33.4, 35.2, 36.8, 37.9, 38.5], borderColor: '#2c5364', tension: 0.4, fill: false },
+                        { label: 'App MAU (K)', data: [28, 32, 36, 39, 42, 45, 47, 49, 51, 52.8], borderColor: '#0f2027', tension: 0.4, fill: false }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: { display: true, text: 'User Growth Trend (10 Months)', font: { size: 11 } },
-                        legend: { labels: { font: { size: 9 } } }
+                        title: { display: true, text: 'Device & App Growth Trend', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { font: { size: 9 } } },
+                        x: { ticks: { font: { size: 9 } } }
                     }
                 }
             });
         }
 
-        function generatePDF() {
-            alert('PDF generation initiated.');
+        function initAARRRChart() {
+            const ctx = document.getElementById('aarrrChart');
+            if (!ctx || ctx.chart) return;
+            ctx.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Devices Sold', 'App Setup', 'D30 Active', 'Premium Conv', 'Referrals'],
+                    datasets: [{
+                        label: 'Conversion %',
+                        data: [100, 86, 62, 27, 18],
+                        backgroundColor: ['#0f2027', '#203a43', '#2c5364', '#3d6b7f', '#4e8399']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Wellness Device User Journey', font: { size: 11 } },
+                        legend: { display: false },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { font: { size: 9 } } },
+                        x: { ticks: { font: { size: 9 } } }
+                    }
+                }
+            });
         }
 
+        function initFeatureChart() {
+            const ctx = document.getElementById('featureChart');
+            if (!ctx || ctx.chart) return;
+            ctx.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Weight Track', 'Trend Charts', 'Body Comp', 'Goal-Setting', 'Apple Health', 'Photo Progress'],
+                    datasets: [{
+                        label: 'Adoption %',
+                        data: [98, 92, 84, 41, 36, 28],
+                        backgroundColor: ['#2c5364', '#2c5364', '#2c5364', '#e67e22', '#e67e22', '#e74c3c']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        title: { display: true, text: 'App Feature Adoption Rate', font: { size: 11 } },
+                        legend: { display: false },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 100, ticks: { font: { size: 9 } } },
+                        y: { ticks: { font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        function initCohortChart() {
+            const ctx = document.getElementById('cohortChart');
+            if (!ctx || ctx.chart) return;
+            ctx.chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['D1', 'D7', 'D14', 'D30', 'D90'],
+                    datasets: [
+                        { label: 'Daily Trackers', data: [100, 94, 91, 88, 88], borderColor: '#2c5364', tension: 0.3, fill: false },
+                        { label: 'Engaged Users', data: [100, 84, 75, 68, 61], borderColor: '#3d6b7f', tension: 0.3, fill: false },
+                        { label: 'Casual Users', data: [100, 68, 52, 38, 32], borderColor: '#e67e22', tension: 0.3, fill: false }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Retention by User Segment', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { font: { size: 9 } } },
+                        x: { ticks: { font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        function initGrowthChart() {
+            const ctx = document.getElementById('growthChart');
+            if (!ctx || ctx.chart) return;
+            ctx.chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    datasets: [
+                        { label: 'Device Sales', data: [2800, 3400, 3900, 4200, 4600, 4900, 5200, 5400, 5600, 5800], borderColor: '#2c5364', tension: 0.4, fill: false },
+                        { label: 'Premium Subs (x10)', data: [680, 780, 920, 1060, 1150, 1240, 1310, 1360, 1390, 1420], borderColor: '#0f2027', tension: 0.4, fill: false }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Monthly Device Sales & Premium Growth', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { font: { size: 9 } } },
+                        x: { ticks: { font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        function initRevenueChart() {
+            const ctx = document.getElementById('revenueChart');
+            if (!ctx || ctx.chart) return;
+            ctx.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+                    datasets: [
+                        { label: 'Device Revenue ($K)', data: [221, 269, 308, 332, 363, 387, 411, 427, 442, 458], backgroundColor: '#2c5364' },
+                        { label: 'Premium MRR ($K)', data: [68, 78, 92, 106, 115, 124, 131, 136, 139, 141], backgroundColor: '#0f2027' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Monthly Revenue by Type', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { stacked: true, beginAtZero: true, ticks: { font: { size: 9 } } },
+                        x: { stacked: true, ticks: { font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        function generatePDF() { alert('PDF generation initiated - this would trigger a download in production.'); }
         showSlide(1);
     </script>
 </body>
