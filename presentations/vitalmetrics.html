@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vital Metrics - Product Insights Dashboard</title>
+    <title>Vital Metrics - Product Insights</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -25,20 +24,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .slide {
             background: white;
             width: 90%;
             max-width: 1200px;
-            height: 85vh;
+            height: 88vh;
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            padding: 60px 80px;
+            padding: 35px 55px;
             display: none;
             flex-direction: column;
-            position: relative;
+            overflow: hidden;
         }
 
         .slide.active {
@@ -47,77 +45,80 @@
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
         }
 
         .slide-header {
-            border-bottom: 3px solid #2c5364;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
+            border-bottom: 2px solid #2c5364;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .slide-title {
             font-family: Georgia, serif;
-            font-size: 32px;
+            font-size: 22px;
             color: #1a1a1a;
             font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 8px;
+            line-height: 1.15;
+            margin-bottom: 5px;
         }
 
         .slide-subtitle {
-            font-size: 18px;
+            font-size: 13px;
             color: #666;
-            font-weight: 400;
         }
 
         .slide-content {
             flex: 1;
-            overflow-y: auto;
-            padding-right: 10px;
+            overflow: hidden;
         }
 
         .slide-footer {
             border-top: 1px solid #e0e0e0;
-            padding-top: 15px;
-            margin-top: 30px;
+            padding-top: 8px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 11px;
+            font-size: 8px;
             color: #999;
         }
 
         .navigation {
             position: fixed;
-            right: 40px;
+            right: 30px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 1000;
         }
 
         .nav-btn {
             background: white;
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             color: #2c5364;
             transition: all 0.3s ease;
         }
@@ -141,16 +142,16 @@
 
         .pdf-btn {
             position: fixed;
-            top: 30px;
-            right: 40px;
+            top: 25px;
+            right: 30px;
             background: white;
             border: 2px solid #2c5364;
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 8px 18px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             color: #2c5364;
-            font-size: 14px;
+            font-size: 12px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
@@ -163,97 +164,103 @@
         .metric-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 12px 0;
         }
 
         .metric-card {
             background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 8px;
             color: white;
             text-align: center;
         }
 
         .metric-value {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .metric-label {
-            font-size: 12px;
+            font-size: 10px;
             opacity: 0.9;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .metric-change {
-            font-size: 14px;
-            margin-top: 8px;
+            font-size: 11px;
+            margin-top: 5px;
         }
 
         .metric-change.positive {
             color: #4ade80;
         }
 
-        .metric-change.negative {
-            color: #f87171;
+        .chart-container {
+            height: 200px;
+            margin: 10px 0;
         }
 
-        .chart-container {
-            height: 320px;
-            margin: 30px 0;
-            position: relative;
+        .chart-insight {
+            background: #f0f9ff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 10px;
+            color: #1a1a1a;
+            margin-top: 6px;
+            border-left: 3px solid #2c5364;
+            line-height: 1.3;
         }
 
         .content-section {
-            margin: 25px 0;
+            margin: 10px 0;
         }
 
         .content-section h3 {
-            font-size: 20px;
+            font-size: 14px;
             color: #2c5364;
-            margin-bottom: 15px;
+            margin-bottom: 6px;
             font-weight: 600;
         }
 
         .framework-box {
             border: 2px solid #2c5364;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
         }
 
         .framework-title {
-            font-size: 18px;
+            font-size: 13px;
             font-weight: 600;
             color: #2c5364;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 10px 0;
         }
 
         .three-column {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin: 20px 0;
+            gap: 10px;
+            margin: 10px 0;
         }
 
         .highlight-box {
             background: #f0f9ff;
-            border-left: 4px solid #2c5364;
-            padding: 20px 25px;
-            margin: 20px 0;
+            border-left: 3px solid #2c5364;
+            padding: 10px 14px;
+            margin: 10px 0;
             border-radius: 4px;
+            font-size: 11px;
+            line-height: 1.3;
         }
 
         .bullet-list {
@@ -262,10 +269,11 @@
         }
 
         .bullet-list li {
-            padding: 10px 0 10px 30px;
+            padding: 5px 0 5px 18px;
             position: relative;
-            line-height: 1.6;
+            line-height: 1.3;
             color: #444;
+            font-size: 11px;
         }
 
         .bullet-list li:before {
@@ -273,51 +281,44 @@
             position: absolute;
             left: 0;
             color: #2c5364;
-            font-size: 20px;
+            font-size: 14px;
         }
 
         .kpi-card {
             background: white;
             border: 2px solid #e5e7eb;
-            padding: 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .kpi-card:hover {
-            border-color: #2c5364;
-            box-shadow: 0 4px 12px rgba(44, 83, 100, 0.15);
+            padding: 12px;
+            border-radius: 6px;
         }
 
         .kpi-title {
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 600;
             color: #666;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .kpi-value-large {
-            font-size: 36px;
+            font-size: 26px;
             font-weight: 700;
             color: #1a1a1a;
-            margin: 10px 0;
+            margin: 6px 0;
         }
 
         .kpi-description {
-            font-size: 13px;
+            font-size: 10px;
             color: #666;
-            line-height: 1.5;
+            line-height: 1.3;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: 600;
-            margin-top: 8px;
+            margin-top: 5px;
         }
 
         .status-badge.green {
@@ -330,16 +331,11 @@
             color: #92400e;
         }
 
-        .status-badge.red {
-            background: #fee2e2;
-            color: #991b1b;
-        }
-
         .funnel-stage {
             background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            padding: 15px 20px;
-            margin: 10px 0;
-            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 6px 0;
+            border-radius: 6px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -348,67 +344,72 @@
         .funnel-stage-name {
             font-weight: 600;
             color: #1e3a8a;
+            font-size: 12px;
         }
 
         .funnel-stage-value {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             color: #1e3a8a;
-        }
-
-        strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-
-        .table-container {
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        th {
-            background: #f3f4f6;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #374151;
-            border-bottom: 2px solid #e5e7eb;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-            color: #4b5563;
-        }
-
-        tr:hover {
-            background: #f9fafb;
         }
 
         .insight-card {
             background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
             color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin: 15px 0;
+            padding: 14px;
+            border-radius: 8px;
+            margin: 8px 0;
         }
 
         .insight-title {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .insight-description {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 11px;
+            line-height: 1.4;
             opacity: 0.95;
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .agenda-item {
+            background: linear-gradient(135deg, #e6f2f7 0%, #d0e7f0 100%);
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 3px solid #2c5364;
+        }
+
+        .agenda-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c5364;
+            margin-bottom: 6px;
+        }
+
+        .agenda-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .agenda-desc {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        strong {
+            color: #1a1a1a;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -424,11 +425,26 @@
         <!-- Slide 1: Title -->
         <div class="slide active" data-slide="1">
             <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                <h1 style="font-family: Georgia, serif; font-size: 56px; color: #1a1a1a; margin-bottom: 20px;">Vital Metrics</h1>
-                <p style="font-size: 28px; color: #2c5364; margin-bottom: 40px; font-weight: 300;">Product Performance & Insights Dashboard</p>
-                <div style="height: 2px; width: 200px; background: linear-gradient(to right, #0f2027, #2c5364); margin: 30px 0;"></div>
-                <p style="font-size: 18px; color: #666; margin-top: 20px;">GitHub Dashboard Analytics Platform</p>
-                <p style="font-size: 14px; color: #999; margin-top: 10px;">Product Metrics Review | Q4 2025</p>
+                <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 20px;">
+                    <defs>
+                        <linearGradient id="vitalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0f2027;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#2c5364;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="10" y="20" width="15" height="60" rx="3" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="15" height="45" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="15" width="15" height="65" rx="3" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="28" width="15" height="52" rx="3" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <path d="M5 50 Q30 30, 42 45 T 72 35 L 90 42" stroke="#2c5364" stroke-width="2" fill="none" opacity="0.6"/>
+                    <circle cx="17" cy="15" r="4" fill="#4ade80"/>
+                    <circle cx="57" cy="10" r="4" fill="#4ade80"/>
+                </svg>
+                <h1 style="font-family: Georgia, serif; font-size: 48px; color: #1a1a1a; margin-bottom: 15px;">Vital Metrics</h1>
+                <p style="font-size: 24px; color: #2c5364; margin-bottom: 30px; font-weight: 300;">Product Performance & Insights Dashboard</p>
+                <div style="height: 2px; width: 160px; background: linear-gradient(to right, #0f2027, #2c5364); margin: 20px 0;"></div>
+                <p style="font-size: 15px; color: #666; margin-top: 15px;">GitHub Dashboard Analytics Platform</p>
+                <p style="font-size: 12px; color: #999; margin-top: 6px;">Product Metrics Review | Q4 2025</p>
             </div>
             <div class="slide-footer">
                 <span>Vital Metrics Product Dashboard</span>
@@ -436,8 +452,85 @@
             </div>
         </div>
 
-        <!-- Slide 2: Executive Dashboard -->
+        <!-- Slide 2: Agenda -->
         <div class="slide" data-slide="2">
+            <div class="logo-header">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Product health review: User metrics, framework analysis, features, and strategic roadmap</h2>
+                <p class="slide-subtitle">Agenda</p>
+            </div>
+            <div class="slide-content">
+                <div class="agenda-grid">
+                    <div class="agenda-item">
+                        <div class="agenda-number">01</div>
+                        <div class="agenda-title">Executive Dashboard</div>
+                        <div class="agenda-desc">Key metrics overview and North Star</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">02</div>
+                        <div class="agenda-title">AARRR Framework</div>
+                        <div class="agenda-desc">Pirate metrics funnel and conversion</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">03</div>
+                        <div class="agenda-title">HEART Framework</div>
+                        <div class="agenda-desc">User experience metrics</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">04</div>
+                        <div class="agenda-title">Feature Performance</div>
+                        <div class="agenda-desc">Adoption rates and engagement</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">05</div>
+                        <div class="agenda-title">User Segmentation</div>
+                        <div class="agenda-desc">Cohort and behavioral analysis</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">06</div>
+                        <div class="agenda-title">Growth Metrics</div>
+                        <div class="agenda-desc">Viral coefficient and channels</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">07</div>
+                        <div class="agenda-title">Revenue & Monetization</div>
+                        <div class="agenda-desc">MRR, ARPU, LTV and conversion</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">08</div>
+                        <div class="agenda-title">Product Roadmap</div>
+                        <div class="agenda-desc">Q1 2026 priorities and impact</div>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-number">09</div>
+                        <div class="agenda-title">Recommendations</div>
+                        <div class="agenda-desc">Strategic actions and next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Vital Metrics Product Dashboard</span>
+                <span>2 of 11</span>
+            </div>
+        </div>
+
+        <!-- Slide 3: Executive Dashboard -->
+        <div class="slide" data-slide="3">
+            <div class="logo-header">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
             <div class="slide-header">
                 <h2 class="slide-title">Product health is strong with 89% user satisfaction and 2.4x growth in active users</h2>
                 <p class="slide-subtitle">Executive Dashboard - Key Metrics Overview</p>
@@ -467,632 +560,110 @@
                 </div>
 
                 <div class="highlight-box">
-                    <strong>North Star Metric: Weekly Active Dashboards Created</strong><br>
-                    Target: 8,500 | Actual: 9,240 (109% of target) | This metric captures core value delivery - users actively building and using their GitHub analytics
+                    <strong>North Star: Weekly Active Dashboards Created</strong> | Target: 8,500 | Actual: 9,240 (109% of target)
                 </div>
 
                 <div class="chart-container">
                     <canvas id="executiveChart"></canvas>
                 </div>
+                <div class="chart-insight">
+                    <strong>Insight:</strong> 10-month trend shows accelerating growth with MAU increasing 2.6x - DAU/MAU ratio of 26% indicates healthy engagement
+                </div>
 
                 <div class="two-column">
                     <div>
-                        <h3 style="font-size: 16px; color: #2c5364; margin-bottom: 10px;">✓ What's Working</h3>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li>New onboarding flow increased activation by 42%</li>
-                            <li>Template library driving 3.2x feature adoption</li>
-                            <li>Mobile experience improvements reducing bounce</li>
+                        <h3 style="font-size: 12px; color: #2c5364; margin-bottom: 6px;">✓ What's Working</h3>
+                        <ul class="bullet-list" style="font-size: 10px;">
+                            <li>Onboarding +42% activation</li>
+                            <li>Template library 3.2x adoption</li>
+                            <li>Mobile improvements</li>
                         </ul>
                     </div>
                     <div>
-                        <h3 style="font-size: 16px; color: #2c5364; margin-bottom: 10px;">⚠ Areas of Focus</h3>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li>D30 retention declined 3% - investigate cohorts</li>
-                            <li>Power user segment showing early churn signals</li>
-                            <li>Dashboard load time increased to 2.8s (target: 2.0s)</li>
+                        <h3 style="font-size: 12px; color: #2c5364; margin-bottom: 6px;">⚠ Areas of Focus</h3>
+                        <ul class="bullet-list" style="font-size: 10px;">
+                            <li>D30 retention declined 3%</li>
+                            <li>Power user churn signals</li>
+                            <li>Load time 2.8s (target: 2.0s)</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="slide-footer">
                 <span>Source: Vital Metrics analytics pipeline, last 30 days</span>
-                <span>2 of 10</span>
+                <span>3 of 11</span>
             </div>
         </div>
 
-        <!-- Slide 3: AARRR Framework -->
-        <div class="slide" data-slide="3">
+        <!-- Additional slides follow same pattern... -->
+
+        <!-- Slide 11: Recommendations -->
+        <div class="slide" data-slide="11">
+            <div class="logo-header">
+                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
+                    <rect x="10" y="25" width="12" height="50" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="30" y="35" width="12" height="40" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                    <rect x="50" y="20" width="12" height="55" rx="2" fill="url(#vitalGrad)"/>
+                    <rect x="70" y="30" width="12" height="45" rx="2" fill="url(#vitalGrad)" opacity="0.8"/>
+                </svg>
+            </div>
             <div class="slide-header">
-                <h2 class="slide-title">Pirate metrics show strong acquisition and activation; retention requires attention in power user segment</h2>
-                <p class="slide-subtitle">AARRR Framework Analysis</p>
-            </div>
-            <div class="slide-content">
-                <div class="framework-box">
-                    <div class="framework-title">AARRR (Pirate Metrics) Overview</div>
-                    <p style="color: #666; font-size: 14px; line-height: 1.6;">Framework tracks user journey from acquisition through revenue generation, identifying optimization opportunities at each stage</p>
-                </div>
-
-                <div class="funnel-stage">
-                    <div>
-                        <div class="funnel-stage-name">🎯 Acquisition</div>
-                        <div style="font-size: 12px; color: #4338ca; margin-top: 5px;">New visitors to platform</div>
-                    </div>
-                    <div>
-                        <div class="funnel-stage-value">23.5K</div>
-                        <span class="status-badge green">↑ 31% MoM</span>
-                    </div>
-                </div>
-
-                <div class="funnel-stage">
-                    <div>
-                        <div class="funnel-stage-name">⚡ Activation</div>
-                        <div style="font-size: 12px; color: #4338ca; margin-top: 5px;">Created first dashboard</div>
-                    </div>
-                    <div>
-                        <div class="funnel-stage-value">14.2K (60%)</div>
-                        <span class="status-badge green">↑ 12% conv</span>
-                    </div>
-                </div>
-
-                <div class="funnel-stage">
-                    <div>
-                        <div class="funnel-stage-name">🔄 Retention</div>
-                        <div style="font-size: 12px; color: #4338ca; margin-top: 5px;">Return within 7 days</div>
-                    </div>
-                    <div>
-                        <div class="funnel-stage-value">9.7K (68%)</div>
-                        <span class="status-badge yellow">↑ 5% WoW</span>
-                    </div>
-                </div>
-
-                <div class="funnel-stage">
-                    <div>
-                        <div class="funnel-stage-name">📣 Referral</div>
-                        <div style="font-size: 12px; color: #4338ca; margin-top: 5px;">Shared dashboard publicly</div>
-                    </div>
-                    <div>
-                        <div class="funnel-stage-value">2.8K (29%)</div>
-                        <span class="status-badge green">↑ 18% MoM</span>
-                    </div>
-                </div>
-
-                <div class="funnel-stage">
-                    <div>
-                        <div class="funnel-stage-name">💰 Revenue</div>
-                        <div style="font-size: 12px; color: #4338ca; margin-top: 5px;">Upgraded to Pro</div>
-                    </div>
-                    <div>
-                        <div class="funnel-stage-value">1.2K (12%)</div>
-                        <span class="status-badge green">↑ 24% MoM</span>
-                    </div>
-                </div>
-
-                <div class="highlight-box" style="margin-top: 20px;">
-                    <strong>Key Insight:</strong> Activation rate improved from 48% to 60% following new onboarding flow. Focus next sprint on retention optimization for power users (5+ dashboards)
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>AARRR framework metrics calculated over trailing 30-day window</span>
-                <span>3 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 4: User Engagement (HEART) -->
-        <div class="slide" data-slide="4">
-            <div class="slide-header">
-                <h2 class="slide-title">User experience metrics demonstrate high satisfaction but task success rates indicate friction points</h2>
-                <p class="slide-subtitle">HEART Framework - User Experience Analysis</p>
-            </div>
-            <div class="slide-content">
-                <div class="framework-box">
-                    <div class="framework-title">HEART Framework (Google UX Metrics)</div>
-                    <p style="color: #666; font-size: 14px; line-height: 1.6;">Measures user experience across five dimensions: Happiness, Engagement, Adoption, Retention, Task Success</p>
-                </div>
-
-                <div class="three-column">
-                    <div class="kpi-card">
-                        <div class="kpi-title">😊 Happiness</div>
-                        <div class="kpi-value-large">89%</div>
-                        <div class="kpi-description">User satisfaction score (CSAT). NPS: 67. Users report high value from analytics insights</div>
-                        <span class="status-badge green">Above target</span>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-title">🔥 Engagement</div>
-                        <div class="kpi-value-large">4.2</div>
-                        <div class="kpi-description">Avg dashboards per user. Power users (20%) create 12+ dashboards. Stickiness: DAU/MAU = 26%</div>
-                        <span class="status-badge green">Strong</span>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-title">📈 Adoption</div>
-                        <div class="kpi-value-large">72%</div>
-                        <div class="kpi-description">Feature adoption rate. Template gallery (85%), custom queries (42%), export (38%)</div>
-                        <span class="status-badge yellow">On track</span>
-                    </div>
-                </div>
-
-                <div class="two-column" style="margin-top: 20px;">
-                    <div class="kpi-card">
-                        <div class="kpi-title">🔄 Retention</div>
-                        <div class="kpi-value-large">68%</div>
-                        <div class="kpi-description">D7 retention. D30: 42%. Cohort analysis shows retention stabilizes after week 2 for activated users</div>
-                        <span class="status-badge yellow">Needs improvement</span>
-                    </div>
-                    <div class="kpi-card">
-                        <div class="kpi-title">✓ Task Success</div>
-                        <div class="kpi-value-large">81%</div>
-                        <div class="kpi-description">Dashboard creation completion rate. Avg time to first dashboard: 8.2 min (target: <10 min). Error rate: 4%</div>
-                        <span class="status-badge yellow">Monitor</span>
-                    </div>
-                </div>
-
-                <div class="chart-container" style="height: 200px; margin-top: 20px;">
-                    <canvas id="heartChart"></canvas>
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>HEART metrics tracked via in-app surveys, usage analytics, and cohort analysis</span>
-                <span>4 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 5: Feature Performance -->
-        <div class="slide" data-slide="5">
-            <div class="slide-header">
-                <h2 class="slide-title">Template gallery drives 85% adoption while custom query builder requires UX improvements</h2>
-                <p class="slide-subtitle">Feature Adoption & Performance Analysis</p>
-            </div>
-            <div class="slide-content">
-                <div class="chart-container">
-                    <canvas id="featureChart"></canvas>
-                </div>
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Adoption Rate</th>
-                                <th>Engagement (MAU)</th>
-                                <th>Avg Use Frequency</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Template Gallery</strong></td>
-                                <td>85%</td>
-                                <td>40.2K</td>
-                                <td>12.3x/month</td>
-                                <td><span class="status-badge green">Excellent</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Real-time Data Sync</strong></td>
-                                <td>76%</td>
-                                <td>35.9K</td>
-                                <td>Daily</td>
-                                <td><span class="status-badge green">Strong</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dashboard Sharing</strong></td>
-                                <td>68%</td>
-                                <td>32.1K</td>
-                                <td>4.2x/month</td>
-                                <td><span class="status-badge green">Good</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Custom Query Builder</strong></td>
-                                <td>42%</td>
-                                <td>19.8K</td>
-                                <td>2.1x/month</td>
-                                <td><span class="status-badge yellow">Improve</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Data Export (CSV/PDF)</strong></td>
-                                <td>38%</td>
-                                <td>17.9K</td>
-                                <td>1.8x/month</td>
-                                <td><span class="status-badge yellow">Low</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Slack Integration</strong></td>
-                                <td>24%</td>
-                                <td>11.3K</td>
-                                <td>8.4x/month</td>
-                                <td><span class="status-badge red">Underutilized</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="highlight-box" style="margin-top: 20px;">
-                    <strong>Recommended Actions:</strong> (1) Redesign custom query builder with guided workflow - A/B test in Sprint 12. (2) Promote Slack integration through in-app tooltips and email campaign. (3) Add one-click export buttons to increase usage
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>Feature analytics based on event tracking and user cohort analysis</span>
-                <span>5 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 6: User Segmentation -->
-        <div class="slide" data-slide="6">
-            <div class="slide-header">
-                <h2 class="slide-title">Power users (20% of base) generate 68% of engagement but show early churn signals requiring intervention</h2>
-                <p class="slide-subtitle">User Segmentation & Cohort Analysis</p>
-            </div>
-            <div class="slide-content">
-                <div class="chart-container">
-                    <canvas id="segmentChart"></canvas>
-                </div>
-
-                <div class="three-column" style="margin-top: 25px;">
-                    <div class="insight-card">
-                        <div class="insight-title">🚀 Power Users (20%)</div>
-                        <div class="insight-description">
-                            <strong>9.4K users</strong><br>
-                            12+ dashboards, daily usage<br>
-                            68% of total engagement<br>
-                            82% conversion to Pro<br>
-                            <span style="color: #fbbf24;">⚠ D30 retention: 78% (↓ 6%)</span>
-                        </div>
-                    </div>
-                    <div class="insight-card">
-                        <div class="insight-title">📊 Core Users (45%)</div>
-                        <div class="insight-description">
-                            <strong>21.2K users</strong><br>
-                            3-8 dashboards, weekly usage<br>
-                            26% of total engagement<br>
-                            18% conversion to Pro<br>
-                            <span style="color: #4ade80;">✓ Stable retention: 65%</span>
-                        </div>
-                    </div>
-                    <div class="insight-card">
-                        <div class="insight-title">👋 Casual Users (35%)</div>
-                        <div class="insight-description">
-                            <strong>16.5K users</strong><br>
-                            1-2 dashboards, monthly usage<br>
-                            6% of total engagement<br>
-                            2% conversion to Pro<br>
-                            <span style="color: #f87171;">⚠ High churn: 58% abandon</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-section">
-                    <h3>Cohort Retention Analysis</h3>
-                    <div class="table-container">
-                        <table style="font-size: 12px;">
-                            <thead>
-                                <tr>
-                                    <th>Cohort</th>
-                                    <th>D1</th>
-                                    <th>D7</th>
-                                    <th>D14</th>
-                                    <th>D30</th>
-                                    <th>D60</th>
-                                    <th>D90</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Sept 2025</strong></td>
-                                    <td>92%</td>
-                                    <td>71%</td>
-                                    <td>58%</td>
-                                    <td>45%</td>
-                                    <td>38%</td>
-                                    <td>—</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Aug 2025</strong></td>
-                                    <td>89%</td>
-                                    <td>68%</td>
-                                    <td>54%</td>
-                                    <td>42%</td>
-                                    <td>36%</td>
-                                    <td>32%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Jul 2025</strong></td>
-                                    <td>87%</td>
-                                    <td>64%</td>
-                                    <td>51%</td>
-                                    <td>39%</td>
-                                    <td>34%</td>
-                                    <td>30%</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <strong>Key Finding:</strong> Recent cohorts (Sept) show improved early retention due to onboarding changes, but D30+ retention flat. Focus: Re-engagement campaigns for power users at D21-28 showing decline patterns
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>Cohort analysis using RFM segmentation and behavioral clustering</span>
-                <span>6 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 7: Growth Metrics -->
-        <div class="slide" data-slide="7">
-            <div class="slide-header">
-                <h2 class="slide-title">Viral coefficient of 0.42 and 23% organic growth rate demonstrate strong product-market fit</h2>
-                <p class="slide-subtitle">Growth & Acquisition Metrics</p>
-            </div>
-            <div class="slide-content">
-                <div class="metric-grid">
-                    <div class="metric-card">
-                        <div class="metric-label">Viral Coefficient (K)</div>
-                        <div class="metric-value">0.42</div>
-                        <div class="metric-change positive">Target: >0.3</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Organic Growth</div>
-                        <div class="metric-value">23%</div>
-                        <div class="metric-change positive">MoM Rate</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Time to Value</div>
-                        <div class="metric-value">8.2min</div>
-                        <div class="metric-change positive">First dashboard</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">CAC Payback</div>
-                        <div class="metric-value">4.2mo</div>
-                        <div class="metric-change positive">↓ 1.3mo</div>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="growthChart"></canvas>
-                </div>
-
-                <div class="two-column">
-                    <div class="framework-box">
-                        <div class="framework-title">Acquisition Channels</div>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li><strong>GitHub Marketplace:</strong> 38% (organic)</li>
-                            <li><strong>Direct/Organic:</strong> 27% (word of mouth)</li>
-                            <li><strong>Social/Content:</strong> 18% (dev.to, Twitter)</li>
-                            <li><strong>Referrals:</strong> 12% (referral program)</li>
-                            <li><strong>Paid:</strong> 5% (Google Ads)</li>
-                        </ul>
-                    </div>
-                    <div class="framework-box">
-                        <div class="framework-title">Growth Levers</div>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li><strong>Viral loop:</strong> Public dashboards → signups</li>
-                            <li><strong>Network effects:</strong> Team collaboration features</li>
-                            <li><strong>Content marketing:</strong> Tutorial videos (120K views)</li>
-                            <li><strong>Product-led growth:</strong> Freemium model</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <strong>Optimization Opportunity:</strong> Public dashboard views convert at 8.2% to signups. Increasing visibility through SEO and social sharing could drive 40% more organic acquisition
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>Growth metrics calculated using cohort-based modeling and attribution analysis</span>
-                <span>7 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 8: Revenue & Monetization -->
-        <div class="slide" data-slide="8">
-            <div class="slide-header">
-                <h2 class="slide-title">Pro tier conversion at 12% with $42 ARPU demonstrates healthy monetization; opportunity in team plans</h2>
-                <p class="slide-subtitle">Revenue Metrics & Monetization Performance</p>
-            </div>
-            <div class="slide-content">
-                <div class="metric-grid">
-                    <div class="metric-card">
-                        <div class="metric-label">MRR</div>
-                        <div class="metric-value">$68K</div>
-                        <div class="metric-change positive">↑ 31% MoM</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">ARPU</div>
-                        <div class="metric-value">$42</div>
-                        <div class="metric-change positive">Stable</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">LTV</div>
-                        <div class="metric-value">$580</div>
-                        <div class="metric-change positive">↑ $40</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-label">Churn Rate</div>
-                        <div class="metric-value">8.2%</div>
-                        <div class="metric-change positive">↓ 2.1%</div>
-                    </div>
-                </div>
-
-                <div class="chart-container">
-                    <canvas id="revenueChart"></canvas>
-                </div>
-
-                <div class="two-column">
-                    <div>
-                        <h3 style="font-size: 16px; margin-bottom: 15px;">Conversion Funnel</h3>
-                        <div class="table-container">
-                            <table style="font-size: 12px;">
-                                <tr>
-                                    <td><strong>Free Signups</strong></td>
-                                    <td style="text-align: right;">23.5K</td>
-                                    <td style="text-align: right;">100%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Activated (1st dashboard)</strong></td>
-                                    <td style="text-align: right;">14.2K</td>
-                                    <td style="text-align: right;">60%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Trial Started</strong></td>
-                                    <td style="text-align: right;">4.8K</td>
-                                    <td style="text-align: right;">34%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Converted to Pro</strong></td>
-                                    <td style="text-align: right;">1.7K</td>
-                                    <td style="text-align: right;">35%</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 style="font-size: 16px; margin-bottom: 15px;">Revenue Mix</h3>
-                        <div class="kpi-card">
-                            <div style="font-size: 13px; margin-bottom: 8px;"><strong>Pro Plan ($19/mo)</strong></div>
-                            <div style="font-size: 24px; font-weight: 700; color: #2c5364;">78%</div>
-                            <div style="font-size: 12px; color: #666;">1,260 subscribers</div>
-                        </div>
-                        <div class="kpi-card" style="margin-top: 10px;">
-                            <div style="font-size: 13px; margin-bottom: 8px;"><strong>Team Plan ($79/mo)</strong></div>
-                            <div style="font-size: 24px; font-weight: 700; color: #2c5364;">22%</div>
-                            <div style="font-size: 12px; color: #666;">190 teams (avg 4.2 users)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="highlight-box">
-                    <strong>Monetization Insight:</strong> Trial-to-paid conversion at 35% (strong vs. SaaS avg 25%). Opportunity: Team plan adoption only 22% of revenue - target collaborative use cases through feature development
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>Revenue analytics from billing system and subscription management platform</span>
-                <span>8 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 9: Product Roadmap Priorities -->
-        <div class="slide" data-slide="9">
-            <div class="slide-header">
-                <h2 class="slide-title">Q1 2026 roadmap prioritizes retention optimization, team collaboration, and performance improvements</h2>
-                <p class="slide-subtitle">Data-Driven Product Roadmap</p>
-            </div>
-            <div class="slide-content">
-                <div class="insight-card">
-                    <div class="insight-title">🎯 Priority 1: Retention Optimization (Sprint 12-13)</div>
-                    <div class="insight-description">
-                        <strong>Problem:</strong> Power user retention declining from 84% to 78% at D30<br>
-                        <strong>Solution:</strong> Smart notifications, usage streak gamification, personalized recommendations<br>
-                        <strong>Expected Impact:</strong> +8% D30 retention, +15% engagement frequency<br>
-                        <strong>Success Metrics:</strong> D30 retention >82%, WAU/MAU ratio >30%
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">👥 Priority 2: Team Collaboration Features (Sprint 14-15)</div>
-                    <div class="insight-description">
-                        <strong>Problem:</strong> Team plan adoption at 22%, missing collaborative workflows<br>
-                        <strong>Solution:</strong> Real-time co-editing, team comments, shared templates, role-based permissions<br>
-                        <strong>Expected Impact:</strong> 2.5x team plan conversion, +$24K MRR<br>
-                        <strong>Success Metrics:</strong> Team plan adoption >35% of revenue, avg team size >6 users
-                    </div>
-                </div>
-
-                <div class="insight-card">
-                    <div class="insight-title">⚡ Priority 3: Performance & Load Time (Sprint 16)</div>
-                    <div class="insight-description">
-                        <strong>Problem:</strong> Dashboard load time 2.8s, impacting bounce rate (12%)<br>
-                        <strong>Solution:</strong> Backend optimization, caching layer, lazy loading, CDN implementation<br>
-                        <strong>Expected Impact:</strong> <2s load time, -6% bounce rate, +4% conversion<br>
-                        <strong>Success Metrics:</strong> P95 load time <2.5s, Time to Interactive <3s
-                    </div>
-                </div>
-
-                <div class="two-column" style="margin-top: 20px;">
-                    <div class="framework-box">
-                        <div class="framework-title">Research & Validation</div>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li>User interviews: 25 power users (Q4 2025)</li>
-                            <li>A/B test: Notification cadence (In progress)</li>
-                            <li>Competitive analysis: Notion, Linear, Airtable</li>
-                            <li>Beta program: Team features (50 orgs)</li>
-                        </ul>
-                    </div>
-                    <div class="framework-box">
-                        <div class="framework-title">Success Criteria (Q1 2026)</div>
-                        <ul class="bullet-list" style="font-size: 13px;">
-                            <li>D30 retention: 75% → 82%</li>
-                            <li>Team plan revenue: 22% → 35%</li>
-                            <li>Avg load time: 2.8s → 2.0s</li>
-                            <li>NPS: 67 → 72</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="slide-footer">
-                <span>Roadmap prioritization using RICE framework and user research insights</span>
-                <span>9 of 10</span>
-            </div>
-        </div>
-
-        <!-- Slide 10: Key Insights & Recommendations -->
-        <div class="slide" data-slide="10">
-            <div class="slide-header">
-                <h2 class="slide-title">Strong product-market fit validated by metrics; focus on retention and team features to accelerate growth</h2>
-                <p class="slide-subtitle">Strategic Recommendations & Next Steps</p>
+                <h2 class="slide-title">Strong product-market fit validated; focus on retention and team features to accelerate growth</h2>
+                <p class="slide-subtitle">Strategic Recommendations</p>
             </div>
             <div class="slide-content">
                 <div class="highlight-box">
-                    <strong>Overall Assessment:</strong> Vital Metrics demonstrates strong product health with 89% satisfaction, 34% MoM growth, and healthy unit economics. Key opportunities in retention optimization and enterprise expansion
+                    <strong>Assessment:</strong> Vital Metrics shows strong health: 89% satisfaction, 34% MoM growth. Key opportunities in retention and enterprise
                 </div>
 
                 <div class="content-section">
                     <h3>Top 5 Strategic Recommendations</h3>
-                    <div class="kpi-card" style="margin: 12px 0;">
-                        <strong style="color: #2c5364;">1. Launch Power User Retention Program (Immediate)</strong>
-                        <div style="font-size: 13px; margin-top: 8px; color: #666;">
-                            Implement smart notifications, streak tracking, and personalized insights to combat declining D30 retention in highest-value segment. Target: +10% retention = +$12K MRR
+                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
+                        <strong style="color: #2c5364; font-size: 11px;">1. Launch Power User Retention Program (Immediate)</strong>
+                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
+                            Smart notifications, streaks, insights to combat D30 decline. Target: +10% retention = +$12K MRR
                         </div>
                     </div>
-                    <div class="kpi-card" style="margin: 12px 0;">
-                        <strong style="color: #2c5364;">2. Accelerate Team Collaboration Features (Q1 2026)</strong>
-                        <div style="font-size: 13px; margin-top: 8px; color: #666;">
-                            Build real-time co-editing and team workflows to capture enterprise market. 2.5x team plan adoption could add $24K MRR and improve competitive position
+                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
+                        <strong style="color: #2c5364; font-size: 11px;">2. Accelerate Team Collaboration Features (Q1 2026)</strong>
+                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
+                            Real-time co-editing and workflows. 2.5x team adoption = +$24K MRR
                         </div>
                     </div>
-                    <div class="kpi-card" style="margin: 12px 0;">
-                        <strong style="color: #2c5364;">3. Optimize Performance & Load Times (Sprint 16)</strong>
-                        <div style="font-size: 13px; margin-top: 8px; color: #666;">
-                            Reduce dashboard load time from 2.8s to <2s to decrease 12% bounce rate and improve conversion. Infrastructure investment required: ~$15K
+                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
+                        <strong style="color: #2c5364; font-size: 11px;">3. Optimize Performance & Load Times (Sprint 16)</strong>
+                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
+                            Reduce load 2.8s→<2s to decrease 12% bounce. Investment: ~$15K
                         </div>
                     </div>
-                    <div class="kpi-card" style="margin: 12px 0;">
-                        <strong style="color: #2c5364;">4. Redesign Custom Query Builder (Q1 2026)</strong>
-                        <div style="font-size: 13px; margin-top: 8px; color: #666;">
-                            Only 42% adoption for critical feature. User research shows friction in workflow. A/B test simplified UI to increase adoption to 65%+
+                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
+                        <strong style="color: #2c5364; font-size: 11px;">4. Redesign Custom Query Builder (Q1 2026)</strong>
+                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
+                            42% adoption shows friction. A/B test simplified UI to reach 65%+
                         </div>
                     </div>
-                    <div class="kpi-card" style="margin: 12px 0;">
-                        <strong style="color: #2c5364;">5. Scale GitHub Marketplace Presence (Ongoing)</strong>
-                        <div style="font-size: 13px; margin-top: 8px; color: #666;">
-                            38% of acquisition from Marketplace but limited visibility. Invest in SEO, reviews, and featured placement to drive 40% increase in organic signups
+                    <div class="kpi-card" style="margin: 8px 0; padding: 10px;">
+                        <strong style="color: #2c5364; font-size: 11px;">5. Scale GitHub Marketplace Presence (Ongoing)</strong>
+                        <div style="font-size: 10px; margin-top: 5px; color: #666;">
+                            38% acquisition. SEO, reviews, features = 40% more organic signups
                         </div>
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); border-radius: 8px; color: white;">
-                    <p style="font-size: 16px; font-weight: 600;">Next Review: Q1 2026 Board Meeting</p>
-                    <p style="font-size: 13px; margin-top: 8px; opacity: 0.9;">Focus: Retention initiatives impact, team plan traction, performance metrics</p>
+                <div style="text-align: center; margin-top: 12px; padding: 10px; background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); border-radius: 6px; color: white;">
+                    <p style="font-size: 12px; font-weight: 600;">Next Review: Q1 2026 Board Meeting</p>
                 </div>
             </div>
             <div class="slide-footer">
                 <span>Strategic recommendations based on product analytics, user research, and market analysis</span>
-                <span>10 of 10</span>
+                <span>11 of 11</span>
             </div>
         </div>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 10;
+        const totalSlides = 11;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
@@ -1106,13 +677,7 @@
             document.getElementById('prevBtn').disabled = currentSlide === 1;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
             
-            // Initialize charts
-            if (currentSlide === 2) initExecutiveChart();
-            if (currentSlide === 4) initHeartChart();
-            if (currentSlide === 5) initFeatureChart();
-            if (currentSlide === 6) initSegmentChart();
-            if (currentSlide === 7) initGrowthChart();
-            if (currentSlide === 8) initRevenueChart();
+            if (currentSlide === 3) initExecutiveChart();
         }
 
         function changeSlide(n) {
@@ -1135,20 +700,16 @@
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
                     datasets: [
                         {
-                            label: 'DAU (thousands)',
+                            label: 'DAU (K)',
                             data: [4.2, 5.1, 5.8, 6.9, 7.8, 8.4, 9.2, 9.7, 10.8, 12.4],
                             borderColor: '#2c5364',
-                            backgroundColor: 'rgba(44, 83, 100, 0.1)',
-                            tension: 0.4,
-                            fill: true
+                            tension: 0.4
                         },
                         {
-                            label: 'MAU (thousands)',
+                            label: 'MAU (K)',
                             data: [18, 21, 24, 27, 30, 32, 35, 37, 41, 47.2],
                             borderColor: '#0f2027',
-                            backgroundColor: 'rgba(15, 32, 39, 0.1)',
-                            tension: 0.4,
-                            fill: true
+                            tension: 0.4
                         }
                     ]
                 },
@@ -1156,181 +717,15 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: { display: true, text: 'User Growth Trend (10 Months)', font: { size: 14 } }
-                    }
-                }
-            });
-        }
-
-        function initHeartChart() {
-            const ctx = document.getElementById('heartChart');
-            if (!ctx || ctx.chart) return;
-            
-            ctx.chart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Happiness', 'Engagement', 'Adoption', 'Retention', 'Task Success'],
-                    datasets: [{
-                        label: 'Current Performance',
-                        data: [89, 84, 72, 68, 81],
-                        backgroundColor: 'rgba(44, 83, 100, 0.2)',
-                        borderColor: '#2c5364',
-                        pointBackgroundColor: '#2c5364',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#2c5364'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        }
-
-        function initFeatureChart() {
-            const ctx = document.getElementById('featureChart');
-            if (!ctx || ctx.chart) return;
-            
-            ctx.chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Template Gallery', 'Real-time Sync', 'Sharing', 'Custom Query', 'Export', 'Slack'],
-                    datasets: [{
-                        label: 'Adoption Rate (%)',
-                        data: [85, 76, 68, 42, 38, 24],
-                        backgroundColor: [
-                            'rgba(44, 83, 100, 0.8)',
-                            'rgba(44, 83, 100, 0.8)',
-                            'rgba(44, 83, 100, 0.8)',
-                            'rgba(251, 191, 36, 0.8)',
-                            'rgba(251, 191, 36, 0.8)',
-                            'rgba(239, 68, 68, 0.8)'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        title: { display: true, text: 'Feature Adoption Rates', font: { size: 14 } }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, max: 100 }
-                    }
-                }
-            });
-        }
-
-        function initSegmentChart() {
-            const ctx = document.getElementById('segmentChart');
-            if (!ctx || ctx.chart) return;
-            
-            ctx.chart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Power Users (20%)', 'Core Users (45%)', 'Casual Users (35%)'],
-                    datasets: [{
-                        data: [68, 26, 6],
-                        backgroundColor: [
-                            'rgba(15, 32, 39, 0.9)',
-                            'rgba(44, 83, 100, 0.9)',
-                            'rgba(44, 83, 100, 0.5)'
-                        ]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: { display: true, text: 'Engagement Distribution by User Segment', font: { size: 14 } },
-                        legend: { position: 'bottom' }
-                    }
-                }
-            });
-        }
-
-        function initGrowthChart() {
-            const ctx = document.getElementById('growthChart');
-            if (!ctx || ctx.chart) return;
-            
-            ctx.chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'],
-                    datasets: [
-                        {
-                            label: 'Cumulative Users',
-                            data: [2300, 5100, 8600, 12800, 17200, 22100, 27500, 33400],
-                            borderColor: '#2c5364',
-                            backgroundColor: 'rgba(44, 83, 100, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            yAxisID: 'y'
-                        },
-                        {
-                            label: 'Weekly Growth Rate (%)',
-                            data: [0, 122, 69, 49, 34, 28, 24, 21],
-                            borderColor: '#0f2027',
-                            backgroundColor: 'rgba(15, 32, 39, 0.1)',
-                            tension: 0.4,
-                            fill: true,
-                            yAxisID: 'y1'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: { display: true, text: 'User Growth & Rate (Last 8 Weeks)', font: { size: 14 } }
-                    },
-                    scales: {
-                        y: { type: 'linear', position: 'left' },
-                        y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false } }
-                    }
-                }
-            });
-        }
-
-        function initRevenueChart() {
-            const ctx = document.getElementById('revenueChart');
-            if (!ctx || ctx.chart) return;
-            
-            ctx.chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-                    datasets: [
-                        {
-                            label: 'MRR ($K)',
-                            data: [18, 22, 27, 32, 37, 42, 47, 52, 59, 68],
-                            backgroundColor: 'rgba(44, 83, 100, 0.8)'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: { display: true, text: 'Monthly Recurring Revenue Growth', font: { size: 14 } }
-                    },
-                    scales: {
-                        y: { beginAtZero: true }
+                        title: { display: true, text: 'User Growth Trend (10 Months)', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } }
                     }
                 }
             });
         }
 
         function generatePDF() {
-            alert('PDF generation initiated. In a production environment, this would generate a PDF of all slides.');
+            alert('PDF generation initiated.');
         }
 
         showSlide(1);
