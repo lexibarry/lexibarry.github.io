@@ -88,29 +88,40 @@
     </div>
   </div>
 
-  <script>
-    const CORRECT_PASSWORD='functionhealth2025lexi';
-    function checkPassword(e){
-      e.preventDefault();
-      const val=document.getElementById('pw').value;
-      const err=document.getElementById('error');
-      const form=e.target;
-      const content=document.getElementById('content');
-      if(val===CORRECT_PASSWORD){
-        form.style.display='none';
-        content.style.display='block';
-        sessionStorage.setItem('auth_'+CORRECT_PASSWORD,'true');
-      }else{
-        err.style.display='block';
-        setTimeout(()=>err.style.display='none',3000);
-      }
+ <script>
+  const COMPANY_KEY = "functionhealth";
+  const COMPANY_PASSWORD = "functionhealth2025lexi";
+
+  function checkPassword(e) {
+    e.preventDefault();
+    const input = document.getElementById("passwordInput").value;
+    const err = document.getElementById("errorMessage");
+    const form = document.getElementById("loginForm");
+    const content = document.getElementById("privateContent");
+
+    if (input === COMPANY_PASSWORD) {
+      sessionStorage.setItem(`auth_${COMPANY_KEY}`, "true");
+      form.classList.add("hidden");
+      content.classList.remove("hidden");
+    } else {
+      err.style.display = "block";
+      setTimeout(() => (err.style.display = "none"), 3000);
     }
-    window.addEventListener('DOMContentLoaded',()=>{
-      if(sessionStorage.getItem('auth_'+CORRECT_PASSWORD)==='true'){
-        document.querySelector('form').style.display='none';
-        document.getElementById('content').style.display='block';
-      }
-    });
-  </script>
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.getItem(`auth_${COMPANY_KEY}`) === "true" ||
+        sessionStorage.getItem("auth_master") === "true") {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("privateContent").classList.remove("hidden");
+    }
+  });
+
+  function logout() {
+    sessionStorage.removeItem(`auth_${COMPANY_KEY}`);
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("privateContent").classList.add("hidden");
+  }
+</script>
 </body>
 </html>
