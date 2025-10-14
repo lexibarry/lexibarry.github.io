@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Function Health | Strategic Analysis – Lexi Barry</title>
+  <meta name="description" content="Comprehensive product and growth strategy analysis for Function Health — a wellness company empowering individuals with advanced diagnostics and continuous insight tracking." />
+  <style>
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      margin:0;padding:0;min-height:100vh;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .box{
+      background:#fff;border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+      width:90%;max-width:680px;padding:40px;
+    }
+    h1{text-align:center;font-size:28px;margin-bottom:10px;color:#1f2937;}
+    p{text-align:center;color:#6b7280;margin-bottom:25px;line-height:1.6;}
+    input{
+      width:100%;padding:12px;border:2px solid #e5e7eb;
+      border-radius:8px;font-size:16px;margin-bottom:20px;
+    }
+    input:focus{
+      outline:none;border-color:#667eea;
+      box-shadow:0 0 0 3px rgba(102,126,234,0.1);
+    }
+    button{
+      width:100%;padding:14px;
+      background:linear-gradient(135deg,#667eea,#764ba2);
+      color:#fff;border:none;border-radius:8px;
+      font-size:16px;font-weight:600;cursor:pointer;
+    }
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 25px rgba(102,126,234,0.4);
+    }
+    .error{
+      background:#fee2e2;color:#dc2626;
+      padding:10px;border-radius:6px;text-align:center;
+      margin-bottom:16px;display:none;
+    }
+    .content{display:none;text-align:left;}
+    h2{font-size:20px;margin-bottom:8px;color:#1f2937;}
+    ul{margin-left:20px;margin-bottom:16px;color:#4b5563;}
+    a.home{
+      display:block;text-align:center;margin-top:20px;
+      color:#667eea;text-decoration:none;font-weight:600;
+    }
+  </style>
+</head>
+<body>
 
+  <div class="box">
+    <h1>🔐 Function Health Analysis</h1>
+    <p>Enter password to access Function Health’s strategic analysis and wellness-product growth framework.</p>
+    <div id="error" class="error">❌ Incorrect password</div>
+
+    <form onsubmit="checkPassword(event)">
+      <input id="pw" type="password" placeholder="Enter password" required />
+      <button type="submit">Access Analysis</button>
+    </form>
+
+    <div id="content" class="content">
+      <h1>Function Health Strategic Analysis</h1>
+      <p><strong>Prepared by Lexi Barry</strong></p>
+
+      <p>Function Health is a modern wellness company offering members advanced diagnostics, longitudinal biomarker tracking, and personalized health insights through an integrated digital platform. This analysis explores opportunities to strengthen user retention, engagement, and revenue growth through data-driven strategy.</p>
+
+      <h2>Highlights</h2>
+      <ul>
+        <li><strong>Objective:</strong> Strengthen member engagement and subscription renewal through deeper behavioral insights and proactive wellness recommendations.</li>
+        <li><strong>Frameworks Used:</strong> AARRR Funnel, McKinsey 3 Horizons, Jobs-to-Be-Done, and RICE Prioritization.</li>
+        <li><strong>Focus:</strong> Activation, habit formation, and scalable growth loops driven by personalized biomarker data and storytelling.</li>
+      </ul>
+
+      <h2>Deliverables</h2>
+      <ul>
+        <li>Executive summary with quantified ROI potential</li>
+        <li>Strategic growth roadmap (90-day and 6-month horizons)</li>
+        <li>Competitive benchmarking and retention analysis</li>
+        <li>📄 <a href="functionhealth-onepager.pdf" target="_blank">View Function Health One-Pager (PDF)</a></li>
+      </ul>
+
+      <a href="/private/" class="home">← Back to Private Hub</a>
+    </div>
+  </div>
+
+  <script>
+    const CORRECT_PASSWORD='functionhealth2025lexi';
+    function checkPassword(e){
+      e.preventDefault();
+      const val=document.getElementById('pw').value;
+      const err=document.getElementById('error');
+      const form=e.target;
+      const content=document.getElementById('content');
+      if(val===CORRECT_PASSWORD){
+        form.style.display='none';
+        content.style.display='block';
+        sessionStorage.setItem('auth_'+CORRECT_PASSWORD,'true');
+      }else{
+        err.style.display='block';
+        setTimeout(()=>err.style.display='none',3000);
+      }
+    }
+    window.addEventListener('DOMContentLoaded',()=>{
+      if(sessionStorage.getItem('auth_'+CORRECT_PASSWORD)==='true'){
+        document.querySelector('form').style.display='none';
+        document.getElementById('content').style.display='block';
+      }
+    });
+  </script>
+</body>
+</html>
