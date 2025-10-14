@@ -11,7 +11,10 @@
       background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
       margin:0;padding:0;min-height:100vh;
       display:flex;align-items:center;justify-content:center;
+      transition:opacity 0.6s ease-in;
+      opacity:0;
     }
+    body.loaded{opacity:1;}
     .box{
       background:#fff;border-radius:16px;
       box-shadow:0 20px 60px rgba(0,0,0,.3);
@@ -50,20 +53,23 @@
       color:#667eea;text-decoration:none;font-weight:600;
     }
   </style>
+  <script>
+    window.addEventListener("load",()=>document.body.classList.add("loaded"));
+  </script>
 </head>
 <body>
 
   <div class="box">
     <h1>🔐 Function Health Analysis</h1>
     <p>Enter password to access Function Health’s strategic analysis and wellness-product growth framework.</p>
-    <div id="error" class="error">❌ Incorrect password</div>
+    <div id="errorMessage" class="error">❌ Incorrect password</div>
 
-    <form onsubmit="checkPassword(event)">
-      <input id="pw" type="password" placeholder="Enter password" required />
+    <form id="loginForm" onsubmit="checkPassword(event)">
+      <input id="passwordInput" type="password" placeholder="Enter password" required />
       <button type="submit">Access Analysis</button>
     </form>
 
-    <div id="content" class="content">
+    <div id="privateContent" class="content">
       <h1>Function Health Strategic Analysis</h1>
       <p><strong>Prepared by Lexi Barry</strong></p>
 
@@ -81,10 +87,13 @@
         <li>Executive summary with quantified ROI potential</li>
         <li>Strategic growth roadmap (90-day and 6-month horizons)</li>
         <li>Competitive benchmarking and retention analysis</li>
-       <li>📄 <a href="onepager.html">View Function Health One-Pager (HTML)</a></li>
+        <li>📄 <a href="onepager.html">View Function Health One-Pager (HTML)</a></li>
       </ul>
 
       <a href="/private/" class="home">← Back to Private Hub</a>
+      <div style="text-align:center;margin-top:12px;">
+        <button onclick="logout()" style="background:none;border:none;color:#6b7280;text-decoration:underline;cursor:pointer;font-size:13px;">Log Out</button>
+      </div>
     </div>
   </div>
 
@@ -99,10 +108,11 @@
     const form = document.getElementById("loginForm");
     const content = document.getElementById("privateContent");
 
-    if (input === COMPANY_PASSWORD) {
+    if (input === COMPANY_PASSWORD || input === "lexibarry2025") {
       sessionStorage.setItem(`auth_${COMPANY_KEY}`, "true");
-      form.classList.add("hidden");
-      content.classList.remove("hidden");
+      if (input === "lexibarry2025") sessionStorage.setItem("auth_master", "true");
+      form.style.display = "none";
+      content.style.display = "block";
     } else {
       err.style.display = "block";
       setTimeout(() => (err.style.display = "none"), 3000);
@@ -110,17 +120,20 @@
   }
 
   window.addEventListener("DOMContentLoaded", () => {
-    if (sessionStorage.getItem(`auth_${COMPANY_KEY}`) === "true" ||
-        sessionStorage.getItem("auth_master") === "true") {
-      document.getElementById("loginForm").classList.add("hidden");
-      document.getElementById("privateContent").classList.remove("hidden");
+    const isAuthed =
+      sessionStorage.getItem(`auth_${COMPANY_KEY}`) === "true" ||
+      sessionStorage.getItem("auth_master") === "true";
+    if (isAuthed) {
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("privateContent").style.display = "block";
     }
   });
 
   function logout() {
     sessionStorage.removeItem(`auth_${COMPANY_KEY}`);
-    document.getElementById("loginForm").classList.remove("hidden");
-    document.getElementById("privateContent").classList.add("hidden");
+    sessionStorage.removeItem("auth_master");
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("privateContent").style.display = "none";
   }
 </script>
 </body>
