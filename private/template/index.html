@@ -3,69 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[COMPANY NAME] | Strategic Analysis – Lexi Barry</title>
+  <title>[Company Name] | Private Strategy Analysis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-      margin:0;padding:0;min-height:100vh;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .box{background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);
-         width:90%;max-width:600px;padding:40px;}
-    h1{text-align:center;font-size:28px;margin-bottom:10px;}
-    p{text-align:center;color:#6b7280;margin-bottom:25px;}
-    input{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:8px;font-size:16px;margin-bottom:20px;}
-    input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,0.1);}
-    button{width:100%;padding:14px;background:linear-gradient(135deg,#667eea,#764ba2);
-            color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;}
-    button:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(102,126,234,0.4);}
-    .error{background:#fee2e2;color:#dc2626;padding:10px;border-radius:6px;text-align:center;margin-bottom:16px;display:none;}
-    .content{display:none;}
-    a.home{display:block;text-align:center;margin-top:20px;color:#667eea;text-decoration:none;font-weight:600;}
+    body { opacity: 0; transition: opacity 0.6s ease-in; }
+    body.loaded { opacity: 1; }
   </style>
+  <script>
+    window.addEventListener("load", () => document.body.classList.add("loaded"));
+  </script>
 </head>
-<body>
 
-  <div class="box">
-    <h1>🔐 Protected Analysis</h1>
-    <p>Enter password to view [COMPANY NAME] strategic analysis.</p>
-    <div id="error" class="error">❌ Incorrect password</div>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center px-6 py-12">
 
-    <form onsubmit="checkPassword(event)">
-      <input id="pw" type="password" placeholder="Enter password" required />
-      <button type="submit">Access Analysis</button>
+  <div class="bg-white shadow-xl rounded-2xl max-w-3xl w-full p-8">
+
+    <!-- HEADER -->
+    <div class="text-center mb-8">
+      <div class="text-5xl mb-2">🔒</div>
+      <h1 class="text-2xl font-bold text-gray-800">[Company Name] Private Materials</h1>
+      <p class="text-gray-500 text-sm">Confidential | Prepared by Lexi Barry</p>
+    </div>
+
+    <!-- ERROR -->
+    <div id="errorMessage" class="hidden bg-red-100 text-red-600 px-4 py-2 rounded-md mb-4 text-sm text-center">
+      ❌ Incorrect password. Please try again.
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm" onsubmit="checkPassword(event)" class="text-center">
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter password"
+        class="w-full border border-gray-300 rounded-md px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        required
+      />
+      <button
+        type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition">
+        Access Materials →
+      </button>
     </form>
 
-    <div id="content" class="content">
-      <h1>[COMPANY NAME] Strategic Analysis</h1>
-      <p>Prepared by <strong>Lexi Barry</strong></p>
-      <p>This area will display your analysis content.</p>
-      <a href="/" class="home">← Back to Portfolio Home</a>
+    <!-- UNLOCKED CONTENT -->
+    <div id="privateContent" class="hidden fade-in mt-8">
+
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">🎯 Strategy One-Pager</h2>
+      <p class="text-gray-600 mb-6 text-sm">Access confidential deliverables and insights built for [Company Name].</p>
+
+      <div class="space-y-4">
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
+          <h3 class="font-semibold text-gray-800 mb-1">📄 One-Pager Analysis</h3>
+          <p class="text-gray-500 text-sm mb-3">Executive summary and strategic recommendations for [Company Name].</p>
+          <a href="onepager.html" class="text-indigo-600 font-semibold hover:underline text-sm">View One-Pager →</a>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
+          <h3 class="font-semibold text-gray-800 mb-1">📊 Dashboard Insights</h3>
+          <p class="text-gray-500 text-sm mb-3">Visual performance metrics, growth funnel, and user engagement data.</p>
+          <a href="dashboard.html" class="text-indigo-600 font-semibold hover:underline text-sm">View Dashboard →</a>
+        </div>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="../index.html" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">← Back to Private Portfolio</a>
+      </div>
+
+      <div class="text-center mt-4">
+        <button onclick="logout()" class="text-gray-500 hover:text-gray-700 text-xs underline">Log Out</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const CORRECT_PASSWORD='changeme2025lexi';
-    function checkPassword(e){
+    // ✏️ CHANGE THESE VALUES PER COMPANY
+    const COMPANY_KEY = "functionhealth";            // lowercase unique key
+    const COMPANY_PASSWORD = "functionhealth2025lexi"; // password for this company
+
+    function checkPassword(e) {
       e.preventDefault();
-      const val=document.getElementById('pw').value;
-      const err=document.getElementById('error');
-      const form=e.target;
-      const content=document.getElementById('content');
-      if(val===CORRECT_PASSWORD){
-        form.style.display='none';content.style.display='block';
-        sessionStorage.setItem('auth_'+CORRECT_PASSWORD,'true');
-      }else{
-        err.style.display='block';setTimeout(()=>err.style.display='none',3000);
+      const input = document.getElementById("passwordInput").value;
+      const err = document.getElementById("errorMessage");
+      const form = document.getElementById("loginForm");
+      const content = document.getElementById("privateContent");
+
+      if (input === COMPANY_PASSWORD) {
+        sessionStorage.setItem(`auth_${COMPANY_KEY}`, "true");
+        form.classList.add("hidden");
+        content.classList.remove("hidden");
+      } else {
+        err.style.display = "block";
+        setTimeout(() => (err.style.display = "none"), 3000);
       }
     }
-    window.addEventListener('DOMContentLoaded',()=>{
-      if(sessionStorage.getItem('auth_'+CORRECT_PASSWORD)==='true'){
-        document.querySelector('form').style.display='none';
-        document.getElementById('content').style.display='block';
+
+    // Auto-load if already authenticated
+    window.addEventListener("DOMContentLoaded", () => {
+      if (
+        sessionStorage.getItem(`auth_${COMPANY_KEY}`) === "true" ||
+        sessionStorage.getItem("auth_master") === "true"
+      ) {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("privateContent").classList.remove("hidden");
       }
     });
+
+    function logout() {
+      sessionStorage.removeItem(`auth_${COMPANY_KEY}`);
+      document.getElementById("privateContent").classList.add("hidden");
+      document.getElementById("loginForm").classList.remove("hidden");
+    }
   </script>
+
 </body>
 </html>
