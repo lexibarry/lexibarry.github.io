@@ -35,6 +35,7 @@ All datasets, analyses, and methodologies are **my own work and synthetically ge
 lexibarry.github.io/
 ├── index.html
 ├── README.md
+├── patents.html
 ├── assets/
 │   ├── css/
 │   │   └── style.css
@@ -42,13 +43,15 @@ lexibarry.github.io/
 │   │   └── main.js
 │   └── images/
 │       └── dashboard-previews/
+│           ├── index.html
 │           ├── saas-user-adoption.png
 │           ├── voice-of-user.png
 │           ├── gtm-readiness.png
 │           ├── ab-test-results.png
-│           ├── product-conversations.png
+│           ├── product-conversation.png
 │           └── category-performance.png
 ├── dashboards/
+|   ├── index.html
 │   ├── saas-user-adoption.html
 │   ├── voice-of-user.html
 │   ├── gtm-readiness.html
@@ -56,8 +59,10 @@ lexibarry.github.io/
 │   ├── product-conversations.html
 │   └── category-performance.html
 ├── presentations/
-│   └── saas-retention-strategy.html
+│   └── pulsepathai.html
+│   └── vitalmetrics.html
 └── code/
+    ├── index.html
     ├── ab_test_framework.py
     ├── metrics_pipeline.py
     ├── cohort_analysis.py
