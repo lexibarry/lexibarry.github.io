@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PulsePathAI Case Study</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -20,25 +20,48 @@
             height: 100vh;
         }
 
+        .portfolio-btn {
+            position: fixed;
+            top: 22px;
+            left: 25px;
+            background: white;
+            border: 2px solid #667eea;
+            padding: 7px 16px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 11px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .portfolio-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
         .slide-container {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .slide {
             background: white;
-            width: 90%;
-            max-width: 1200px;
-            height: 88vh;
-            border-radius: 12px;
+            width: 92%;
+            max-width: 1250px;
+            height: 90vh;
+            border-radius: 10px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 35px 55px;
+            padding: 28px 48px;
             display: none;
             flex-direction: column;
-            position: relative;
             overflow: hidden;
         }
 
@@ -55,34 +78,33 @@
         .logo-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 6px;
         }
 
         .logo {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
         }
 
         .slide-header {
             border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .slide-title {
             font-family: Georgia, serif;
-            font-size: 22px;
+            font-size: 20px;
             color: #1a1a1a;
             font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 5px;
+            line-height: 1.1;
+            margin-bottom: 4px;
         }
 
         .slide-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            font-weight: 400;
         }
 
         .slide-content {
@@ -92,38 +114,37 @@
 
         .slide-footer {
             border-top: 1px solid #e0e0e0;
-            padding-top: 8px;
-            margin-top: 10px;
+            padding-top: 6px;
+            margin-top: 8px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             font-size: 8px;
             color: #999;
         }
 
         .navigation {
             position: fixed;
-            right: 30px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             z-index: 1000;
         }
 
         .nav-btn {
             background: white;
             border: none;
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             color: #667eea;
             transition: all 0.3s ease;
         }
@@ -139,24 +160,18 @@
             cursor: not-allowed;
         }
 
-        .nav-btn:disabled:hover {
-            background: white;
-            color: #667eea;
-            transform: scale(1);
-        }
-
         .pdf-btn {
             position: fixed;
-            top: 25px;
-            right: 30px;
+            top: 22px;
+            right: 25px;
             background: white;
             border: 2px solid #667eea;
-            padding: 8px 18px;
-            border-radius: 20px;
+            padding: 7px 16px;
+            border-radius: 18px;
             cursor: pointer;
             font-weight: 600;
             color: #667eea;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
@@ -169,54 +184,53 @@
         .metric-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 12px 0;
+            gap: 8px;
+            margin: 10px 0;
         }
 
         .metric-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 14px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 6px;
             color: white;
             text-align: center;
         }
 
         .metric-value {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin: 5px 0;
+            margin: 4px 0;
         }
 
         .metric-label {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.9;
         }
 
         .chart-container {
-            height: 200px;
-            margin: 10px 0;
-            position: relative;
+            height: 185px;
+            margin: 8px 0;
         }
 
         .chart-insight {
             background: #f0f4ff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 10px;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 9px;
             color: #1a1a1a;
-            margin-top: 6px;
+            margin-top: 5px;
             border-left: 3px solid #667eea;
-            line-height: 1.3;
+            line-height: 1.25;
         }
 
         .content-section {
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .content-section h3 {
-            font-size: 14px;
+            font-size: 13px;
             color: #667eea;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-weight: 600;
         }
 
@@ -226,11 +240,11 @@
         }
 
         .bullet-list li {
-            padding: 5px 0 5px 18px;
+            padding: 4px 0 4px 16px;
             position: relative;
-            line-height: 1.3;
+            line-height: 1.25;
             color: #444;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .bullet-list li:before {
@@ -238,104 +252,181 @@
             position: absolute;
             left: 0;
             color: #667eea;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .highlight-box {
             background: #f8f9ff;
             border-left: 3px solid #667eea;
-            padding: 10px 14px;
-            margin: 10px 0;
-            border-radius: 4px;
-            font-size: 11px;
-            line-height: 1.3;
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 3px;
+            font-size: 10px;
+            line-height: 1.25;
         }
 
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 10px 0;
+            gap: 10px;
+            margin: 8px 0;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin: 8px 0;
         }
 
         .framework-box {
             border: 2px solid #667eea;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
-            margin: 8px 0;
+            margin: 6px 0;
         }
 
         .framework-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #667eea;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .recommendation-card {
             background: white;
             border: 2px solid #e0e0e0;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
-            margin: 6px 0;
-            font-size: 11px;
+            margin: 5px 0;
+            font-size: 10px;
         }
 
         .rec-number {
             display: inline-block;
             background: #667eea;
             color: white;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             text-align: center;
-            line-height: 22px;
+            line-height: 20px;
             font-weight: 600;
-            margin-right: 6px;
+            margin-right: 5px;
+            font-size: 11px;
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .agenda-item {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8eaff 100%);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+        }
+
+        .agenda-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .agenda-title {
             font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+
+        .agenda-desc {
+            font-size: 9px;
+            color: #666;
+            line-height: 1.25;
+        }
+
+        .rec-card-fancy {
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            border-left: 4px solid #667eea;
+            padding: 12px 15px;
+            margin: 6px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(102,126,234,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .rec-card-fancy:hover {
+            box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+            transform: translateX(4px);
+        }
+
+        .rec-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .rec-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .rec-title-fancy {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .rec-desc {
+            font-size: 10px;
+            color: #555;
+            line-height: 1.4;
+            margin-left: 42px;
+        }
+
+        .qa-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+        }
+
+        .qa-question {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 6px;
+        }
+
+        .qa-answer {
+            font-size: 10px;
+            color: #444;
+            line-height: 1.4;
         }
 
         strong {
             color: #1a1a1a;
             font-weight: 600;
         }
-
-        .agenda-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 18px 0;
-        }
-
-        .agenda-item {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8eaff 100%);
-            padding: 14px;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-
-        .agenda-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 6px;
-        }
-
-        .agenda-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-        }
-
-        .agenda-desc {
-            font-size: 10px;
-            color: #666;
-            line-height: 1.3;
-        }
     </style>
 </head>
 <body>
+    <a href="#" class="portfolio-btn">← Portfolio</a>
     <button class="pdf-btn" onclick="generatePDF()">⬇ Download PDF</button>
 
     <div class="navigation">
@@ -345,9 +436,9 @@
 
     <div class="slide-container">
         <!-- Slide 1: Title -->
-        <div class="slide active" data-slide="1">
+        <div class="slide active">
             <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 20px;">
+                <svg width="90" height="90" viewBox="0 0 100 100" style="margin-bottom: 18px;">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
@@ -359,13 +450,12 @@
                     <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
                     <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
                     <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
-                    <path d="M35 45 Q50 35 65 45" stroke="#667eea" stroke-width="2" fill="none" opacity="0.6"/>
                 </svg>
-                <h1 style="font-family: Georgia, serif; font-size: 48px; color: #1a1a1a; margin-bottom: 15px;">PulsePathAI</h1>
-                <p style="font-size: 24px; color: #667eea; margin-bottom: 30px; font-weight: 300;">Transforming Healthcare Through Intelligent Patient Flow</p>
-                <div style="height: 2px; width: 160px; background: linear-gradient(to right, #667eea, #764ba2); margin: 20px 0;"></div>
-                <p style="font-size: 15px; color: #666; margin-top: 15px;">Strategic Case Study</p>
-                <p style="font-size: 12px; color: #999; margin-top: 6px;">Prepared for Product Manager Role Application</p>
+                <h1 style="font-family: Georgia, serif; font-size: 44px; color: #1a1a1a; margin-bottom: 12px;">PulsePathAI</h1>
+                <p style="font-size: 22px; color: #667eea; margin-bottom: 25px; font-weight: 300;">Transforming Healthcare Through Intelligent Patient Flow</p>
+                <div style="height: 2px; width: 150px; background: linear-gradient(to right, #667eea, #764ba2); margin: 18px 0;"></div>
+                <p style="font-size: 14px; color: #666; margin-top: 12px;">Strategic Case Study</p>
+                <p style="font-size: 11px; color: #999; margin-top: 5px;">Prepared for Product Manager Role Application</p>
             </div>
             <div class="slide-footer">
                 <span>PulsePathAI Strategic Analysis</span>
@@ -374,20 +464,14 @@
         </div>
 
         <!-- Slide 2: Agenda -->
-        <div class="slide" data-slide="2">
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <defs>
-                        <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
@@ -399,125 +483,125 @@
                     <div class="agenda-item">
                         <div class="agenda-number">01</div>
                         <div class="agenda-title">Executive Summary</div>
-                        <div class="agenda-desc">Bottom-line recommendation and key insights</div>
+                        <div class="agenda-desc">Bottom-line recommendation</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">02</div>
                         <div class="agenda-title">Market Opportunity</div>
-                        <div class="agenda-desc">$2.3B TAM analysis and competitive landscape</div>
+                        <div class="agenda-desc">$2.3B TAM analysis</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">03</div>
                         <div class="agenda-title">Problem Quantification</div>
-                        <div class="agenda-desc">$4.2M annual loss per facility analysis</div>
+                        <div class="agenda-desc">$4.2M annual loss analysis</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">04</div>
                         <div class="agenda-title">Solution Overview</div>
-                        <div class="agenda-desc">AI-powered patient flow optimization</div>
+                        <div class="agenda-desc">AI-powered optimization</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">05</div>
                         <div class="agenda-title">Pilot Results</div>
-                        <div class="agenda-desc">40% wait time reduction and ROI validation</div>
+                        <div class="agenda-desc">40% wait time reduction</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">06</div>
                         <div class="agenda-title">Business Model</div>
-                        <div class="agenda-desc">Three-tier SaaS pricing and unit economics</div>
+                        <div class="agenda-desc">Three-tier SaaS pricing</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">07</div>
                         <div class="agenda-title">Go-to-Market</div>
-                        <div class="agenda-desc">Land-and-expand with $18M Year 1 target</div>
+                        <div class="agenda-desc">$18M Year 1 target</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">08</div>
                         <div class="agenda-title">Financial Projections</div>
-                        <div class="agenda-desc">Path to $47M revenue by Year 3</div>
+                        <div class="agenda-desc">Path to $47M by Year 3</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">09</div>
                         <div class="agenda-title">Risk Analysis</div>
-                        <div class="agenda-desc">Key risks and mitigation strategies</div>
+                        <div class="agenda-desc">Mitigation strategies</div>
                     </div>
                     <div class="agenda-item">
                         <div class="agenda-number">10</div>
                         <div class="agenda-title">Recommendations</div>
-                        <div class="agenda-desc">Strategic actions and next steps</div>
+                        <div class="agenda-desc">Strategic next steps</div>
                     </div>
                 </div>
             </div>
             <div class="slide-footer">
                 <span>PulsePathAI Strategic Analysis</span>
-                <span>2 of 13</span>
+                <span>2 of 15</span>
             </div>
         </div>
 
         <!-- Slide 3: Executive Summary -->
-        <div class="slide" data-slide="3">
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Healthcare inefficiencies cost $935B annually; PulsePathAI can capture 15% of patient flow market</h2>
+                <h2 class="slide-title">PulsePathAI can capture 15% of the $2.3B patient flow optimization market</h2>
                 <p class="slide-subtitle">Executive Summary</p>
             </div>
             <div class="slide-content">
                 <div class="highlight-box">
-                    <strong>Bottom Line:</strong> PulsePathAI can generate $47M revenue by 2027 through AI-powered patient flow optimization, reducing wait times by 40%
+                    <strong>Bottom Line:</strong> $47M revenue by 2027 through AI patient flow optimization, reducing wait times 40%
                 </div>
                 
                 <div class="content-section">
                     <h3>Situation & Complication</h3>
                     <ul class="bullet-list">
-                        <li><strong>12-hour ED wait times</strong> during peak lead to patient walkouts and low satisfaction</li>
+                        <li><strong>12-hour ED wait times</strong> lead to patient walkouts and low satisfaction</li>
                         <li><strong>$4.2M annual loss per facility</strong> from inefficient resource allocation</li>
-                        <li><strong>Legacy systems fail to predict</strong> demand surges or optimize staff deployment</li>
+                        <li><strong>Legacy systems fail to predict</strong> demand surges or optimize deployment</li>
                     </ul>
                 </div>
 
                 <div class="content-section">
                     <h3>Key Insights & Solution</h3>
                     <ul class="bullet-list">
-                        <li><strong>$2.3B TAM</strong> growing at 23% CAGR with minimal AI optimization competition</li>
-                        <li>Pilots show <strong>40% wait time reduction</strong> and 28% resource utilization improvement</li>
-                        <li><strong>89% prediction accuracy</strong> vs. 65% industry average via proprietary ML</li>
-                        <li>Profitability in <strong>18 months</strong> with 3-tier SaaS model and 15:1 LTV/CAC</li>
+                        <li><strong>$2.3B TAM</strong> growing 23% CAGR with minimal AI competition</li>
+                        <li>Pilots show <strong>40% wait reduction</strong> and 28% resource improvement</li>
+                        <li><strong>89% prediction accuracy</strong> vs. 65% industry average</li>
+                        <li>Profitability in <strong>18 months</strong> with 15:1 LTV/CAC ratio</li>
                     </ul>
                 </div>
             </div>
             <div class="slide-footer">
                 <span>Source: Synthetic data analysis based on HCUP data, 2025</span>
-                <span>3 of 13</span>
+                <span>3 of 15</span>
             </div>
         </div>
 
         <!-- Slide 4: Market Opportunity -->
-        <div class="slide" data-slide="4">
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Patient flow optimization represents $2.3B market opportunity growing at 23% annually</h2>
+                <h2 class="slide-title">$2.3B market opportunity growing at 23% annually with fragmented competition</h2>
                 <p class="slide-subtitle">Market Sizing & Opportunity Analysis</p>
             </div>
             <div class="slide-content">
                 <div class="metric-grid">
                     <div class="metric-card">
-                        <div class="metric-label">Total Addressable Market</div>
+                        <div class="metric-label">Total Addressable</div>
                         <div class="metric-value">$2.3B</div>
                     </div>
                     <div class="metric-card">
@@ -525,7 +609,7 @@
                         <div class="metric-value">$580M</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Target Market (Y1)</div>
+                        <div class="metric-label">Target (Y1)</div>
                         <div class="metric-value">$87M</div>
                     </div>
                 </div>
@@ -534,12 +618,12 @@
                     <canvas id="marketChart"></canvas>
                 </div>
                 <div class="chart-insight">
-                    <strong>Insight:</strong> Market projected to reach $6.5B by 2030 driven by value-based care mandates and 23% RN shortage creating urgency
+                    <strong>Insight:</strong> Market projected to $6.5B by 2030 driven by value-based care and 23% RN shortage
                 </div>
 
                 <div class="two-column">
                     <div>
-                        <h3 style="color: #667eea; margin-bottom: 6px; font-size: 13px;">Market Drivers</h3>
+                        <h3>Market Drivers</h3>
                         <ul class="bullet-list">
                             <li>Value-based care mandates</li>
                             <li>23% labor shortage in RNs</li>
@@ -547,34 +631,34 @@
                         </ul>
                     </div>
                     <div>
-                        <h3 style="color: #667eea; margin-bottom: 6px; font-size: 13px;">Competitive Gap</h3>
+                        <h3>Competitive Gap</h3>
                         <ul class="bullet-list">
                             <li>Fragmented, no clear leader</li>
-                            <li>Legacy scheduling-only tools</li>
+                            <li>Legacy scheduling tools only</li>
                             <li>No AI real-time optimization</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="slide-footer">
-                <span>Source: Market analysis based on 2,400+ US hospital systems; CAGR projections 2025-2030</span>
-                <span>4 of 13</span>
+                <span>Source: Market analysis 2,400+ US hospitals; CAGR 2025-2030</span>
+                <span>4 of 15</span>
             </div>
         </div>
 
-        <!-- Slide 5: Problem Statement -->
-        <div class="slide" data-slide="5">
+        <!-- Slide 5: Problem -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Emergency departments lose $4.2M annually per facility due to inefficient patient flow</h2>
+                <h2 class="slide-title">EDs lose $4.2M annually per facility from inefficient patient flow</h2>
                 <p class="slide-subtitle">Problem Quantification</p>
             </div>
             <div class="slide-content">
@@ -582,120 +666,118 @@
                     <canvas id="problemChart"></canvas>
                 </div>
                 <div class="chart-insight">
-                    <strong>Insight:</strong> Patient walkouts (42% of losses) are most addressable with predictive flow systems; $830 revenue lost per walkout creates strong ROI case
+                    <strong>Insight:</strong> Patient walkouts (42%) most addressable; $830 revenue lost per walkout
                 </div>
 
                 <div class="two-column">
                     <div class="framework-box">
-                        <div class="framework-title">Primary Pain Points</div>
-                        <ul class="bullet-list" style="font-size: 10px;">
-                            <li><strong>6-12hr wait times</strong> in ED</li>
-                            <li><strong>18% walkout rate</strong> LWBS</li>
-                            <li><strong>45% nurse turnover</strong> burnout</li>
-                            <li><strong>$830 per walkout</strong> revenue loss</li>
+                        <div class="framework-title">Pain Points</div>
+                        <ul class="bullet-list">
+                            <li><strong>6-12hr waits</strong> in ED</li>
+                            <li><strong>18% walkout</strong> LWBS</li>
+                            <li><strong>45% turnover</strong> nurses</li>
                         </ul>
                     </div>
                     <div class="framework-box">
                         <div class="framework-title">Root Causes</div>
-                        <ul class="bullet-list" style="font-size: 10px;">
-                            <li><strong>300% demand variance</strong> unpredictable</li>
-                            <li><strong>Static scheduling</strong> no adaptation</li>
-                            <li><strong>Zero visibility</strong> system-wide</li>
-                            <li><strong>40% time coordination</strong> manual</li>
+                        <ul class="bullet-list">
+                            <li><strong>300% variance</strong> demand</li>
+                            <li><strong>Static scheduling</strong></li>
+                            <li><strong>40% manual</strong> coordination</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="slide-footer">
-                <span>Source: Analysis of 150 hospital ED departments, 2024-2025 data</span>
-                <span>5 of 13</span>
+                <span>Source: Analysis 150 hospital EDs, 2024-2025</span>
+                <span>5 of 15</span>
             </div>
         </div>
 
-        <!-- Slide 6: Solution Overview -->
-        <div class="slide" data-slide="6">
+        <!-- Slide 6: Solution -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">PulsePathAI leverages ML to predict patient flow and optimize resources in real-time</h2>
+                <h2 class="slide-title">ML-powered platform predicts flow and optimizes resources in real-time</h2>
                 <p class="slide-subtitle">Product Solution Architecture</p>
             </div>
             <div class="slide-content">
-                <div class="two-column" style="margin-top: 10px;">
+                <div class="two-column">
                     <div class="recommendation-card">
-                        <strong style="color: #667eea; font-size: 12px;">🔮 Predictive Analytics</strong>
-                        <p style="margin-top: 5px; font-size: 10px; line-height: 1.3;">ML forecasts arrivals, acuity, resource needs 4-6hrs ahead at 89% accuracy</p>
+                        <strong style="color: #667eea;">🔮 Predictive Analytics</strong>
+                        <p style="margin-top: 4px; font-size: 9px; line-height: 1.3;">ML forecasts arrivals 4-6hrs ahead at 89% accuracy</p>
                     </div>
                     <div class="recommendation-card">
-                        <strong style="color: #667eea; font-size: 12px;">⚡ Real-Time Optimization</strong>
-                        <p style="margin-top: 5px; font-size: 10px; line-height: 1.3;">Dynamic allocation adjusts staffing, beds, workflows every 15 minutes</p>
+                        <strong style="color: #667eea;">⚡ Real-Time Optimization</strong>
+                        <p style="margin-top: 4px; font-size: 9px; line-height: 1.3;">Dynamic allocation adjusts every 15 minutes</p>
                     </div>
                 </div>
                 <div class="two-column">
                     <div class="recommendation-card">
-                        <strong style="color: #667eea; font-size: 12px;">📊 Analytics Dashboard</strong>
-                        <p style="margin-top: 5px; font-size: 10px; line-height: 1.3;">Executive and operational KPIs with bottleneck identification</p>
+                        <strong style="color: #667eea;">📊 Analytics Dashboard</strong>
+                        <p style="margin-top: 4px; font-size: 9px; line-height: 1.3;">Executive KPIs with bottleneck identification</p>
                     </div>
                     <div class="recommendation-card">
-                        <strong style="color: #667eea; font-size: 12px;">🔗 EHR Integration</strong>
-                        <p style="margin-top: 5px; font-size: 10px; line-height: 1.3;">Seamless with Epic, Cerner, 15+ EHRs via HL7/FHIR standards</p>
+                        <strong style="color: #667eea;">🔗 EHR Integration</strong>
+                        <p style="margin-top: 4px; font-size: 9px; line-height: 1.3;">Seamless with Epic, Cerner, 15+ via HL7/FHIR</p>
                     </div>
                 </div>
 
-                <div class="content-section" style="margin-top: 12px;">
+                <div class="content-section" style="margin-top: 10px;">
                     <h3>Competitive Differentiation</h3>
                     <ul class="bullet-list">
-                        <li><strong>89% accuracy</strong> vs. 65% industry avg through proprietary ML models</li>
-                        <li><strong>15-min optimization</strong> vs. hourly updates from legacy systems</li>
-                        <li><strong>30-day implementation</strong> vs. 6-12 months for traditional software</li>
-                        <li><strong>Pre-built EHR connectors</strong> reduce integration time by 80%</li>
+                        <li><strong>89% accuracy</strong> vs. 65% industry avg</li>
+                        <li><strong>15-min cycles</strong> vs. hourly updates</li>
+                        <li><strong>30-day deploy</strong> vs. 6-12 months</li>
+                        <li><strong>Pre-built connectors</strong> reduce integration 80%</li>
                     </ul>
                 </div>
             </div>
             <div class="slide-footer">
-                <span>Source: PulsePathAI product specifications and competitive analysis</span>
-                <span>6 of 13</span>
+                <span>Source: Product specifications and competitive analysis</span>
+                <span>6 of 15</span>
             </div>
         </div>
 
-        <!-- Slide 7: Pilot Results -->
-        <div class="slide" data-slide="7">
+        <!-- Slide 7: Pilots -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">Pilot implementations demonstrate 40% wait time reduction and 8-month ROI payback</h2>
-                <p class="slide-subtitle">Pilot Program Results (3 Hospital Systems, 6 Months)</p>
+                <h2 class="slide-title">Pilots demonstrate 40% wait time reduction and 8-month ROI payback</h2>
+                <p class="slide-subtitle">Pilot Program Results (3 Systems, 6 Months)</p>
             </div>
             <div class="slide-content">
                 <div class="metric-grid">
                     <div class="metric-card">
                         <div class="metric-label">Wait Time Reduction</div>
                         <div class="metric-value">-40%</div>
-                        <div class="metric-label" style="margin-top: 3px;">From 8.5h to 5.1h</div>
+                        <div class="metric-label" style="margin-top: 3px;">8.5h → 5.1h</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Resource Utilization</div>
                         <div class="metric-value">+28%</div>
-                        <div class="metric-label" style="margin-top: 3px;">Optimal staff deployment</div>
+                        <div class="metric-label" style="margin-top: 3px;">Staff deployment</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Patient Satisfaction</div>
                         <div class="metric-value">+35pts</div>
-                        <div class="metric-label" style="margin-top: 3px;">HCAHPS improvement</div>
+                        <div class="metric-label" style="margin-top: 3px;">HCAHPS score</div>
                     </div>
                 </div>
 
@@ -703,74 +785,433 @@
                     <canvas id="pilotChart"></canvas>
                 </div>
                 <div class="chart-insight">
-                    <strong>Insight:</strong> Wait times declined consistently 12% per month while walkout rates dropped 44% by month 6 - compounding benefits as staff adapted
+                    <strong>Insight:</strong> Wait times declined 12% monthly; walkout rates dropped 44% by M6
                 </div>
 
                 <div class="highlight-box">
-                    <strong>ROI Analysis:</strong> 8.2-month payback with $3.2M annual savings per facility from reduced walkouts, improved throughput, optimized labor
+                    <strong>ROI:</strong> 8.2-month payback with $3.2M annual savings per facility
                 </div>
             </div>
             <div class="slide-footer">
-                <span>Source: Pilot data from 3 health systems (450-bed avg.), January-June 2025</span>
-                <span>7 of 13</span>
+                <span>Source: Pilot data from 3 systems (450-bed avg), Jan-Jun 2025</span>
+                <span>7 of 15</span>
             </div>
         </div>
 
-        <!-- Remaining slides 8-13 continue with same pattern... -->
-        <!-- For brevity, I'll include the closing slide structure -->
-
-        <!-- Slide 13: Conclusion -->
-        <div class="slide" data-slide="13">
+        <!-- Slide 8: Business Model -->
+        <div class="slide">
             <div class="logo-header">
-                <svg width="40" height="40" viewBox="0 0 100 100" class="logo">
-                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad2)"/>
-                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad2)"/>
-                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad2)" stroke-width="3" fill="none"/>
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
                 </svg>
             </div>
             <div class="slide-header">
-                <h2 class="slide-title">PulsePathAI is positioned to become the category leader in AI-powered patient flow optimization</h2>
+                <h2 class="slide-title">Three-tier SaaS pricing enables market penetration and value capture</h2>
+                <p class="slide-subtitle">Revenue Model & Pricing</p>
+            </div>
+            <div class="slide-content">
+                <div class="three-column">
+                    <div class="framework-box" style="text-align: center; padding: 8px;">
+                        <div class="framework-title">Starter</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea; margin: 8px 0;">$15K</div>
+                        <div style="font-size: 9px; color: #999; margin-bottom: 8px;">per month</div>
+                        <ul style="text-align: left; font-size: 9px; line-height: 1.5;">
+                            <li>1 ED/dept</li>
+                            <li>Basic predictive</li>
+                            <li>Std dashboard</li>
+                        </ul>
+                    </div>
+                    <div class="framework-box" style="text-align: center; border-color: #667eea; background: #f8f9ff; padding: 8px;">
+                        <div class="framework-title">Professional</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea; margin: 8px 0;">$45K</div>
+                        <div style="font-size: 9px; color: #999; margin-bottom: 8px;">per month</div>
+                        <ul style="text-align: left; font-size: 9px; line-height: 1.5;">
+                            <li>3-5 depts</li>
+                            <li>Advanced ML</li>
+                            <li>Dedicated CSM</li>
+                        </ul>
+                    </div>
+                    <div class="framework-box" style="text-align: center; padding: 8px;">
+                        <div class="framework-title">Enterprise</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #667eea; margin: 8px 0;">$120K</div>
+                        <div style="font-size: 9px; color: #999; margin-bottom: 8px;">per month</div>
+                        <ul style="text-align: left; font-size: 9px; line-height: 1.5;">
+                            <li>System-wide</li>
+                            <li>Custom AI</li>
+                            <li>24/7 support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="chart-container" style="height: 160px;">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Insight:</strong> Q4 shows strong upsell momentum with Professional tier 3x growth
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Unit Economics:</strong> CAC $28K (8-mo payback) | LTV $420K | LTV/CAC 15:1 | Gross 78%
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Source: Financial modeling, SaaS benchmarks, pilot data</span>
+                <span>8 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 9: GTM -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Land-and-expand targeting 100 hospitals in Year 1 generates $18M ARR</h2>
+                <p class="slide-subtitle">Go-to-Market Strategy</p>
+            </div>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3>Phase 1: Market Entry (M1-6)</h3>
+                    <ul class="bullet-list">
+                        <li><strong>Target:</strong> 300-500 bed hospitals, top 25 metros, >200K ED visits</li>
+                        <li><strong>Channels:</strong> Direct sales (6-person) + EHR partnerships</li>
+                        <li><strong>Goal:</strong> 25 Starter customers ($4.5M ARR)</li>
+                    </ul>
+                </div>
+
+                <div class="content-section">
+                    <h3>Phase 2: Expansion (M7-12)</h3>
+                    <ul class="bullet-list">
+                        <li><strong>Upsell:</strong> 40% Starter→Professional (+$10.8M ARR)</li>
+                        <li><strong>New:</strong> 50 additional Starter ($9M ARR)</li>
+                        <li><strong>Enterprise:</strong> 3 large systems 500+ beds ($4.3M ARR)</li>
+                    </ul>
+                </div>
+
+                <div class="two-column">
+                    <div class="framework-box">
+                        <div class="framework-title">Success Metrics</div>
+                        <ul class="bullet-list">
+                            <li>35% win rate vs. 22% industry</li>
+                            <li>75-day sales cycle</li>
+                            <li>130% net revenue retention</li>
+                        </ul>
+                    </div>
+                    <div class="framework-box">
+                        <div class="framework-title">Marketing Mix</div>
+                        <ul class="bullet-list">
+                            <li>Case studies & ROI calculator</li>
+                            <li>HIMSS, ACEP conferences</li>
+                            <li>20% peer referral program</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Source: GTM strategy modeling, SaaS benchmarks</span>
+                <span>9 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 10: Financials -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Path to $47M revenue and profitability by Year 3 with strong economics</h2>
+                <p class="slide-subtitle">3-Year Financial Projections</p>
+            </div>
+            <div class="slide-content">
+                <div class="chart-container">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <div class="chart-insight">
+                    <strong>Insight:</strong> Break-even Month 18 with improving margins - Year 3 shows 23% operating margin at $47M
+                </div>
+
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Year 1 ARR</div>
+                        <div class="metric-value">$18M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Year 2 ARR</div>
+                        <div class="metric-value">$32M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Year 3 ARR</div>
+                        <div class="metric-value">$47M</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h3>Key Assumptions</h3>
+                    <ul class="bullet-list">
+                        <li><strong>Growth:</strong> 78% Y1→Y2, 47% Y2→Y3 (top SaaS) | <strong>Churn:</strong> 15% (vs. 20%)</li>
+                        <li><strong>Margin:</strong> 78% gross Y2 | <strong>Break-even:</strong> M18 with $12M raised</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Source: Financial model based on pilot data and SaaS benchmarks</span>
+                <span>10 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 11: Risks -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Key risks include EHR integration and regulatory; mitigation strategies in place</h2>
+                <p class="slide-subtitle">Risk Assessment & Mitigation</p>
+            </div>
+            <div class="slide-content">
+                <div class="recommendation-card">
+                    <span class="rec-number">1</span>
+                    <strong>EHR Integration</strong>
+                    <p style="margin-top: 4px; font-size: 9px;"><strong>High</strong> | Complex IT environments<br>
+                    <strong>Mitigation:</strong> Pre-built connectors; 30-day guarantee</p>
+                </div>
+
+                <div class="recommendation-card">
+                    <span class="rec-number">2</span>
+                    <strong>Regulatory (HIPAA, FDA)</strong>
+                    <p style="margin-top: 4px; font-size: 9px;"><strong>High</strong> | Clinical workflow changes<br>
+                    <strong>Mitigation:</strong> CDS design; HITRUST certified; BAA-compliant</p>
+                </div>
+
+                <div class="recommendation-card">
+                    <span class="rec-number">3</span>
+                    <strong>Model Accuracy & Adoption</strong>
+                    <p style="margin-top: 4px; font-size: 9px;"><strong>Medium</strong> | Clinicians may distrust AI<br>
+                    <strong>Mitigation:</strong> Continuous retraining; explainable AI; phased rollout</p>
+                </div>
+
+                <div class="recommendation-card">
+                    <span class="rec-number">4</span>
+                    <strong>Competitive Pressure</strong>
+                    <p style="margin-top: 4px; font-size: 9px;"><strong>Medium</strong> | EHR vendors may compete<br>
+                    <strong>Mitigation:</strong> Speed advantage; superior ML; Epic/Cerner partnerships</p>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Source: Risk assessment with clinical advisors and legal</span>
+                <span>11 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 12: Recommendations -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Immediate actions: Raise Series A, expand pilots, finalize Epic partnership</h2>
+                <p class="slide-subtitle">Strategic Recommendations</p>
+            </div>
+            <div class="slide-content">
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">1</div>
+                        <div class="rec-title-fancy">Raise Series A ($12M)</div>
+                    </div>
+                    <div class="rec-desc">Fund GTM expansion, product development, and regulatory compliance - Target close Q1 2026</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">2</div>
+                        <div class="rec-title-fancy">Scale Pilots to 10 Hospitals</div>
+                    </div>
+                    <div class="rec-desc">Build customer references and refine product-market fit across diverse hospital types</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">3</div>
+                        <div class="rec-title-fancy">Finalize Epic App Orchard Integration</div>
+                    </div>
+                    <div class="rec-desc">Critical partnership for market access and credibility - Accelerates enterprise sales</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">4</div>
+                        <div class="rec-title-fancy">Hire VP Sales + 5 AEs</div>
+                    </div>
+                    <div class="rec-desc">Build enterprise sales capability for direct selling motion and complex sales cycles</div>
+                </div>
+
+                <div class="rec-card-fancy">
+                    <div class="rec-header">
+                        <div class="rec-icon">5</div>
+                        <div class="rec-title-fancy">Achieve HITRUST Certification</div>
+                    </div>
+                    <div class="rec-desc">De-risk security concerns for enterprise buyers - Required for health system procurement</div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Source: Strategic roadmap with executive team and advisors</span>
+                <span>12 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 13: Conclusion -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">PulsePathAI positioned to become category leader in AI-powered patient flow</h2>
                 <p class="slide-subtitle">Conclusion & Next Steps</p>
             </div>
             <div class="slide-content">
                 <div class="highlight-box">
-                    <strong>Investment Thesis:</strong> PulsePathAI addresses $2.3B market with proven ROI, strong unit economics, and clear path to market leadership
+                    <strong>Investment Thesis:</strong> $2.3B market with proven ROI, strong economics, clear path to leadership
                 </div>
 
                 <div class="content-section">
                     <h3>Key Takeaways</h3>
                     <ul class="bullet-list">
-                        <li><strong>Large, growing market:</strong> Patient flow optimization critical for value-based care</li>
-                        <li><strong>Proven solution:</strong> Pilots show 40% wait time reduction, 8-month payback</li>
-                        <li><strong>Attractive economics:</strong> 78% gross margins, 15:1 LTV/CAC, Month 18 profitability</li>
+                        <li><strong>Large, growing market:</strong> Patient flow critical for value-based care</li>
+                        <li><strong>Proven solution:</strong> 40% wait time reduction, 8-month payback</li>
+                        <li><strong>Attractive economics:</strong> 78% gross margins, 15:1 LTV/CAC, M18 profitability</li>
                         <li><strong>Defensible moat:</strong> Proprietary ML, EHR partnerships, network effects</li>
                         <li><strong>Strong execution:</strong> Experienced team, clear GTM, manageable risks</li>
                     </ul>
                 </div>
 
-                <div class="framework-box" style="margin-top: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px;">
-                    <div class="framework-title" style="color: white; font-size: 15px;">Recommended Decision</div>
-                    <p style="margin-top: 8px; font-size: 12px; line-height: 1.4;">
+                <div class="framework-box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px;">
+                    <div class="framework-title" style="color: white; font-size: 14px;">Recommended Decision</div>
+                    <p style="margin-top: 8px; font-size: 11px; line-height: 1.4;">
                         <strong>Proceed with Series A fundraising</strong> to capture first-mover advantage. Target close by Q1 2026.
                     </p>
                 </div>
 
-                <div style="text-align: center; margin-top: 18px; padding: 14px; background: #f8f9ff; border-radius: 6px;">
-                    <p style="font-size: 13px; color: #667eea; font-weight: 600;">Questions & Discussion</p>
+                <div style="text-align: center; margin-top: 14px; padding: 12px; background: #f8f9ff; border-radius: 6px;">
+                    <p style="font-size: 12px; color: #667eea; font-weight: 600;">Questions & Discussion</p>
                 </div>
             </div>
             <div class="slide-footer">
                 <span>PulsePathAI Strategic Case Study | October 2025</span>
-                <span>13 of 13</span>
+                <span>13 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 14: Anticipated Q&A -->
+        <div class="slide">
+            <div class="logo-header">
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <div class="slide-header">
+                <h2 class="slide-title">Anticipated questions and prepared responses</h2>
+                <p class="slide-subtitle">Q&A Preparation</p>
+            </div>
+            <div class="slide-content">
+                <div class="qa-card">
+                    <div class="qa-question">Q: How do you differentiate from Epic's native patient flow modules?</div>
+                    <div class="qa-answer"><strong>A:</strong> Epic's modules are scheduling-focused with static rules. We're prediction-focused with dynamic ML that adapts in real-time. We're also EHR-agnostic and partner with Epic through App Orchard rather than competing directly.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: What's your customer acquisition strategy for the first 25 hospitals?</div>
+                    <div class="qa-answer"><strong>A:</strong> Warm outbound through our clinical advisory board connections (7 CMOs across different systems), conferences (HIMSS, ACEP), and leveraging pilot success stories. We're targeting hospitals already familiar with our advisors.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: How do you handle hospitals with multiple EHR systems?</div>
+                    <div class="qa-answer"><strong>A:</strong> Our HL7/FHIR connectors support multi-EHR environments. We aggregate data at the interface layer and normalize it before feeding into our ML models. This is actually a competitive advantage - legacy vendors struggle with heterogeneous systems.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: What if hospitals don't trust your AI recommendations?</div>
+                    <div class="qa-answer"><strong>A:</strong> Three-part approach: (1) Explainable AI dashboard showing prediction rationale, (2) Shadow mode deployment where clinicians see recommendations without obligation, (3) Progressive trust-building starting with low-stakes suggestions before high-impact ones.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: How do you plan to achieve 89% prediction accuracy across different hospitals?</div>
+                    <div class="qa-answer"><strong>A:</strong> Transfer learning from our base models plus hospital-specific retraining. Each hospital has unique patterns, but our models learn general principles (flu season, shift changes) that transfer. We require minimum 3 months of historical data before going live.</div>
+                </div>
+
+                <div class="qa-card">
+                    <div class="qa-question">Q: What's your defensibility if a large tech company enters this space?</div>
+                    <div class="qa-answer"><strong>A:</strong> Network effects - our models improve with more hospital data. Plus deep EHR integrations create switching costs. We're building partnerships with Epic/Cerner now rather than competing, which gives us distribution they won't have.</div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Prepared Q&A based on pilot feedback and investor conversations</span>
+                <span>14 of 15</span>
+            </div>
+        </div>
+
+        <!-- Slide 15: Thank You -->
+        <div class="slide">
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 30px;">
+                    <circle cx="50" cy="30" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="30" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="70" cy="50" r="8" fill="url(#logoGrad)"/>
+                    <circle cx="50" cy="70" r="8" fill="url(#logoGrad)"/>
+                    <path d="M50 30 L30 50 M50 30 L70 50 M30 50 L50 70 M70 50 L50 70" stroke="url(#logoGrad)" stroke-width="3" fill="none"/>
+                </svg>
+                <h1 style="font-family: Georgia, serif; font-size: 52px; color: #1a1a1a; margin-bottom: 20px;">Thank You</h1>
+                <p style="font-size: 28px; color: #667eea; margin-bottom: 40px; font-weight: 300;">Questions?</p>
+                <div style="height: 2px; width: 200px; background: linear-gradient(to right, #667eea, #764ba2); margin: 25px 0;"></div>
+                <p style="font-size: 16px; color: #666; margin-top: 25px;">Ready to discuss next steps</p>
+            </div>
+            <div class="slide-footer">
+                <span>PulsePathAI Strategic Case Study</span>
+                <span>15 of 15</span>
             </div>
         </div>
     </div>
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 13;
+        const totalSlides = 15;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');
@@ -784,9 +1225,13 @@
             document.getElementById('prevBtn').disabled = currentSlide === 1;
             document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
             
-            if (currentSlide === 4) initMarketChart();
-            if (currentSlide === 5) initProblemChart();
-            if (currentSlide === 7) initPilotChart();
+            setTimeout(() => {
+                if (currentSlide === 4) initMarketChart();
+                if (currentSlide === 5) initProblemChart();
+                if (currentSlide === 7) initPilotChart();
+                if (currentSlide === 8) initRevenueChart();
+                if (currentSlide === 10) initFinancialChart();
+            }, 100);
         }
 
         function changeSlide(n) {
@@ -818,12 +1263,20 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: { display: false },
-                        title: { display: true, text: 'TAM Growth Projection (23% CAGR)', font: { size: 11 } }
+                        title: { display: true, text: 'TAM Growth (23% CAGR)', font: { size: 11 } },
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: (val) => '$' + (val/1000).toFixed(1) + 'B',
+                            font: { size: 9, weight: 'bold' },
+                            color: '#667eea'
+                        }
                     },
                     scales: {
-                        y: { beginAtZero: true }
+                        y: { beginAtZero: true, display: false }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
         }
 
@@ -834,7 +1287,7 @@
             ctx.chart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Lost Revenue (Walkouts)', 'Overtime Costs', 'Readmission Penalties', 'Other'],
+                    labels: ['Lost Revenue', 'Overtime', 'Readmissions', 'Other'],
                     datasets: [{
                         data: [42, 23, 18, 17],
                         backgroundColor: [
@@ -849,10 +1302,16 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: { display: true, text: 'Annual Cost Breakdown ($4.2M)', font: { size: 11 } },
-                        legend: { position: 'right', labels: { font: { size: 9 } } }
+                        title: { display: true, text: 'Cost Breakdown ($4.2M)', font: { size: 11 } },
+                        legend: { position: 'right', labels: { font: { size: 9 } } },
+                        datalabels: {
+                            formatter: (val) => val + '%',
+                            font: { size: 10, weight: 'bold' },
+                            color: '#fff'
+                        }
                     }
-                }
+                },
+                plugins: [ChartDataLabels]
             });
         }
 
@@ -866,16 +1325,18 @@
                     labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'M6'],
                     datasets: [
                         {
-                            label: 'Wait Time (hrs)',
+                            label: 'Wait (hrs)',
                             data: [8.5, 7.8, 7.1, 6.3, 5.7, 5.1],
                             borderColor: 'rgba(102, 126, 234, 1)',
-                            tension: 0.4
+                            tension: 0.4,
+                            yAxisID: 'y'
                         },
                         {
                             label: 'Walkout %',
                             data: [18, 16, 14, 12, 10, 8],
                             borderColor: 'rgba(118, 75, 162, 1)',
-                            tension: 0.4
+                            tension: 0.4,
+                            yAxisID: 'y1'
                         }
                     ]
                 },
@@ -883,10 +1344,103 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        title: { display: true, text: 'Pilot Performance Trends', font: { size: 11 } },
-                        legend: { labels: { font: { size: 9 } } }
+                        title: { display: true, text: 'Pilot Performance', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: { display: false }
+                    },
+                    scales: {
+                        y: { position: 'left' },
+                        y1: { position: 'right', grid: { drawOnChartArea: false } }
                     }
                 }
+            });
+        }
+
+        function initRevenueChart() {
+            const ctx = document.getElementById('revenueChart');
+            if (!ctx || ctx.chart) return;
+            
+            ctx.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [
+                        {
+                            label: 'Starter',
+                            data: [1.8, 3.6, 5.4, 4.5],
+                            backgroundColor: 'rgba(102, 126, 234, 0.7)'
+                        },
+                        {
+                            label: 'Pro',
+                            data: [0, 2.7, 5.4, 10.8],
+                            backgroundColor: 'rgba(118, 75, 162, 0.7)'
+                        },
+                        {
+                            label: 'Enterprise',
+                            data: [0, 0, 1.4, 4.3],
+                            backgroundColor: 'rgba(102, 126, 234, 0.4)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Year 1 Revenue Mix ($M)', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: {
+                            formatter: (val) => val > 0 ? '$' + val + 'M' : '',
+                            font: { size: 8 },
+                            color: '#fff'
+                        }
+                    },
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        }
+
+        function initFinancialChart() {
+            const ctx = document.getElementById('financialChart');
+            if (!ctx || ctx.chart) return;
+            
+            ctx.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Year 1', 'Year 2', 'Year 3'],
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: [18, 32, 47],
+                            backgroundColor: 'rgba(102, 126, 234, 0.8)'
+                        },
+                        {
+                            label: 'Op Profit',
+                            data: [-8, 2, 11],
+                            backgroundColor: 'rgba(118, 75, 162, 0.8)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Revenue & Profit ($M)', font: { size: 11 } },
+                        legend: { labels: { font: { size: 9 } } },
+                        datalabels: {
+                            formatter: (val) => '$' + val + 'M',
+                            font: { size: 9, weight: 'bold' },
+                            color: '#fff'
+                        }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                },
+                plugins: [ChartDataLabels]
             });
         }
 
