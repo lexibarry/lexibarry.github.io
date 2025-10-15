@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Function Lifelong | Your Lifelong Health Companion</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: #1e293b;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container {
+      background: white;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .header .tagline {
+      font-size: 1.4em;
+      opacity: 0.95;
+      margin-bottom: 10px;
+    }
+    .header .subtitle {
+      font-size: 1em;
+      opacity: 0.85;
+    }
+    .content {
+      padding: 50px;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .section-title {
+      font-size: 2em;
+      color: #6366f1;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #e0e7ff;
+    }
+    .personal-story {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 35px;
+      border-radius: 12px;
+      border-left: 5px solid #f59e0b;
+      margin: 30px 0;
+    }
+    .personal-story h3 {
+      color: #92400e;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+    .personal-story p {
+      line-height: 1.9;
+      margin-bottom: 15px;
+      color: #78350f;
+    }
+    .personal-story ul {
+      margin-left: 25px;
+      color: #78350f;
+      line-height: 1.9;
+    }
+    .personal-story ul li {
+      margin-bottom: 8px;
+    }
+    .emotional-quote {
+      background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+      padding: 35px;
+      border-radius: 12px;
+      border-left: 5px solid #ec4899;
+      margin: 30px 0;
+      font-size: 1.2em;
+      line-height: 1.9;
+      color: #831843;
+    }
+    .emotional-quote p {
+      margin-bottom: 18px;
+    }
+    .highlight-box {
+      background: #ecfdf5;
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 5px solid #10b981;
+      margin: 25px 0;
+    }
+    .highlight-box h4 {
+      color: #065f46;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+    .opportunity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+    .opportunity-card {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid #6366f1;
+    }
+    .opportunity-card h4 {
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+    .opportunity-card ul {
+      margin-left: 18px;
+      line-height: 1.7;
+      color: #475569;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 30px;
+      margin-top: 25px;
+    }
+    .module-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 5px solid #6366f1;
+      transition: all 0.3s;
+    }
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(99,102,241,0.2);
+    }
+    .module-icon {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+    }
+    .module-title {
+      font-size: 1.6em;
+      color: #1e293b;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .module-desc {
+      color: #64748b;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+    .module-features {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 2px solid #e2e8f0;
+    }
+    .module-features li {
+      color: #475569;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .pricing {
+      background: #dbeafe;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #1e40af;
+    }
+    .competitive {
+      background: #f1f5f9;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 25px;
+    }
+    .comp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid #cbd5e1;
+    }
+    .comp-row:last-child {
+      border-bottom: none;
+    }
+    .comp-name {
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 1.1em;
+    }
+    .comp-gap {
+      color: #64748b;
+      font-style: italic;
+      flex: 1;
+      margin-left: 20px;
+      text-align: right;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 25px 0;
+    }
+    .metric-box {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .metric-number {
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .metric-label {
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
+    .cta {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      margin-top: 50px;
+      border-radius: 12px;
+    }
+    .cta h3 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+    .citation-section {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 40px;
+      border-left: 5px solid #94a3b8;
+    }
+    .citation-section h3 {
+      color: #475569;
+      margin-bottom: 15px;
+    }
+    .citation-section p {
+      color: #64748b;
+      font-size: 0.9em;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .science-backed {
+      background: #eff6ff;
+      padding: 25px;
+      border-radius: 12px;
+      margin: 20px 0;
+      border-left: 5px solid #3b82f6;
+    }
+    .science-backed h4 {
+      color: #1e40af;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Function Lifelong</h1>
+      <div class="tagline">Your Lifelong Health Companion</div>
+      <div class="subtitle">From your first test to your hundredth birthday</div>
+    </div>
+
+    <div class="content">
+      <!-- PERSONAL STORY -->
+      <div class="personal-story">
+        <h3>Why This Is Personal: My Family's Health Journey</h3>
+        
+        <p><strong>My Health Journey:</strong></p>
+        <p>For years, I experienced severe, relentless fatigue—not just during my menstrual cycle, but <em>every single day</em>. I had strange symptoms I couldn't explain: brain fog, weakness, brittle nails, cold hands and feet. Multiple doctors ran "standard iron tests" that came back normal. They dismissed my concerns, telling me I was just stressed or needed more sleep.</p>
+        
+        <p>It took <strong>years of suffering</strong> before a physician finally tested my <strong>ferritin, B12, and comprehensive iron panel</strong>—revealing severe anemia that basic testing had completely missed. By then, my ferritin was so dangerously low I needed <strong>iron infusions and B12 shots</strong> just to function again. It took months of treatment before I felt like myself.</p>
+        
+        <p style="margin-top: 20px;"><strong>My Family's Health Journey:</strong></p>
+        <ul>
+          <li><strong>Both of my parents</strong> have battled cancer</li>
+          <li><strong>My father</strong> underwent open heart surgery</li>
+          <li><strong>My twin sister</strong> has Crohn's disease and deals with chronic inflammation and digestive issues</li>
+        </ul>
+        
+        <p style="margin-top: 20px;"><strong>What All These Stories Have in Common:</strong></p>
+        <p>We caught everything too late. We were always reactive, never proactive. We were testing the wrong things, at the wrong time, and missing the patterns that mattered. By the time we knew something was wrong, we were already in crisis mode.</p>
+      </div>
+
+      <div class="science-backed">
+        <h4>🔬 The Science Behind What Function Lifelong Could Have Prevented:</h4>
+        <p><strong>For my anemia:</strong> Research shows ferritin levels below 30 ng/mL cause fatigue symptoms, but standard "iron tests" only check serum iron. Quarterly ferritin tracking with trend analysis would have caught my declining levels 2-3 years earlier, before severe depletion required IV treatment.</p>
+        
+        <p><strong>For my family's cancer:</strong> Studies show hereditary cancer risk increases 2-5x when multiple first-degree relatives are affected. Genetic testing (BRCA1/2, Lynch syndrome panels) combined with family health linking would have identified our shared risk patterns, enabling earlier screening protocols and catch-rates up to 10 years sooner.</p>
+        
+        <p><strong>For my sister's Crohn's:</strong> Elevated fecal calprotectin and inflammatory markers (CRP, ESR) often precede clinical Crohn's diagnosis by months or years. Gut microbiome diversity analysis combined with inflammation tracking could have identified dysbiosis and chronic inflammation patterns before irreversible intestinal damage occurred.</p>
+        
+        <p><strong>For my dad's cardiovascular event:</strong> Cardiac biomarkers (ApoB, Lp(a), hsCRP, homocysteine) predict cardiovascular events 5-10 years in advance. Combined with HRV decline detected by wearables, we could have seen his risk trajectory and intervened with lifestyle modifications and preventive treatment before emergency surgery was needed.</p>
+      </div>
+
+      <div class="emotional-quote">
+        <p><strong>This isn't just a product vision. This is what my family needed. This is what all families need.</strong></p>
+        
+        <p>If Function Lifelong existed when we needed it, my family's story would be different. We would have caught my anemia before I needed iron infusions. We would have known our cancer risks before diagnoses. We would have seen my sister's inflammation markers rising. We would have tracked my dad's heart health deteriorating.</p>
+        
+        <p><strong>We would have had time to intervene—before crisis, before suffering, before it was almost too late.</strong></p>
+        
+        <p style="margin-top: 20px; font-weight: 600;">Health crises make you feel powerless. They strip away your sense of control. But preventive health gives that power back. It transforms fear into action, helplessness into hope. When you can see what's coming, you can change the outcome. That's not just healthcare—that's giving families their lives back.</p>
+      </div>
+
+      <!-- EXECUTIVE SUMMARY -->
+      <div class="section">
+        <h2 class="section-title">🎯 The Opportunity</h2>
+        <p style="font-size: 1.15em; line-height: 1.9; margin-bottom: 25px;"><strong>Transform Function from an episodic diagnostic platform into a living health ecosystem that drives daily engagement, expands Total Addressable Market (TAM) by 75%+, and creates viral network effects.</strong></p>
+        
+        <div class="opportunity-grid">
+          <div class="opportunity-card">
+            <h4>📲 Function Live</h4>
+            <ul>
+              <li>Real-time wearable integration (Oura, Garmin, Apple, Samsung, Whoop)</li>
+              <li>CGM tracking (Levels, Dexcom, Stelo)</li>
+              <li>Meal logging with biomarker impact</li>
+              <li>AI biomarker estimation between labs</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>👨‍👩‍👧‍👦 Function Family</h4>
+            <ul>
+              <li>Link family accounts (including children)</li>
+              <li>Pediatric early disease detection</li>
+              <li>Shared genetic risk dashboards</li>
+              <li>Multi-generational health trends</li>
+              <li>Coordinated preventive care</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>❤️ Function Heart</h4>
+            <ul>
+              <li>EKG testing (no insurance referral needed)</li>
+              <li>Stress test options</li>
+              <li>Advanced cardiovascular panels</li>
+              <li>Heart health monitoring</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>🌿 Function Environmental</h4>
+            <ul>
+              <li>Mold exposure testing</li>
+              <li>Comprehensive allergy panels</li>
+              <li>Heavy metals screening</li>
+              <li>Environmental toxin assessment</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>🦠 Function Gut</h4>
+            <ul>
+              <li>Microbiome testing</li>
+              <li>Oral microbiome (saliva testing)</li>
+              <li>Inflammatory bowel markers</li>
+              <li>Food sensitivity panels</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>👩 Function Women / 👨 Function Men</h4>
+            <ul>
+              <li>Women: Period tracking, cycle-phase hormones, ferritin</li>
+              <li>Men: Testosterone, prostate health, cardiovascular</li>
+              <li>Both: Comprehensive hormone panels</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>🧠 Function Brain</h4>
+            <ul>
+              <li>Digital cognitive assessments</li>
+              <li>Blood biomarkers (homocysteine, omega-3)</li>
+              <li>AI-powered analysis</li>
+              <li>Alzheimer's risk screening</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>🏃 Function Performance</h4>
+            <ul>
+              <li>VO₂ Max testing</li>
+              <li>Metabolic rate analysis</li>
+              <li>Performance biomarkers</li>
+              <li>Training integration</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>🦴 Function Structure</h4>
+            <ul>
+              <li>DEXA bone density scans</li>
+              <li>Body composition analysis</li>
+              <li>Osteoporosis risk</li>
+              <li>Bone health tracking</li>
+            </ul>
+          </div>
+          
+          <div class="opportunity-card">
+            <h4>✨ Function Skin</h4>
+            <ul>
+              <li>Dermatological health markers</li>
+              <li>Collagen/elastin biomarkers</li>
+              <li>UV damage assessment</li>
+              <li>Skin aging prevention</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPECTED IMPACT -->
+      <div class="section">
+        <h2 class="section-title">📊 Expected Impact</h2>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-number">5x</div>
+            <div class="metric-label">Daily Engagement Increase</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-number">3-4x</div>
+            <div class="metric-label">Revenue Per User</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-number">2x</div>
+            <div class="metric-label">Network Growth (Family Linking)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-number">75%+</div>
+            <div class="metric-label">TAM Expansion</div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <h4>Key Metrics Transformation</h4>
+          <ul style="margin-left: 20px; line-height: 1.8;">
+            <li><strong>Daily Active Users (DAU):</strong> 30% → 70%</li>
+            <li><strong>Weekly Active Users (WAU):</strong> 60% → 90%</li>
+            <li><strong>Meal logs:</strong> 60-75% of users engage daily</li>
+            <li><strong>Period tracking:</strong> 80%+ of women users (massive unmet need)</li>
+            <li><strong>Average Revenue Per User (ARPU):</strong> $499 → $850</li>
+            <li><strong>Churn:</strong> ↓40% (continuous value vs episodic)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PRODUCT MODULES -->
+      <div class="section">
+        <h2 class="section-title">🚀 Ten Product Modules</h2>
+        
+        <div class="module-grid">
+          <!-- MODULE 1: FUNCTION LIVE -->
+          <div class="module-card">
+            <div class="module-icon">📲</div>
+            <div class="module-title">Function Live</div>
+            <div class="module-desc">
+              Real-time health feedback between quarterly lab tests. Integrate wearables, track meals with CGM, monitor your cycle, and get AI-powered biomarker estimates.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Wearable integration (Oura, Garmin, Apple Watch, Whoop, Samsung Galaxy Ring, RingConn, Ultrahuman)</li>
+                <li>Smart bed integration (Eight Sleep, Sleep Number) - track sleep stages, temperature, HRV overnight</li>
+                <li>Smart sleep mask integration (Manta Sleep, Lumos, BIA) - optimize sleep quality and circadian rhythm</li>
+                <li>CGM integration (Levels, Dexcom, Freestyle Libre, Stelo) - see glucose response to meals in real-time</li>
+                <li>Smart toilet/urine analysis devices (Withings U-Scan, Toi Labs) - daily hydration, ketones, UTI detection</li>
+                <li>Stool analysis integration (emerging home testing devices) - gut health monitoring</li>
+                <li>Meal logging with impact analysis (glucose spikes, inflammation markers, energy correlation)</li>
+                <li>Period tracking with cycle-phase biomarker correlation (iron, hormones, energy, mood)</li>
+                <li>AI biomarker estimation between lab tests</li>
+                <li>Daily health score and personalized insights</li>
+              </ul>
+              <p style="margin-top: 12px; font-style: italic; color: #64748b;"><strong>The IoT Health Ecosystem:</strong> As health and wellness devices continue to evolve (smart mirrors, smart scales, air quality monitors, hydration trackers), Function Live becomes the central hub that makes sense of all your data—connecting dots between sleep, nutrition, hydration, environment, and biomarkers.</p>
+            </div>
+            <div class="pricing">+$10-20/month | 400-600% ↑ DAU | Future-proof as IoT health devices expand</div>
+          </div>
+
+          <!-- MODULE 2: FUNCTION PREVENT -->
+          <div class="module-card">
+            <div class="module-icon">🛡️</div>
+            <div class="module-title">Function Prevent</div>
+            <div class="module-desc">
+              Early detection for 20-40 year olds. Comprehensive screening panels that traditional healthcare misses—catching problems years earlier.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Early cancer screening (colonoscopy, mammograms, liquid biopsies)</li>
+                <li>Gut microbiome testing (ZOE, Viome integration for Crohn's/IBS detection)</li>
+                <li>Comprehensive women's health panels (ferritin, B12, folate, hormones by cycle phase)</li>
+                <li>Men's health panels (testosterone, PSA, cardiovascular markers)</li>
+                <li>Genetic risk assessment (BRCA1/2, Lynch syndrome, cardiovascular genes)</li>
+                <li>Inflammatory bowel markers (fecal calprotectin, CRP, ESR)</li>
+              </ul>
+            </div>
+            <div class="pricing">+$299/year | 50-75% TAM expansion into younger demographic</div>
+          </div>
+
+          <!-- MODULE 3: FUNCTION PERFORMANCE -->
+          <div class="module-card">
+            <div class="module-icon">🏃</div>
+            <div class="module-title">Function Performance</div>
+            <div class="module-desc">
+              For athletes and high performers seeking peak physical and mental performance. Turn your body into a finely-tuned machine.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>VO₂ Max testing (at-home or lab)</li>
+                <li>Metabolic rate analysis (RMR, BMR)</li>
+                <li>Training load integration (Strava, TrainingPeaks)</li>
+                <li>Cortisol, testosterone, DHEA, growth hormone tracking</li>
+                <li>Recovery optimization with HRV correlation</li>
+                <li>Performance biomarkers (lactate, creatine kinase, myoglobin)</li>
+              </ul>
+            </div>
+            <div class="pricing">$799-1200/year | New market segment (CrossFit, endurance athletes)</div>
+          </div>
+
+          <!-- MODULE 4: FUNCTION FAMILY -->
+          <div class="module-card">
+            <div class="module-icon">👨‍👩‍👧‍👦</div>
+            <div class="module-title">Function Family</div>
+            <div class="module-desc">
+              Link family accounts—including children—to identify shared genetic risks and health patterns. <strong>The feature my family desperately needed.</strong> Catch hereditary conditions before they become crises. Spot trends across generations.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Family account linking (up to 6 members, all ages including children)</li>
+                <li>Pediatric early disease detection (catch developmental issues, genetic conditions early)</li>
+                <li>Shared genetic risk dashboard (cancer, cardiovascular, autoimmune, developmental disorders)</li>
+                <li>Multi-generational health trend analysis</li>
+                <li>Hereditary disease screening recommendations</li>
+                <li>Family health timeline visualization</li>
+                <li>Coordinated preventive care alerts (screening schedules, risk factors)</li>
+                <li>Privacy controls for each member</li>
+              </ul>
+            </div>
+            <div class="pricing">+$99/year per family | Viral growth multiplier through network effects</div>
+          </div>
+
+          <!-- MODULE 5: FUNCTION GUT -->
+          <div class="module-card">
+            <div class="module-icon">🦠</div>
+            <div class="module-title">Function Gut</div>
+            <div class="module-desc">
+              Comprehensive microbiome analysis. Catch conditions like Crohn's, IBS, and SIBO before they become chronic. The gut-brain-oral axis.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Gut microbiome testing (quarterly via ZOE, Viome, Thorne)</li>
+                <li>Oral microbiome testing (saliva analysis for teeth and gut health connection)</li>
+                <li>Oral probiotics recommendations</li>
+                <li>SIBO markers (hydrogen/methane breath testing)</li>
+                <li>Inflammatory bowel disease markers (fecal calprotectin, CRP)</li>
+                <li>Food sensitivity panels (IgG, IgA testing)</li>
+                <li>Gut-brain-oral axis insights</li>
+              </ul>
+            </div>
+            <div class="pricing">+$199/quarter | 40% attach rate among existing users</div>
+          </div>
+
+          <!-- MODULE 6: FUNCTION BRAIN -->
+          <div class="module-card">
+            <div class="module-icon">🧠</div>
+            <div class="module-title">Function Brain</div>
+            <div class="module-desc">
+              Next-gen cognitive testing and preventive screening. Digital assessments, blood biomarkers, and AI-powered analysis for long-term brain health.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Digital cognitive assessments (Creyos, Linus Health, BrainCheck) - iPad-based memory, attention, executive function tests</li>
+                <li>AI-powered process analysis (analyzes HOW you complete tasks, not just results)</li>
+                <li>Olfactory testing (smell tests detect early Alzheimer's markers)</li>
+                <li>Blood biomarkers (homocysteine, omega-3 index, CRP, IL-6, B-vitamins)</li>
+                <li>Alzheimer's risk markers (APOE4 genetic testing, pTau-217, β-Amyloid)</li>
+                <li>EEG monitoring (optional - brainwave analysis)</li>
+                <li>Balance and eye movement tracking</li>
+              </ul>
+            </div>
+            <div class="pricing">+$149/quarter | Premium tier add-on for longevity-focused users</div>
+          </div>
+
+          <!-- MODULE 7: FUNCTION WOMEN / MEN -->
+          <div class="module-card">
+            <div class="module-icon">👩👨</div>
+            <div class="module-title">Function Women + Function Men</div>
+            <div class="module-desc">
+              Comprehensive hormone and reproductive health tracking tailored to biological sex. Fill the massive gap in gender-specific preventive care.
+            </div>
+            <div class="module-features">
+              <strong>Function Women:</strong>
+              <ul>
+                <li>Period tracking with cycle-phase biomarker correlation</li>
+                <li>Comprehensive hormone panels (estrogen, progesterone, FSH, LH) by cycle phase</li>
+                <li>Ferritin, B12, folate tracking (catch anemia early like I needed)</li>
+                <li>PCOS screening (testosterone, insulin resistance, inflammatory markers)</li>
+                <li><strong>Endometriosis testing (blood/saliva markers - cutting-edge, huge unmet need)</strong></li>
+                <li>Fertility biomarkers (AMH, thyroid, prolactin)</li>
+                <li>Perimenopause/menopause tracking (hormone fluctuations)</li>
+                <li>Bone health (women at higher risk for osteoporosis)</li>
+              </ul>
+              <strong>Function Men:</strong>
+              <ul>
+                <li>Testosterone optimization (free and total T, SHBG, DHT)</li>
+                <li>Prostate health (PSA, digital exams, prostate-specific markers)</li>
+                <li>Cardiovascular markers (ApoB, Lp(a), hsCRP - men at higher risk)</li>
+                <li>Metabolic health (insulin, glucose, HbA1c, visceral fat markers)</li>
+                <li>Male fertility assessment (FSH, LH, testosterone, prolactin)</li>
+                <li>Erectile health biomarkers (vascular health, nitric oxide, blood flow markers)</li>
+                <li>Mental health screening (depression, anxiety - men underdiagnosed)</li>
+                <li>Hair loss markers (DHT, thyroid, nutritional deficiencies)</li>
+                <li>Muscle health and sarcopenia prevention (vitamin D, protein metabolism)</li>
+              </ul>
+            </div>
+            <div class="pricing">+$99/quarter | 70%+ attach rate for women, 50%+ for men</div>
+          </div>
+
+          <!-- MODULE 8: FUNCTION STRUCTURE + SKIN -->
+          <div class="module-card">
+            <div class="module-icon">🦴✨</div>
+            <div class="module-title">Function Structure + Skin</div>
+            <div class="module-desc">
+              Body composition, bone health, and dermatological markers. Track structural health and skin aging from the inside out.
+            </div>
+            <div class="module-features">
+              <strong>Function Structure:</strong>
+              <ul>
+                <li>DEXA bone density scans (osteoporosis prevention)</li>
+                <li>Body composition analysis (muscle mass, fat distribution)</li>
+                <li>Bone health biomarkers (vitamin D, calcium, parathyroid hormone)</li>
+                <li>Joint health markers (inflammatory markers, uric acid)</li>
+              </ul>
+              <strong>Function Skin:</strong>
+              <ul>
+                <li>Collagen and elastin biomarkers</li>
+                <li>Antioxidant levels (vitamin C, E, glutathione)</li>
+                <li>UV damage markers</li>
+                <li>Skin aging prevention recommendations</li>
+              </ul>
+            </div>
+            <div class="pricing">+$199/year for DEXA + biomarkers | Premium longevity segment</div>
+          </div>
+
+          <!-- MODULE 9: FUNCTION HEART -->
+          <div class="module-card">
+            <div class="module-icon">❤️</div>
+            <div class="module-title">Function Heart</div>
+            <div class="module-desc">
+              Comprehensive cardiovascular testing without insurance referrals. Most insurance won't cover EKG or stress tests for health-conscious people wanting proactive screening—we fix that gap.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>EKG testing (electrocardiogram) - no insurance referral needed</li>
+                <li>Stress test options (exercise or pharmacological)</li>
+                <li>Advanced cardiovascular biomarker panels (ApoB, Lp(a), hsCRP, homocysteine, fibrinogen)</li>
+                <li>Blood pressure monitoring integration</li>
+                <li>Heart rate variability (HRV) analysis from wearables</li>
+                <li>Calcium scoring (CT scan for arterial plaque)</li>
+                <li>Vascular health assessment</li>
+                <li>Cardiac risk stratification</li>
+              </ul>
+            </div>
+            <div class="pricing">+$299/year | High attach rate for 40+ demographic</div>
+          </div>
+
+          <!-- MODULE 10: FUNCTION ENVIRONMENTAL -->
+          <div class="module-card">
+            <div class="module-icon">🌿</div>
+            <div class="module-title">Function Environmental</div>
+            <div class="module-desc">
+              Environmental exposure testing—mold, allergies, heavy metals, toxins. Understand how your environment affects your health.
+            </div>
+            <div class="module-features">
+              <strong>Features:</strong>
+              <ul>
+                <li>Mold exposure testing (mycotoxin panels - blood/urine)</li>
+                <li>Comprehensive allergy panels (IgE testing for environmental allergens)</li>
+                <li>Heavy metals screening (lead, mercury, arsenic, cadmium)</li>
+                <li>Environmental toxin assessment (VOCs, pesticides, BPA)</li>
+                <li>Indoor air quality markers</li>
+                <li>Water quality testing (if applicable)</li>
+                <li>Chemical sensitivity markers</li>
+                <li>Detoxification pathway assessment</li>
+              </ul>
+            </div>
+            <div class="pricing">+$249/year | 25-30% attach rate, especially mold-conscious users</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPETITIVE LANDSCAPE -->
+      <div class="section">
+        <h2 class="section-title">🏆 Competitive Advantage</h2>
+        
+        <div class="competitive">
+          <div class="comp-row">
+            <div class="comp-name">💍 Oura Ring</div>
+            <div class="comp-gap">Just launched Health Panels (Oct 2025) - 50 biomarkers for $99 BUT requires $5.99/month subscription + limited to cardiometabolic markers only</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">🍎 Apple Health</div>
+            <div class="comp-gap">Tracks activity & vitals, no blood biomarkers or comprehensive testing</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">⌚ Garmin</div>
+            <div class="comp-gap">Fitness-focused with training metrics, no health biomarkers</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">⭕ Samsung Galaxy Ring</div>
+            <div class="comp-gap">Sleep & recovery only, Android ecosystem lock-in, no biomarkers</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">💫 Ultrahuman Ring</div>
+            <div class="comp-gap">No subscription (good!) but limited to recovery metrics, no comprehensive blood work</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">🔗 RingConn Gen 2</div>
+            <div class="comp-gap">Budget option ($259) with basic metrics, no health intelligence layer</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">📊 Whoop</div>
+            <div class="comp-gap">Just launched Advanced Labs but limited panel vs Function's 100+ markers</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">🧬 InsideTracker</div>
+            <div class="comp-gap">Limited panel, expensive ($500+), no continuous tracking or family linking</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">🦠 ZOE / Viome</div>
+            <div class="comp-gap">Gut-only focus, no comprehensive biomarkers or wearable integration</div>
+          </div>
+          <div class="comp-row">
+            <div class="comp-name">🏥 Traditional Labs</div>
+            <div class="comp-gap">Reactive, not preventive. Limited markers tested. No longitudinal tracking.</div>
+          </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 30px;">
+          <h4>Function Lifelong's Unique Edge</h4>
+          <p><strong>We're the ONLY platform that combines:</strong></p>
+          <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.9;">
+            <li>✅ <strong>Comprehensive biomarker panels</strong> (100+ markers quarterly, not just 50)</li>
+            <li>✅ <strong>Wearable integration</strong> (Oura, Garmin, Apple, Samsung, Whoop, Ultrahuman, RingConn, CGMs)</li>
+            <li>✅ <strong>Longitudinal tracking</strong> with AI-powered insights and trend analysis</li>
+            <li>✅ <strong>Family health linking</strong> (including children) with shared genetic risk identification</li>
+            <li>✅ <strong>No monthly subscription</strong> for wearable data access (unlike Oura's $5.99/mo)</li>
+            <li>✅ <strong>Gender-specific health</strong> (Function Women with endometriosis testing + Function Men with comprehensive panels)</li>
+            <li>✅ <strong>Next-gen brain testing</strong> (digital cognitive assessments, AI analysis, olfactory testing)</li>
+            <li>✅ <strong>Cardiovascular access</strong> (EKG & stress tests without insurance referrals)</li>
+            <li>✅ <strong>Environmental health</strong> (mold, allergies, heavy metals - often ignored by traditional medicine)</li>
+            <li>✅ <strong>Preventive focus</strong> (catch problems years early, not react to crises)</li>
+          </ul>
+          <p style="margin-top: 15px; font-weight: 600;"><strong>We're the bridge between reactive healthcare and proactive wellness. We're the partner you need for 100 healthy years.</strong></p>
+        </div>
+      </div>
+
+      <!-- MARKET OPPORTUNITY -->
+      <div class="section">
+        <h2 class="section-title">💰 Market Opportunity</h2>
+        
+        <div class="metric-box" style="margin: 20px 0;">
+          <div class="metric-number">$6.87T</div>
+          <div class="metric-label">Global Health & Wellness Market (2025)</div>
+        </div>
+
+        <p style="margin: 20px 0; line-height: 1.8;">The global health and wellness market is experiencing explosive growth. <strong>Valued at $6.87 trillion in 2025</strong>, the market is projected to reach <strong>$11 trillion by 2034</strong> (5.4% CAGR). The preventive, personalized medicine segment is growing <em>even faster</em>, driven by increased health awareness, digital wellness solutions, and demand for proactive healthcare.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 30px;">
+          <div class="highlight-box">
+            <h4>Target Audiences (75%+ TAM Expansion)</h4>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+              <li>Health-conscious millennials/Gen Z (25-45) seeking preventive care</li>
+              <li>Women seeking comprehensive health tracking (period, ferritin, hormones)</li>
+              <li>Families with hereditary health concerns (like mine)</li>
+              <li>Athletes & biohackers (performance optimization)</li>
+              <li>Chronic condition managers (Crohn's, IBS, cardiovascular risk)</li>
+              <li>Performance optimizers (executives, entrepreneurs)</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h4>Revenue Model</h4>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+              <li>Subscription tiers (Basic/Premium/Elite)</li>
+              <li>Add-on specialized modules (Function Gut, Brain, Performance)</li>
+              <li>Family plan discounts (viral growth driver)</li>
+              <li>B2B partnerships (gyms, wellness centers, employers)</li>
+              <li>Data licensing (anonymized, ethical, opt-in)</li>
+              <li>Enterprise wellness programs</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="margin-top: 25px; font-size: 0.9em; color: #64748b; font-style: italic;"><strong>Market data sources:</strong> Global Wellness Institute (2025), Precedence Research, Statista. TAM projections based on industry analysis and growth rates.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <h3>Let's Build the Future of Preventive Health</h3>
+        <p style="margin-top: 15px; font-size: 1.1em; opacity: 0.95; line-height: 1.8;">
+          Function Health has the foundation. These expansions would make us the undisputed leader in comprehensive health tracking—catching problems before they start, supporting families across generations, and changing health trajectories for millions.
+        </p>
+        <p style="margin-top: 20px; font-size: 1.2em; font-weight: 600;">
+          From your first test to your hundredth birthday.<br>
+          One partner. 100 healthy years.
+        </p>
+      </div>
+
+      <!-- CITATIONS -->
+      <div class="citation-section">
+        <h3>📚 Sources & Citations</h3>
+        
+        <p><strong>Market Data:</strong></p>
+        <p>• Global health and wellness market size ($6.87T in 2025, projected $11T by 2034): Precedence Research (August 2025), Global Wellness Institute</p>
+        <p>• Preventive healthcare segment growth rates: Statista, IMARC Group (2025)</p>
+        <p>• Corporate wellness market data: Industry reports (2024-2025)</p>
+        
+        <p style="margin-top: 20px;"><strong>Competitive Intelligence:</strong></p>
+        <p>• Oura Health Panels launch: TechCrunch, Femtech Insider, ouraring.com (October 1, 2025) - 50 biomarkers for $99 via Quest Diagnostics</p>
+        <p>• Oura valuation ($11B+) and revenue ($500M+ in 2024): MobiHealthNews, Bloomberg (2025)</p>
+        <p>• Whoop Advanced Labs: TechCrunch (September 2025)</p>
+        <p>• Samsung Galaxy Ring, Ultrahuman Ring AIR, RingConn Gen 2 specs: Product documentation and tech reviews (2025)</p>
+        <p>• InsideTracker, ZOE, Viome capabilities: Company websites and tech reviews (2025)</p>
+        
+        <p style="margin-top: 20px;"><strong>Brain Health Technology:</strong></p>
+        <p>• Digital cognitive assessments: Creyos (creyos.com), Linus Health (linushealth.com), BrainCheck (braincheck.com) - 2025 platforms</p>
+        <p>• AI-powered cognitive analysis: Linus Health DCTclock, Boston Process Approach methodology</p>
+        <p>• Olfactory testing for Alzheimer's: AROMHA Brain Health Test (Scientific Reports, March 2025)</p>
+        <p>• FDA-cleared blood biomarkers: Fujirebio's Lumipulse pTau-217/β-Amyloid test (May 2025)</p>
+        <p>• VR cognitive testing: MIT Lincoln Laboratory MINDSCAPE platform</p>
+        
+        <p style="margin-top: 20px;"><strong>Clinical & Scientific Data:</strong></p>
+        <p>• Ferritin deficiency and fatigue symptoms: Medical literature on iron deficiency anemia</p>
+        <p>• Hereditary cancer risk statistics: American Cancer Society (2024), CDC genomics initiatives</p>
+        <p>• Inflammatory bowel disease biomarkers: Gastroenterology research on fecal calprotectin</p>
+        <p>• Cardiovascular biomarker predictive value: Cardiology journals on ApoB, Lp(a), hsCRP</p>
+        <p>• Microbiome and Crohn's disease: Research on gut dysbiosis and inflammation</p>
+        <p>• Oral-gut microbiome connection: Dental and gastroenterology research</p>
+        
+        <p style="margin-top: 20px;"><strong>Personal Experience:</strong></p>
+        <p>• All family health stories, medical journey details, iron infusion and B12 shot experiences are from my direct lived experience (2015-2025)</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
