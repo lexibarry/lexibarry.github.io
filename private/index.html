@@ -1,112 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Private Portfolio | Lexi Barry</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    .password-box {
+      background: white;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h1 { color: #1e293b; margin-bottom: 20px; font-size: 2em; }
+    input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button:hover { opacity: 0.9; }
+    .error { color: #dc2626; margin-top: 10px; }
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .card-link { text-decoration: none; }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-left: 5px solid #667eea;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      color: #1e293b;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+    .card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+    #content-section {
+      background: white;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    #content-section h1 {
+      color: #1e293b;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  </style>
 </head>
-
-<body class="bg-gradient-to-r from-indigo-600 to-purple-700 min-h-screen flex items-center justify-center px-6">
-
-  <!-- Container -->
-  <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-10 text-center">
-    
-    <!-- Header -->
-    <div class="text-5xl mb-3">🔒</div>
-    <h1 class="text-3xl font-bold text-gray-800 mb-2">Private Portfolio</h1>
-    <p class="text-gray-500 mb-6">Confidential strategy and insights materials by Lexi Barry</p>
-
-    <!-- Error -->
-    <div id="errorMessage" class="hidden bg-red-100 text-red-600 px-4 py-2 rounded-md mb-4 text-sm">
-      ❌ Incorrect password
+<body>
+  <div class="container">
+    <!-- PASSWORD SECTION -->
+    <div id="password-section" class="password-box">
+      <h1>Private Portfolio Materials</h1>
+      <p style="color: #64748b; margin-bottom: 20px;">Strategic proposals and product case studies</p>
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Enter password"
+        onkeypress="if(event.key === 'Enter') checkPassword()"
+      >
+      <button onclick="checkPassword()">Access Portfolio</button>
+      <div id="error" class="error"></div>
     </div>
 
-    <!-- Login Form -->
-    <form id="loginForm" onsubmit="checkPassword(event)">
-      <input
-        type="password"
-        id="passwordInput"
-        placeholder="Enter master password"
-        class="w-full border border-gray-300 rounded-md px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-4"
-        required
-      />
-      <button
-        type="submit"
-        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-md transition">
-        Access Portfolio →
-      </button>
-    </form>
-
-    <!-- Private Content -->
-    <div id="privateContent" class="hidden mt-8 text-left">
-      <h2 class="text-xl font-semibold text-gray-800 mb-2">🎯 Strategic Materials</h2>
-      <p class="text-gray-600 mb-6 text-sm">
-        Select a company below to access its private materials.  
-        Each project folder has its own access password.
+    <!-- CONTENT SECTION (shown after correct password) -->
+    <div id="content-section" style="display: none;">
+      <h1>Welcome to My Private Portfolio</h1>
+      <p style="text-align: center; color: #64748b; margin-bottom: 30px;">
+        Strategic product visions and case studies
       </p>
+      
+      <div class="cards-container">
+        
+        <!-- FUNCTION LIFELONG - FEATURED -->
+        <a href="function-lifelong.html" class="card-link">
+          <div class="card" style="border-left: 5px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+            <h3 style="color: #6366f1;">🏥 Function Lifelong</h3>
+            <h4 style="margin: 8px 0; color: #4f46e5; font-weight: 600;">Featured: Function Health Strategic Vision</h4>
+            <p>Comprehensive 10-module product expansion strategy transforming Function from episodic diagnostics to living health ecosystem</p>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 0.9em; color: #64748b;">
+              <strong>Key Projections:</strong> 5x daily engagement | 3-4x revenue per user | 75% TAM expansion
+            </div>
+          </div>
+        </a>
+        
+        <!-- YOUR OTHER ONE-PAGERS -->
+        <a href="growth-pm-onepager.html" class="card-link">
+          <div class="card">
+            <h3>Growth PM One-Pager</h3>
+            <p>Strategic growth analysis and product strategy</p>
+          </div>
+        </a>
+        
+        <a href="enterprise-pm-onepager.html" class="card-link">
+          <div class="card">
+            <h3>Enterprise PM One-Pager</h3>
+            <p>B2B product strategy and market analysis</p>
+          </div>
+        </a>
+        
+        <a href="strategic-onepager.html" class="card-link">
+          <div class="card">
+            <h3>Strategic Framework One-Pager</h3>
+            <p>Product frameworks and strategic thinking</p>
+          </div>
+        </a>
 
-      <!-- Company Cards -->
-      <div class="space-y-4">
-
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
-          <h3 class="font-semibold text-gray-800 mb-1">Template Project</h3>
-          <p class="text-gray-500 text-sm mb-3">Reusable structure for new private company pages and one-pagers.</p>
-          <a href="template/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">Access Template →</a>
-        </div>
-
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 hover:shadow-md transition">
-          <h3 class="font-semibold text-gray-800 mb-1">Function Health</h3>
-          <p class="text-gray-500 text-sm mb-3">Wellness strategy and data engagement analysis.</p>
-          <a href="functionhealth/index.html" class="text-indigo-600 font-semibold hover:underline text-sm">Access Function Health →</a>
-        </div>
-
-      </div>
-
-      <!-- Back / Logout -->
-      <div class="text-center mt-8">
-        <a href="../index.html" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm">← Back to Main Portfolio</a>
-      </div>
-
-      <div class="text-center mt-4">
-        <button onclick="logout()" class="text-gray-500 hover:text-gray-700 text-xs underline">Log Out</button>
+        <!-- ADD MORE ONE-PAGERS AS NEEDED -->
+        
       </div>
     </div>
   </div>
 
   <script>
-    const MASTER_PASSWORD = "lexibarry2025";
-
-    function checkPassword(e) {
-      e.preventDefault();
-      const input = document.getElementById("passwordInput").value;
-      const err = document.getElementById("errorMessage");
-      const form = document.getElementById("loginForm");
-      const content = document.getElementById("privateContent");
-
-      if (input === MASTER_PASSWORD) {
-        sessionStorage.setItem("auth_master", "true");
-        form.classList.add("hidden");
-        content.classList.remove("hidden");
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const correctPassword = '100HealthyYears';
+      
+      if (password === correctPassword) {
+        document.getElementById('password-section').style.display = 'none';
+        document.getElementById('content-section').style.display = 'block';
       } else {
-        err.classList.remove("hidden");
-        setTimeout(() => err.classList.add("hidden"), 3000);
+        document.getElementById('error').textContent = 'Incorrect password. Try again.';
       }
     }
-
-    function logout() {
-      sessionStorage.clear();
-      document.getElementById("loginForm").classList.remove("hidden");
-      document.getElementById("privateContent").classList.add("hidden");
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      if (sessionStorage.getItem("auth_master") === "true") {
-        document.getElementById("loginForm").classList.add("hidden");
-        document.getElementById("privateContent").classList.remove("hidden");
-      }
-    });
   </script>
-
 </body>
 </html>
