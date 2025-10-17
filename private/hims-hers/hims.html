@@ -6,281 +6,226 @@
   <title>Hims Health Intelligence | Lexi Barry</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body {
-      background: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
-      padding: 0;
-    }
-    .header {
-      background: linear-gradient(135deg, #1e3a8a, #374785);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .header h1 {
-      font-size: 2.5em;
-      margin-bottom: 8px;
-    }
-    .header p.subtitle {
-      font-size: 1.1em;
-      opacity: 0.85;
-    }
-    .main {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    .section {
-      margin-bottom: 50px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .section-title {
-      font-size: 2em;
-      color: #1e3a8a;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #cbd5e1;
-      padding-bottom: 8px;
-    }
-    .module-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .module-card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .module-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-    }
-    .module-icon {
-      font-size: 2em;
-      margin-bottom: 12px;
-    }
-    .module-title {
-      font-size: 1.5em;
-      margin-bottom: 12px;
-      color: #1e293b;
-    }
-    .module-desc {
-      color: #475569;
-      margin-bottom: 15px;
-    }
-    .module-features ul {
-      list-style: disc;
-      margin-left: 20px;
-    }
-    .competitive, .opportunity, .analysis {
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-    }
-    .comp-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .comp-row:last-child {
-      border-bottom: none;
-    }
-    .comp-name {
-      font-weight: 600;
-    }
-    .citation {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #64748b;
-      line-height: 1.5;
-    }
-    .back-link {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 10px 20px;
-      background: #1e3a8a;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: opacity 0.3s;
-    }
-    .back-link:hover {
-      opacity: 0.9;
-    }
+    body { background: #f8fafc; color: #0f172a; line-height: 1.6; }
+    .header { background: linear-gradient(135deg, #0b2474, #2f3f8a); color: #fff; padding: 48px 20px; text-align: center; }
+    .header h1 { font-size: 2.6em; margin-bottom: 8px; }
+    .header p.subtitle { opacity: 0.9; }
+    .main { max-width: 1080px; margin: 0 auto; padding: 40px 20px; }
+    .section { margin-bottom: 56px; opacity: 0; transform: translateY(28px); transition: all 0.6s ease; }
+    .section.visible { opacity: 1; transform: translateY(0); }
+    .section-title { font-size: 2em; color: #0b2474; margin-bottom: 18px; border-bottom: 3px solid #cbd5e1; padding-bottom: 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+    .card { background:#fff; border-radius: 12px; padding: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .muted { color:#475569; }
+    .badge { display:inline-block; background:#e2e8f0; color:#0f172a; padding:4px 10px; border-radius:999px; font-size:12px; margin-right:8px; }
+    .metric { background: linear-gradient(135deg,#0b2474,#2f3f8a); color:#fff; border-radius:12px; padding:18px; text-align:center; }
+    .metric h3 { font-size:1.8em; margin-bottom:6px; }
+    .list { margin-left: 18px; }
+    .table { width:100%; border-collapse: collapse; }
+    .table th, .table td { border-bottom:1px solid #e2e8f0; padding:12px 10px; text-align:left; }
+    .table th { color:#0b2474; }
+    .cta { background:#0b2474; color:#fff; padding:22px; border-radius:12px; }
+    .back-link { display:inline-block; margin-top: 8px; padding: 10px 16px; background:#0b2474; color:#fff; text-decoration:none; border-radius:8px; }
+    .small { font-size: 0.92em; }
+    .sources { font-size: 0.92em; color:#475569; }
+    .tag { font-weight:600; color:#0b2474; }
   </style>
 </head>
 <body>
   <div class="header">
     <h1>Hims Health Intelligence</h1>
-    <p class="subtitle">Transforming insights into strategy through analytics, storytelling, and product thinking.</p>
+    <p class="subtitle">Lexi Barry | Data-Driven Product Leader — Transforming insights into strategy through analytics, storytelling, and product thinking.</p>
   </div>
 
   <div class="main">
-    <div class="section" id="overview">
-      <h2 class="section-title">Overview & Context</h2>
-      <p>
-        Hims operates in a competitive telehealth + wellness space, focusing on hair growth, skin care, sexual health, men’s supplements, and emerging hormone treatments.  
-        Their model combines prescription services, subscription programs, and consumer-facing wellness products.
-      </p>
-      <p>
-        Key competitors include <strong>Ro (Roman)</strong>, <strong>Lemonaid Health</strong>, <strong>Thirty Madison</strong>, and direct-to-consumer wellness brands like GoodRx ventures. These competitors are expanding the overlap between telehealth, wellness, and ecommerce.  
-      </p>
-    </div>
-
-    <div class="section" id="modules">
-      <h2 class="section-title">Proposed Product Modules</h2>
-      <div class="module-grid">
-        <div class="module-card">
-          <div class="module-icon">🏃</div>
-          <div class="module-title">Men’s Longevity Lab</div>
-          <div class="module-desc">
-            Proactive biomarker tracking for male aging, testosterone optimization, vascular health, and recovery.
-          </div>
-          <div class="module-features">
-            <strong>Features:</strong>
-            <ul>
-              <li>Testosterone / SHBG / DHEA / cortisol panel</li>
-              <li>Cardiovascular markers: ApoB, Lp(a), hs-CRP</li>
-              <li>Vascular flow / nitric oxide analytics</li>
-              <li>Personalized supplement & lifestyle prescriptions</li>
-            </ul>
-          </div>
+    <!-- CURRENT SNAPSHOT -->
+    <section class="section">
+      <h2 class="section-title">Current Offering Snapshot (Hims)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Core Verticals</h3>
+          <ul class="list">
+            <li><strong>Hair loss:</strong> minoxidil foams/serums, Rx options, thickening care. <span class="badge">High Awareness</span></li>
+            <li><strong>Sexual health (ED):</strong> Rx options, formats incl. chewables. <span class="badge">Retention Driver</span></li>
+            <li><strong>Skin care:</strong> cleansers, moisturizers, Rx dermatology.</li>
+            <li><strong>Weight:</strong> GLP-1s (when eligible) + oral kits. <span class="badge">Growth</span></li>
+            <li><strong>Hormones:</strong> low-testosterone program; oral T (Kyzatrex) collab announced for 2026.</li>
+          </ul>
+          <p class="small muted">Refs: hims.com hair/weight pages; Reuters; Hims newsroom.</p>
         </div>
-        <div class="module-card">
-          <div class="module-icon">🧠</div>
-          <div class="module-title">MindStrong Suite</div>
-          <div class="module-desc">
-            Mental health monitoring & hormone-mood correlation module.
-          </div>
-          <div class="module-features">
-            <strong>Features:</strong>
-            <ul>
-              <li>Digital CBT / mood logging tool</li>
-              <li>Cortisol, BDNF, neurotransmitter markers</li>
-              <li>Hormone-mood correlation (testosterone, cortisol) over time</li>
-              <li>Wellness nudges & resilience tips</li>
-            </ul>
-          </div>
+        <div class="card">
+          <h3>Business Model</h3>
+          <ul class="list">
+            <li>D2C telehealth + e-commerce</li>
+            <li>Subscription refills & bundles</li>
+            <li>Assessment → provider review → Rx → fulfillment</li>
+          </ul>
         </div>
-        <div class="module-card">
-          <div class="module-icon">💇</div>
-          <div class="module-title">Hair & Scalp Biofeedback</div>
-          <div class="module-desc">
-            Deep diagnostics for scalp health and hair regeneration.
-          </div>
-          <div class="module-features">
-            <strong>Features:</strong>
-            <ul>
-              <li>Scalp microbiome sequencing</li>
-              <li>DHT, inflammation, and nutrient marker tracking</li>
-              <li>Follicle imaging & progress tracking</li>
-              <li>Personalized scalp treatment plans</li>
-            </ul>
-          </div>
-        </div>
-        <div class="module-card">
-          <div class="module-icon">💊</div>
-          <div class="module-title">Supplement Stack Engine</div>
-          <div class="module-desc">
-            Data-driven personalization of wellness stacks.
-          </div>
-          <div class="module-features">
-            <strong>Features:</strong>
-            <ul>
-              <li>Algorithmic stack builder (vitamins, nootropics, adaptogens)</li>
-              <li>Biomarker feedback loops for optimization</li>
-              <li>Stack suggestions based on lab & wearable data</li>
-            </ul>
-          </div>
-        </div>
-        <div class="module-card">
-          <div class="module-icon">🤝</div>
-          <div class="module-title">CoupleSync Dashboard</div>
-          <div class="module-desc">
-            Shared health tracking between partners (or spouse).
-          </div>
-          <div class="module-features">
-            <strong>Features:</strong>
-            <ul>
-              <li>Shared biomarker trends (e.g. hormones, stress)</li>
-              <li>Intimacy & libido sync predictions</li>
-              <li>Joint health recommendations & nudges</li>
-            </ul>
-          </div>
+        <div class="metric">
+          <h3>Opportunity</h3>
+          <p>Extend beyond “starter” categories (hair/ED) into <em>longitudinal, biomarker-anchored</em> male health programs to lift LTV and defensibility.</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="section" id="competitive-analysis">
-      <h2 class="section-title">Competitive Analysis</h2>
-      <div class="competitive">
-        <div class="comp-row">
-          <span class="comp-name">Ro / Roman</span>
-          <span>Strong in men’s health, hair, sexual health, high brand awareness</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-name">Lemonaid Health</span>
-          <span>Affordable telehealth + Rx delivery, but limited specialty scope</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-name">Thirty Madison</span>
-          <span>Vertical niche brands (hair, acid reflux, dermatology) with patient loyalty</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-name">GoodRx / Health marketplaces</span>
-          <span>Mass reach, bundling, and discount leverage; may erode margins</span>
-        </div>
-        <div class="comp-row">
-          <span class="comp-name">Traditional telehealth</span>
-          <span>Low overhead but often lacks specialization and relapse retention</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="section" id="strategic-insights">
-      <h2 class="section-title">Strategic Insights & Risks</h2>
-      <div class="analysis">
-        <ul>
-          <li>Regulatory caution: prescription services require strong compliance oversight.</li>
-          <li>User retention hinges on depth — offering only hair or skin may not sustain users long-term.</li>
-          <li>Data privacy & ethics: health data must be handled securely and transparently.</li>
-          <li>Bundling vs modular: modular premium add-ons give upsell flexibility but risk fragmentation.</li>
+    <!-- GAPS & WHY NOW -->
+    <section class="section">
+      <h2 class="section-title">Gaps & Why These Enhancements</h2>
+      <div class="card">
+        <ul class="list">
+          <li><span class="tag">Retention risk:</span> Hair/ED can be episodic; need durable reasons to stay month-over-month.</li>
+          <li><span class="tag">Differentiation:</span> Competitors (Ro, Lemonaid, Thirty Madison) offer similar front doors; deeper diagnostics & programs win.</li>
+          <li><span class="tag">Regulatory optics:</span> GLP-1 landscape is shifting; strong clinical governance & alternatives are key.</li>
+          <li><span class="tag">Hormone momentum:</span> Low-T expansion + oral T creates a wedge to broader men’s longevity programs.</li>
         </ul>
       </div>
-    </div>
+    </section>
+
+    <!-- ENHANCEMENT MODULES -->
+    <section class="section">
+      <h2 class="section-title">Product Enhancements (What & Why)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1) Men’s Longevity Lab</h3>
+          <p class="muted">Turn hormone care into a longitudinal program.</p>
+          <ul class="list">
+            <li>Panels: Testosterone (total/free), SHBG, DHEA-S, cortisol, thyroid; cardio markers (ApoB, Lp(a), hs-CRP).</li>
+            <li>Quarterly tele-checkins + dose titration.</li>
+            <li>Integrations: HRV/sleep (Apple, Oura) to close the loop on symptoms.</li>
+          </ul>
+          <p><em>Why:</em> Anchors users for 12-18 months; lifts ARPU via bundled labs + Rx + supplements.</p>
+        </div>
+
+        <div class="card">
+          <h3>2) Hair & Scalp Biofeedback</h3>
+          <p class="muted">Make hair a measurable, motivating journey.</p>
+          <ul class="list">
+            <li>Scalp microbiome + inflammation screen; ferritin/B12 optional add-on.</li>
+            <li>Photo-based follicle tracking & growth scoring.</li>
+            <li>Personalized topicals (vehicle, %), cadence nudges.</li>
+          </ul>
+          <p><em>Why:</em> Converts “commodity” minoxidil into a guided program; reduces churn at months 3–6.</p>
+        </div>
+
+        <div class="card">
+          <h3>3) MindStrong Suite</h3>
+          <p class="muted">Hormone-mood performance link.</p>
+          <ul class="list">
+            <li>Mood/CBT micro-tasks; sleep & stress correlation to T/cortisol.</li>
+            <li>Evidence-informed nudges: training, recovery, sexual health.</li>
+          </ul>
+          <p><em>Why:</em> Broadens addressable need set; supports adherence to hormone & weight programs.</p>
+        </div>
+
+        <div class="card">
+          <h3>4) Metabolic Edge</h3>
+          <p class="muted">A GLP-1-aware but GLP-1-agnostic weight program.</p>
+          <ul class="list">
+            <li>Eligibility workflows per FDA guidance; orals as alternatives.</li>
+            <li>Body comp + nutrition coaching; step down protocols to prevent rebound.</li>
+          </ul>
+          <p><em>Why:</em> De-risks supply/regulatory swings while keeping demand.</p>
+        </div>
+
+        <div class="card">
+          <h3>5) CoupleSync (Optional)</h3>
+          <ul class="list">
+            <li>Partner-view for libido, stress, sleep sync.</li>
+            <li>Privacy controls + opt-in sharing.</li>
+          </ul>
+          <p><em>Why:</em> Differentiated relationship-health angle → PR & brand lift.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETITIVE -->
+    <section class="section">
+      <h2 class="section-title">Competitive Landscape</h2>
+      <div class="card">
+        <table class="table small">
+          <thead><tr><th>Brand</th><th>Strengths</th><th>Gaps</th><th>Hims Edge (Proposed)</th></tr></thead>
+          <tbody>
+            <tr><td>Ro (Roman)</td><td>Hair/ED/weight breadth; brand scale</td><td>Less hormone longitudinal depth</td><td>Longevity Lab + hormone-mood loop</td></tr>
+            <tr><td>Lemonaid</td><td>Price & access</td><td>Limited specialization</td><td>Specialty male programs (hair+T+cardio)</td></tr>
+            <tr><td>Thirty Madison (Keeps, etc.)</td><td>Niche loyalty</td><td>Cross-vertical glue</td><td>Unified biomarker programs</td></tr>
+            <tr><td>Marketplaces (GoodRx)</td><td>Reach/discounts</td><td>Own brand loyalty</td><td>Programs vs. one-off fills</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- KPIs / ROADMAP -->
+    <section class="section">
+      <h2 class="section-title">Roadmap & KPIs</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Phase 0–1 (0–3 mo)</h3>
+          <ul class="list">
+            <li>Launch Low-T intake revamp; add HRV/sleep tiles in dashboard.</li>
+            <li>Hair tracking (photo timelapse + reminders).</li>
+            <li>Compliance: GLP-1 eligibility + alternatives flow.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Phase 2 (3–6 mo)</h3>
+          <ul class="list">
+            <li>Longevity Lab beta (panels + titration cadence).</li>
+            <li>MindStrong v1 (mood logs + correlations).</li>
+            <li>Metabolic Edge coaching & body-comp.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Phase 3 (6–12 mo)</h3>
+          <ul class="list">
+            <li>Hair microbiome pilot; personalized topicals.</li>
+            <li>CoupleSync limited release.</li>
+            <li>Broader partnerships (labs/wearables).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>North-Star Metrics</h3>
+          <ul class="list">
+            <li><strong>LTV / CAC</strong> ↑ via multi-program attach</li>
+            <li><strong>12-mo retention</strong> (Longevity Lab cohort)</li>
+            <li><strong>Rx adherence</strong> & dose stability</li>
+            <li><strong>DX speed</strong> (assessment → Rx)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISKS -->
+    <section class="section">
+      <h2 class="section-title">Risk & Compliance Notes</h2>
+      <div class="card small">
+        <ul class="list">
+          <li>GLP-1: adhere to FDA guidance; avoid non-compliant compounding; clear education on brand vs. compounded access.</li>
+          <li>Hormones: standardized labs + clinical protocols; side-effect monitoring workflows.</li>
+          <li>Data privacy: HIPAA + clear consent for wearables/partner views.</li>
+        </ul>
+      </div>
+    </section>
 
     <a href="index.html" class="back-link">← Back to Portal</a>
 
-    <div class="citation">
-      <p><strong>Sources & References:</strong></p>
-      <p>– Ro / Roman competitor data, business model, product overlaps. (CB Insights, public disclosures)</p>
-      <p>– Hims public product verticals: hair loss, sexual health, supplements, hormone tests. (hims.com)</p>
-      <p>– Telehealth & D2C wellness market commentary and regulatory risk analysis.</p>
-    </div>
+    <!-- SOURCES -->
+    <section class="section">
+      <h2 class="section-title">Sources & Citations</h2>
+      <div class="sources card">
+        <ul class="list">
+          <li>Hims product pages (hair, weight): hims.com. (Hair, Weight) </li>
+          <li>Low-T category + oral testosterone (Kyzatrex) collaboration (2025/26): Hims investors newsroom; Reuters. </li>
+          <li>FDA note on unapproved/compounded GLP-1 drugs (2025): FDA.gov Safety Communications; Hims blog on compounded GLP-1s & shortage status.</li>
+        </ul>
+        <p class="small muted">See: hims.com/hair-loss; hims.com/weight-loss; investors.hims.com (Sept 10, 2025 release); Reuters Sept 10, 2025; FDA Sept 25, 2025; Hims blog on compounded GLP-1s (2025).</p>
+      </div>
+    </section>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const sections = document.querySelectorAll(".section");
-      let delay = 0;
-      sections.forEach(sec => {
-        setTimeout(() => {
-          sec.classList.add("visible");
-        }, delay);
-        delay += 200;
+      document.querySelectorAll(".section").forEach((sec, i) => {
+        setTimeout(() => sec.classList.add("visible"), 140 * i);
       });
     });
   </script>
