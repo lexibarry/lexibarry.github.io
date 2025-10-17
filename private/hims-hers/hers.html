@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hers Health Intelligence | Lexi Barry</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body {
+      background: #fff7f9;
+      color: #3f3d56;
+      line-height: 1.6;
+    }
+    .header {
+      background: linear-gradient(135deg, #ec4899, #f9a8d4);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 8px;
+    }
+    .header p.subtitle {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    .main {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section {
+      margin-bottom: 50px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      font-size: 2em;
+      color: #be185d;
+      margin-bottom: 20px;
+      border-bottom: 3px solid #f9a8d4;
+      padding-bottom: 8px;
+    }
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .module-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .module-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    .module-icon { font-size: 2em; margin-bottom: 12px; }
+    .module-title {
+      font-size: 1.5em;
+      margin-bottom: 12px;
+      color: #3f3d56;
+    }
+    .module-desc { color: #55516d; margin-bottom: 15px; }
+    .module-features ul { list-style: disc; margin-left: 20px; }
+    .competitive, .analysis {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+    .comp-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f4c2cf;
+    }
+    .comp-row:last-child { border-bottom: none; }
+    .comp-name { font-weight: 600; }
+    .citation {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #8b7285;
+      line-height: 1.5;
+    }
+    .back-link {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      background: #ec4899;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: opacity 0.3s;
+    }
+    .back-link:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Hers Health Intelligence</h1>
+    <p class="subtitle">Transforming insights into strategy through analytics, storytelling, and product thinking.</p>
+  </div>
+
+  <div class="main">
+    <div class="section" id="overview">
+      <h2 class="section-title">Overview & Context</h2>
+      <p>
+        Hers focuses on empowering women’s health through telehealth, wellness, and self-care products. Core verticals include skin and hair care, mental health, and hormone therapy — with a growing emphasis on menopause and fertility.
+      </p>
+      <p>
+        Key competitors include <strong>Alloy</strong>, <strong>Midi Health</strong>, <strong>Rory</strong>, <strong>Tia</strong>, and broader telehealth platforms expanding into women’s care. Hers differentiates through accessible pricing, design, and direct-to-consumer convenience.
+      </p>
+    </div>
+
+    <div class="section" id="modules">
+      <h2 class="section-title">Proposed Product Modules</h2>
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="module-icon">🌸</div>
+          <div class="module-title">Hormone Harmony</div>
+          <div class="module-desc">Precision hormone therapy personalization for menopause, thyroid, and adrenal health.</div>
+          <div class="module-features">
+            <ul>
+              <li>Estradiol / progesterone micro-tracking</li>
+              <li>Thyroid & adrenal biomarker integration</li>
+              <li>AI-based symptom logging and dosage feedback</li>
+              <li>Connected refill & adherence reminders</li>
+            </ul>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">🌙</div>
+          <div class="module-title">CycleSync AI</div>
+          <div class="module-desc">Predictive analytics for cycle phases, mood, and energy rhythms.</div>
+          <div class="module-features">
+            <ul>
+              <li>Wearable and app integration (Oura, Apple Health)</li>
+              <li>Cycle-based nutrition & workout guidance</li>
+              <li>Hormone-skin correlation tracker</li>
+              <li>Cycle-aligned productivity recommendations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">🧬</div>
+          <div class="module-title">Fertility Forecast</div>
+          <div class="module-desc">Comprehensive fertility and reproductive health insights.</div>
+          <div class="module-features">
+            <ul>
+              <li>AMH, FSH, thyroid & vitamin D analytics</li>
+              <li>Fertility-stress & sleep correlation insights</li>
+              <li>Partner sync option for conception planning</li>
+            </ul>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">💆</div>
+          <div class="module-title">Skin Resilience Lab</div>
+          <div class="module-desc">Integrates dermatologic biomarkers and environmental data for personalized skin care.</div>
+          <div class="module-features">
+            <ul>
+              <li>Skin-barrier hydration & collagen analysis</li>
+              <li>Seasonal regimen adjustments</li>
+              <li>Personalized topical formulation suggestions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="module-card">
+          <div class="module-icon">🫶</div>
+          <div class="module-title">Ageless Program</div>
+          <div class="module-desc">Longevity & bone-density-focused module for women 40 +.</div>
+          <div class="module-features">
+            <ul>
+              <li>Bone mineral density & muscle-mass monitoring</li>
+              <li>Telomere and epigenetic age testing</li>
+              <li>Nutrition & supplement optimization engine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="competitive">
+      <h2 class="section-title">Competitive Analysis</h2>
+      <div class="competitive">
+        <div class="comp-row"><span class="comp-name">Alloy</span><span>Menopause specialists with strong clinical oversight; subscription-based HRT.</span></div>
+        <div class="comp-row"><span class="comp-name">Midi Health</span><span>Insurance-covered menopause care for midlife women.</span></div>
+        <div class="comp-row"><span class="comp-name">Rory</span><span>Ro’s women’s brand; strong Rx access but limited personalization.</span></div>
+        <div class="comp-row"><span class="comp-name">Tia</span><span>Hybrid virtual + in-person clinics offering holistic primary care.</span></div>
+        <div class="comp-row"><span class="comp-name">Hers</span><span>Current edge: affordability, aesthetic branding, and rapid product rollout.</span></div>
+      </div>
+    </div>
+
+    <div class="section" id="insights">
+      <h2 class="section-title">Strategic Insights & Opportunities</h2>
+      <div class="analysis">
+        <ul>
+          <li>Deepen data-driven personalization via continuous biomarker & wearable feedback loops.</li>
+          <li>Develop lifecycle-specific bundles (fertility → menopause) to improve long-term retention.</li>
+          <li>Partner with OB/GYN and endocrinology specialists for integrated care credibility.</li>
+          <li>Address hormonal mental-health intersections (anxiety, mood) through connected therapies.</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Portal</a>
+
+    <div class="citation">
+      <p><strong>Sources & References:</strong></p>
+      <p>– Hers product offerings (hims.com/her). – Alloy & Midi Health platforms (press releases & official sites). – Rory and Tia competitor data (CB Insights). – Telehealth & women’s health trend reports 2024 – 2025.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const sections = document.querySelectorAll(".section");
+      let delay = 0;
+      sections.forEach(sec => {
+        setTimeout(() => sec.classList.add("visible"), delay);
+        delay += 200;
+      });
+    });
+  </script>
+</body>
+</html>
