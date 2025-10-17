@@ -139,20 +139,25 @@
     const password = document.getElementById('password').value.trim();
     const error = document.getElementById('error');
 
-    if (password === '100HealthyYears') {
-      // Unlock Function Lifelong section
+    // One-time password check for both sections
+    if (password === 'confidenceforall') {
+      // Redirect directly to Hims & Hers
+      window.location.href = 'hims-hers/index.html';
+    } 
+    else if (password === '100HealthyYears') {
+      // Unlock Function Lifelong immediately
       document.getElementById('password-section').style.display = 'none';
       document.getElementById('content-section').style.display = 'block';
-    } 
-    else if (password === 'confidenceforall') {
-      // Redirect directly to Hims & Hers portal
-      window.location.href = 'hims-hers/index.html';
     } 
     else {
       error.textContent = 'Incorrect password. Try again.';
     }
   }
-</script>
 
+  // Optional: allow pressing Enter to trigger login
+  document.getElementById('password').addEventListener('keypress', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
 </body>
 </html>
