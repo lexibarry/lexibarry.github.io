@@ -59,17 +59,6 @@
     }
     .card h3 { color: #1e293b; margin-bottom: 10px; font-size: 1.4em; }
     .card p { color: #64748b; line-height: 1.6; }
-    #content-section {
-      background: white;
-      padding: 50px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    #content-section h1 {
-      color: #1e293b;
-      margin-bottom: 30px;
-      text-align: center;
-    }
   </style>
 </head>
 <body>
@@ -77,82 +66,84 @@
 
     <!-- PASSWORD SECTION -->
     <div id="password-section" class="password-box">
-      <h1>Private Portfolio Materials</h1>
-      <p style="color: #64748b; margin-bottom: 20px;">Strategic product proposals</p>
+      <h1>Private Portfolio Access</h1>
+      <p style="color: #64748b; margin-bottom: 20px;">Enter your unique access code</p>
       <input 
         type="password" 
         id="password" 
         placeholder="Enter password"
         onkeypress="if(event.key === 'Enter') checkPassword()"
       >
-      <button onclick="checkPassword()">Access Portfolio</button>
+      <button onclick="checkPassword()">Access</button>
       <div id="error" class="error"></div>
     </div>
 
-    <!-- CONTENT SECTION (shown after correct password) -->
-    <div id="content-section" style="display: none;">
-      <h1>Welcome to My Private Portfolio</h1>
-      <p style="text-align: center; color: #64748b; margin-bottom: 30px;">
-        Function Lifelong — a strategic product vision created by Lexi Barry to expand Function Health into lifelong wellness and personalized prevention.
-      </p>
-      
-      <div class="cards-container">
-        
-        <!-- FUNCTION LIFELONG - FEATURED -->
-        <a href="function-lifelong.html" class="card-link">
-          <div class="card" style="border-left: 5px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
-            <h3 style="color: #6366f1;">🏥 Function Lifelong</h3>
-            <h4 style="margin: 8px 0; color: #4f46e5; font-weight: 600;">Featured: Function Health Strategic Vision</h4>
-            <p>Comprehensive 10-module product expansion strategy transforming Function from episodic diagnostics to living health ecosystem</p>
-            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 0.9em; color: #64748b;">
-              <strong>Key Projections:</strong> 5x daily engagement | 3–4x revenue per user | 75% TAM expansion
-            </div>
+    <!-- FUNCTION CONTENT -->
+    <div id="function-section" class="cards-container" style="display:none;">
+      <a href="function-lifelong.html" class="card-link">
+        <div class="card" style="border-left: 5px solid #6366f1; background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);">
+          <h3 style="color: #6366f1;">🏥 Function Lifelong</h3>
+          <h4 style="margin: 8px 0; color: #4f46e5; font-weight: 600;">Featured: Function Health Strategic Vision</h4>
+          <p>Comprehensive 10-module product expansion strategy transforming Function from episodic diagnostics to living health ecosystem.</p>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 0.9em; color: #64748b;">
+            <strong>Key Projections:</strong> 5x daily engagement | 3–4x revenue per user | 75% TAM expansion
           </div>
-        </a>
-
-        <!-- INSTACART -->
-        <a href="instacart.html" class="card-link">
-          <div class="card" style="border-left: 5px solid #43B02A; background: linear-gradient(135deg, #f8fafc 0%, #dcfce7 100%);">
-            <h3 style="color: #15803d;">🛒 Instacart</h3>
-            <h4 style="margin: 8px 0; color: #166534; font-weight: 600;">Featured: Senior Product Manager – Shopping Experience</h4>
-            <p>Optimizing cart, checkout, and post-order experiences to deepen engagement and retailer growth through data-driven experimentation.</p>
-            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 0.9em; color: #64748b;">
-              <strong>Private Access:</strong> password <code>Instacart_2972</code> | 
-              <a href="https://lexibarry.github.io/private/instacart.html" target="_blank" style="color:#15803d; font-weight:600;">View Page →</a>
-            </div>
-          </div>
-        </a>
-
-      </div>
+        </div>
+      </a>
     </div>
+
+    <!-- INSTACART CONTENT -->
+    <div id="instacart-section" class="cards-container" style="display:none;">
+      <a href="instacart.html" class="card-link">
+        <div class="card" style="border-left: 5px solid #43B02A; background: linear-gradient(135deg, #f8fafc 0%, #dcfce7 100%);">
+          <h3 style="color: #15803d;">🛒 Instacart</h3>
+          <h4 style="margin: 8px 0; color: #166534; font-weight: 600;">Featured: Senior Product Manager – Shopping Experience</h4>
+          <p>Optimizing cart, checkout, and post-order experiences to deepen engagement and retailer growth through data-driven experimentation.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- HIMS & HERS CONTENT -->
+    <div id="hims-section" class="cards-container" style="display:none;">
+      <a href="hims-hers/index.html" class="card-link">
+        <div class="card" style="border-left: 5px solid #1e3a8a; background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);">
+          <h3 style="color: #1e3a8a;">💙 Hims & Hers</h3>
+          <h4 style="margin: 8px 0; color: #1e40af; font-weight: 600;">Health Intelligence Suite</h4>
+          <p>Data-backed modular intelligence layer to unify digital care, personalization, and retention across Hims & Hers platforms.</p>
+        </div>
+      </a>
+    </div>
+
   </div>
 
 <script>
   function checkPassword() {
-    const password = document.getElementById('password').value.trim();
+    const pw = document.getElementById('password').value.trim();
     const error = document.getElementById('error');
     error.textContent = '';
 
-    // Redirects
-    if (password === 'Instacart_2972') {
-      window.location.href = 'instacart.html';
-    } 
-    else if (password === 'confidenceforall') {
-      window.location.href = 'hims-hers/index.html';
-    } 
-    else if (password === '100HealthyYears') {
+    // Hide all content first
+    document.getElementById('function-section').style.display = 'none';
+    document.getElementById('instacart-section').style.display = 'none';
+    document.getElementById('hims-section').style.display = 'none';
+
+    // Passwords mapped to each section
+    if (pw === '100HealthyYears') {
       document.getElementById('password-section').style.display = 'none';
-      document.getElementById('content-section').style.display = 'block';
+      document.getElementById('function-section').style.display = 'grid';
+    } 
+    else if (pw === 'Instacart_2972') {
+      document.getElementById('password-section').style.display = 'none';
+      document.getElementById('instacart-section').style.display = 'grid';
+    } 
+    else if (pw === 'confidenceforall') {
+      document.getElementById('password-section').style.display = 'none';
+      document.getElementById('hims-section').style.display = 'grid';
     } 
     else {
       error.textContent = 'Incorrect password. Try again.';
     }
   }
-
-  // Allow pressing Enter
-  document.getElementById('password').addEventListener('keypress', e => {
-    if (e.key === 'Enter') checkPassword();
-  });
 </script>
 </body>
 </html>
