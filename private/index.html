@@ -128,9 +128,20 @@
           </div>
         </a>
         
-        <!-- ADD MORE ONE-PAGERS AS NEEDED -->
+      <!-- INSTACART -->
         
       </div>
+      <a href="private/instacart.html" class="card-link">
+  <div class="card" style="border-left: 5px solid #43B02A; background: linear-gradient(135deg, #f8fafc 0%, #dcfce7 100%);">
+    <h3 style="color: #15803d;">🛒 Instacart</h3>
+    <h4 style="margin: 8px 0; color: #166534; font-weight: 600;">Featured: Senior Product Manager – Shopping Experience</h4>
+    <p>Optimizing cart, checkout, and post-order experiences to deepen engagement and retailer growth through data-driven experimentation.</p>
+    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #cbd5e1; font-size: 0.9em; color: #64748b;">
+      <strong>Private Access:</strong> password <code>Instacart_2972</code> | <a href="https://lexibarry.github.io/private/instacart" target="_blank" style="color:#15803d; font-weight:600;">View Page →</a>
+    </div>
+  </div>
+</a>
+<!-- ADD MORE ONE-PAGERS AS NEEDED -->
     </div>
   </div>
 
@@ -138,7 +149,20 @@
   function checkPassword() {
     const password = document.getElementById('password').value.trim();
     const error = document.getElementById('error');
+    
+    <script>
+  function checkPassword() {
+    const password = document.getElementById('password').value.trim();
+    const error = document.getElementById('error');
 
+    // One-time password check for private section
+    if (password === 'Instacart_2972') {
+      // Redirect directly to Instacart private page
+      window.location.href = 'private/instacart/index.html';
+    } else {
+      error.style.display = 'block';
+    }
+  }
     // One-time password check for both sections
     if (password === 'confidenceforall') {
       // Redirect directly to Hims & Hers
@@ -153,7 +177,6 @@
       error.textContent = 'Incorrect password. Try again.';
     }
   }
-
   // Optional: allow pressing Enter to trigger login
   document.getElementById('password').addEventListener('keypress', e => {
     if (e.key === 'Enter') checkPassword();
