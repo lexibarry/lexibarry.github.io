@@ -89,7 +89,9 @@
     function checkPassword() {
       const input = document.getElementById("passwordInput").value.trim();
       if (input === correctPassword) {
+        // Remember access for session
         localStorage.setItem("authorizedHimsHers", "true");
+        // Transition from login to tile view
         document.getElementById("authContainer").style.display = "none";
         const choice = document.getElementById("choiceContainer");
         choice.style.display = "block";
@@ -99,6 +101,7 @@
       }
     }
 
+    // Auto-show if user already unlocked before
     window.onload = () => {
       if (localStorage.getItem("authorizedHimsHers") === "true") {
         document.getElementById("authContainer").style.display = "none";
