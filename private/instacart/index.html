@@ -97,6 +97,7 @@
       }
     }
 
+    // Auto-unlock if already authorized
     window.onload = () => {
       if (localStorage.getItem("authorizedInstacart") === "true") {
         document.getElementById("authContainer").style.display = "none";
